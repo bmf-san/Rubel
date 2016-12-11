@@ -1,5 +1,12 @@
+# [Under Development]
+
 # Laravel React Redux Blog Boilerplate.
 This is a blog boilerplate working with Laravel, React, React-Redux.
+
+# Architecture
+* Laravel5.3
+* React
+* react-redux
 
 # Start Application
 `composer install`  
