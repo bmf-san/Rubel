@@ -9,8 +9,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'admins'
+        'guard' => 'admins',
+        'passwords' => 'admins',
     ],
 
     /*
@@ -29,6 +29,11 @@ return [
             'driver' => 'token',
             'provider' => 'admins'
         ],
+
+        'admins' => [
+            'driver' => 'session',
+            'provider' => 'admins'
+        ]
     ],
 
     /*

@@ -22,7 +22,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/adminpage';
 
     /**
     * Show the application's login form.
@@ -32,16 +32,6 @@ class LoginController extends Controller
     public function showLoginForm()
     {
        return view('admin_auth.login');
-    }
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest', ['except' => 'logout']);
     }
 
     /**

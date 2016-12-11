@@ -3,10 +3,16 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
+    protected $auth;
+
+    public function __construct(\Illuminate\Contracts\Auth\Factory $auth)
+    {
+        $this->auth = $auth;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -17,8 +23,16 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+        if ($this->auth->guard($guard)->check()) {
+            switch ($guard) {
+                case 'admins':
+                    return redirect('/adminpage');
+                    break;
+
+                default:
+                    return redirect('/adminpage');
+                    break;
+            }
         }
 
         return $next($request);
