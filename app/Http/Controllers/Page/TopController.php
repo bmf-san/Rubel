@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 
 class TopController extends Controller
 {
-    public function __construct(\Illuminate\Contracts\Auth\Factory $auth)
-    {
-        $this->auth = $auth;
-    }
+    /*
+    |--------------------------------------------------------------------------
+    | Top Controller
+    |--------------------------------------------------------------------------
+    */
 
     public function getIndex()
     {
