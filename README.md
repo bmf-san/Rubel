@@ -7,6 +7,7 @@ This is a blog boilerplate working with Laravel, React, React-Redux.
 * Laravel5.3
 * React
 * react-redux
+* Semantic UI React
 
 # Start Application
 `composer install`  
