@@ -26,7 +26,7 @@ interface PostRepositoryContract
      * Get a single post
      * @return [type] [description]
      */
-    public function getPost();
+    public function getPost($id);
 
     /**
      * Get posts

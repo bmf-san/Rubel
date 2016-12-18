@@ -4,29 +4,82 @@ namespace App\Http\Controllers\Api\v1\Post;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Repositories\Eloquent\PostRepository;
 
 class PostController extends Controller
 {
+    private $post_repository;
+
+    public function __construct(PostRepository $post_repository)
+    {
+        $this->post_repository = $post_repository;
+    }
+
     /**
-     * A Single Post
+     * Show a single post
      *
      * @return \Illuminate\Http\Response
      */
     public function getPost($id)
     {
-        return $id;
+        $post = $this->post_repository->getPost($id);
+
+        $post_ary = [
+            "id" => $post->id,
+            "admin_id" => $post->admin_id,
+            "category" => [
+                "id" => $post->category->id,
+                "name" => $post->category->name
+            ],
+            "tag" => $post->tags,
+            "title" => "Title-1",
+            "content" => "This is 1 content.",
+            "thumb_img_path" => "http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg",
+            "views" => 0,
+            "status" => "draft",
+            "publication_date" => "2016-12-11 15:04:27",
+            "created_at" => "2016-12-11 15:04:27",
+            "updated_at" => null,
+            "deleted_at" => null,
+            "comment" => $post->comments
+        ];
+
+        return response()->json($post_ary);
     }
 
     /**
-     * Posts
+     * Show posts
      *
      * @return \Illuminate\Http\Response
      */
     public function getPosts()
     {
-        $data = ['title'];
+        $posts = $this->post_repository->getPosts();
 
-        return response()->json($data);
+        $posts_ary = [];
+
+        foreach ($posts as $post) {
+            $posts_ary[]= [
+                "id" => $post->id,
+                "admin_id" => $post->admin_id,
+                "category" => [
+                    "id" => $post->category->id,
+                    "name" => $post->category->name
+                ],
+                "tag" => $post->tags,
+                "title" => "Title-1",
+                "content" => "This is 1 content.",
+                "thumb_img_path" => "http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg",
+                "views" => 0,
+                "status" => "draft",
+                "publication_date" => "2016-12-11 15:04:27",
+                "created_at" => "2016-12-11 15:04:27",
+                "updated_at" => null,
+                "deleted_at" => null
+            ];
+        }
+
+        return response()->json($posts_ary);
     }
 
     /**

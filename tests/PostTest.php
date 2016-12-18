@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class PostTest extends TestCase
 {
     /**
-     * Posts
+     * Show a single post
      *
      * @return void
      */
@@ -19,5 +19,16 @@ class PostTest extends TestCase
             ]);
     }
 
-
+    /**
+     * Show posts
+     *
+     * @return void
+     */
+    public function getPosts()
+    {
+        $this->get('/api/v1/posts')
+             ->seeJson([
+                 'title'
+            ]);
+    }
 }

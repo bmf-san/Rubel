@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Repositories\Contracts\PostRepositoryContract;
+use App\Models\Post;
 
 class PostRepository implements PostRepositoryContract
 {
@@ -42,19 +43,20 @@ class PostRepository implements PostRepositoryContract
 
     /**
      * Get a single post
-     * @return [type] [description]
+     * @return object
      */
-    public function getPost()
-    {
-
-    }
+     public function getPost($id)
+     {
+         return $this->post->with('admin', 'postImages', 'category', 'comments', 'tags')->find($id);
+     }
 
     /**
      * Get posts
-     * @return [type] [description]
+     * @param  string  $id
+     * @return object
      */
-    public function getPosts()
-    {
-
-    }
+     public function getPosts()
+     {
+         return $this->post->with('admin', 'postImages', 'category', 'comments', 'tags')->get(); // FIXME comments is unnecessary maybe...
+     }
 }
