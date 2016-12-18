@@ -38,49 +38,37 @@ class Repository extends Command
     public function handle()
     {
         $modelName = $this->argument('modelName');
+        $contractFileName = 'app/Repositories/Contracts/' . $modelName . 'RepositoryContract.php';
+        $eloquentFileName = 'app/Repositories/Eloquent/' . $modelName . 'Repository.php';
 
         if ($modelName === '' || is_null($modelName) || empty($modelName)) {
             $this->error('Model name invalid..!');
         }
 
-        if (! file_exists('app/Http/Repositories/Contracts') && ! file_exists('app/Http/Repositories/Eloquent')) {
+        if (! file_exists('app/Repositories/Contracts') && ! file_exists('app/Repositories/Eloquent')) {
+            mkdir('app/Repositories/Contracts', 0775, true);
+            mkdir('app/Repositories/Eloquent', 0775, true);
 
-            mkdir('app/Http/Repositories/Contracts', 0775, true);
-            mkdir('app/Http/Repositories/Eloquent', 0775, true);
-
-            $contractFileName = 'app/Http/Repositories/Contracts/' . $modelName . 'RepositoryContract.php';
-            $eloquentFileName = 'app/Http/Repositories/Eloquent/' . $modelName . 'Repository.php';
-
-            if(! file_exists($contractFileName) && ! file_exists($eloquentFileName)) {
-                $contractFileContent = "<?php\n\nnamespace App\\Http\\Repositories\\Contracts;\n\ninterface " . $modelName . "RepositoryContract\n{\n}";
-
-                file_put_contents($contractFileName, $contractFileContent);
-
-                $eloquentFileContent = "<?php\n\nnamespace App\\Http\\Repositories\\Eloquent;\n\nuse App\\Repositories\\Contracts\\".$modelName."RepositoryContract;\n\nclass " . $modelName . "Repository implements " . $modelName . "RepositoryContract\n{\n}";
-
-                file_put_contents($eloquentFileName, $eloquentFileContent);
-
-                $this->info('Repository files created successfully.');
-            } else {
-                $this->error('Repository files already exists.');
-            }
+            $this->createFiles($modelName, $contractFileName, $eloquentFileName);
         } else {
-            $contractFileName = 'app/Http/Repositories/Contracts/' . $modelName . 'RepositoryContract.php';
-            $eloquentFileName = 'app/Http/Repositories/Eloquent/' . $modelName . 'Repository.php';
+            $this->createFiles($modelName, $contractFileName, $eloquentFileName);
+        }
+    }
 
-            if(! file_exists($contractFileName) && ! file_exists($eloquentFileName)) {
-                $contractFileContent = "<?php\n\nnamespace App\\Http\\Repositories\\Contracts;\n\ninterface " . $modelName . "RepositoryContract\n{\n}";
+    public function createFiles($modelName, $contractFileName, $eloquentFileName)
+    {
+        if(! file_exists($contractFileName) && ! file_exists($eloquentFileName)) {
+            $contractFileContent = "<?php\n\nnamespace App\\Repositories\\Contracts;\n\ninterface " . $modelName . "RepositoryContract\n{\n}";
 
-                file_put_contents($contractFileName, $contractFileContent);
+            file_put_contents($contractFileName, $contractFileContent);
 
-                $eloquentFileContent = "<?php\n\nnamespace App\\Http\\Repositories\\Eloquent;\n\nuse App\\Repositories\\Contracts\\".$modelName."RepositoryContract;\n\nclass " . $modelName . "Repository implements " . $modelName . "RepositoryContract\n{\n}";
+            $eloquentFileContent = "<?php\n\nnamespace App\\Repositories\\Eloquent;\n\nuse App\\Repositories\\Contracts\\".$modelName."RepositoryContract;\n\nclass " . $modelName . "Repository implements " . $modelName . "RepositoryContract\n{\n}";
 
-                file_put_contents($eloquentFileName, $eloquentFileContent);
+            file_put_contents($eloquentFileName, $eloquentFileContent);
 
-                $this->info('Repository files created successfully.');
-            } else {
-                $this->error('Repository files already exists.');
-            }
+            $this->info('Repository files created successfully.');
+        } else {
+            $this->error('Repository files already exists.');
         }
     }
 }

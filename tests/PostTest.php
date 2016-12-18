@@ -4,16 +4,20 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class PostTest extends TestCase
 {
     /**
-     * A basic functional test example.
+     * Posts
      *
      * @return void
      */
-    public function testBasicExample()
+    public function getPosts()
     {
-        $this->visit('/')
-             ->see('Laravel');
+        $this->get('/api/v1/posts')
+             ->seeJson([
+                 'title'
+            ]);
     }
+
+
 }

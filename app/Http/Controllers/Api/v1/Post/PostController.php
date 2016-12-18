@@ -24,7 +24,9 @@ class PostController extends Controller
      */
     public function getPosts()
     {
-        return 'Return data of Posts.';
+        $data = ['title'];
+
+        return response()->json($data);
     }
 
     /**
