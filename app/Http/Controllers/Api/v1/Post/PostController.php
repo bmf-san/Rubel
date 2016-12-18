@@ -1,29 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Post;
+namespace App\Http\Controllers\Api\v1\Post;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * A Single Post
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getPost($id)
     {
-        //
+        return $id;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Posts
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getPosts()
     {
-        //
+        return 'Return data of Posts.';
     }
 
     /**
