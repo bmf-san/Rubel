@@ -11,12 +11,9 @@ class PostTest extends TestCase
      *
      * @return void
      */
-    public function getPosts()
+    public function testPost()
     {
-        $this->get('/api/v1/posts')
-             ->seeJson([
-                 'title'
-            ]);
+
     }
 
     /**
@@ -24,11 +21,8 @@ class PostTest extends TestCase
      *
      * @return void
      */
-    public function getPosts()
+    public function testPosts()
     {
-        $this->get('/api/v1/posts')
-             ->seeJson([
-                 'title'
-            ]);
+
     }
 }

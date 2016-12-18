@@ -16,6 +16,7 @@ class PostRepository implements PostRepositoryContract
 
     /**
      * Create a new post
+     *
      * @return [type] [description]
      */
     public function createPost()
@@ -25,6 +26,7 @@ class PostRepository implements PostRepositoryContract
 
     /**
      * Edit a post
+     *
      * @return [type] [description]
      */
     public function editPost()
@@ -34,6 +36,7 @@ class PostRepository implements PostRepositoryContract
 
     /**
      * Delete a post
+     *
      * @return [type] [description]
      */
     public function deletePost()
@@ -43,6 +46,7 @@ class PostRepository implements PostRepositoryContract
 
     /**
      * Get a single post
+     *
      * @return object
      */
      public function getPost($id)
@@ -52,6 +56,7 @@ class PostRepository implements PostRepositoryContract
 
     /**
      * Get posts
+     *
      * @param  string  $id
      * @return object
      */
