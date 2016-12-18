@@ -22,9 +22,7 @@ class PostController extends Controller
      */
     public function getPost($id)
     {
-        $post = $this->post_repository->getPost($id);
-
-        return response()->json($post);
+        return response()->json($this->post_repository->getPost($id));
     }
 
     /**
@@ -34,9 +32,7 @@ class PostController extends Controller
      */
     public function getPosts()
     {
-        $posts = $this->post_repository->getPosts();
-
-        return response()->json($posts);
+        return response()->json($this->post_repository->getPosts());
     }
 
     /**
