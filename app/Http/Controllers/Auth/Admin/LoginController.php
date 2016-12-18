@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\AdminAuth;
+namespace App\Http\Controllers\Auth\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-use App\Http\Requests\AdminAuth\LoginRequest;
+use App\Http\Requests\Auth\Admin\LoginRequest;
 
 class LoginController extends Controller
 {
@@ -31,7 +31,7 @@ class LoginController extends Controller
     */
     public function showLoginForm()
     {
-       return view('admin_auth.login');
+       return view('auth.admin.login');
     }
 
     /**

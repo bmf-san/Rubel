@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 		$this->db->statement('SET FOREIGN_KEY_CHECKS=0;');
 
         $this->call(AdminsTableSeeder::class);
-        $this->call(RelatedArticleTablesSeeder::class);
+        $this->call(RelatedPostTablesSeeder::class);
 
         $this->db->statement('SET FOREIGN_KEY_CHECKS=1;');
     }

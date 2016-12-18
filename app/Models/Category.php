@@ -14,8 +14,8 @@ class Category extends Model
         'created_at', 'updated_at', 'deleted_at'
     ];
 
-    public function article()
+    public function post()
     {
-        return $this->hasOne('App\Models\Article');
+        return $this->hasOne('App\Models\Post');
     }
 }

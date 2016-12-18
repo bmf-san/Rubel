@@ -18,7 +18,8 @@ class Tag extends Model
         'created_at', 'updated_at', 'deleted_at'
     ];
 
-    public function articles()
+    public function posts()
     {
-        return $this->belongsToMany('App\Models\Article', 'tag_article');
-    }}
+        return $this->belongsToMany('App\Models\Post', 'tag_post');
+    }
+}

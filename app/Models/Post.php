@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Post extends Model
 {
     protected $fillable = [
         'admin_id', 'category_id', 'title', 'content', 'thumb_img_path', 'views', 'status'
@@ -23,9 +23,9 @@ class Article extends Model
         return $this->belongsTo('App\Models\Admin');
     }
 
-    public function articleImages()
+    public function postImages()
     {
-        return $this->hasMany('App\Models\ArticleImage');
+        return $this->hasMany('App\Models\PostImage');
     }
 
     public function category()
@@ -40,6 +40,6 @@ class Article extends Model
 
 	public function tags()
 	{
-		return $this->belongsToMany('App\Models\Tag', 'tag_article');
+		return $this->belongsToMany('App\Models\Tag', 'tag_post');
 	}
 }

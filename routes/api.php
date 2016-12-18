@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 |--------------------------------------------------------------------------
 */
 
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:api');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/posts', 'Api\v1\Post\PostController@getPosts');
+    Route::get('/post/{id}', 'Api\v1\Post\Postcontroller@getPost');
+});

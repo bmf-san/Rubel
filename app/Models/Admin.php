@@ -29,8 +29,8 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function articles()
+    public function posts()
     {
-        return $this->articles('App\Models\Article');
+        return $this->posts('App\Models\Post');
     }
 }

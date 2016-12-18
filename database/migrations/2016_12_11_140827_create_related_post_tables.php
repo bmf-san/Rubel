@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRelatedArticleTables extends Migration
+class CreateRelatedPostTables extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreateRelatedArticleTables extends Migration
 			$table->softDeletes();
 		});
 
-		Schema::create('articles', function (Blueprint $table) {
+		Schema::create('posts', function (Blueprint $table) {
 			$table->increments('id');
             $table->integer('admin_id')->unsigned()->nullable();
             $table->integer('category_id')->unsigned()->nullable();
@@ -38,22 +38,22 @@ class CreateRelatedArticleTables extends Migration
 
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('article_id')->unsigned()->nullable();
+            $table->integer('post_id')->unsigned()->nullable();
             $table->text('comment');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('article_id')->references('id')->on('articles');
+            $table->foreign('post_id')->references('id')->on('posts');
         });
 
-		Schema::create('article_images', function(Blueprint $table){
+		Schema::create('post_images', function(Blueprint $table){
 			$table->increments('id');
-			$table->integer('article_id')->unsigned();
+			$table->integer('post_id')->unsigned();
 			$table->string('img_path');
 			$table->timestamps();
 			$table->softDeletes();
 
-			$table->foreign('article_id')->references('id')->on('articles');
+			$table->foreign('post_id')->references('id')->on('posts');
 		});
 
 		Schema::create('tags', function (Blueprint $table) {
@@ -63,15 +63,15 @@ class CreateRelatedArticleTables extends Migration
 			$table->softDeletes();
 		});
 
-		Schema::create('tag_article', function (Blueprint $table) {
+		Schema::create('tag_post', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('tag_id')->unsigned();
-			$table->integer('article_id')->unsigned();
+			$table->integer('post_id')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
 
 			$table->foreign('tag_id')->references('id')->on('tags');
-			$table->foreign('article_id')->references('id')->on('articles');
+			$table->foreign('post_id')->references('id')->on('posts');
 		});
 	}
 
@@ -82,9 +82,9 @@ class CreateRelatedArticleTables extends Migration
      */
     public function down()
     {
-		Schema::drop('article_images');
-		Schema::drop('tag_article');
-		Schema::drop('articles');
+		Schema::drop('post_images');
+		Schema::drop('tag_post');
+		Schema::drop('posts');
 		Schema::drop('categories');
 		Schema::drop('comments');
 		Schema::drop('tags');

@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 use Carbon\Carbon;
 
-class RelatedArticleTablesSeeder extends Seeder
+class RelatedPostTablesSeeder extends Seeder
 {
     protected $db;
 
@@ -16,11 +16,11 @@ class RelatedArticleTablesSeeder extends Seeder
     public function run()
     {
         $this->db->table('categories')->truncate();
-        $this->db->table('articles')->truncate();
+        $this->db->table('posts')->truncate();
         $this->db->table('comments')->truncate();
-        $this->db->table('article_images')->truncate();
+        $this->db->table('post_images')->truncate();
         $this->db->table('tags')->truncate();
-        $this->db->table('tag_article')->truncate();
+        $this->db->table('tag_post')->truncate();
 
         for ($i = 1; $i < 11; $i++) {
             $this->db->table('categories')->insert([
@@ -28,7 +28,7 @@ class RelatedArticleTablesSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ]);
 
-            $this->db->table('articles')->insert([
+            $this->db->table('posts')->insert([
                 'admin_id' => 1,
                 'category_id' => $i,
                 'title' => "Title-{$i}",
@@ -39,13 +39,13 @@ class RelatedArticleTablesSeeder extends Seeder
             ]);
 
             $this->db->table('comments')->insert([
-                'article_id' => $i,
+                'post_id' => $i,
                 'comment' => "This is {$i} comment.",
                 'created_at' => Carbon::now()
             ]);
 
-            $this->db->table('article_images')->insert([
-                'article_id' => $i,
+            $this->db->table('post_images')->insert([
+                'post_id' => $i,
                 'img_path' => 'http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg',
                 'created_at' => Carbon::now()
             ]);
@@ -55,9 +55,9 @@ class RelatedArticleTablesSeeder extends Seeder
                 'created_at' => Carbon::now()
             ]);
 
-            $this->db->table('tag_article')->insert([
+            $this->db->table('tag_post')->insert([
                 'tag_id' => $i,
-                'article_id' => $i,
+                'post_id' => $i,
                 'created_at' => Carbon::now()
             ]);
         }
