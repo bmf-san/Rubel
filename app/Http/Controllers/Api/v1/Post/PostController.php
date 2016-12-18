@@ -24,27 +24,7 @@ class PostController extends Controller
     {
         $post = $this->post_repository->getPost($id);
 
-        $post_ary = [
-            "id" => $post->id,
-            "admin_id" => $post->admin_id,
-            "category" => [
-                "id" => $post->category->id,
-                "name" => $post->category->name
-            ],
-            "tag" => $post->tags,
-            "title" => "Title-1",
-            "content" => "This is 1 content.",
-            "thumb_img_path" => "http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg",
-            "views" => 0,
-            "status" => "draft",
-            "publication_date" => "2016-12-11 15:04:27",
-            "created_at" => "2016-12-11 15:04:27",
-            "updated_at" => null,
-            "deleted_at" => null,
-            "comment" => $post->comments
-        ];
-
-        return response()->json($post_ary);
+        return response()->json($post);
     }
 
     /**
@@ -56,30 +36,7 @@ class PostController extends Controller
     {
         $posts = $this->post_repository->getPosts();
 
-        $posts_ary = [];
-
-        foreach ($posts as $post) {
-            $posts_ary[]= [
-                "id" => $post->id,
-                "admin_id" => $post->admin_id,
-                "category" => [
-                    "id" => $post->category->id,
-                    "name" => $post->category->name
-                ],
-                "tag" => $post->tags,
-                "title" => "Title-1",
-                "content" => "This is 1 content.",
-                "thumb_img_path" => "http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg",
-                "views" => 0,
-                "status" => "draft",
-                "publication_date" => "2016-12-11 15:04:27",
-                "created_at" => "2016-12-11 15:04:27",
-                "updated_at" => null,
-                "deleted_at" => null
-            ];
-        }
-
-        return response()->json($posts_ary);
+        return response()->json($posts);
     }
 
     /**
