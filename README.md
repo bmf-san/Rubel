@@ -10,6 +10,7 @@ This is a blog boilerplate working with Laravel, React, React-Redux.
 * Semantic UI React
 
 # Building
+`git clone https://github.com/bmf-san/laravel-react-redux-blog-boilerplate.git`  
 `composer install`  
 `npm install`  
 
