@@ -64,16 +64,15 @@ class PostRepository implements PostRepositoryContract
                 "name" => $post->category->name
             ],
             "tag" => $post->tags,
-            "post_images" => $post->postImages,
-            "title" => "Title-1",
-            "content" => "This is 1 content.",
-            "thumb_img_path" => "http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg",
-            "views" => 0,
-            "status" => "draft",
-            "publication_date" => "2016-12-11 15:04:27",
-            "created_at" => "2016-12-11 15:04:27",
-            "updated_at" => null,
-            "deleted_at" => null,
+            "title" => $post->title,
+            "content" => $post->content,
+            "thumb_img_path" => $post->thumb_img_path,
+            "views" => $post->views,
+            "status" => $post->status,
+            "publication_date" => $post->publication_date,
+            "created_at" => $post->create_at,
+            "updated_at" => $post->updated_at,
+            "deleted_at" => $post->deleted_at,
             "comment" => $post->comments
         ];
      }
@@ -99,15 +98,15 @@ class PostRepository implements PostRepositoryContract
                     "name" => $post->category->name
                 ],
                 "tag" => $post->tags,
-                "title" => "Title-1",
-                "content" => "This is 1 content.",
-                "thumb_img_path" => "http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg",
-                "views" => 0,
-                "status" => "draft",
-                "publication_date" => "2016-12-11 15:04:27",
-                "created_at" => "2016-12-11 15:04:27",
-                "updated_at" => null,
-                "deleted_at" => null
+                "title" => $post->title,
+                "content" => $post->content,
+                "thumb_img_path" => $post->thumb_img_path,
+                "views" => $post->views,
+                "status" => $post->status,
+                "publication_date" => $post->publication_date,
+                "created_at" => $post->create_at,
+                "updated_at" => $post->updated_at,
+                "deleted_at" => $post->deleted_at,
             ];
         }
 
