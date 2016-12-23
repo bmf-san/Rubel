@@ -7,17 +7,22 @@ interface PostRepositoryContract
     /**
      * Create a new post
      */
-    public function createPost();
+    public function create();
 
     /**
      * Edit a post
      */
-    public function editPost();
+    public function edit();
+
+    /**
+     * Update publication status of post
+     */
+    public function update();
 
     /**
      * Delete a post
      */
-    public function deletePost();
+    public function delete();
 
     /**
      * Get a single post

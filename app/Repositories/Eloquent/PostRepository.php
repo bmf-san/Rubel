@@ -19,7 +19,7 @@ class PostRepository implements PostRepositoryContract
      *
      * @return [type] [description]
      */
-    public function createPost()
+    public function create($request)
     {
 
     }
@@ -29,7 +29,17 @@ class PostRepository implements PostRepositoryContract
      *
      * @return [type] [description]
      */
-    public function editPost()
+    public function edit()
+    {
+
+    }
+
+    /**
+     * Update publication status of post
+     *
+     * @return [type] [description]
+     */
+    public function update()
     {
 
     }
@@ -39,7 +49,7 @@ class PostRepository implements PostRepositoryContract
      *
      * @return [type] [description]
      */
-    public function deletePost()
+    public function delete()
     {
 
     }

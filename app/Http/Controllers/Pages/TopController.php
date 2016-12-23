@@ -15,6 +15,6 @@ class TopController extends Controller
 
     public function getIndex()
     {
-        return view('page.top');
+        return view('pages.top');
     }
 }
