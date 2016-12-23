@@ -21,7 +21,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request) // TODO add form request for creating a post
     {
         return response()->json($this->post_repository())->create($request);
     }

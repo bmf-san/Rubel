@@ -21,7 +21,23 @@ class PostRepository implements PostRepositoryContract
      */
     public function create($request)
     {
-
+        $post = $this->post->create([
+                    "admin" => [
+                        "id" => '',
+                        "name" => ''
+                    ],
+                    "category" => [
+                        "id" => '',
+                        "name" => ''
+                    ],
+                    "tag" => '',
+                    "title" => '',
+                    "content" => '',
+                    "thumb_img_path" => '',
+                    "views" => '',
+                    "status" => '',
+                    "publication_date" => '',
+                ]);
     }
 
     /**
