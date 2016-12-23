@@ -25,6 +25,9 @@ Then, you have to create database, and use artisan commands.
 
 Now you can start Application!
 
+# Learn More
+Check the [Wiki](https://github.com/bmf-san/laravel-react-redux-blog-boilerplate/wiki)
+
 # License
 This project is licensed under the terms of the MIT license.
 
