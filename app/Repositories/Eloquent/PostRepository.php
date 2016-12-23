@@ -45,9 +45,9 @@ class PostRepository implements PostRepositoryContract
      *
      * @return [type] [description]
      */
-    public function edit()
+    public function edit($id)
     {
-        $post = $this->post->update([ // TODO modify values in this array
+        $post = $this->post->find($id)->update([ // TODO modify values in this array
                     "admin" => [
                         "id" => '',
                         "name" => ''
@@ -71,9 +71,9 @@ class PostRepository implements PostRepositoryContract
      *
      * @return [type] [description]
      */
-    public function update()
+    public function update($request, $id)
     {
-        $post = $this->post->update([ // TODO modify values in this array
+        $post = $this->post->find($id)->update([ // TODO modify values in this array
                     "status" => '',
                 ]);
     }
@@ -83,9 +83,9 @@ class PostRepository implements PostRepositoryContract
      *
      * @return [type] [description]
      */
-    public function delete()
+    public function delete($id)
     {
-
+        $post = $this->post->find($id)->delete();
     }
 
     /**
