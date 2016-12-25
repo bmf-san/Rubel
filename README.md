@@ -4,6 +4,7 @@
 This is a blog boilerplate working with Laravel, React, React-Redux.
 
 # Architecture
+* PHP7
 * Laravel5.3
 * React
 * react-redux
