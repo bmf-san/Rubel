@@ -63,6 +63,7 @@ class PostController extends Controller
     /**
      * Show a single post
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function getPost($id)
