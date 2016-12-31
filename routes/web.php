@@ -20,5 +20,5 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth:admins'], function () {
     Route::get('adminpage', 'Pages\AdminController@getIndex');
 
-    // Get method Routing related to create, edit, update, delete posts.
+    // Get method Routing related to create, edit, update, delete posts...
 });
