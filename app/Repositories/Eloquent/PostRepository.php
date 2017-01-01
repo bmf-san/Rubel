@@ -34,7 +34,6 @@ class PostRepository implements PostRepositoryContract
                     "title" => '',
                     "content" => '',
                     "thumb_img_path" => '',
-                    "views" => '',
                     "status" => '',
                     "publication_date" => '',
                 ]);
@@ -60,7 +59,6 @@ class PostRepository implements PostRepositoryContract
                     "title" => '',
                     "content" => '',
                     "thumb_img_path" => '',
-                    "views" => '',
                     "status" => '',
                     "publication_date" => '',
                 ]);
