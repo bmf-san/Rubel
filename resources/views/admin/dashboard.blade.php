@@ -5,18 +5,9 @@
 	<title>Document</title>
 </head>
 <body>
-	Here is admin page.
 
-	You can do ....
+	<dashboard></dashboard>
 
-	・create a new post
-	・edit a post
-	→ edit page
-
-	・delete a post
-	・update a post - switch publication setting of post
-	→ do action in edit page or list in dashboard
-
-	<script type="text/javascript" src="#"></script>
+	<script type="text/javascript" src="{{ asset('./js/admin/dashboard.js') }}"></script>
 </body>
 </html>

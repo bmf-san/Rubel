@@ -4,5 +4,5 @@ require('laravel-elixir-vue-2');
 
 elixir((mix) => {
     mix
-       .webpack('app.js');
+       .webpack('admin/dashboard.js', 'public/js/admin/dashboard.js');
 });
