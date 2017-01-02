@@ -6,21 +6,22 @@ This is a blog boilerplate working with Laravel, Vue.js
 # Architecture
 * PHP7
 * Laravel5.3
-* Vue.js
+* Vue.js2.0
+* SPA
 
 # Building
-`git clone https://github.com/bmf-san/laravel-react-redux-blog-boilerplate.git`  
-`composer install`  
-`npm install`  
+`git clone https://github.com/bmf-san/laravel-react-redux-blog-boilerplate.git`
+`composer install`
+`npm install`
 
 Create a env file from .env_example, and change environment variables.
 You need to change these variables.
-`ADMIN_NAME, ADMIN_EMAIL, ADMIN_PASSWORD`  
+`ADMIN_NAME, ADMIN_EMAIL, ADMIN_PASSWORD`
 
 Then, you have to create database, and use artisan commands.
 
-`php artisan migration`  
-`php artisan db:seed`  
+`php artisan migration`
+`php artisan db:seed`
 
 Now you can start Application!
 
