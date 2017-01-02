@@ -17,8 +17,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('admin/logout', 'Auth\Admin\LoginController@logout');
 });
 
-Route::group(['middleware' => 'auth:admins'], function () {
-    Route::get('adminpage', 'Pages\AdminController@getIndex');
+Route::group(['middleware' => 'auth:admins', 'prefix' => 'admin'], function () {
+    Route::get('dashboard', 'Admin\DashBoardController@getIndex');
 
     // Get method Routing related to create, edit, update, delete posts...
 });
