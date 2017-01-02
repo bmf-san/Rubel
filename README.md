@@ -1,14 +1,12 @@
 **Under Development**
 
-# Laravel React Redux Blog Boilerplate.
-This is a blog boilerplate working with Laravel, React, React-Redux.
+# Laravel Vue Blog Boilerplate.
+This is a blog boilerplate working with Laravel, Vue.js
 
 # Architecture
 * PHP7
 * Laravel5.3
-* React
-* react-redux
-* Semantic UI React
+* Vue.js
 
 # Building
 `git clone https://github.com/bmf-san/laravel-react-redux-blog-boilerplate.git`  
