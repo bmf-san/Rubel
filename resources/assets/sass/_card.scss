@@ -1,0 +1,86 @@
+/* Card Widget */
+.card {
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.4rem;
+    margin-bottom: 1rem;
+    width: 50%;
+    max-width: 1024px;
+}
+
+.card-sidebar {
+    color: #1F2D3D;
+    padding: 2rem 1rem;
+    /*border-top: 1px solid rgba(160, 160, 160, 0.2);*/
+    border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+    text-align: center;
+}
+
+.card-header, .card-header a, .card-footer span, .card-sidebar p a {
+    padding: 0.5rem 1rem;
+    overflow: hidden;
+    margin: 0;
+}
+
+.card-header a.active {
+    color: white;
+    background-color: #20A0FF;
+}
+
+.card-content {
+    padding: 1rem;
+    /*
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+    */
+}
+
+.card .card-footer {
+    padding: 1rem;
+    overflow: hidden;
+    color: #1F2D3D;
+}
+
+.paper-content {
+    color: black;
+    font-size: 1rem;
+}
+
+.card-content a:visited, .card-content a:link {
+    color: #3354AA;
+}
+
+.card-header button {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .card {
+        width: 98%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-footer span, .card-header a, .card-header button {
+        display: block;
+    }
+}
+
+.paper-list-item a {
+    text-decoration: none;
+}
+
+.paper-list-item {
+    border-left: rgba(0, 0, 0, 0) 0.2rem solid;
+    transition: border-left 200ms;
+}
+
+.paper-list-item:hover {
+    border-left: #324057 0.2rem solid;
+}
+
+.title {
+    font-size: 1.2em;
+}

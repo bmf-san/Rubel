@@ -1,0 +1,59 @@
+/* Base CSS */
+body {
+    margin: 0;
+    word-wrap: break-word;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-rendering: optimizelegibility;
+}
+
+body, button, textarea, input, code, select {
+    font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #3354AA;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    float: right!important;
+    margin: 0;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.small-text {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #475669;
+}
+
+img {
+    max-width: 100%;
+}
+
+select {
+    font-size: 1rem;
+}
+
+footer {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}

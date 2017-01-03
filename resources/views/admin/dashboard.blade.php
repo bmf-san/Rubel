@@ -8,6 +8,6 @@
 
 	<div id="app"></div>
 
-	<script type="text/javascript" src="{{ asset('js/admin/main.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
