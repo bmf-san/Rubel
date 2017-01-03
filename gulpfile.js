@@ -6,5 +6,5 @@ elixir.config.sourcemaps = false;
 
 elixir((mix) => {
     mix
-        .webpack('main.js')
+        .webpack('admin/main.js', 'public/js/admin/main.js')
 });
