@@ -10,8 +10,9 @@
     "laravel-elixir-vue-2": "^0.3.0",
     "laravel-elixir-webpack-official": "^1.0.2",
     "lodash": "^4.16.2",
-    "vue": "^2.0.1",
-    "vue-resource": "^1.0.3",
-    "vue-router": "^2.1.1"
+    "vue": "^2.1.8",
+    "vue-loader": "^10.0.2",
+    "vue-router": "^2.1.1",
+    "vue-template-compiler": "^2.1.8"
   }
 }

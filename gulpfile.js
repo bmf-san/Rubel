@@ -1,8 +1,8 @@
 const elixir = require('laravel-elixir');
-
 require('laravel-elixir-vue-2');
+elixir.config.sourcemaps = false;
 
 elixir((mix) => {
-    mix
-       .webpack('admin/dashboard.js', 'public/js/admin/dashboard.js');
+  mix
+    .webpack('admin/main.js', 'public/js/admin/main.js');
 });

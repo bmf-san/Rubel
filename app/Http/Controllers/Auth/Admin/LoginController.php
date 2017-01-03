@@ -22,7 +22,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/adminpage';
+    protected $redirectTo = '/admin/dashboard';
 
     /**
     * Show the application's login form.

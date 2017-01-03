@@ -19,6 +19,4 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth:admins', 'prefix' => 'admin'], function () {
     Route::get('dashboard', 'Admin\DashBoardController@getIndex');
-
-    // Get method Routing related to create, edit, update, delete posts...
 });
