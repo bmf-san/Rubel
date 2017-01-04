@@ -1,3 +1,12 @@
 <template>
-    <router-view></router-view>
+    <div>
+        <nav>
+            <ul>
+                <li>
+                    <a>Home</a>
+                </li>
+            </ul>
+        </nav>
+        <router-view></router-view>
+    </div>
 </template>
