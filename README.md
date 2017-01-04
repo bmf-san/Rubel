@@ -20,7 +20,7 @@ You need to change these variables.
 
 Then, you have to create database, and use artisan commands.
 
-`php artisan migration`
+`php artisan migration`  
 `php artisan db:seed`
 
 Now you can start Application!
