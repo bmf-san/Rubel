@@ -6,7 +6,7 @@
 </head>
 <body>
 
-	<div id="app"></div>
+	<div id="example"></div>
 
 	<script type="text/javascript" src="{{ asset('js/admin/main.js') }}"></script>
 </body>
