@@ -6,8 +6,8 @@
 </head>
 <body>
 
-	<div id="example"></div>
+	<div id="dashboard"></div>
 
-	<script type="text/javascript" src="{{ asset('js/admin/main.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/admin/app.js') }}"></script>
 </body>
 </html>
