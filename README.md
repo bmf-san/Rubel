@@ -1,6 +1,6 @@
 **Under Development**
 
-# Laravel React Blog Boilerplate.
+# Laravel React Blog Boilerplate
 This is a blog boilerplate working with Laravel, React.
 
 # Architecture
