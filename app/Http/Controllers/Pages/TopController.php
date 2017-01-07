@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 
 class TopController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Top Controller
-    |--------------------------------------------------------------------------
-    */
-
+	/**
+	 * Show a top page
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
     public function getIndex()
     {
         return view('pages.top');

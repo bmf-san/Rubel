@@ -9,12 +9,6 @@ use App\Http\Requests\Auth\Admin\LoginRequest;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    */
-
     use AuthenticatesUsers;
 
     /**
