@@ -3,5 +3,5 @@ elixir.config.sourcemaps = false;
 
 elixir((mix) => {
   mix
-    .webpack('./resources/assets/js/admin/app.js', 'public/js/admin/app.js')
+    .webpack('./resources/assets/js/admin/index.js', 'public/js/admin/index.js')
 });
