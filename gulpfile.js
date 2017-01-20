@@ -6,7 +6,7 @@ elixir((mix) => {
     //-------------------------------
     // CSS
     //-------------------------------
-    .styles('./node_modules/highlight.js/styles/default.css', 'public/css/admin/monokai.min.css')
+    .styles('./node_modules/highlight.js/styles/atom-one-dark.css', 'public/css/admin/atom-one-dark.min.css')
 
     //-------------------------------
     // JavaScript

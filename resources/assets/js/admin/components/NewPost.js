@@ -23,6 +23,7 @@ export default class NewPost extends React.Component {
     return (
       <div>
         <h1>NewPost</h1>
+        <p>Here is tag select area...</p>
         <TextInput onChange={this.updateMarkdown} />
         <Markdown markdown={this.state.markdown} />
       </div>
@@ -55,7 +56,7 @@ class Markdown extends React.Component {
 
   componentDidUpdate() {
     marked.setOptions({
-      hljs: function(code, lang) {
+      highlight: function(code, lang) {
         return hljs.highlightAuto(code, [lang]).value;
       }
     });

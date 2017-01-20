@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="{{ asset('css/admin/monokai.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/admin/atom-one-dark.min.css') }}">
 </head>
 <body>
 
