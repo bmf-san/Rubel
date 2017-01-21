@@ -7,6 +7,9 @@ This is a blog boilerplate working with Laravel, React.
 * PHP7
 * Laravel 5.3
 * React 15.4.1
+* react-redux
+* react-router
+* SPA
 
 # Building
 `git clone https://github.com/bmf-san/laravel-react-redux-blog-boilerplate.git`  
@@ -24,8 +27,8 @@ Then, you have to create database, and use artisan commands.
 
 Now you can start Application!
 
-# Learn More
-Check the [Wiki](https://github.com/bmf-san/laravel-react-redux-blog-boilerplate/wiki)
+# API Documentation
+Check the [Wiki - API Documentation](https://github.com/bmf-san/laravel-react-blog-boilerplate/wiki/API-Documentation)
 
 # License
 This project is licensed under the terms of the MIT license.
