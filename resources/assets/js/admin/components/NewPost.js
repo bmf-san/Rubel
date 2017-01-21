@@ -2,6 +2,7 @@ import React from 'react';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import ReactTags from 'react-tag-autocomplete';
+import request from 'superagent';
 
 export default class NewPost extends React.Component {
   constructor(props) {

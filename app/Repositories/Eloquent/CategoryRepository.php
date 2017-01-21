@@ -66,9 +66,9 @@ class CategoryRepository implements CategoryRepositoryContract
 			$categories_ary[] = [
 				"id" => $category->id,
 				"name" => $category->name,
-				"created_at" => $category->created_at,
-				"updated_at" => $category->updated_at,
-				"deleted_at" => $category->deleted_at
+				"created_at" => $category->created_at->format('Y-m-t'),
+				"updated_at" => $category->updated_at->format('Y-m-t'),
+				"deleted_at" => $category->deleted_a->format('Y-m-t')
 			];
 		}
 

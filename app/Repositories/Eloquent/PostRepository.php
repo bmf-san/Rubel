@@ -118,9 +118,9 @@ class PostRepository implements PostRepositoryContract
             "views" => $post->views,
             "status" => $post->status,
             "publication_date" => $post->publication_date,
-            "created_at" => $post->created_at,
-            "updated_at" => $post->updated_at,
-            "deleted_at" => $post->deleted_at,
+            "created_at" => $post->created_at->format('Y-m-t'),
+            "updated_at" => $post->updated_at->format('Y-m-t'),
+            "deleted_at" => $post->deleted_at->format('Y-m-t'),
             "comment" => $post->comments
         ];
      }
@@ -151,9 +151,9 @@ class PostRepository implements PostRepositoryContract
                 "views" => $post->views,
                 "status" => $post->status,
                 "publication_date" => $post->publication_date,
-                "created_at" => $post->created_at,
-                "updated_at" => $post->updated_at,
-                "deleted_at" => $post->deleted_at,
+                "created_at" => $post->created_at->format('Y-m-t'),
+                "updated_at" => $post->updated_at->format('Y-m-t'),
+                "deleted_at" => $post->deleted_at->format('Y-m-t')
             ];
         }
 
