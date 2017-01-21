@@ -19,7 +19,8 @@ export default class NewPost extends React.Component {
 
       // Post data
       markdown: '',
-      tags: []
+      categories: [],
+      tags: [],
     }
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -37,7 +38,6 @@ export default class NewPost extends React.Component {
         this.setState({
           suggestions: res.body
         });
-        console.log(res.body);
       }.bind(this));
 
     request
@@ -46,6 +46,9 @@ export default class NewPost extends React.Component {
         if (err) {
           alert('Error!');
         }
+        this.setState({
+          categories: res.body
+        });
       }.bind(this));
   }
 
@@ -68,8 +71,19 @@ export default class NewPost extends React.Component {
   }
 
   render() {
+    const categoryList = [];
+    for (var key in this.state.categories) {
+      categoryList.push(
+        <label key={key}>
+          <input type="checkbox" name="category" value={this.state.categories[key].id} />
+          {this.state.categories[key].name}
+        </label>
+      )
+    }
+
     return (
       <div>
+        {categoryList}
         <h1>NewPost</h1>
         <p>Here is cateogory select btn</p>
         <ReactTags
