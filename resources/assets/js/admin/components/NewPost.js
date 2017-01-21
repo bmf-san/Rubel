@@ -70,6 +70,7 @@ export default class NewPost extends React.Component {
           allowNew={true} />
         <TextInput onChange={this.updateMarkdown} />
         <Markdown markdown={this.state.markdown} />
+        <p>Here is publication status button</p>
       </div>
     )
   }
