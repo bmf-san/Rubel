@@ -32,11 +32,21 @@ export default class NewPost extends React.Component {
       .get('api/v1/tags')
       .end(function (err, res) {
         if (err) {
-          alert('Error! Try it again!');
+          alert('Error!');
         }
         this.setState({
           suggestions: res.body
         });
+      }.bind(this));
+
+    request
+      .get('api/v1/categories')
+      .end(function (err, res) {
+        if (err) {
+          alert('Error!');
+        }
+        console.log(res.body);
+
       }.bind(this));
   }
 
