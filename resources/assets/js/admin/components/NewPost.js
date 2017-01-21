@@ -21,6 +21,7 @@ export default class NewPost extends React.Component {
       markdown: '',
       categories: [],
       tags: [],
+      publicationStatus: ['public', 'private', 'draft']
     }
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -81,6 +82,13 @@ export default class NewPost extends React.Component {
       )
     }
 
+    const publicationStatusList = [];
+    for (var key in this.state.publicationStatus) {
+      publicationStatusList.push(
+        <option key={key} value={this.status.publicationStatus[key]}>{this.status.publicationStatus[key]}</option>
+      )
+    }
+
     return (
       <div>
         {categoryList}
@@ -94,7 +102,9 @@ export default class NewPost extends React.Component {
           allowNew={true} />
         <TextInput onChange={this.updateMarkdown} />
         <Markdown markdown={this.state.markdown} />
-        <p>Here is publication status button</p>
+        <select multiple={false} onChange={this.onChangeSelectValues}>
+          {publicationStatusList}
+        </select>
       </div>
     )
   }
