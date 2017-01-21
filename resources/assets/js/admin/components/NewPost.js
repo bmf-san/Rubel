@@ -19,12 +19,14 @@ export default class NewPost extends React.Component {
 
       // Post data
       markdown: '',
+      category: '',
       categories: [],
       tags: [],
       publicationStatus: '',
       publicationStatuses: ['public', 'private', 'draft']
     }
 
+    this.onChangeRadioValues = this.onChangeRadioValues.bind(this);
     this.onChangeSelectValues = this.onChangeSelectValues.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
@@ -53,6 +55,12 @@ export default class NewPost extends React.Component {
           categories: res.body
         });
       }.bind(this));
+  }
+
+  onChangeRadioValues(event) {
+    this.setState({
+      'category': event.target.value
+    })
   }
 
   onChangeSelectValues(event) {
@@ -88,7 +96,7 @@ export default class NewPost extends React.Component {
     for (var key in this.state.categories) {
       categoryList.push(
         <label key={key}>
-          <input type="checkbox" name="category" value={this.state.categories[key].id} />
+          <input type="checkbox" name="category" checked={this.state.category === this.state.categories[key].id} onChange={this.onChangeRadioValues} />
           {this.state.categories[key].name}
         </label>
       )
