@@ -21,9 +21,11 @@ export default class NewPost extends React.Component {
       markdown: '',
       categories: [],
       tags: [],
-      publicationStatus: ['public', 'private', 'draft']
+      publicationStatus: '',
+      publicationStatuses: ['public', 'private', 'draft']
     }
 
+    this.onChangeSelectValues = this.onChangeSelectValues.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
     this.updateMarkdown = this.updateMarkdown.bind(this);
@@ -53,6 +55,12 @@ export default class NewPost extends React.Component {
       }.bind(this));
   }
 
+  onChangeSelectValues(event) {
+    this.setState({
+      'publicationStatus': event.target.value
+    });
+  }
+
   handleDelete(i) {
     const tags = this.state.tags
     tags.splice(i, 1)
@@ -71,6 +79,10 @@ export default class NewPost extends React.Component {
     });
   }
 
+  handleSubmit() {
+    console.log('submit!');
+  }
+
   render() {
     const categoryList = [];
     for (var key in this.state.categories) {
@@ -83,14 +95,16 @@ export default class NewPost extends React.Component {
     }
 
     const publicationStatusList = [];
-    for (var key in this.state.publicationStatus) {
+    for (var i = 0, l = this.state.publicationStatuses.length; i < l; i++) {
       publicationStatusList.push(
-        <option key={key} value={this.status.publicationStatus[key]}>{this.status.publicationStatus[key]}</option>
-      )
+        <option key={i} value={this.state.publicationStatuses[i]}>
+          {this.state.publicationStatuses[i]}
+        </option>
+      );
     }
 
     return (
-      <div>
+      <form action="javascript:void(0)" method="POST" onSubmit={this.handleSubmit}>
         {categoryList}
         <h1>NewPost</h1>
         <p>Here is cateogory select btn</p>
@@ -102,10 +116,11 @@ export default class NewPost extends React.Component {
           allowNew={true} />
         <TextInput onChange={this.updateMarkdown} />
         <Markdown markdown={this.state.markdown} />
-        <select multiple={false} onChange={this.onChangeSelectValues}>
+        <select multiple={false} value={this.state.publicationStatus} onChange={this.onChangeSelectValues}>
           {publicationStatusList}
         </select>
-      </div>
+        <button type="submit">Save</button>
+      </form>
     )
   }
 }
