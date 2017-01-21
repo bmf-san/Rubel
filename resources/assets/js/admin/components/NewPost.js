@@ -9,12 +9,17 @@ export default class NewPost extends React.Component {
     super(props);
 
     this.state = {
+      // Validation messages
       message: {
         // TODO: add validation messages...
       },
+
+      // Tag auto-complete
+      suggestions: [],
+
+      // Post data
       markdown: '',
-      tags: [],
-      suggestions: []
+      tags: []
     }
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -30,7 +35,6 @@ export default class NewPost extends React.Component {
           alert('Error! Try it again!');
         }
         this.setState({
-          tags: res.body,
           suggestions: res.body
         });
       }.bind(this));
