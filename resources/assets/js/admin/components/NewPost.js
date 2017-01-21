@@ -96,7 +96,7 @@ export default class NewPost extends React.Component {
     for (var key in this.state.categories) {
       categoryList.push(
         <label key={key}>
-          <input type="checkbox" name="category" checked={this.state.category === this.state.categories[key].id} onChange={this.onChangeRadioValues} />
+          <input type="checkbox" name="category" checked={this.state.category === this.state.categories[key].name} onChange={this.onChangeRadioValues} />
           {this.state.categories[key].name}
         </label>
       )
