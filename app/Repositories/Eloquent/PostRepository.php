@@ -17,7 +17,7 @@ class PostRepository implements PostRepositoryContract
     /**
      * Create a new post
      *
-     * @param object  $request
+     * @param  object  $request
      * @return void
      */
     public function create($request)
@@ -43,10 +43,11 @@ class PostRepository implements PostRepositoryContract
     /**
      * Edit a post
      *
-     * @param int  $id
+     * @param  int  $id
+ 	 * @param  object  $request
      * @return void
      */
-    public function edit($id)
+    public function edit($id, $request)
     {
         $post = $this->post->find($id)->update([ // TODO modify values in this array
                     "admin" => [
@@ -69,11 +70,11 @@ class PostRepository implements PostRepositoryContract
     /**
      * Update publication status of post
      *
-     * @param object  $request
-     * @param int  $id
+	 * @param  int  $id
+     * @param  object  $request
      * @return void
      */
-    public function update($request, $id)
+    public function update($id, $request)
     {
         $post = $this->post->find($id)->update([ // TODO modify values in this array
                     "status" => '',
@@ -93,7 +94,7 @@ class PostRepository implements PostRepositoryContract
     /**
      * Get a single post
      *
-     * @param int  $id
+     * @param  int  $id
      * @return object
      */
      public function getPost($id)
@@ -117,7 +118,7 @@ class PostRepository implements PostRepositoryContract
             "views" => $post->views,
             "status" => $post->status,
             "publication_date" => $post->publication_date,
-            "created_at" => $post->create_at,
+            "created_at" => $post->created_at,
             "updated_at" => $post->updated_at,
             "deleted_at" => $post->deleted_at,
             "comment" => $post->comments
@@ -150,7 +151,7 @@ class PostRepository implements PostRepositoryContract
                 "views" => $post->views,
                 "status" => $post->status,
                 "publication_date" => $post->publication_date,
-                "created_at" => $post->create_at,
+                "created_at" => $post->created_at,
                 "updated_at" => $post->updated_at,
                 "deleted_at" => $post->deleted_at,
             ];

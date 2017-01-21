@@ -18,11 +18,5 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['middleware' => 'auth:admins', 'prefix' => 'admin'], function () {
-    Route::get('dashboard', 'Admin\DashBoardController@getIndex'); // /dashboard
-																			// /home
-																			// /new-post
-																			// /posts
-																			// /post/edit/:post-id
-																			// /categories
-																			// config
+    Route::get('dashboard', 'Admin\DashBoardController@getIndex');
 });

@@ -16,18 +16,19 @@ interface PostRepositoryContract
      * Edit a post
      *
      * @param  int  $id
+	 * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id);
+    public function edit($id, $request);
 
     /**
      * Update publication status of post
      *
+	 * @param  int  $id
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($request, $id);
+    public function update($id, $request);
 
     /**
      * Delete a post
