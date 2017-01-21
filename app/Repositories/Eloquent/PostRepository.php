@@ -117,10 +117,10 @@ class PostRepository implements PostRepositoryContract
             "thumb_img_path" => $post->thumb_img_path,
             "views" => $post->views,
             "status" => $post->status,
-            "publication_date" => $post->publication_date,
-            "created_at" => $post->created_at->format('Y-m-t'),
-            "updated_at" => $post->updated_at->format('Y-m-t'),
-            "deleted_at" => $post->deleted_at->format('Y-m-t'),
+			"publication_date" => $post->publication_date ? $post->publication_date->toDateString() : null,
+			"created_at" => $post->created_at ? $post->created_at->toDateString() : null,
+			"updated_at" => $post->updated_at ? $post->updated_at->toDateString() : null,
+			"deleted_at" => $post->deleted_at ? $post->deleted_at->toDateString() : null,
             "comment" => $post->comments
         ];
      }
@@ -150,10 +150,10 @@ class PostRepository implements PostRepositoryContract
                 "thumb_img_path" => $post->thumb_img_path,
                 "views" => $post->views,
                 "status" => $post->status,
-                "publication_date" => $post->publication_date,
-                "created_at" => $post->created_at->format('Y-m-t'),
-                "updated_at" => $post->updated_at->format('Y-m-t'),
-                "deleted_at" => $post->deleted_at->format('Y-m-t')
+                "publication_date" => $post->publication_date ? $post->publication_date->toDateString() : null,
+				"created_at" => $post->created_at ? $post->created_at->toDateString() : null,
+				"updated_at" => $post->updated_at ? $post->updated_at->toDateString() : null,
+				"deleted_at" => $post->deleted_at ? $post->deleted_at->toDateString() : null
             ];
         }
 

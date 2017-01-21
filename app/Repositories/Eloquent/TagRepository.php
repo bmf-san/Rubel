@@ -66,9 +66,9 @@ class TagRepository implements TagRepositoryContract
 			$tags_ary[] = [
 				'id' => $tag->id,
 				"name" => $tag->name,
-				"created_at" => $tag->created_at->format('Y-m-t'),
-				"updated_at" => $tag->updated_at->format('Y-m-t'),
-				"deleted_at" => $tag->deleted_at->format('Y-m-t')
+				"created_at" => $tag->created_at ? $tag->created_at->toDateString() : null,
+				"updated_at" => $tag->updated_at ? $tag->updated_at->toDateString() : null,
+				"deleted_at" => $tag->deleted_at ? $tag->deleted_at->toDateString() : null
 			];
 		}
 

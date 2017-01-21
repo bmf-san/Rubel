@@ -9,22 +9,31 @@ export default class NewPost extends React.Component {
     super(props);
 
     this.state = {
+      message: {
+        // TODO: add validation messages...
+      },
       markdown: '',
-      tags: [
-        { id: 1, name: "Apples" },
-        { id: 2, name: "Pears" }
-      ],
-      suggestions: [
-        { id: 3, name: "Bananas" },
-        { id: 4, name: "Mangos" },
-        { id: 5, name: "Lemons" },
-        { id: 6, name: "Apricots" }
-      ]
+      tags: [],
+      suggestions: []
     }
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
     this.updateMarkdown = this.updateMarkdown.bind(this);
+  }
+
+  componentDidMount() {
+    request
+      .get('api/v1/tags')
+      .end(function (err, res) {
+        if (err) {
+          alert('Error! Try it again!');
+        }
+        this.setState({
+          tags: res.body,
+          suggestions: res.body
+        });
+      }.bind(this));
   }
 
   handleDelete(i) {
