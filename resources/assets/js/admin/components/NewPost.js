@@ -37,6 +37,7 @@ export default class NewPost extends React.Component {
         this.setState({
           suggestions: res.body
         });
+        console.log(res.body);
       }.bind(this));
 
     request
@@ -45,8 +46,6 @@ export default class NewPost extends React.Component {
         if (err) {
           alert('Error!');
         }
-        console.log(res.body);
-
       }.bind(this));
   }
 
