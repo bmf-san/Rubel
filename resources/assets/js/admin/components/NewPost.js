@@ -62,6 +62,7 @@ export default class NewPost extends React.Component {
     return (
       <div>
         <h1>NewPost</h1>
+        <p>Here is cateogory select btn</p>
         <ReactTags
           tags={this.state.tags}
           suggestions={this.state.suggestions}
