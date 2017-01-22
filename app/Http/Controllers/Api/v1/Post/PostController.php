@@ -23,7 +23,7 @@ class PostController extends Controller
      */
     public function create(Request $request) // TODO add form request for creating a post
     {
-        return response()->json($this->post_repository())->create($request);
+        return response()->json($this->post_repository)->create($request);
     }
 
     /**
@@ -34,7 +34,7 @@ class PostController extends Controller
      */
     public function edit($id) // TODO add form request for editting a post
     {
-        return response()->json($this->post_repository())->edit($id);
+        return response()->json($this->post_repository)->edit($id);
     }
 
     /**
@@ -46,7 +46,7 @@ class PostController extends Controller
     */
     public function update(Request $request, $id) // TODO add form request for update this status
     {
-        return response()->json($this->post_repository())->update($request, $id);
+        return response()->json($this->post_repository)->update($request, $id);
     }
 
     /**
@@ -57,7 +57,7 @@ class PostController extends Controller
      */
     public function delete($id)
     {
-        return response()->json($this->post_repository())->delete($id);
+        return response()->json($this->post_repository)->delete($id);
     }
 
     /**

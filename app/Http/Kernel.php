@@ -50,10 +50,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-
-		// Additional Middleware
 		'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-		'auth.api' => \App\Http\Middleware\ApiAuthentication::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
 }

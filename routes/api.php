@@ -15,15 +15,15 @@ Route::group(['middleware' => 'guest'], function () {
 	Route::get('categories', 'Api\v1\Category\CategoryController@getCategories');
 });
 
-Route::group(['middleware' => 'auth.api:admins', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => 'auth:api', 'prefix' => 'admin'], function () {
 	Route::post('post/create', 'Api\v1\Post\PostController@create');
-	Route::post('post/{id}/edit', 'Api\v1\Post\PostController@edit')->where('id', '[0-9]+');;
-	Route::post('post/{id}/update', 'Api\v1\Post\PostController@update')->where('id', '[0-9]+');;
-	Route::post('post/{id}/delete', 'Api\v1\Post\PostController@delete')->where('id', '[0-9]+');;
-	Route::get('tag/create', 'Api\v1\Tag\TagController@create');
-	Route::get('tag/{id}/edit', 'Api\v1\Tag\TagController@edit')->where('id', '[0-9]+');;
-	Route::get('tag/{id}/delete', 'Api\v1\Tag\TagController@delete')->where('id', '[0-9]+');;
-	Route::get('category/create', 'Api\v1\Category\CategoryController@create');
-	Route::get('category/{id}/edit', 'Api\v1\Category\CategoryController@edit')->where('id', '[0-9]+');;
-	Route::get('category/{id}/delete', 'Api\v1\Category\CategoryController@delete')->where('id', '[0-9]+');;
+	Route::post('post/{id}/edit', 'Api\v1\Post\PostController@edit')->where('id', '[0-9]+');
+	Route::post('post/{id}/update', 'Api\v1\Post\PostController@update')->where('id', '[0-9]+');
+	Route::post('post/{id}/delete', 'Api\v1\Post\PostController@delete')->where('id', '[0-9]+');
+	Route::post('tag/create', 'Api\v1\Tag\TagController@create');
+	Route::post('tag/{id}/edit', 'Api\v1\Tag\TagController@edit')->where('id', '[0-9]+');
+	Route::post('tag/{id}/delete', 'Api\v1\Tag\TagController@delete')->where('id', '[0-9]+');
+	Route::post('category/create', 'Api\v1\Category\CategoryController@create');
+	Route::post('category/{id}/edit', 'Api\v1\Category\CategoryController@edit')->where('id', '[0-9]+');
+	Route::post('category/{id}/delete', 'Api\v1\Category\CategoryController@delete')->where('id', '[0-9]+');
 });
