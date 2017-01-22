@@ -24,7 +24,7 @@ class ApiAuthentication
     {
 		if ($this->auth->guard($guard)->check()) {
 			switch ($guard) {
-				case 'admin':
+				case 'admins':
 					return $next($request);
 					break;
 
