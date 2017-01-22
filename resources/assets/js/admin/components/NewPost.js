@@ -20,7 +20,7 @@ export default class NewPost extends React.Component {
       // Post data
       title: '',
       markdown: '',
-      category: '',
+      category: null,
       categories: [],
       tags: [],
       publication_status: '',
@@ -121,7 +121,7 @@ export default class NewPost extends React.Component {
     for (var key in this.state.categories) {
       categoryList.push(
         <label key={key}>
-          <input type="checkbox" name="category" value={this.state.categories[key].id} checked={this.state.category == this.state.categories[key].id} onChange={this.onChangeCategory} />
+          <input type="checkbox" name="category" value={this.state.categories[key].id} checked={this.state.category === this.state.categories[key].id} onChange={this.onChangeCategory} />
           {this.state.categories[key].name}
         </label>
       )
