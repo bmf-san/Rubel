@@ -25,7 +25,7 @@ class PostRepository implements PostRepositoryContract
 		dd($request); //TODO:　デバッグ中
         $post = $this->post->create([  // TODO modify values in this array
                     "admin" => [
-                        "name" => 'test'
+                        "name" => ''
                     ],
                     "category" => [
                         "name" => ''
