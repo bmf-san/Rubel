@@ -54,6 +54,6 @@ class Kernel extends HttpKernel
 
 		// Additional Middleware
 		'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-		'api' => \App\Http\Middleware\ApiAuthentication::class,
+		'auth.api' => \App\Http\Middleware\ApiAuthentication::class,
     ];
 }

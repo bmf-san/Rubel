@@ -15,7 +15,7 @@ Route::group(['middleware' => 'guest'], function () {
 	Route::get('categories', 'Api\v1\Category\CategoryController@getCategories');
 });
 
-Route::group(['middleware' => 'auth:admins', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => 'auth.api:admins', 'prefix' => 'admin'], function () {
 	Route::post('post/create', 'Api\v1\Post\PostController@create');
 	Route::post('post/{id}/edit', 'Api\v1\Post\PostController@edit')->where('id', '[0-9]+');;
 	Route::post('post/{id}/update', 'Api\v1\Post\PostController@update')->where('id', '[0-9]+');;

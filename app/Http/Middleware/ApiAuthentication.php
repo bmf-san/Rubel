@@ -22,6 +22,7 @@ class ApiAuthentication
      */
     public function handle($request, Closure $next, $guard = null)
     {
+		dd($this->auth->guard($guard)->check());
 		if ($this->auth->guard($guard)->check()) {
 			switch ($guard) {
 				case 'admins':
