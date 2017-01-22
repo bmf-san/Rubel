@@ -22,6 +22,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function create($request)
     {
+		dd($request);
         $post = $this->post->create([  // TODO modify values in this array
                     "admin" => [
                         "id" => '',
@@ -34,7 +35,7 @@ class PostRepository implements PostRepositoryContract
                     "tag" => '',
                     "title" => '',
                     "content" => '',
-                    "thumb_img_path" => '',
+                    "thumb_img_path" => '', // default
                     "status" => '',
                     "publication_date" => '',
                 ]);

@@ -31,6 +31,7 @@ export default class NewPost extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
     this.updateMarkdown = this.updateMarkdown.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -88,7 +89,18 @@ export default class NewPost extends React.Component {
   }
 
   handleSubmit() {
-    console.log('submit!');
+    request
+      .post('api/v1/admin/post/create')
+      .send({
+        'new_post': ['hoge']
+      })
+      .end(function (err, res) {
+        if (res.ok) {
+            // validation messages or success
+        } else {
+          alert('Error!')
+        }
+      }.bind(this));
   }
 
   render() {
