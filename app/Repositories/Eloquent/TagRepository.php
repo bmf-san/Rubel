@@ -60,18 +60,6 @@ class TagRepository implements TagRepositoryContract
 	{
 		$tags = $this->tag->get();
 
-		$tags_ary = [];
-
-		foreach ($tags as $tag) {
-			$tags_ary[] = [
-				'id' => $tag->id,
-				"name" => $tag->name,
-				"created_at" => $tag->created_at ? $tag->created_at->toDateString() : null,
-				"updated_at" => $tag->updated_at ? $tag->updated_at->toDateString() : null,
-				"deleted_at" => $tag->deleted_at ? $tag->deleted_at->toDateString() : null
-			];
-		}
-
-		return $tags_ary;
+		return $tags;
 	}
 }

@@ -18,16 +18,18 @@ export default class NewPost extends React.Component {
       suggestions: [],
 
       // Post data
+      title: '',
       markdown: '',
       category: '',
       categories: [],
       tags: [],
-      publicationStatus: '',
-      publicationStatuses: ['public', 'private', 'draft']
+      publication_status: '',
+      publication_statuses: ['public', 'private', 'draft']
     }
 
-    this.onChangeRadioValues = this.onChangeRadioValues.bind(this);
-    this.onChangeSelectValues = this.onChangeSelectValues.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeCategory = this.onChangeCategory.bind(this);
+    this.onChangePublicationStatus = this.onChangePublicationStatus.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
     this.updateMarkdown = this.updateMarkdown.bind(this);
@@ -58,15 +60,21 @@ export default class NewPost extends React.Component {
       }.bind(this));
   }
 
-  onChangeRadioValues(event) {
+  onChangeTitle(event) {
+    this.setState({
+      'title': event.target.value
+    });
+  }
+
+  onChangeCategory(event) {
     this.setState({
       'category': event.target.value
     })
   }
 
-  onChangeSelectValues(event) {
+  onChangePublicationStatus(event) {
     this.setState({
-      'publicationStatus': event.target.value
+      'publication_status': event.target.value
     });
   }
 
@@ -92,11 +100,16 @@ export default class NewPost extends React.Component {
     request
       .post('api/v1/admin/post/create')
       .send({
-        'new_post': ['hoge']
+        'title': this.state.title,
+        'content': this.state.markdown,
+        'category': this.state.category,
+        'tag': this.state.tags,
+        'publication_status': this.state.publication_status
       })
       .end(function (err, res) {
         if (res.ok) {
             // validation messages or success
+            console.log(res);
         } else {
           alert('Error!')
         }
@@ -108,26 +121,26 @@ export default class NewPost extends React.Component {
     for (var key in this.state.categories) {
       categoryList.push(
         <label key={key}>
-          <input type="checkbox" name="category" value={this.state.categories[key].name} checked={this.state.category === this.state.categories[key].name} onChange={this.onChangeRadioValues} />
+          <input type="checkbox" name="category" value={this.state.categories[key].id} checked={this.state.category == this.state.categories[key].id} onChange={this.onChangeCategory} />
           {this.state.categories[key].name}
         </label>
       )
     }
 
     const publicationStatusList = [];
-    for (var i = 0, l = this.state.publicationStatuses.length; i < l; i++) {
+    for (var i = 0, l = this.state.publication_statuses.length; i < l; i++) {
       publicationStatusList.push(
-        <option key={i} value={this.state.publicationStatuses[i]}>
-          {this.state.publicationStatuses[i]}
+        <option key={i} value={this.state.publication_statuses[i]}>
+          {this.state.publication_statuses[i]}
         </option>
       );
     }
 
     return (
       <form action="javascript:void(0)" method="POST" onSubmit={this.handleSubmit}>
-        {categoryList}
         <h1>NewPost</h1>
-        <p>Here is cateogory select btn</p>
+        <input type="text" value={this.state.title} onChange={this.onChangeTitle} />
+        {categoryList}
         <ReactTags
           tags={this.state.tags}
           suggestions={this.state.suggestions}
@@ -136,7 +149,7 @@ export default class NewPost extends React.Component {
           allowNew={true} />
         <TextInput onChange={this.updateMarkdown} />
         <Markdown markdown={this.state.markdown} />
-        <select multiple={false} value={this.state.publicationStatus} onChange={this.onChangeSelectValues}>
+        <select multiple={false} value={this.state.publicationStatus} onChange={this.onChangePublicationStatus}>
           {publicationStatusList}
         </select>
         <button type="submit">Save</button>

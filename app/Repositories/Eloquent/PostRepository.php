@@ -22,6 +22,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function create($request)
     {
+		dd($request); //TODO:　デバッグ中
         $post = $this->post->create([  // TODO modify values in this array
                     "admin" => [
                         "name" => 'test'
@@ -29,7 +30,7 @@ class PostRepository implements PostRepositoryContract
                     "category" => [
                         "name" => ''
                     ],
-                    "tag" => '',
+                    "tag" => '',  // idを持っていないやつだけタグを新規登録
                     "title" => '',
                     "content" => '',
                     "thumb_img_path" => '', // default
@@ -97,31 +98,12 @@ class PostRepository implements PostRepositoryContract
      */
      public function getPost($id)
      {
-        $post = $this->post->with('admin', 'postImages', 'category', 'comments', 'tags')->find($id);
+        $post = $this->post->with(['admin' => function ($query) {
+			$query->select('id', 'name');
+		}], 'category', 'comments', 'tags')->find($id);
 
-        return [
-            "id" => $post->id,
-            "admin" => [
-                "id" => $post->admin->id,
-                "name" => $post->admin->name
-            ],
-            "category" => [
-                "id" => $post->category->id,
-                "name" => $post->category->name
-            ],
-            "tag" => $post->tags,
-            "title" => $post->title,
-            "content" => $post->content,
-            "thumb_img_path" => $post->thumb_img_path,
-            "views" => $post->views,
-            "status" => $post->status,
-			"publication_date" => $post->publication_date ? $post->publication_date->toDateString() : null,
-			"created_at" => $post->created_at ? $post->created_at->toDateString() : null,
-			"updated_at" => $post->updated_at ? $post->updated_at->toDateString() : null,
-			"deleted_at" => $post->deleted_at ? $post->deleted_at->toDateString() : null,
-            "comment" => $post->comments
-        ];
-     }
+		return $post;
+	}
 
     /**
      * Get posts
@@ -130,31 +112,10 @@ class PostRepository implements PostRepositoryContract
      */
      public function getPosts()
      {
-        $posts = $this->post->with('admin', 'postImages', 'category', 'comments', 'tags')->get();
+        $posts = $this->post->with(['admin' => function ($query) {
+			$query->select('id', 'name');
+		}], 'category', 'comments', 'tags')->get();
 
-        $posts_ary = [];
-
-        foreach ($posts as $post) {
-            $posts_ary[]= [
-                "id" => $post->id,
-                "admin_id" => $post->admin_id,
-                "category" => [
-                    "id" => $post->category->id,
-                    "name" => $post->category->name
-                ],
-                "tag" => $post->tags,
-                "title" => $post->title,
-                "content" => $post->content,
-                "thumb_img_path" => $post->thumb_img_path,
-                "views" => $post->views,
-                "status" => $post->status,
-                "publication_date" => $post->publication_date ? $post->publication_date->toDateString() : null,
-				"created_at" => $post->created_at ? $post->created_at->toDateString() : null,
-				"updated_at" => $post->updated_at ? $post->updated_at->toDateString() : null,
-				"deleted_at" => $post->deleted_at ? $post->deleted_at->toDateString() : null
-            ];
-        }
-
-        return $posts_ary;
+        return $posts;
      }
 }

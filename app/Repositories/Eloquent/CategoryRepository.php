@@ -60,18 +60,6 @@ class CategoryRepository implements CategoryRepositoryContract
 	{
 		$categories = $this->category->get();
 
-		$categories_ary = [];
-
-		foreach ($categories as $category) {
-			$categories_ary[] = [
-				"id" => $category->id,
-				"name" => $category->name,
-				"created_at" => $category->created_at ? $category->created_at->toDateString() : null,
-				"updated_at" => $category->updated_at ? $category->updated_at->toDateString() : null,
-				"deleted_at" => $category->deleted_at ? $category->deleted_at->toDateString() : null
-			];
-		}
-
-		return $categories_ary;
+		return $categories;
 	}
 }
