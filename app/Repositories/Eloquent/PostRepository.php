@@ -22,7 +22,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function create($request)
     {
-		dd($request); //TODO:　デバッグ中
+		dd($request->tags); //TODO:　デバッグ中
         $post = $this->post->create([  // TODO modify values in this array
                     "admin" => [
                         "name" => ''

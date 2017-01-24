@@ -107,7 +107,7 @@ export default class NewPost extends React.Component {
       })
       .end(function (err, res) {
         if (res.ok) {
-            // validation messages or success
+            // TODO: validation messages or success
             console.log(res);
         } else {
           alert('Error!')
