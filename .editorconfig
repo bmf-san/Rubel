@@ -9,7 +9,7 @@ trim_trailing_whitespace = true # doesn't work yet
 insert_final_newline = true # doesn't work yet
 
 [*.php]
-indent_style = tab
+indent_size = 4
 
 [*.blade.php]
 indent_size = 2
