@@ -9,7 +9,6 @@ export default class NewPost extends React.Component {
     super(props);
 
     this.state = {
-      // Validation messages
       message: {
         // TODO: add validation messages...
       },
