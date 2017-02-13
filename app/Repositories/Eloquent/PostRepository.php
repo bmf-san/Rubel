@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Repositories\Contracts\PostRepositoryContract;
 use App\Models\Post;
+use App\Models\Tag;
 
 use Carbon\Carbon;
 
@@ -11,9 +12,12 @@ class PostRepository implements PostRepositoryContract
 {
     public $post;
 
-    public function __construct(Post $post)
+    public function __construct(Post $post,
+                                Tag $tag
+                                )
     {
         $this->post = $post;
+        $this->tag = $tag;
     }
 
     /**
@@ -22,22 +26,32 @@ class PostRepository implements PostRepositoryContract
      * @param  object  $request
      * @return void
      */
-    public function create($request)
+    public function create($request) // TODO add validation
     {
-        $post = $this->post->create([  // TODO modify values in this array
-                    "admin" => [
-                        "name" => ''
-                    ],
-                    "category" => [
-                        "name" => ''
-                    ],
-                    "tag" => '',  // Only register tags which has not been still registerd
-                    "title" => '',
-                    "content" => '',
-                    "thumb_img_path" => '', // default path
-                    "status" => '',
-                    "publication_date" => Carbon::now(),
-                ]);
+        $post = $this->post;
+
+        $post->admin_id = $request->admin_id;
+        $post->category_id = $request->category_id;
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->thumb_img_path = $request->thumb_img_path;
+        $post->status = $request->status;
+
+        if ($request->status == 'public') {
+            $post->publication_date = Carbon::now();
+        }
+
+        $post->save();
+
+        // TODO Add Logic for tags
+        $tag = $this->tag;
+
+        // add existed tags
+        // $post->tags()->sync($tags, false);
+
+        // create new tags - foreach??
+        // $post->tag = $request->name;
+        // Do not create a tag if tag has existed
     }
 
     /**
@@ -47,24 +61,9 @@ class PostRepository implements PostRepositoryContract
  	 * @param  object  $request
      * @return void
      */
-    public function edit($id, $request)
+    public function edit($id, $request) // TODO add vaidation
     {
-        $post = $this->post->find($id)->update([ // TODO modify values in this array
-                    "admin" => [
-                        "id" => '',
-                        "name" => ''
-                    ],
-                    "category" => [
-                        "id" => '',
-                        "name" => ''
-                    ],
-                    "tag" => '',
-                    "title" => '',
-                    "content" => '',
-                    "thumb_img_path" => '',
-                    "status" => '',
-                    "publication_date" => Carbon::now(),
-                ]);
+        // TODO add logic
     }
 
     /**
@@ -74,11 +73,17 @@ class PostRepository implements PostRepositoryContract
      * @param  object  $request
      * @return void
      */
-    public function update($id, $request)
+    public function update($id, $request) // TODO add validation
     {
-        $post = $this->post->find($id)->update([ // TODO modify values in this array
-                    "status" => '',
-                ]);
+        $post = $this->post->find($id);
+
+        $post->status = $request->status;
+
+        if ($post->status == 'public') {
+            $post->publication_date = Carbon::now();
+        }
+
+        $post->save();
     }
 
     /**
@@ -88,6 +93,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function delete($id)
     {
+        // FIXME this method doesn't work!!
         $post = $this->post->find($id)->delete();
     }
 
@@ -113,9 +119,10 @@ class PostRepository implements PostRepositoryContract
      */
      public function getPosts()
      {
-        $posts = $this->post->with(['admin' => function ($query) {
+        $data = $this->post->with(['admin' => function ($query) {
 			$query->select('id', 'name');
 		}], 'category', 'comments', 'tags')->get();
+
 
         return $posts;
      }

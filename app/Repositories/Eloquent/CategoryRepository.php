@@ -22,9 +22,11 @@ class CategoryRepository implements CategoryRepositoryContract
 	 */
 	public function create($request)
 	{
-		$category = $this->category->create([
-			'name' => $request->name
-		]);
+        $category = $this->category;
+
+        $category->name = $request->name;
+
+        $category->save();
 	}
 
 	/**
@@ -36,9 +38,11 @@ class CategoryRepository implements CategoryRepositoryContract
 	 */
 	public function edit($request, $id)
 	{
-		$category = $this->category->find($id)->update([
-			"name" => $request->name
-		]);
+        $category = $this->category->find($id);
+
+        $category->name = $request->name;
+
+        $category->save();
 	}
 
 	/**
@@ -48,6 +52,7 @@ class CategoryRepository implements CategoryRepositoryContract
 	 */
 	public function delete($id)
 	{
+        // TODO check whether this method works collectly
 		$category = $this->category->find($id)->delete();
 	}
 

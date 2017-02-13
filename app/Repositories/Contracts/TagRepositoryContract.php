@@ -5,14 +5,6 @@ namespace App\Repositories\Contracts;
 interface TagRepositoryContract
 {
 	/**
-	 * Create a new tag
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create($request);
-
-	/**
 	 * Edit a tag
 	 *
 	 * @param  int  $id

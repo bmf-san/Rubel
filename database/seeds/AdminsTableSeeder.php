@@ -23,6 +23,7 @@ class AdminsTableSeeder extends Seeder
            'email' => env('ADMIN_EMAIL', 'admin@gmail.com'),
            'password' => bcrypt(env('ADMIN_PASSWORD', 'adminpass')),
            'created_at' => Carbon::now(),
+           'updated_at' => Carbon::now(),
         ]);
     }
 }

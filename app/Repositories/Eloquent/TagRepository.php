@@ -15,19 +15,6 @@ class TagRepository implements TagRepositoryContract
 	}
 
 	/**
-	 * Create a new tag
-	 *
-	 * @param  object  $request
-	 * @return void
-	 */
-	public function create($request)
-	{
-		$tag = $this->tag->create([
-			'name' => $request->name
-		]);
-	}
-
-	/**
 	 * Edit a post
 	 *
 	 * @param  int  $id
@@ -36,9 +23,11 @@ class TagRepository implements TagRepositoryContract
 	 */
 	public function edit($request, $id)
 	{
-		$tag = $this->tag->find($id)->update([
-			'name' => $request->name
-		]);
+        $tag = $this->tag->find($id);
+
+        $tag->name = $request->name;
+
+        $tag->save();
 	}
 
 	/**
@@ -48,6 +37,7 @@ class TagRepository implements TagRepositoryContract
 	 */
 	public function delete($id)
 	{
+        // TODO check wether this method works collectly
 		$tag = $this->tag->find($id)->delete();
 	}
 
