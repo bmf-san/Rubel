@@ -23,7 +23,13 @@ class PostController extends Controller
      */
     public function create(Request $request) // TODO add form request for creating a post
     {
-        return response()->json($this->post_repository->create($request));
+        $data = $this->post_repository->create($request);
+
+        if ($data) {
+            return response()->json($this->post_repository->create($request));
+        } else {
+            return $response()->json(['status' => 'Not Found']);
+        }
     }
 
     /**
@@ -34,7 +40,13 @@ class PostController extends Controller
      */
     public function edit($id) // TODO add form request for editting a post
     {
-        return response()->json($this->post_repository->edit($id));
+        $data = $this->post_repository->edit($id);
+
+        if ($data) {
+            return response()->json($this->post_repository->edit($id));
+        } else {
+            return response()->json(['status' => 'Not Found']);
+        }
     }
 
     /**
@@ -46,7 +58,13 @@ class PostController extends Controller
     */
     public function update(Request $request, $id) // TODO add form request for update this status
     {
-        return response()->json($this->post_repository->update($request, $id));
+        $data = $this->post_repository->update($request, $id);
+
+        if ($data) {
+            return response()->json($this->post_repository->update($request, $id));
+        } else {
+            return response()->json(['status' => 'Not Found']);
+        }
     }
 
     /**
@@ -57,7 +75,13 @@ class PostController extends Controller
      */
     public function delete($id)
     {
-        return response()->json($this->post_repository->delete($id));
+        $data = $this->post_repository->delete($id);
+
+        if ($data) {
+            return response()->json($this->post_repository->delete($id));
+        } else {
+            return response()->json(['status' => 'Not Found']);
+        }
     }
 
     /**
@@ -68,7 +92,13 @@ class PostController extends Controller
      */
     public function getPost($id)
     {
-        return response()->json($this->post_repository->getPost($id));
+        $data = $this->post_repository->getPost($id);
+
+        if ($data) {
+            return response()->json($this->post_repository->getPost($id));
+        } else {
+            return response()->json(['status' => 'Not Found']);
+        }
     }
 
     /**
@@ -78,6 +108,12 @@ class PostController extends Controller
      */
     public function getPosts()
     {
-        return response()->json($this->post_repository->getPosts());
+        $data = $this->post_repository->getPosts();
+
+        if ($data) {
+            return response()->json($this->post_repository->getPosts());
+        } else {
+            return response()->json(['status' => 'Not Found']);
+        }
     }
 }
