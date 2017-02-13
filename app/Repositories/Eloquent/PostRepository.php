@@ -5,6 +5,8 @@ namespace App\Repositories\Eloquent;
 use App\Repositories\Contracts\PostRepositoryContract;
 use App\Models\Post;
 
+use Carbon\Carbon;
+
 class PostRepository implements PostRepositoryContract
 {
     public $post;
@@ -29,12 +31,12 @@ class PostRepository implements PostRepositoryContract
                     "category" => [
                         "name" => ''
                     ],
-                    "tag" => '',  // idを持っていないやつだけタグを新規登録
+                    "tag" => '',  // Only register tags which has not been still registerd
                     "title" => '',
                     "content" => '',
-                    "thumb_img_path" => '', // default
+                    "thumb_img_path" => '', // default path
                     "status" => '',
-                    "publication_date" => '',
+                    "publication_date" => Carbon::now(),
                 ]);
     }
 
@@ -61,7 +63,7 @@ class PostRepository implements PostRepositoryContract
                     "content" => '',
                     "thumb_img_path" => '',
                     "status" => '',
-                    "publication_date" => '',
+                    "publication_date" => Carbon::now(),
                 ]);
     }
 

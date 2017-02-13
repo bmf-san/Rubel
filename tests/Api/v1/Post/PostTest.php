@@ -13,7 +13,7 @@ class PostTest extends TestCase
      */
     public function testCreatePost()
     {
-        $this->post('/post/create')->seeStatusCode(200);
+        $this->post('/api/v1/admin/post/create')->seeStatusCode(200);
     }
 
     /**
@@ -23,7 +23,7 @@ class PostTest extends TestCase
      */
     public function testEditPost()
     {
-        $this->post('/post/1/edit')->seeStatusCode(200);
+        $this->post('/api/v1/admin/post/1/edit')->seeStatusCode(200);
     }
 
     /**
@@ -33,7 +33,7 @@ class PostTest extends TestCase
      */
     public function testUpdatePost()
     {
-        $this->post('/post/1/update')->seeStatusCode(200);
+        $this->post('/api/v1/admin/post/1/update')->seeStatusCode(200);
     }
 
     /**
@@ -43,7 +43,7 @@ class PostTest extends TestCase
      */
     public function testDeletePost()
     {
-        $this->post('/post/1/delete')->seeStatusCode(200);
+        $this->post('/api/v1/admin/post/1/delete')->seeStatusCode(200);
     }
 
     /**
@@ -53,7 +53,7 @@ class PostTest extends TestCase
      */
     public function testPost()
     {
-        $this->get('/post/1')->seeStatusCode(200);
+        $this->get('/api/v1/post/1')->seeStatusCode(200);
     }
 
     /**
@@ -63,6 +63,6 @@ class PostTest extends TestCase
      */
     public function testPosts()
     {
-        $this->get('/posts')->seeStatusCode(200);
+        $this->get('/api/v1/posts')->seeStatusCode(200);
     }
 }
