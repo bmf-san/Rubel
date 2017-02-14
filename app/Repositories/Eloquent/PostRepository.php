@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Repositories\Contracts\PostRepositoryContract;
+
 use App\Models\Post;
 use App\Models\Tag;
 
@@ -26,11 +27,11 @@ class PostRepository implements PostRepositoryContract
      * @param  object  $request
      * @return void
      */
-    public function create($request) // TODO add validation
+    public function create($request) // TODO add form request
     {
         $post = $this->post;
 
-        $post->admin_id = $request->admin_id;
+        $post->admin_id = $request->admin_id;  // FIXME change this value to Authentication info -> admin_id
         $post->category_id = $request->category_id;
         $post->title = $request->title;
         $post->content = $request->content;
@@ -43,15 +44,35 @@ class PostRepository implements PostRepositoryContract
 
         $post->save();
 
-        // TODO Add Logic for tags
         $tag = $this->tag;
 
-        // add existed tags
-        // $post->tags()->sync($tags, false);
+        foreach ($request->tag as $request_tag) {
+            $request_tag_array[] =  $request_tag["name"];
+        }
 
-        // create new tags - foreach??
-        // $post->tag = $request->name;
-        // Do not create a tag if tag has existed
+        $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
+
+        $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
+        $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
+        $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
+
+        // create new tags
+        if (!empty($new_tag_name_array)) {
+            foreach ($new_tag_name_array as $new_tag_name) {
+                $tag->create([
+                    'name' => $new_tag_name
+                ]);
+            }
+
+            $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
+            $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
+        } else {
+            $tag_id_array = $exist_tag_id_array;
+        }
+
+        $post->tags()->sync($tag_id_array, false);
+
+        // TODO redirect to edit page.
     }
 
     /**
@@ -61,7 +82,7 @@ class PostRepository implements PostRepositoryContract
  	 * @param  object  $request
      * @return void
      */
-    public function edit($id, $request) // TODO add vaidation
+    public function edit($id, $request) // TODO add form request
     {
         // TODO add logic
     }
@@ -73,7 +94,7 @@ class PostRepository implements PostRepositoryContract
      * @param  object  $request
      * @return void
      */
-    public function update($id, $request) // TODO add validation
+    public function update($id, $request) // TODO add form request
     {
         $post = $this->post->find($id);
 
