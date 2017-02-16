@@ -2,5 +2,4 @@
 
 @section('content')
     this is top page.
-    merge test
 @endsection
