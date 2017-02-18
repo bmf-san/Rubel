@@ -178,29 +178,46 @@ class PostRepository implements PostRepositoryContract
      * Get a single post
      *
      * @param  int  $id
-     * @return object
+     * @return array  $post_array
      */
      public function getPost($id)
      {
-        $post = $this->post->with(['admin' => function ($query) {
-			$query->select('id', 'name');
-		}], 'category', 'comments', 'tags')->find($id);
+        $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
 
-		return $post;
+        $post_array = [
+            "admin" => $post->admin,
+            "category" => $post->category,
+            "title" => $post->title,
+            "content" => $post->content,
+            "thumb_img_path" => $post->thumb_img_path,
+            "status" => $post->status,
+            "tags" => $post->tags
+        ];
+
+		return $post_array;
 	}
 
     /**
      * Get posts
      *
-     * @return object
+     * @return array  $post_array
      */
      public function getPosts()
      {
-        $data = $this->post->with(['admin' => function ($query) {
-			$query->select('id', 'name');
-		}], 'category', 'comments', 'tags')->get();
+         $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(2);
 
+         foreach ($posts as $post) {
+             $post_array[] = [
+                 "admin" => $post->admin,
+                 "category" => $post->category,
+                 "title" => $post->title,
+                 "content" => $post->content,
+                 "thumb_img_path" => $post->thumb_img_path,
+                 "status" => $post->status,
+                 "tags" => $post->tags
+             ];
+         }
 
-        return $posts;
+         return $post_array;
      }
 }
