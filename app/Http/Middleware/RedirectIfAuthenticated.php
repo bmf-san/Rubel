@@ -30,7 +30,7 @@ class RedirectIfAuthenticated
                     break;
 
                 default:
-                    return redirect('/');
+                    return $next($request);
                     break;
             }
         }

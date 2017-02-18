@@ -23,11 +23,6 @@ class Post extends Model
         return $this->belongsTo('App\Models\Admin');
     }
 
-    public function postImages()
-    {
-        return $this->hasMany('App\Models\PostImage');
-    }
-
     public function category()
 	{
 		return $this->belongsTo('App\Models\Category');

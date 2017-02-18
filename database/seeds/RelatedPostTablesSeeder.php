@@ -18,7 +18,6 @@ class RelatedPostTablesSeeder extends Seeder
         $this->db->table('categories')->truncate();
         $this->db->table('posts')->truncate();
         $this->db->table('comments')->truncate();
-        $this->db->table('post_images')->truncate();
         $this->db->table('tags')->truncate();
         $this->db->table('tag_post')->truncate();
 
@@ -41,12 +40,6 @@ class RelatedPostTablesSeeder extends Seeder
             $this->db->table('comments')->insert([
                 'post_id' => $i,
                 'comment' => "This is {$i} comment.",
-                'created_at' => Carbon::now()
-            ]);
-
-            $this->db->table('post_images')->insert([
-                'post_id' => $i,
-                'img_path' => 'http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg',
                 'created_at' => Carbon::now()
             ]);
 

@@ -46,16 +46,6 @@ class CreateRelatedPostTables extends Migration
             $table->foreign('post_id')->references('id')->on('posts');
         });
 
-		Schema::create('post_images', function(Blueprint $table){
-			$table->increments('id');
-			$table->integer('post_id')->unsigned();
-			$table->string('img_path');
-			$table->timestamps();
-			$table->softDeletes();
-
-			$table->foreign('post_id')->references('id')->on('posts');
-		});
-
 		Schema::create('tags', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
@@ -82,7 +72,6 @@ class CreateRelatedPostTables extends Migration
      */
     public function down()
     {
-		Schema::drop('post_images');
 		Schema::drop('tag_post');
 		Schema::drop('posts');
 		Schema::drop('categories');
