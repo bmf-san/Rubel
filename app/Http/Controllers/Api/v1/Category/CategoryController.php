@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create(Request $request) // TODO add form request for creating a category
     {
-        return response()->json($this->category_repository())->create($request);
+        return response()->json($this->category_repository->create($request));
     }
 
     /**
@@ -32,9 +32,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) // TODO add form request for editting a category
+    public function edit(Request $request, $id) // TODO add form request for editting a category
     {
-        return response()->json($this->category_repository())->edit($id);
+        return response()->json($this->category_repository->edit($request, $id));
     }
 
     /**
@@ -45,7 +45,7 @@ class CategoryController extends Controller
      */
     public function delete($id)
     {
-        return response()->json($this->category_repository())->delete($id);
+        return response()->json($this->category_repository->delete($id));
     }
 
     /**

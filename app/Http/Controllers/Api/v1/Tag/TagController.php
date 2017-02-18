@@ -16,25 +16,15 @@ class TagController extends Controller
     }
 
     /**
-     * Create a new tag
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request) // TODO add form request for creating a tag
-    {
-        return response()->json($this->tag_repository())->create($request);
-    }
-
-    /**
      * Edit a tag
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) // TODO add form request for editting a tag
+    public function edit(Request $request, $id) // TODO add form request for editting a tag
     {
-        return response()->json($this->tag_repository())->edit($id);
+        return response()->json($this->tag_repository())->edit($reqeust, $id);
     }
 
     /**

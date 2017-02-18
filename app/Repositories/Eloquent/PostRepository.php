@@ -11,6 +11,8 @@ use Carbon\Carbon;
 
 class PostRepository implements PostRepositoryContract
 {
+    CONST POST_PAGENAME_NUM = 10;
+
     public $post;
 
     public function __construct(Post $post,
@@ -25,7 +27,7 @@ class PostRepository implements PostRepositoryContract
      * Create a new post
      *
      * @param  object  $request
-     * @return string
+     * @return array
      */
     public function create($request)
     {
@@ -84,7 +86,7 @@ class PostRepository implements PostRepositoryContract
      *
      * @param  int  $id
  	 * @param  object  $request
-     * @return string
+     * @return array
      */
     public function edit($request, $id)
     {
@@ -143,7 +145,7 @@ class PostRepository implements PostRepositoryContract
      *
 	 * @param  int  $id
      * @param  object  $request
-     * @return void
+     * @return array
      */
     public function update($request, $id)
     {
@@ -163,7 +165,7 @@ class PostRepository implements PostRepositoryContract
     /**
      * Delete a post
      *
-     * @return void
+     * @return array
      */
     public function delete($id)
     {
@@ -204,7 +206,7 @@ class PostRepository implements PostRepositoryContract
      */
      public function getPosts()
      {
-         $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(2);
+         $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POSTS_PAGINATE_NUM);
 
          foreach ($posts as $post) {
              $post_array[] = [

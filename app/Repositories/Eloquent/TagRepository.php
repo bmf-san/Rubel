@@ -15,7 +15,7 @@ class TagRepository implements TagRepositoryContract
 	}
 
 	/**
-	 * Edit a post
+	 * Edit a tag
 	 *
 	 * @param  int  $id
 	 * @param  object  $request

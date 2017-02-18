@@ -22,7 +22,7 @@ class CreateRelatedPostTables extends Migration
 		Schema::create('posts', function (Blueprint $table) {
 			$table->increments('id');
             $table->integer('admin_id')->unsigned()->nullable();
-            $table->integer('category_id')->unsigned()->nullable();
+            $table->integer('category_id')->unsigned()->default(1);
 			$table->string('title')->nullable();
 			$table->string('content')->nullable();
 			$table->string('thumb_img_path')->nullable();
@@ -32,8 +32,8 @@ class CreateRelatedPostTables extends Migration
 			$table->timestamps();
 			$table->softDeletes();
 
-			$table->foreign('admin_id')->references('id')->on('admins');
-			$table->foreign('category_id')->references('id')->on('categories');
+			$table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+			$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 		});
 
         Schema::create('comments', function (Blueprint $table) {

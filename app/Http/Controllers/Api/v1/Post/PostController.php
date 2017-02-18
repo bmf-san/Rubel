@@ -31,6 +31,7 @@ class PostController extends Controller
     /**
      * Edit a post
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
