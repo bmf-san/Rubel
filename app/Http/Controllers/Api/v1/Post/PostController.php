@@ -34,9 +34,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) // TODO add form request for editting a post
+    public function edit(Request $request, $id) // TODO add form request for editting a post
     {
-        return response()->json($this->post_repository->edit($id));
+        return response()->json($this->post_repository->edit($request, $id));
     }
 
     /**

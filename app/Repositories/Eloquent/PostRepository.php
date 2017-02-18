@@ -46,33 +46,37 @@ class PostRepository implements PostRepositoryContract
 
         $tag = $this->tag;
 
-        foreach ($request->tag as $request_tag) {
-            $request_tag_array[] =  $request_tag["name"];
-        }
-
-        $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
-
-        $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
-        $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
-        $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
-
-        // create new tags
-        if (!empty($new_tag_name_array)) {
-            foreach ($new_tag_name_array as $new_tag_name) {
-                $tag->create([
-                    'name' => $new_tag_name
-                ]);
+        if (!empty($request->tag)) {
+            foreach ($request->tag as $request_tag) {
+                $request_tag_array[] =  $request_tag["name"];
             }
 
-            $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
-            $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
+            $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
+
+            $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
+            $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
+            $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
+
+            // create new tags
+            if (!empty($new_tag_name_array)) {
+                foreach ($new_tag_name_array as $new_tag_name) {
+                    $tag->create([
+                        'name' => $new_tag_name
+                    ]);
+                }
+
+                $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
+                $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
+            } else {
+                $tag_id_array = $exist_tag_id_array;
+            }
         } else {
-            $tag_id_array = $exist_tag_id_array;
+            $tag_id_array = [];
         }
 
-        $post->tags()->sync($tag_id_array, false);
+        $post->tags()->sync($tag_id_array);
 
-        // TODO redirect to edit page.
+        return $post->id;
     }
 
     /**
@@ -82,9 +86,56 @@ class PostRepository implements PostRepositoryContract
  	 * @param  object  $request
      * @return void
      */
-    public function edit($id, $request) // TODO add form request
+    public function edit($request, $id) // TODO add form request
     {
-        // TODO add logic
+        $post = $this->post->find($id);
+
+        $post->admin_id = $request->admin_id;  // FIXME change this value to Authentication info -> admin_id
+        $post->category_id = $request->category_id;
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->thumb_img_path = $request->thumb_img_path;
+        $post->status = $request->status;
+
+        if ($request->status == 'public') {
+            $post->publication_date = Carbon::now();
+        }
+
+        $post->save();
+
+        $tag = $this->tag;
+
+        if (!empty($request->tag)) {
+            foreach ($request->tag as $request_tag) {
+                $request_tag_array[] =  $request_tag["name"];
+            }
+
+            $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
+
+            $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
+            $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
+            $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
+
+            // create new tags
+            if (!empty($new_tag_name_array)) {
+                foreach ($new_tag_name_array as $new_tag_name) {
+                    $tag->create([
+                        'name' => $new_tag_name
+                    ]);
+                }
+
+                $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
+                $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
+            } else {
+                $tag_id_array = $exist_tag_id_array;
+            }
+        } else {
+            $tag_id_array = [];
+        }
+
+        $post->tags()->sync($tag_id_array);
+
+        return $post->id;
     }
 
     /**
