@@ -25,7 +25,7 @@ class PostRepository implements PostRepositoryContract
      * Create a new post
      *
      * @param  object  $request
-     * @return void
+     * @return string
      */
     public function create($request)
     {
@@ -76,7 +76,7 @@ class PostRepository implements PostRepositoryContract
 
         $post->tags()->sync($tag_id_array);
 
-        return $post->id;
+        return ["id" => $post->id];
     }
 
     /**
@@ -84,7 +84,7 @@ class PostRepository implements PostRepositoryContract
      *
      * @param  int  $id
  	 * @param  object  $request
-     * @return void
+     * @return string
      */
     public function edit($request, $id)
     {
@@ -135,7 +135,7 @@ class PostRepository implements PostRepositoryContract
 
         $post->tags()->sync($tag_id_array);
 
-        return $post->id;
+        return ["id" => $post->id];
     }
 
     /**
@@ -145,7 +145,7 @@ class PostRepository implements PostRepositoryContract
      * @param  object  $request
      * @return void
      */
-    public function update($id, $request)
+    public function update($request, $id)
     {
         $post = $this->post->find($id);
 
@@ -156,6 +156,8 @@ class PostRepository implements PostRepositoryContract
         }
 
         $post->save();
+
+        return ["id" => $post->id];
     }
 
     /**
