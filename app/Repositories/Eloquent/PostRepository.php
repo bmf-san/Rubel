@@ -168,7 +168,6 @@ class PostRepository implements PostRepositoryContract
     public function delete($id)
     {
         $post = $this->post->find($id);
-        $post->tags()->detach();
 
         $post->delete(); // TODO
 

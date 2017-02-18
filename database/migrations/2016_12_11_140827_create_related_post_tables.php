@@ -43,7 +43,7 @@ class CreateRelatedPostTables extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
 
 		Schema::create('tags', function (Blueprint $table) {
@@ -60,8 +60,8 @@ class CreateRelatedPostTables extends Migration
 			$table->timestamps();
 			$table->softDeletes();
 
-			$table->foreign('tag_id')->references('id')->on('tags');
-			$table->foreign('post_id')->references('id')->on('posts');
+			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+			$table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
 		});
 	}
 
