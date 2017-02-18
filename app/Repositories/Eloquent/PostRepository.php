@@ -27,7 +27,7 @@ class PostRepository implements PostRepositoryContract
      * @param  object  $request
      * @return void
      */
-    public function create($request) // TODO add form request
+    public function create($request)
     {
         $post = $this->post;
 
@@ -86,7 +86,7 @@ class PostRepository implements PostRepositoryContract
  	 * @param  object  $request
      * @return void
      */
-    public function edit($request, $id) // TODO add form request
+    public function edit($request, $id)
     {
         $post = $this->post->find($id);
 
@@ -145,7 +145,7 @@ class PostRepository implements PostRepositoryContract
      * @param  object  $request
      * @return void
      */
-    public function update($id, $request) // TODO add form request
+    public function update($id, $request)
     {
         $post = $this->post->find($id);
 
