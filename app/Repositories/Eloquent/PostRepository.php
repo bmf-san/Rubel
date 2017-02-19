@@ -59,7 +59,6 @@ class PostRepository implements PostRepositoryContract
             $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
             $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
 
-            // create new tags
             if (!empty($new_tag_name_array)) {
                 foreach ($new_tag_name_array as $new_tag_name) {
                     $tag->create([
@@ -118,7 +117,6 @@ class PostRepository implements PostRepositoryContract
             $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
             $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
 
-            // create new tags
             if (!empty($new_tag_name_array)) {
                 foreach ($new_tag_name_array as $new_tag_name) {
                     $tag->create([
