@@ -62,9 +62,8 @@ class CategoryRepository implements CategoryRepositoryContract
 	 */
 	public function delete($id)
 	{
-
-        // USE　Relation
-        $posts = $this->post->where('category_id', $id)->get();
+        $category = $this->category->find($id);
+        $posts = $category->posts;
 
         if ($posts->count() > 0) {
             foreach ($posts as $post) {
@@ -72,9 +71,9 @@ class CategoryRepository implements CategoryRepositoryContract
                     "category_id" => self::CATEGORY_ID_OF_UNCATEGORIZED
                 ]);
             }
-        } else {
-            $category = $this->category->find($id)->delete();
         }
+
+        $category = $category->delete();
 
         return [];
 	}

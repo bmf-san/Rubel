@@ -14,8 +14,8 @@ class Category extends Model
         'created_at', 'updated_at', 'deleted_at'
     ];
 
-    public function post()
+    public function posts()
     {
-        return $this->hasOne('App\Models\Post');
+        return $this->hasMany('App\Models\Post');
     }
 }
