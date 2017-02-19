@@ -24,7 +24,7 @@ class TagController extends Controller
      */
     public function edit(Request $request, $id) // TODO add form request for editting a tag
     {
-        return response()->json($this->tag_repository())->edit($reqeust, $id);
+        return response()->json($this->tag_repository->edit($request, $id));
     }
 
     /**
@@ -35,7 +35,7 @@ class TagController extends Controller
      */
     public function delete($id)
     {
-        return response()->json($this->tag_repository())->delete($id);
+        return response()->json($this->tag_repository->delete($id));
     }
 
     /**

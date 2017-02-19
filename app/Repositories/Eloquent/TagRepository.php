@@ -4,14 +4,18 @@ namespace App\Repositories\Eloquent;
 
 use App\Repositories\Contracts\TagRepositoryContract;
 use App\Models\Tag;
+use App\Models\Post;
 
 class TagRepository implements TagRepositoryContract
 {
 	public $tag;
 
-	public function __construct(Tag $tag)
+	public function __construct(Tag $tag,
+                                Post $post
+                                )
 	{
 		$this->tag = $tag;
+		$this->post = $post;
 	}
 
 	/**
@@ -37,7 +41,6 @@ class TagRepository implements TagRepositoryContract
 	 */
 	public function delete($id)
 	{
-        // TODO check wether this method works collectly
 		$tag = $this->tag->find($id)->delete();
 	}
 

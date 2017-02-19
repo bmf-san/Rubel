@@ -13,7 +13,8 @@ class CategoryRepository implements CategoryRepositoryContract
 
 	public $category;
 
-	public function __construct(Category $category, Post $post)
+	public function __construct(Category $category,
+                                Post $post)
 	{
 		$this->category = $category;
         $this->post = $post;
@@ -61,6 +62,8 @@ class CategoryRepository implements CategoryRepositoryContract
 	 */
 	public function delete($id)
 	{
+
+        // USE　Relation
         $posts = $this->post->where('category_id', $id)->get();
 
         if ($posts->count() > 0) {
