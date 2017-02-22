@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPosts } from '../actions/index';
@@ -11,10 +12,14 @@ class Posts extends Component {
 
   renderPosts() {
     return this.props.posts.map((post) => {
+
+      {console.log(post.tags[0].name)} // this call tag's name
+
       return (
         <li key={post.id}>
-          <Link to={`posts/${post.id}`}>
-            <strong>{post.title}</strong>
+          <Link to={`post/${post.id}`}>
+            <h1>{post.title}</h1>
+            <span>{post.category.name}</span>
           </Link>
         </li>
       );

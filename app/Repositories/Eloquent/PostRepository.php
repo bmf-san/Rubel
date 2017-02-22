@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class PostRepository implements PostRepositoryContract
 {
-    CONST POST_PAGENAME_NUM = 10;
+    CONST POST_PAGINATE_NUM = 10;
 
     public $post;
 
@@ -191,7 +191,8 @@ class PostRepository implements PostRepositoryContract
             "content" => $post->content,
             "thumb_img_path" => $post->thumb_img_path,
             "status" => $post->status,
-            "tags" => $post->tags
+            "tags" => $post->tags,
+            "publication_date" => $post->publication_date->format('Y-m-d H:i:s')
         ];
 
 		return $post_array;
@@ -204,17 +205,19 @@ class PostRepository implements PostRepositoryContract
      */
      public function getPosts()
      {
-         $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POSTS_PAGINATE_NUM);
+         $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
 
          foreach ($posts as $post) {
              $post_array[] = [
+                 "id" => $post->id,
                  "admin" => $post->admin,
                  "category" => $post->category,
                  "title" => $post->title,
                  "content" => $post->content,
                  "thumb_img_path" => $post->thumb_img_path,
                  "status" => $post->status,
-                 "tags" => $post->tags
+                 "tags" => $post->tags,
+                 "publication_date" => $post->publication_date->format('Y-m-d H:i:s')
              ];
          }
 
