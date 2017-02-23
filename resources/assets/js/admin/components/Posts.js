@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPosts } from '../actions/index';
@@ -20,7 +19,7 @@ class Posts extends Component {
 
       return (
         <li key={post.id}>
-          <Link to={`post/${post.id}/edit`}>
+          <Link to={`edit-post/${post.id}`}>
             <h1>{post.title}</h1>
             <p>{post.publication_date}</p>
             <p>{post.category.name}</p>
