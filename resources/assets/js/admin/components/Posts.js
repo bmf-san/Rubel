@@ -12,14 +12,19 @@ class Posts extends Component {
 
   renderPosts() {
     return this.props.posts.map((post) => {
+      let tags = [];
 
-      {console.log(post.tags[0].name)} // this call tag's name
+      for(let i in post.tags){
+        tags.push(<p>{post.tags[i].name}</p>);
+      }
 
       return (
         <li key={post.id}>
-          <Link to={`post/${post.id}`}>
+          <Link to={`post/${post.id}/edit`}>
             <h1>{post.title}</h1>
-            <span>{post.category.name}</span>
+            <p>{post.publication_date}</p>
+            <p>{post.category.name}</p>
+            {tags}
           </Link>
         </li>
       );
