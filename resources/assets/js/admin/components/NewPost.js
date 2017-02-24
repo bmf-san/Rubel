@@ -12,7 +12,7 @@ class NewPost extends Component {
   }
 
   render() {
-    const {fields: {title}, handleSubmit} = this.props;
+    const { fields: {title}, handleSubmit } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>

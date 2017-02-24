@@ -28,7 +28,7 @@ class Categories extends Component {
   }
 
   render() {
-    const {fields: {name}, handleCreateSubmit} = this.props;
+    const { fields: {name}, handleCreateSubmit } = this.props;
 
     return (
       <div>
