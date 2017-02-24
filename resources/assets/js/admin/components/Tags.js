@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createCategory, fetchCategories } from '../actions/index';
+import { editTag, fetchTags } from '../actions/index';
 import { Link } from 'react-router';
 
-class Categories extends Component {
+class Tags extends Component {
   onSubmit(props) {
-    this.props.createCategory(props)
+    this.props.editTag(props)
       .then(() => {
         this.context.router.push('/')
       })
   }
 
   componentWillMount() {
-    this.props.fetchCategories();
+    this.props.fetchTags();
   }
 
-  renderCategories() {
-    return this.props.categories.map((category) => {
+  renderTags() {
+    return this.props.tags.map((tag) => {
       return (
-        <li key={category.id}>
-          <p>{category.name}</p>
+        <li key={tag.id}>
+          <p>{tag.name}</p>
         </li>
       );
     });
@@ -31,9 +31,9 @@ class Categories extends Component {
 
     return (
       <div>
-        <h3>Categories</h3>
+        <h3>Tags</h3>
         <ul>
-          {this.renderCategories()}
+          {this.renderTags()}
         </ul>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <label>Title</label>
@@ -41,21 +41,21 @@ class Categories extends Component {
           <button type="submit">Submit</button>
         </form>
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories.all
-  };
+    tags: state.tags.all
+  }
 }
 
-Categories = reduxForm({
-  form: 'CreateCategoryForm',
+Tags = reduxForm({
+  form: 'EditTagForm',
   fields: ['name']
-}, null, {createCategory})(Categories);
+}, null, {editTag})(Tags);
 
-Categories = connect(mapStateToProps, { fetchCategories })(Categories);
+Tags = connect(mapStateToProps, { fetchTags })(Tags);
 
-export default Categories
+export default Tags;

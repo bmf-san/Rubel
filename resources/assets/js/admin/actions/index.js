@@ -7,6 +7,8 @@ export const FETCH_POST = "FETCH_POST";
 export const CREATE_CATEGORY = "CREATE_CATEGORY";
 export const EDIT_CATEGORY = "EDIT_CATEGORY";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const EDIT_TAG = "EDIT_TAG";
+export const FETCH_TAGS = "FETCH_TAGS";
 
 const ROOT_URL = '/laravel-react-blog-boilerplate/public/api/v1';
 
@@ -71,4 +73,22 @@ export function fetchCategories() {
     type: FETCH_CATEGORIES,
     payload: request
   };
+}
+
+export function editTag() {
+  const request = axios.post(`${ROOT_URL}/tag/${id}/edit`, props);
+
+  return {
+    type: EDIT_TAG,
+    payload: request
+  }
+}
+
+export function fetchTags() {
+  const request = axios.get(`${ROOT_URL}/tags`);
+
+  return {
+    type: FETCH_TAGS,
+    payload: request
+  }
 }
