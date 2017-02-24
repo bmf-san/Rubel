@@ -6,7 +6,7 @@ import { createCategory, fetchCategories } from '../actions/index';
 import { Link } from 'react-router';
 
 class Categories extends Component {
-  onCreateSubmit(props) {
+  onSubmit(props) {
     this.props.createCategory(props)
       .then(() => {
         this.context.router.push('/')
@@ -28,7 +28,7 @@ class Categories extends Component {
   }
 
   render() {
-    const { fields: {name}, handleCreateSubmit } = this.props;
+    const { fields: {name}, handleSubmit } = this.props;
 
     return (
       <div>
@@ -36,7 +36,7 @@ class Categories extends Component {
         <ul>
           {this.renderCategories()}
         </ul>
-        <form onCreateSubmit={handleCreateSubmit(this.onCreateSubmit.bind(this))}>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <label>Title</label>
           <input type="text" {...name} />
           <button type="submit">Submit</button>
@@ -52,9 +52,11 @@ function mapStateToProps(state) {
   };
 }
 
-export default reduxForm({
+Categories = reduxForm({
   form: 'CreateCategoryForm',
   fields: ['name']
 }, null, {createCategory})(Categories);
 
-export default connect(mapStateToProps, { fetchCategories })(Categories);
+Categories = connect(mapStateToProps, { fetchCategories })(Categories);
+
+export default Categories
