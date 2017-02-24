@@ -15,13 +15,10 @@ class EditPost extends Component {
       return <div>loading...</div>;
     }
 
-    console.log(post.tags.name);
-
     return (
       <div>
         <Link to="/">Back to Home</Link>
         <h1>{post.title}</h1>
-        <p>{post.category}</p>
         <p>{post.content}</p>
       </div>
     );

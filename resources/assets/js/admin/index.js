@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, hashHistory } from 'react-router';
 import promise from 'redux-promise';
 
-import reducers from './reducers';
+import reducers from './reducers/reducer_root';
 import routes from './routes';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
