@@ -7,12 +7,13 @@ class NewPost extends Component {
   onSubmit(props) {
     this.props.createPost(props)
       .then(() => {
-        this.context.router.push('/');
+        this.content.router.push('/');
       })
   }
 
   render() {
-    const { fields: {title}, handleSubmit } = this.props;
+    console.log(this.props);
+    const { fields: { title }, handleSubmit } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -27,4 +28,4 @@ class NewPost extends Component {
 export default reduxForm({
   form: 'NewPostForm',
   fields: ['title']
-}, null, {createPost})(NewPost);
+}, null, { createPost })(NewPost);

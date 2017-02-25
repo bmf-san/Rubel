@@ -9,7 +9,7 @@ class EditPost extends Component {
   }
 
   render() {
-    const {post} = this.props;
+    const { post } = this.props;
 
     if (!post) {
       return <div>loading...</div>;
@@ -29,7 +29,9 @@ class EditPost extends Component {
 }
 
 function mapStateToProps(state) {
-  return {post: state.posts.post}
+  return {
+    post: state.posts.post
+  }
 }
 
-export default connect(mapStateToProps, {fetchPost})(EditPost);
+export default connect(mapStateToProps, { fetchPost })(EditPost);

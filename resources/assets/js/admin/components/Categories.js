@@ -8,8 +8,8 @@ class Categories extends Component {
   onSubmit(props) {
     this.props.createCategory(props)
       .then(() => {
-        this.context.router.push('/')
-      })
+        this.content.router.push('/')
+      });
   }
 
   componentWillMount() {
@@ -27,7 +27,7 @@ class Categories extends Component {
   }
 
   render() {
-    const { fields: {name}, handleSubmit } = this.props;
+    const { fields: { name }, handleSubmit } = this.props;
 
     return (
       <div>
@@ -53,8 +53,8 @@ function mapStateToProps(state) {
 
 Categories = reduxForm({
   form: 'CreateCategoryForm',
-  fields: ['name']
-}, null, {createCategory})(Categories);
+  fields: [ 'name' ]
+}, null, { createCategory })(Categories);
 
 Categories = connect(mapStateToProps, { fetchCategories })(Categories);
 
