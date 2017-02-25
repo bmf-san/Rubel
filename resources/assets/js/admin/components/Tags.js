@@ -27,7 +27,7 @@ class Tags extends Component {
   }
 
   render() {
-    const { fields: {name}, handleSubmit } = this.props;
+    const { fields: { name }, handleSubmit } = this.props;
 
     return (
       <div>

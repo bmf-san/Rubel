@@ -5,6 +5,13 @@ import { createCategory, fetchCategories } from '../actions/index';
 import { Link } from 'react-router';
 
 class Categories extends Component {
+  onSubmit(props) {
+    this.props.createCategory(props)
+      .then(() => {
+        this.content.router.push('/');
+      })
+  }
+
   componentWillMount() {
     this.props.fetchCategories();
   }
@@ -17,14 +24,6 @@ class Categories extends Component {
         </li>
       );
     });
-  }
-
-  onSubmit(props) {
-    console.log(props);
-    this.props.createCategory(props)
-      .then(() => {
-        this.content.router.push('/');
-      })
   }
 
   render() {
