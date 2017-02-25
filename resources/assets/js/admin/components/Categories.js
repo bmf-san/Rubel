@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { createCategory, fetchCategories } from '../actions/index';
 import { Link } from 'react-router';
 
 class Categories extends Component {
-  onSubmit(props) {
-    this.props.createCategory(props)
-      .then(() => {
-        this.content.router.push('/')
-      });
-  }
-
   componentWillMount() {
     this.props.fetchCategories();
   }
@@ -20,30 +13,42 @@ class Categories extends Component {
     return this.props.categories.map((category) => {
       return (
         <li key={category.id}>
-          <p>{category.name}</p>
+          {category.name}
         </li>
       );
     });
   }
 
+  onSubmit(props) {
+    console.log(props);
+    this.props.createCategory(props)
+      .then(() => {
+        this.content.router.push('/');
+      })
+  }
+
   render() {
-    const { fields: { name }, handleSubmit } = this.props;
+    const { handleSubmit } = this.props
 
     return (
-      <div>
-        <h3>Categories</h3>
-        <ul>
-          {this.renderCategories()}
-        </ul>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <label>Title</label>
-          <input type="text" {...name} />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    )
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <Field
+          name="name"
+          component={name =>
+            <div>
+              <label>Category</label>
+              <input type="text" {...name} />
+            </div>
+          }/>
+        <button type="submit">Submit</button>
+      </form>
+    );
   }
 }
+
+const form = reduxForm({
+  form: 'CategoryForm'
+})(Categories)
 
 function mapStateToProps(state) {
   return {
@@ -51,11 +56,4 @@ function mapStateToProps(state) {
   };
 }
 
-Categories = reduxForm({
-  form: 'CreateCategoryForm',
-  fields: [ 'name' ]
-}, null, { createCategory })(Categories);
-
-Categories = connect(mapStateToProps, { fetchCategories })(Categories);
-
-export default Categories
+export default connect(mapStateToProps, { createCategory, fetchCategories })(form);

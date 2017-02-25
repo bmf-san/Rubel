@@ -13,7 +13,7 @@ export const FETCH_TAGS = "FETCH_TAGS";
 const ROOT_URL = '/laravel-react-blog-boilerplate/public/api/v1';
 
 export function createPost(props) {
-  const request = axios.post(`$(ROOT_URL)/admin/post/create`, props);
+  const request = axios.post(`${ROOT_URL}/admin/post/create`, props);
 
   return {
     type: CREATE_POST,
@@ -22,7 +22,7 @@ export function createPost(props) {
 }
 
 export function editPost(props) {
-  const request = axios.post(`$(ROOT_URL)/admin/post/${id}/edit`, props);
+  const request = axios.post(`${ROOT_URL}/admin/post/${id}/edit`, props);
 
   return {
     type: EDIT_POST,
@@ -48,8 +48,8 @@ export function fetchPost(id) {
   };
 }
 
-export function createCategory() {
-  const request = axios.post(`$(ROOT_URL)/admin/category/create`, props);
+export function createCategory(props) {
+  const request = axios.post(`${ROOT_URL}/admin/category/create`, props);
 
   return {
       type: CREATE_CATEGORY,
@@ -57,8 +57,8 @@ export function createCategory() {
   };
 }
 
-export function editCategory() {
-  const request = axios.post(`$(ROOT_URL)/admin/category/${id}/edit`, props);
+export function editCategory(props) {
+  const request = axios.post(`${ROOT_URL}/admin/category/${id}/edit`, props);
 
   return {
       type: EDIT_CATEGORY,
@@ -75,7 +75,7 @@ export function fetchCategories() {
   };
 }
 
-export function editTag() {
+export function editTag(props) {
   const request = axios.post(`${ROOT_URL}/tag/${id}/edit`, props);
 
   return {

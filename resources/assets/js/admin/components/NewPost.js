@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import { createPost } from '../actions/index';
 import { Link } from 'react-router';
 
@@ -12,20 +13,26 @@ class NewPost extends Component {
   }
 
   render() {
-    console.log(this.props);
-    const { fields: { title }, handleSubmit } = this.props;
+    const { handleSubmit } = this.props
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <label>Title</label>
-        <input type="text" {...title} />
+        <Field
+          name="title"
+          component={title =>
+            <div>
+              <label>Title</label>
+              <input type="text" {...title} />
+            </div>
+          }/>
         <button type="submit">Submit</button>
       </form>
     );
   }
 }
 
-export default reduxForm({
-  form: 'NewPostForm',
-  fields: ['title']
-}, null, { createPost })(NewPost);
+const form = reduxForm({
+  form: 'NewPostForm'
+})(NewPost)
+
+export default connect(null, { createPost })(form)

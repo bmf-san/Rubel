@@ -13,7 +13,7 @@ class PostRepository implements PostRepositoryContract
 {
     CONST POST_PAGINATE_NUM = 10;
 
-    public $post;
+    public $post, $tag;
 
     public function __construct(Post $post,
                                 Tag $tag
@@ -32,6 +32,7 @@ class PostRepository implements PostRepositoryContract
     public function create($request)
     {
         $post = $this->post;
+        $admin_id = $request->user()->id;
 
         $post->admin_id = $request->admin_id;  // FIXME change this value to Authentication info -> admin_id
         $post->category_id = $request->category_id;
