@@ -32,9 +32,8 @@ class PostRepository implements PostRepositoryContract
     public function create($request)
     {
         $post = $this->post;
-        $admin_id = $request->user()->id;
 
-        $post->admin_id = $request->admin_id;  // FIXME change this value to Authentication info -> admin_id
+        $post->admin_id = $request->user()->id;
         $post->category_id = $request->category_id;
         $post->title = $request->title;
         $post->content = $request->content;
