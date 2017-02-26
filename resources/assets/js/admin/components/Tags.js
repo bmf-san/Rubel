@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { reduxForm } from 'redux-form';
+import React, { Component } from 'react';
+import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { editTag, fetchTags } from '../actions/index';
 import { Link } from 'react-router';
@@ -8,7 +8,7 @@ class Tags extends Component {
   onSubmit(props) {
     this.props.editTag(props)
       .then(() => {
-        this.context.router.push('/')
+        this.content.router.push('/');
       })
   }
 
@@ -27,7 +27,7 @@ class Tags extends Component {
   }
 
   render() {
-    const { fields: { name }, handleSubmit } = this.props;
+    const { handleSubmit } = this.props
 
     return (
       <div>
@@ -36,8 +36,14 @@ class Tags extends Component {
           {this.renderTags()}
         </ul>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <label>Title</label>
-          <input type="text" {...name} />
+          <Field
+            name="name"
+            component={name =>
+              <div>
+                <label>Tag</label>
+                <input type="text" {...name} />
+              </div>
+            }/>
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -45,17 +51,14 @@ class Tags extends Component {
   }
 }
 
+const form = reduxForm({
+  form: 'TagForm'
+})(Tags)
+
 function mapStateToProps(state) {
   return {
     tags: state.tags.all
   }
 }
 
-Tags = reduxForm({
-  form: 'EditTagForm',
-  fields: ['name']
-}, null, {editTag})(Tags);
-
-Tags = connect(mapStateToProps, { fetchTags })(Tags);
-
-export default Tags;
+export default connect(mapStateToProps, { editTag, fetchTags })(form);
