@@ -8,7 +8,7 @@ class Categories extends Component {
   onSubmit(props) {
     this.props.createCategory(props)
       .then(() => {
-        this.context.router.push('/categories');
+        this.context.router.push('/admin/dashboard/categories');
       })
   }
 
