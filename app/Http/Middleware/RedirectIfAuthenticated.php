@@ -26,7 +26,7 @@ class RedirectIfAuthenticated
         if ($this->auth->guard($guard)->check()) {
             switch ($guard) {
                 case 'admins':
-                    return redirect('dashboard');
+                    return redirect('admin/dashboard');
                     break;
 
                 default:

@@ -18,6 +18,6 @@ Route::group(['middleware' => 'guest:admins'], function () {
 
 Route::post('admin/logout', 'Auth\Admin\LoginController@logout');
 
-Route::group(['middleware' => 'auth:admins'], function () {
-    Route::get('dashboard', 'Admin\DashBoardController@getIndex');
+Route::group(['middleware' => 'auth:admins', 'prefix' => '/admin/dashboard'], function () {
+    Route::any('{any?}', 'Admin\DashBoardController@getIndex');
 });
