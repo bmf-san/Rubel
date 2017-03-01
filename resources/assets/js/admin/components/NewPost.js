@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { createPost } from '../actions/index';
@@ -8,7 +8,7 @@ class NewPost extends Component {
   onSubmit(props) {
     this.props.createPost(props)
       .then(() => {
-        this.content.router.push('/');
+        // this.context.router.push('/');  // TODO: change this path
       })
   }
 
@@ -29,6 +29,10 @@ class NewPost extends Component {
       </form>
     );
   }
+}
+
+NewPost.contextTypes = {
+  router: PropTypes.object
 }
 
 const form = reduxForm({

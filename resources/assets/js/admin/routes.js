@@ -11,13 +11,13 @@ import Tags from './components/Tags';
 import Config from './components/Config';
 
 export default (
-  <Route path="/" component={App}>
+  <Route path="dashboard" component={App}>
     <IndexRoute component={Home} />
-    <Route path="posts" component={Posts} />
-    <Route path="new-post" component={NewPost} />
-    <Route path="edit-post/:id" component={EditPost} />
-    <Route path="categories" component={Categories} />
-    <Route path="tags" component={Tags} />
-    <Route path="config" component={Config} />
+    <Route path="/posts" component={Posts} />
+    <Route path="/new-post" component={NewPost} />
+    <Route path="/edit-post/:id" component={EditPost} />
+    <Route path="/categories" component={Categories} />
+    <Route path="/tags" component={Tags} />
+    <Route path="/config" component={Config} />
   </Route>
 );

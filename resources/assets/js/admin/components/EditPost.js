@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes} from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { editPost, fetchPost } from '../actions/index';
@@ -8,7 +8,7 @@ class EditPost extends Component {
   onSubmit(props) {
       this.props.editPost(props)
         .then(() => {
-          this.content.router.push('/');
+          // this.context.router.push('/');  // TODO: change this path.
         })
   }
 
@@ -46,6 +46,10 @@ class EditPost extends Component {
       </div>
     );
   }
+}
+
+EditPost.contextTypes = {
+  router: PropTypes.object
 }
 
 const form = reduxForm({

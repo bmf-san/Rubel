@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { createCategory, fetchCategories } from '../actions/index';
@@ -8,7 +8,7 @@ class Categories extends Component {
   onSubmit(props) {
     this.props.createCategory(props)
       .then(() => {
-        this.content.router.push('/');
+        this.context.router.push('/categories');
       })
   }
 
@@ -30,19 +30,26 @@ class Categories extends Component {
     const { handleSubmit } = this.props
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <Field
-          name="name"
-          component={name =>
-            <div>
-              <label>Category</label>
-              <input type="text" {...name} />
-            </div>
-          }/>
-        <button type="submit">Submit</button>
-      </form>
+      <div>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <Field
+            name="name"
+            component={name =>
+              <div>
+                <label>Category</label>
+                <input type="text" {...name} />
+              </div>
+            }/>
+          <button type="submit">Submit</button>
+        </form>
+        {this.renderCategories()}
+      </div>
     );
   }
+}
+
+Categories.contextTypes = {
+  router: PropTypes.object
 }
 
 const form = reduxForm({

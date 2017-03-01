@@ -10,7 +10,7 @@ export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const EDIT_TAG = "EDIT_TAG";
 export const FETCH_TAGS = "FETCH_TAGS";
 
-const ROOT_URL = '/laravel-react-blog-boilerplate/public/api/v1';
+const ROOT_URL = '/api/v1';
 
 export function createPost(props) {
   const request = axios.post(`${ROOT_URL}/admin/post/create`, props);

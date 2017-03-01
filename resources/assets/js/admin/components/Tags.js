@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { editTag, fetchTags } from '../actions/index';
@@ -8,7 +8,7 @@ class Tags extends Component {
   onSubmit(props) {
     this.props.editTag(props)
       .then(() => {
-        this.content.router.push('/');
+        // this.context.router.push('/');  // TODO: change this path
       })
   }
 
@@ -49,6 +49,10 @@ class Tags extends Component {
       </div>
     );
   }
+}
+
+Tags.contextTypes = {
+  router: PropTypes.object
 }
 
 const form = reduxForm({
