@@ -51,6 +51,8 @@ export function fetchPost(id) {
 export function createCategory(props) {
   const request = axios.post(`${ROOT_URL}/admin/category/create`, props);
 
+  console.log(props); // return void object... why??
+
   return {
       type: CREATE_CATEGORY,
       payload: request
