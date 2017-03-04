@@ -2,8 +2,21 @@
 
 # Table Of Contents
 + [Post](#post)
+    + [Create a c post](#create-a-post)
+    + [Edit a post](#edit-a-post)
+    + [Update publication status of post](#update-publication-status-of-post)
+    + [Delete a post](#delete-a-post)
+    + [Show posts](#show-posts)
+    + [Show a post](#show-a-post)
 + [Category](#category)
+    + [Create a category](#create-a-category)
+    + [Edit a category](#edit-a-category)
+    + [Delete a category](#delete-a-category)
+    + [Show categories](#show-categories)
 + [Tag](#tag)
+    + [Edit a tag](#edit-a-tag)
+    + [Delete a tag](#delete-a-tag)
+    + [Show tag](#show-tag)
 
 # Post
 
