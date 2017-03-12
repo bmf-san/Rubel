@@ -8,6 +8,7 @@ class Categories extends Component {
   onSubmit(props) {
     this.props.createCategory(props)
       .then(() => {
+        this.props.fetchCategories();
         this.context.router.push('/admin/dashboard/categories');
       })
   }
@@ -32,14 +33,7 @@ class Categories extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field
-            name="name"
-            component={name =>
-              <div>
-                <label>Category</label>
-                <input type="text" {...name} />
-              </div>
-            }/>
+          <Field name="name" component="input" type="text" placeholder="Category Name"/>
           <button type="submit">Submit</button>
         </form>
         {this.renderCategories()}
