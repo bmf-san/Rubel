@@ -2,7 +2,7 @@
 
 # Table Of Contents
 + [Post](#post)
-    + [Create a c post](#create-a-post)
+    + [Create a post](#create-a-post)
     + [Edit a post](#edit-a-post)
     + [Update publication status of post](#update-publication-status-of-post)
     + [Delete a post](#delete-a-post)

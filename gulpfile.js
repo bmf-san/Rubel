@@ -11,5 +11,5 @@ elixir((mix) => {
     //-------------------------------
     // JavaScript
     //-------------------------------
-    .webpack('./resources/assets/js/admin/index.js', 'public/js/admin/index.js')
+    .webpack('./client_app/admin/index.js', 'public/js/admin/index.js')
 });
