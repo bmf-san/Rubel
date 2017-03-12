@@ -23,7 +23,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(CreateCategoryRequest $request) // TODO add form request for creating a category
+    public function create(CreateCategoryRequest $request)
     {
         return response()->json($this->category_repository->create($request));
     }
