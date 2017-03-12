@@ -7,7 +7,9 @@ import { Link } from 'react-router';
 class Categories extends Component {
   onSubmit(props) {
     this.props.createCategory(props)
-      .then(() => {
+      .then((res) => {
+        console.log(res.data.messages); // get response data
+
         this.props.fetchCategories();
         this.context.router.push('/admin/dashboard/categories');
       })

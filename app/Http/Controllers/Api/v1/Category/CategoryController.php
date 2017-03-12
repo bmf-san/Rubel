@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Eloquent\CategoryRepository;
 
+use App\Http\Requests\Api\v1\Category\CreateCategoryRequest;
+
 class CategoryController extends Controller
 {
     private $category_repository;
@@ -21,7 +23,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request) // TODO add form request for creating a category
+    public function create(CreateCategoryRequest $request) // TODO add form request for creating a category
     {
         return response()->json($this->category_repository->create($request));
     }
