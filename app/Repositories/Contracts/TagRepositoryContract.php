@@ -11,7 +11,7 @@ interface TagRepositoryContract
 	 * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
 	 */
-	public function edit($id, $request);
+	public function edit(Int $id, $request);
 
 
 	/**
@@ -20,7 +20,7 @@ interface TagRepositoryContract
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function delete($id);
+	public function delete(Int $id);
 
 	/**
 	 * Get tags

@@ -7,14 +7,14 @@ import { Link } from 'react-router';
 const validate = values => {
   const errors = {}
 
-  if (!values.name) {
-    errors.name = 'Required'
+  if (!values.category_name) {
+    errors.category_name = 'Required'
   }
 
   return errors;
 }
 
-const renderField = ({ input, label, type, meta: { touched, error} }) => (
+const renderInputField = ({ input, label, type, meta: { touched, error} }) => (
   <div>
     <label>{label}</label>
     <div>
@@ -23,6 +23,16 @@ const renderField = ({ input, label, type, meta: { touched, error} }) => (
     </div>
   </div>
 )
+
+const renderCategories = () => {
+  return this.props.categories.map((category) => {
+    return (
+      <li key={category.id}>
+        {category.name}
+      </li>
+    );
+  });
+}
 
 class Categories extends Component {
   onSubmit(props) {
@@ -35,7 +45,6 @@ class Categories extends Component {
         // -----
         // TODO:
         // + サーバーサイドのバリデーションの実装
-        // + クライアントサイドバリデーションの実装　
         // + 条件分岐をつくる
         // + 条件分岐
         //   success
@@ -58,26 +67,16 @@ class Categories extends Component {
     this.props.fetchCategories();
   }
 
-  renderCategories() {
-    return this.props.categories.map((category) => {
-      return (
-        <li key={category.id}>
-          {category.name}
-        </li>
-      );
-    });
-  }
-
   render() {
     const { handleSubmit } = this.props
 
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="name" type="text" component={renderField} placeholder="name"/>
+          <Field name="category_name" type="text" component={renderInputField} placeholder="Category Name"/>
           <button type="submit">Submit</button>
         </form>
-        {this.renderCategories()}
+        {renderCategories}
       </div>
     );
   }

@@ -22,7 +22,7 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Int $id) // TODO add form request for editting a tag
+    public function edit(Request $request, int $id) // TODO add form request for editting a tag
     {
         return response()->json($this->tag_repository->edit($request, $id));
     }
@@ -33,7 +33,7 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Int $id)
+    public function delete(int $id)
     {
         return response()->json($this->tag_repository->delete($id));
     }

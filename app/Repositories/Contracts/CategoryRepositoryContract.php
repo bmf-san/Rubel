@@ -19,7 +19,7 @@ interface CategoryRepositoryContract
 	 * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
 	 */
-	public function edit($id, $request);
+	public function edit($request, int $id);
 
 	/**
 	 * Delete a category
@@ -27,7 +27,7 @@ interface CategoryRepositoryContract
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function delete($id);
+	public function delete(int $id);
 
 	/**
 	 * Get categories

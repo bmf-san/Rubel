@@ -93,7 +93,7 @@ class PostRepository implements PostRepositoryContract
  	 * @param  object  $request
      * @return array
      */
-    public function edit($request, $id)
+    public function edit($request, int $id)
     {
         $post = $this->post->find($id);
 
@@ -154,7 +154,7 @@ class PostRepository implements PostRepositoryContract
      * @param  object  $request
      * @return array
      */
-    public function update($request, $id)
+    public function update(Int $id, $request)
     {
         $post = $this->post->find($id);
 
@@ -189,7 +189,7 @@ class PostRepository implements PostRepositoryContract
      * @param  int  $id
      * @return array  $post_array
      */
-     public function getPost($id)
+     public function getPost(int $id)
      {
         $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
 

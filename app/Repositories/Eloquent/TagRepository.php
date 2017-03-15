@@ -25,7 +25,7 @@ class TagRepository implements TagRepositoryContract
 	 * @param  object  $request
 	 * @return void
 	 */
-	public function edit($request, Int $id)
+	public function edit(Int $id, $request)
 	{
         $tag = $this->tag->find($id);
 

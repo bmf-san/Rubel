@@ -35,7 +35,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Int $id) // TODO add form request for editting a post
+    public function edit(Request $request, int $id) // TODO add form request for editting a post
     {
         return response()->json($this->post_repository->edit($request, $id));
     }
@@ -47,7 +47,7 @@ class PostController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, Int $id) // TODO add form request for update this status
+    public function update(Request $request, int $id) // TODO add form request for update this status
     {
         return response()->json($this->post_repository->update($request, $id));
     }
@@ -58,7 +58,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Int $id)
+    public function delete(int $id)
     {
         return response()->json($this->post_repository->delete($id));
     }

@@ -19,7 +19,7 @@ interface PostRepositoryContract
 	 * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $request);
+    public function edit($request, int $id);
 
     /**
      * Update publication status of post
@@ -28,7 +28,7 @@ interface PostRepositoryContract
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update($id, $request);
+    public function update($request, int $id);
 
     /**
      * Delete a post
@@ -36,7 +36,7 @@ interface PostRepositoryContract
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id);
+    public function delete(int $id);
 
     /**
      * Get a single post
@@ -44,7 +44,7 @@ interface PostRepositoryContract
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getPost($id);
+    public function getPost(int $id);
 
     /**
      * Get posts
