@@ -7,8 +7,8 @@ import { Link } from 'react-router';
 const validate = values => {
   const errors = {}
 
-  if (!values.category_name) {
-    errors.category_name = 'Required'
+  if (!values.name) {
+    errors.name = 'Required'
   }
 
   return errors;
@@ -24,21 +24,11 @@ const renderInputField = ({ input, label, type, meta: { touched, error} }) => (
   </div>
 )
 
-const renderCategories = () => {
-  return this.props.categories.map((category) => {
-    return (
-      <li key={category.id}>
-        {category.name}
-      </li>
-    );
-  });
-}
-
 class Categories extends Component {
-  onSubmit(props) {
-    const { createCategory, reset } = this.props;
+  onSubmit(values) {
+    const { createCategory, fetchCategories, reset } = this.props;
 
-    createCategory(props)
+    createCategory(values)
       .then((res) => {
         console.log('success');
 
@@ -55,7 +45,7 @@ class Categories extends Component {
         // -----
 
         reset();
-        this.props.fetchCategories();
+        fetchCategories();
         this.context.router.push('/admin/dashboard/categories');
       })
       .catch((err) => {
@@ -67,16 +57,26 @@ class Categories extends Component {
     this.props.fetchCategories();
   }
 
+  renderCategories() {
+    return this.props.categories.map((category) => {
+      return (
+        <li key={category.id}>
+          {category.name}
+        </li>
+      );
+    });
+  }
+
   render() {
     const { handleSubmit } = this.props
 
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="category_name" type="text" component={renderInputField} placeholder="Category Name"/>
+          <Field name="name" type="text" component={renderInputField} placeholder="Category Name"/>
           <button type="submit">Submit</button>
         </form>
-        {renderCategories}
+        {this.renderCategories()}
       </div>
     );
   }

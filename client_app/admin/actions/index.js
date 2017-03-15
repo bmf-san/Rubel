@@ -12,8 +12,8 @@ export const FETCH_TAGS = "FETCH_TAGS";
 
 const ROOT_URL = '/api/v1';
 
-export function createPost(props) {
-  const request = axios.post(`${ROOT_URL}/admin/post/create`, props);
+export function createPost(values) {
+  const request = axios.post(`${ROOT_URL}/admin/post/create`, values);
 
   return {
     type: CREATE_POST,
@@ -21,8 +21,8 @@ export function createPost(props) {
   };
 }
 
-export function editPost(props) {
-  const request = axios.post(`${ROOT_URL}/admin/post/${id}/edit`, props);
+export function editPost(values) {
+  const request = axios.post(`${ROOT_URL}/admin/post/${id}/edit`, values);
 
   return {
     type: EDIT_POST,
