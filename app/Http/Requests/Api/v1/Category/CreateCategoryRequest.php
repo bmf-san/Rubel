@@ -26,7 +26,7 @@ class CreateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:categories,name'
+            'name' => 'required|unique:categories,name',
         ];
     }
 
@@ -39,16 +39,17 @@ class CreateCategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'A name is required',
-            'name.exists' => 'A name has been existed'
+            'name.exists' => 'A name has been existed',
         ];
     }
 
     /**
-    * Get the proper failed validation response for the request.
-    *
-    * @param  array  $errors
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
+     * Get the proper failed validation response for the request.
+     *
+     * @param array $errors
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function response(array $errors)
     {
         $response['messages'] = $errors;

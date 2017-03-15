@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import { reduxForm, Field, resetForm } from 'redux-form';
-import { connect } from 'react-redux';
-import { createCategory, fetchCategories } from '../actions/index';
-import { Link } from 'react-router';
+import React, {Component, PropTypes} from 'react';
+import {reduxForm, Field, resetForm} from 'redux-form';
+import {connect} from 'react-redux';
+import {createCategory, fetchCategories} from '../actions/index';
+import {Link} from 'react-router';
 
 const validate = values => {
   const errors = {}
@@ -14,43 +14,48 @@ const validate = values => {
   return errors;
 }
 
-const renderInputField = ({ input, label, type, meta: { touched, error} }) => (
+const renderInputField = ({
+  input,
+  label,
+  type,
+  meta: {
+    touched,
+    error
+  }
+}) => (
   <div>
     <label>{label}</label>
     <div>
-      <input {...input} placeholder={label} type={type}/>
-      {touched && ((error && <span>{error}</span>))}
+      <input {...input} placeholder={label} type={type}/> {touched && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
 
 class Categories extends Component {
   onSubmit(values) {
-    const { createCategory, fetchCategories, reset } = this.props;
+    const {createCategory, fetchCategories, reset} = this.props;
 
-    createCategory(values)
-      .then((res) => {
-        console.log('success');
+    createCategory(values).then((res) => {
+      console.log('success');
 
-        // -----
-        // TODO:
-        // + サーバーサイドのバリデーションの実装
-        // + 条件分岐をつくる
-        // + 条件分岐
-        //   success
-        //   フォームの値を空にする->finished
-        //
-        //   error
-        //   res.data.messages フォームリクエストのエラーが取れる
-        // -----
+      // -----
+      // TODO:
+      // + サーバーサイドのバリデーションの実装
+      // + 条件分岐をつくる
+      // + 条件分岐
+      //   success
+      //   フォームの値を空にする->finished
+      //
+      //   error
+      //   res.data.messages フォームリクエストのエラーが取れる
+      // -----
 
-        reset();
-        fetchCategories();
-        this.context.router.push('/admin/dashboard/categories');
-      })
-      .catch((err) => {
-        console.log('error');
-      });
+      reset();
+      fetchCategories();
+      this.context.router.push('/admin/dashboard/categories');
+    }).catch((err) => {
+      console.log('error');
+    });
   }
 
   componentWillMount() {
@@ -68,7 +73,7 @@ class Categories extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props
+    const {handleSubmit} = this.props
 
     return (
       <div>
@@ -86,15 +91,10 @@ Categories.contextTypes = {
   router: PropTypes.object
 }
 
-const form = reduxForm({
-  form: 'CategoryForm',
-  validate
-})(Categories)
+const form = reduxForm({form: 'CategoryForm', validate})(Categories)
 
 function mapStateToProps(state) {
-  return {
-    categories: state.categories.all
-  };
+  return {categories: state.categories.all};
 }
 
-export default connect(mapStateToProps, { createCategory, fetchCategories })(form);
+export default connect(mapStateToProps, {createCategory, fetchCategories})(form);
