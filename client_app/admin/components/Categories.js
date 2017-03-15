@@ -8,11 +8,26 @@ class Categories extends Component {
   onSubmit(props) {
     this.props.createCategory(props)
       .then((res) => {
-        console.log(res.data.messages); // get response data
+
+        console.log('success');
+        // -----
+        // TODO:
+        // + クライアントサイドバリデーションの実装　
+        // + 条件分岐をつくる
+        // + 条件分岐
+        //   success
+        //   フォームの値を空にする
+        //
+        //   error
+        //   res.data.messages フォームリクエストのエラーが取れる
+        // -----
 
         this.props.fetchCategories();
         this.context.router.push('/admin/dashboard/categories');
       })
+      .catch((err) => {
+        console.log('error');
+      });
   }
 
   componentWillMount() {

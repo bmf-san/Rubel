@@ -48,6 +48,7 @@ class PostRepository implements PostRepositoryContract
 
         $tag = $this->tag;
 
+        // HACK
         if (!empty($request->tag)) {
             foreach ($request->tag as $request_tag) {
                 $request_tag_array[] =  $request_tag["name"];
@@ -106,6 +107,7 @@ class PostRepository implements PostRepositoryContract
 
         $tag = $this->tag;
 
+        // HACK
         if (!empty($request->tag)) {
             foreach ($request->tag as $request_tag) {
                 $request_tag_array[] =  $request_tag["name"];

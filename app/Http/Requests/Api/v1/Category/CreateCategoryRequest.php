@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateCategoryRequest extends FormRequest
 {
+    const NOT_FOUND_CODE = 400;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -50,6 +51,6 @@ class CreateCategoryRequest extends FormRequest
     {
         $response['messages'] = $errors;
 
-        return response()->json($response);
+        return response()->json($response, self::NOT_FOUND_CODE);
     }
 }
