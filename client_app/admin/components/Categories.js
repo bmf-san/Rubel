@@ -1,27 +1,31 @@
 import React, { Component, PropTypes } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, resetForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createCategory, fetchCategories } from '../actions/index';
 import { Link } from 'react-router';
 
 class Categories extends Component {
   onSubmit(props) {
-    this.props.createCategory(props)
-      .then((res) => {
+    const { createCategory, reset } = this.props;
 
+    createCategory(props)
+      .then((res) => {
         console.log('success');
+
         // -----
         // TODO:
+        // + サーバーサイドのバリデーションの実装
         // + クライアントサイドバリデーションの実装　
         // + 条件分岐をつくる
         // + 条件分岐
         //   success
-        //   フォームの値を空にする
+        //   フォームの値を空にする->finished
         //
         //   error
         //   res.data.messages フォームリクエストのエラーが取れる
         // -----
 
+        reset();
         this.props.fetchCategories();
         this.context.router.push('/admin/dashboard/categories');
       })
