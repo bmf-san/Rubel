@@ -25,7 +25,7 @@ class TagRepository implements TagRepositoryContract
 	 * @param  object  $request
 	 * @return void
 	 */
-	public function edit($request, $id)
+	public function edit($request, Int $id)
 	{
         $tag = $this->tag->find($id);
 
@@ -39,7 +39,7 @@ class TagRepository implements TagRepositoryContract
 	 *
 	 * @return void
 	 */
-	public function delete($id)
+	public function delete(Int $id)
 	{
 		$tag = $this->tag->find($id)->delete();
 	}

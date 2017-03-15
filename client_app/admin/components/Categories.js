@@ -4,6 +4,26 @@ import { connect } from 'react-redux';
 import { createCategory, fetchCategories } from '../actions/index';
 import { Link } from 'react-router';
 
+const validate = values => {
+  const errors = {}
+
+  if (!values.name) {
+    errors.name = 'Required'
+  }
+
+  return errors;
+}
+
+const renderField = ({ input, label, type, meta: { touched, error} }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} placeholder={label} type={type}/>
+      {touched && ((error && <span>{error}</span>))}
+    </div>
+  </div>
+)
+
 class Categories extends Component {
   onSubmit(props) {
     const { createCategory, reset } = this.props;
@@ -54,7 +74,7 @@ class Categories extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="name" component="input" type="text" placeholder="Category Name"/>
+          <Field name="name" type="text" component={renderField} placeholder="name"/>
           <button type="submit">Submit</button>
         </form>
         {this.renderCategories()}
@@ -68,7 +88,8 @@ Categories.contextTypes = {
 }
 
 const form = reduxForm({
-  form: 'CategoryForm'
+  form: 'CategoryForm',
+  validate
 })(Categories)
 
 function mapStateToProps(state) {

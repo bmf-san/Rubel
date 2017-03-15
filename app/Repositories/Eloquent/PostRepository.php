@@ -33,7 +33,8 @@ class PostRepository implements PostRepositoryContract
     {
         $post = $this->post;
 
-        $post->admin_id = $request->user()->id;
+        // $post->admin_id = $request->user()->id;
+        $post->admin_id = $request->id;
         $post->category_id = $request->category_id;
         $post->title = $request->title;
         $post->content = $request->content;
@@ -48,8 +49,12 @@ class PostRepository implements PostRepositoryContract
 
         $tag = $this->tag;
 
+        $tag_id_array = [];
+
         // HACK
-        if (!empty($request->tag)) {
+        if ($request->tag) {
+            $request_tag_array = [];
+
             foreach ($request->tag as $request_tag) {
                 $request_tag_array[] =  $request_tag["name"];
             }
@@ -58,9 +63,10 @@ class PostRepository implements PostRepositoryContract
 
             $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
             $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
+
             $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
 
-            if (!empty($new_tag_name_array)) {
+            if ($new_tag_name_array) {
                 foreach ($new_tag_name_array as $new_tag_name) {
                     $tag->create([
                         'name' => $new_tag_name
@@ -68,12 +74,11 @@ class PostRepository implements PostRepositoryContract
                 }
 
                 $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
+
                 $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
             } else {
                 $tag_id_array = $exist_tag_id_array;
             }
-        } else {
-            $tag_id_array = [];
         }
 
         $post->tags()->sync($tag_id_array);
@@ -108,7 +113,9 @@ class PostRepository implements PostRepositoryContract
         $tag = $this->tag;
 
         // HACK
-        if (!empty($request->tag)) {
+        if ($request->tag) {
+            $request_tag_array = [];
+
             foreach ($request->tag as $request_tag) {
                 $request_tag_array[] =  $request_tag["name"];
             }
@@ -117,9 +124,10 @@ class PostRepository implements PostRepositoryContract
 
             $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
             $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
+
             $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
 
-            if (!empty($new_tag_name_array)) {
+            if ($new_tag_name_array) {
                 foreach ($new_tag_name_array as $new_tag_name) {
                     $tag->create([
                         'name' => $new_tag_name
@@ -127,12 +135,11 @@ class PostRepository implements PostRepositoryContract
                 }
 
                 $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
+
                 $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
             } else {
                 $tag_id_array = $exist_tag_id_array;
             }
-        } else {
-            $tag_id_array = [];
         }
 
         $post->tags()->sync($tag_id_array);
@@ -171,7 +178,7 @@ class PostRepository implements PostRepositoryContract
     {
         $post = $this->post->find($id);
 
-        $post->delete(); // TODO
+        $post->delete();
 
         return [];
     }
@@ -208,6 +215,8 @@ class PostRepository implements PostRepositoryContract
      public function getPosts()
      {
          $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
+
+         $post_array = [];
 
          foreach ($posts as $post) {
              $post_array[] = [

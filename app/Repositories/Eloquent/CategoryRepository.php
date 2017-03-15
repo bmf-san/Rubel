@@ -44,7 +44,7 @@ class CategoryRepository implements CategoryRepositoryContract
 	 * @param  object  $request
 	 * @return array
 	 */
-	public function edit($request, $id)
+	public function edit($request, Int $id)
 	{
         $category = $this->category->find($id);
 
@@ -60,7 +60,7 @@ class CategoryRepository implements CategoryRepositoryContract
 	 *
 	 * @return array
 	 */
-	public function delete($id)
+	public function delete(Int $id)
 	{
         $category = $this->category->find($id);
         $posts = $category->posts;

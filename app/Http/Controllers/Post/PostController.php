@@ -13,7 +13,7 @@ class PostController extends Controller
 	 * @param  string $id
 	 * @return \Illuminate\Http\Response
 	 */
-    public function getPost($id)
+    public function getPost(Int $id)
     {
         return view('post.single');
     }
