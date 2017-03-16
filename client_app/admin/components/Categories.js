@@ -34,8 +34,7 @@ const renderInputField = ({
 class Categories extends Component {
   onSubmit(values) {
     const {createCategory, fetchCategories, reset} = this.props;
-
-    createCategory(values).then((res) => {
+    createCategory(values).then((response) => {
       console.log('success');
 
       // -----
@@ -53,7 +52,7 @@ class Categories extends Component {
       reset();
       fetchCategories();
       this.context.router.push('/admin/dashboard/categories');
-    }).catch((err) => {
+    }).catch((error) => {
       console.log('error');
     });
   }

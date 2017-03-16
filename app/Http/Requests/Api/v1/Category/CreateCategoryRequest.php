@@ -39,7 +39,7 @@ class CreateCategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'A name is required',
-            'name.exists' => 'A name has been existed',
+            'name.unique' => 'A name has been existed',
         ];
     }
 
@@ -54,6 +54,6 @@ class CreateCategoryRequest extends FormRequest
     {
         $response['messages'] = $errors;
 
-        return response()->json($response, self::NOT_FOUND_CODE);
+        return response()->json($response, (int) self::NOT_FOUND_CODE);
     }
 }
