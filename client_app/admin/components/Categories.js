@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {reduxForm, Field, resetForm} from 'redux-form';
+import {reduxForm, Field} from 'redux-form';
 import {connect} from 'react-redux';
 import {createCategory, fetchCategories} from '../actions/index';
 import {Link} from 'react-router';
