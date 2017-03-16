@@ -34,27 +34,11 @@ const renderInputField = ({
 class Categories extends Component {
   onSubmit(values) {
     const {createCategory, fetchCategories, reset} = this.props;
-    createCategory(values).then((response) => {
-      console.log('success');
 
-      // -----
-      // TODO:
-      // + サーバーサイドのバリデーションの実装
-      // + 条件分岐をつくる
-      // + 条件分岐
-      //   success
-      //   フォームの値を空にする->finished
-      //
-      //   error
-      //   res.data.messages フォームリクエストのエラーが取れる
-      // -----
+    createCategory(values);
 
-      reset();
-      fetchCategories();
-      this.context.router.push('/admin/dashboard/categories');
-    }).catch((error) => {
-      console.log('error');
-    });
+    // reset();
+    // fetchCategories();
   }
 
   componentWillMount() {
