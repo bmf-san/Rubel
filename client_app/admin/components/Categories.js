@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 import {createCategory, fetchCategories} from '../actions/index';
 import {Link} from 'react-router';
 
-const validate = values => {
+const validate = props => {
   const errors = {}
 
-  if (!values.name) {
+  if (!props.name) {
     errors.name = 'Required'
   }
 
@@ -32,10 +32,9 @@ const renderInputField = ({
 )
 
 class Categories extends Component {
-  onSubmit(values) {
+  onSubmit(props) {
     const {createCategory, fetchCategories, reset} = this.props;
-
-    createCategory(values);
+    createCategory(props);
 
     // reset();
     // fetchCategories();

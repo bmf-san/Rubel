@@ -12,14 +12,14 @@ export const FETCH_TAGS = "FETCH_TAGS";
 
 const ROOT_URL = '/api/v1';
 
-export function createPost(values) {
-  const request = axios.post(`${ROOT_URL}/admin/post/create`, values);
+export function createPost(props) {
+  const request = axios.post(`${ROOT_URL}/admin/post/create`, props);
 
   return {type: CREATE_POST, payload: request};
 }
 
-export function editPost(values) {
-  const request = axios.post(`${ROOT_URL}/admin/post/${id}/edit`, values);
+export function editPost(props) {
+  const request = axios.post(`${ROOT_URL}/admin/post/${id}/edit`, props);
 
   return {type: EDIT_POST, payload: request};
 }
@@ -36,19 +36,14 @@ export function fetchPost(id) {
   return {type: FETCH_POST, payload: request};
 }
 
-export function createCategory(values) {
-  return {
-    type: CREATE_CATEGORY,
-    payload: axios.post(`${ROOT_URL}/admin/category/create`, values).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error.response);
-    })
-  };
+export function createCategory(props) {
+  const request = axios.post(`${ROOT_URL}/admin/category/create`, props);
+
+  return {type: CREATE_CATEGORY, payload: request};
 }
 
-export function editCategory(values) {
-  const request = axios.post(`${ROOT_URL}/admin/category/${id}/edit`, values);
+export function editCategory(props) {
+  const request = axios.post(`${ROOT_URL}/admin/category/${id}/edit`, props);
 
   return {type: EDIT_CATEGORY, payload: request};
 }
@@ -59,8 +54,8 @@ export function fetchCategories() {
   return {type: FETCH_CATEGORIES, payload: request};
 }
 
-export function editTag(values) {
-  const request = axios.post(`${ROOT_URL}/tag/${id}/edit`, values);
+export function editTag(props) {
+  const request = axios.post(`${ROOT_URL}/tag/${id}/edit`, props);
 
   return {type: EDIT_TAG, payload: request}
 }
