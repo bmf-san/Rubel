@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {reduxForm, Field} from 'redux-form';
+import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
 import {createCategory, fetchCategories} from '../actions/index';
 import {Link} from 'react-router';
@@ -34,10 +34,16 @@ const renderInputField = ({
 class Categories extends Component {
   onSubmit(props) {
     const {createCategory, fetchCategories, reset} = this.props;
-    createCategory(props);
 
-    // reset();
-    // fetchCategories();
+    return createCategory(props).then((res) => {
+      if (res.error) {
+        console.log(res.payload.response.data);
+        throw new SubmissionError({name: 'User does not exist'});
+      } else {
+        reset();
+        fetchCategories();
+      }
+    });
   }
 
   componentWillMount() {
