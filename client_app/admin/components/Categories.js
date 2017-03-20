@@ -54,10 +54,12 @@ class Categories extends Component {
   handleClick(props) {
     const {fetchCategories} = this.props;
 
-    // HACK add a error handling
-    return deleteCategory(props).payload.then((res) => {
-      fetchCategories();
-    });
+    if (window.confirm('Are you sure you want to delete this category?')) {
+      // HACK add a error handling
+      return deleteCategory(props).payload.then((res) => {
+        fetchCategories();
+      });
+    }
   }
 
   componentWillMount() {
