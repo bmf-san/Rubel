@@ -37,7 +37,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, int $id) // TODO add form request for editting a category
+    public function edit(Request $request, int $id) // TODO add a form request for editting a category
     {
         return response()->json($this->category_repository->edit($request, $id), (int) self::OK_CODE);
     }
