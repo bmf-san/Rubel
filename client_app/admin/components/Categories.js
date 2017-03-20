@@ -54,12 +54,9 @@ class Categories extends Component {
   handleClick(props) {
     const {fetchCategories} = this.props;
 
-    return deleteCategory(props).then((res) => {
-      if (res.error) {
-        console.log('Error!');
-      } else {
-        fetchCategories();
-      }
+    // HACK add a error handling
+    return deleteCategory(props).payload.then((res) => {
+      fetchCategories();
     });
   }
 
