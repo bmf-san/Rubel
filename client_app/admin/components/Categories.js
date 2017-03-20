@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {createCategory, fetchCategories, deleteCategory} from '../actions/index';
 import {Link} from 'react-router';
 
+const category_id_of_uncategorized = 1
+
 const validate = props => {
   const errors = {}
 
@@ -65,12 +67,20 @@ class Categories extends Component {
     this.props.fetchCategories();
   }
 
+  renderDeleteBtn(id) {
+    if (id !== category_id_of_uncategorized) {
+      return (
+        <button onClick={this.handleClick.bind(this, id)}>✕</button>
+      );
+    }
+  }
+
   renderCategories() {
     return this.props.categories.map((category) => {
       return (
         <li key={category.id}>
           {category.name}
-          <button onClick={this.handleClick.bind(this, category.id)}>✕</button>
+          {this.renderDeleteBtn(category.id)}
         </li>
       );
     });

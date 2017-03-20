@@ -8,7 +8,6 @@ use App\Models\Post;
 
 class CategoryRepository implements CategoryRepositoryContract
 {
-    const OK_CODE = 200;
     const CATEGORY_ID_OF_UNCATEGORIZED = 1;
 
     public $category;
@@ -48,7 +47,7 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function edit($request, int $id)
     {
-        $category = $this->category->find($id);
+        $category = $this->category->findOrFail($id);
 
         $category->name = $request->name;
 
@@ -64,20 +63,22 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function delete(int $id)
     {
-        $category = $this->category->find($id);
+        $category = $this->category->findOrFail($id);
         $posts = $category->posts;
 
         if ($posts->count() > 0) {
             foreach ($posts as $post) {
                 $post->update([
-                    'category_id' => self::CATEGORY_ID_OF_UNCATEGORIZED,
+                    'category_id' => (int) self::CATEGORY_ID_OF_UNCATEGORIZED,
                 ]);
             }
         }
 
-        $category = $category->delete();
+        if ($id !== (int) self::CATEGORY_ID_OF_UNCATEGORIZED) {
+            $category = $category->delete();
+        }
 
-        return response()->json([], (int) self::OK_CODE);
+        return [];
     }
 
     /**
