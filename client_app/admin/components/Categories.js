@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
-import {createCategory, fetchCategories, deleteCategory} from '../actions/index';
+import {createCategory, fetchCategories, deleteCategory, toggleDisplay} from '../actions/index';
 import {Link} from 'react-router';
 
 const category_id_of_uncategorized = 1
@@ -51,15 +51,19 @@ class Categories extends Component {
     });
   }
 
-  handleClick(props) {
-    const {fetchCategories} = this.props;
+  handleDelete(props) {
+    const {deleteCategory, fetchCategories} = this.props;
 
     if (window.confirm('Are you sure you want to delete this category?')) {
       // HACK add a error handling
-      return deleteCategory(props).payload.then((res) => {
+      return deleteCategory(props).then((res) => {
         fetchCategories();
       });
     }
+  }
+
+  handleToggleDisplay(id) {
+    this.props.toggleDisplay(id);
   }
 
   componentWillMount() {
@@ -69,17 +73,23 @@ class Categories extends Component {
   renderDeleteBtn(id) {
     if (id !== category_id_of_uncategorized) {
       return (
-        <button onClick={this.handleClick.bind(this, id)}>✕</button>
+        <button onClick={this.handleDelete.bind(this, id)}>✕</button>
       );
     }
   }
 
   renderCategories() {
-    return this.props.categories.map((category) => {
+    return this.props.categories.all.map((category) => {
       return (
-        <li key={category.id}>
-          {category.name}
-          {this.renderDeleteBtn(category.id)}
+        <li key={category.id} onClick={this.handleToggleDisplay.bind(this, category.id)}>
+          <div style={this.props.categories.display
+            ? {}
+            : {
+              display: "none"
+            }}>
+            {category.name}
+            {this.renderDeleteBtn(category.id)}
+          </div>
         </li>
       );
     });
@@ -107,7 +117,7 @@ Categories.contextTypes = {
 const form = reduxForm({form: 'CategoryForm', validate})(Categories)
 
 function mapStateToProps(state) {
-  return {categories: state.categories.all};
+  return {categories: state.categories};
 }
 
-export default connect(mapStateToProps, {createCategory, fetchCategories})(form);
+export default connect(mapStateToProps, {createCategory, deleteCategory, fetchCategories, toggleDisplay})(form);

@@ -10,6 +10,7 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const EDIT_TAG = "EDIT_TAG";
 export const FETCH_TAGS = "FETCH_TAGS";
+export const TOGGLE_DISPLAY = "TOGGLE_DISPLAY";
 
 const ROOT_URL = '/api/v1';
 
@@ -72,4 +73,10 @@ export function fetchTags() {
   const request = axios.get(`${ROOT_URL}/tags`);
 
   return {type: FETCH_TAGS, payload: request}
+}
+
+export function toggleDisplay(props) {
+  const category_id = props
+
+  return {type: TOGGLE_DISPLAY, payload: category_id}
 }
