@@ -2,7 +2,8 @@ import {FETCH_CATEGORIES, TOGGLE_DISPLAY} from '../actions/index';
 
 const INITIAL_STATE = {
   all: [],
-  display: false
+  target_id: 1, // FIXME
+  display: true
 }
 
 export default function(state = INITIAL_STATE, action) {
@@ -13,7 +14,7 @@ export default function(state = INITIAL_STATE, action) {
         all: action.payload.data
       };
     case TOGGLE_DISPLAY:
-      if (state.display) {
+      if (state.target_id = action.payload) {
         return {
           ...state,
           display: false
