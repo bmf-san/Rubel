@@ -8,6 +8,7 @@ use App\Models\Post;
 
 class CategoryRepository implements CategoryRepositoryContract
 {
+    const OK_CODE = 200;
     const CATEGORY_ID_OF_UNCATEGORIZED = 1;
 
     public $category;
@@ -34,7 +35,7 @@ class CategoryRepository implements CategoryRepositoryContract
 
         $category->save();
 
-        return ['id' => $category->id];
+        return ['id' => $category->id]; // TODO: Add status code
     }
 
     /**
@@ -76,7 +77,7 @@ class CategoryRepository implements CategoryRepositoryContract
 
         $category = $category->delete();
 
-        return [];
+        return response()->json([], (int) self::OK_CODE);
     }
 
     /**

@@ -6,6 +6,7 @@ export const FETCH_POSTS = "FETCH_POSTS";
 export const FETCH_POST = "FETCH_POST";
 export const CREATE_CATEGORY = "CREATE_CATEGORY";
 export const EDIT_CATEGORY = "EDIT_CATEGORY";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const EDIT_TAG = "EDIT_TAG";
 export const FETCH_TAGS = "FETCH_TAGS";
@@ -46,6 +47,13 @@ export function editCategory(props) {
   const request = axios.post(`${ROOT_URL}/admin/category/${id}/edit`, props);
 
   return {type: EDIT_CATEGORY, payload: request};
+}
+
+export function deleteCategory(props) {
+  const post_id = props;
+  const request = axios.post(`${ROOT_URL}/admin/category/${post_id}/delete`, props);
+
+  return {type: DELETE_CATEGORY, payload: request};
 }
 
 export function fetchCategories() {

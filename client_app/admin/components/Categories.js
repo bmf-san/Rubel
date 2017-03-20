@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
-import {createCategory, fetchCategories} from '../actions/index';
+import {createCategory, fetchCategories, deleteCategory} from '../actions/index';
 import {Link} from 'react-router';
 
 const validate = props => {
@@ -37,10 +37,25 @@ class Categories extends Component {
 
     return createCategory(props).then((res) => {
       if (res.error) {
-        console.log(res.payload.response.data);
-        throw new SubmissionError({name: 'User does not exist'});
+        const validation_msg = res.payload.response.data.messages
+
+        throw new SubmissionError({
+          name: [validation_msg.name]
+        });
       } else {
         reset();
+        fetchCategories();
+      }
+    });
+  }
+
+  handleClick(props) {
+    const {fetchCategories} = this.props;
+
+    return deleteCategory(props).then((res) => {
+      if (res.error) {
+        console.log('Error!');
+      } else {
         fetchCategories();
       }
     });
@@ -55,6 +70,7 @@ class Categories extends Component {
       return (
         <li key={category.id}>
           {category.name}
+          <button onClick={this.handleClick.bind(this, category.id)}>✕</button>
         </li>
       );
     });
