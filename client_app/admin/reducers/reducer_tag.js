@@ -21,12 +21,11 @@ export default function(state = INITIAL_STATE, action) {
       }
 
     case ADD_COMPLETE_TAGS:
-      const tags = [];
-      tags.push(action.payload);
+      state.complete_tags.push(action.payload);
 
       return {
         ...state,
-        complete_tags: tags
+        complete_tags: state.complete_tags
       }
 
     default:
