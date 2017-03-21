@@ -11,6 +11,8 @@ export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const EDIT_TAG = "EDIT_TAG";
 export const DELETE_TAG = "DELETE_TAG";
 export const FETCH_TAGS = "FETCH_TAGS";
+export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS";
+export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 
 const ROOT_URL = '/api/v1';
 
@@ -80,4 +82,12 @@ export function fetchTags() {
   const request = axios.get(`${ROOT_URL}/tags`);
 
   return {type: FETCH_TAGS, payload: request}
+}
+
+export function deleteCompleteTags(props) {
+  return {type: DELETE_COMPLETE_TAGS, payload: props}
+}
+
+export function addCompleteTags(props) {
+  return {type: ADD_COMPLETE_TAGS, payload: props}
 }

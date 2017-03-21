@@ -34,6 +34,10 @@ const renderNameField = ({
 )
 
 class Categories extends Component {
+  componentWillMount() {
+    this.props.fetchCategories();
+  }
+
   onSubmit(props) {
     const {createCategory, fetchCategories, reset} = this.props;
 
@@ -60,10 +64,6 @@ class Categories extends Component {
         fetchCategories();
       });
     }
-  }
-
-  componentWillMount() {
-    this.props.fetchCategories();
   }
 
   renderDeleteBtn(id) {

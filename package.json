@@ -18,7 +18,7 @@
     "react-dom": "~15.4.2",
     "react-redux": "~5.0.2",
     "react-router": "~3.0.2",
-    "react-tag-autocomplete": "^5.1.0",
+    "react-tag-autocomplete": "^5.2.0",
     "redux-form": "~6.5.0"
   }
 }
