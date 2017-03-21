@@ -1,51 +1,51 @@
-import React, { Component, PropTypes } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { connect } from 'react-redux';
-import { editTag, fetchTags } from '../actions/index';
-import { Link } from 'react-router';
+import React, {Component, PropTypes} from 'react';
+import {reduxForm, Field} from 'redux-form';
+import {connect} from 'react-redux';
+import {editTag, deleteTag, fetchTags} from '../actions/index';
+import {Link} from 'react-router';
 
 class Tags extends Component {
-  onSubmit(props) {
-    this.props.editTag(props)
-      .then(() => {
-        // this.context.router.push('/');  // TODO: change this path
-      })
+  handleDelete(props) {
+    const {deleteTag, fetchTags} = this.props;
+
+    if (window.confirm('Are you sure you want to delete this tag?')) {
+      // HACK add a error handling
+      return deleteTag(props).then((res) => {
+        fetchTags();
+      });
+    }
   }
 
   componentWillMount() {
     this.props.fetchTags();
   }
 
+  renderDeleteBtn(id) {
+    return (
+      <button onClick={this.handleDelete.bind(this, id)}>DELETE</button>
+    )
+  }
+
   renderTags() {
-    return this.props.tags.map((tag) => {
+    return this.props.tags.all.map((tag) => {
       return (
         <li key={tag.id}>
-          {tag.name}
+          <div key={tag.id}>
+            {tag.name}
+            {this.renderDeleteBtn(tag.id)}
+          </div>
         </li>
       );
     });
   }
 
   render() {
-    const { handleSubmit } = this.props
-
     return (
       <div>
         <h3>Tags</h3>
         <ul>
           {this.renderTags()}
         </ul>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field
-            name="name"
-            component={name =>
-              <div>
-                <label>Tag</label>
-                <input type="text" {...name} />
-              </div>
-            }/>
-          <button type="submit">Submit</button>
-        </form>
       </div>
     );
   }
@@ -55,14 +55,8 @@ Tags.contextTypes = {
   router: PropTypes.object
 }
 
-const form = reduxForm({
-  form: 'TagForm'
-})(Tags)
-
 function mapStateToProps(state) {
-  return {
-    tags: state.tags.all
-  }
+  return {tags: state.tags}
 }
 
-export default connect(mapStateToProps, { editTag, fetchTags })(form);
+export default connect(mapStateToProps, {editTag, deleteTag, fetchTags})(Tags);

@@ -10,9 +10,6 @@ export default function(state = INITIAL_STATE, action) {
     case FETCH_TAGS:
       return {...state, all: action.payload.data};
 
-    case EDIT_TAG:
-      return {...state, tag: action.payload.data};
-
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
-import {createCategory, fetchCategories, deleteCategory} from '../actions/index';
+import {createCategory, deleteCategory, fetchCategories} from '../actions/index';
 import {Link} from 'react-router';
 
 const category_id_of_uncategorized = 1
@@ -78,7 +78,7 @@ class Categories extends Component {
     return this.props.categories.all.map((category) => {
       return (
         <li key={category.id}>
-          <div>
+          <div key={category.id}>
             {category.name}
             {this.renderDeleteBtn(category.id)}
           </div>
@@ -96,7 +96,9 @@ class Categories extends Component {
           <Field name="name" type="text" component={renderInputField} placeholder="Category Name"/>
           <button type="submit">Submit</button>
         </form>
-        {this.renderCategories()}
+        <ul>
+          {this.renderCategories()}
+        </ul>
       </div>
     );
   }

@@ -9,6 +9,7 @@ export const EDIT_CATEGORY = "EDIT_CATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const EDIT_TAG = "EDIT_TAG";
+export const DELETE_TAG = "DELETE_TAG";
 export const FETCH_TAGS = "FETCH_TAGS";
 
 const ROOT_URL = '/api/v1';
@@ -66,6 +67,13 @@ export function editTag(props) {
   const request = axios.post(`${ROOT_URL}/tag/${id}/edit`, props);
 
   return {type: EDIT_TAG, payload: request}
+}
+
+export function deleteTag(props) {
+  const post_id = props;
+  const request = axios.post(`${ROOT_URL}/admin/tag/${post_id}/delete`, props);
+
+  return {type: DELETE_TAG, payload: request};
 }
 
 export function fetchTags() {

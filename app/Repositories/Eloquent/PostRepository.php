@@ -3,30 +3,28 @@
 namespace App\Repositories\Eloquent;
 
 use App\Repositories\Contracts\PostRepositoryContract;
-
 use App\Models\Post;
 use App\Models\Tag;
-
 use Carbon\Carbon;
 
 class PostRepository implements PostRepositoryContract
 {
-    CONST POST_PAGINATE_NUM = 10;
+    const POST_PAGINATE_NUM = 10;
 
     public $post, $tag;
 
     public function __construct(Post $post,
                                 Tag $tag
-                                )
-    {
+                                ) {
         $this->post = $post;
         $this->tag = $tag;
     }
 
     /**
-     * Create a new post
+     * Create a new post.
      *
-     * @param  object  $request
+     * @param object $request
+     *
      * @return array
      */
     public function create($request)
@@ -56,7 +54,7 @@ class PostRepository implements PostRepositoryContract
             $request_tag_array = [];
 
             foreach ($request->tag as $request_tag) {
-                $request_tag_array[] =  $request_tag["name"];
+                $request_tag_array[] = $request_tag['name'];
             }
 
             $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
@@ -69,7 +67,7 @@ class PostRepository implements PostRepositoryContract
             if ($new_tag_name_array) {
                 foreach ($new_tag_name_array as $new_tag_name) {
                     $tag->create([
-                        'name' => $new_tag_name
+                        'name' => $new_tag_name,
                     ]);
                 }
 
@@ -83,14 +81,15 @@ class PostRepository implements PostRepositoryContract
 
         $post->tags()->sync($tag_id_array);
 
-        return ["id" => $post->id];
+        return ['id' => $post->id];
     }
 
     /**
-     * Edit a post
+     * Edit a post.
      *
-     * @param  int  $id
- 	 * @param  object  $request
+     * @param int    $id
+     * @param object $request
+     *
      * @return array
      */
     public function edit($request, int $id)
@@ -117,7 +116,7 @@ class PostRepository implements PostRepositoryContract
             $request_tag_array = [];
 
             foreach ($request->tag as $request_tag) {
-                $request_tag_array[] =  $request_tag["name"];
+                $request_tag_array[] = $request_tag['name'];
             }
 
             $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
@@ -130,7 +129,7 @@ class PostRepository implements PostRepositoryContract
             if ($new_tag_name_array) {
                 foreach ($new_tag_name_array as $new_tag_name) {
                     $tag->create([
-                        'name' => $new_tag_name
+                        'name' => $new_tag_name,
                     ]);
                 }
 
@@ -144,17 +143,18 @@ class PostRepository implements PostRepositoryContract
 
         $post->tags()->sync($tag_id_array);
 
-        return ["id" => $post->id];
+        return ['id' => $post->id];
     }
 
     /**
-     * Update publication status of post
+     * Update publication status of post.
      *
-	 * @param  int  $id
-     * @param  object  $request
+     * @param int    $id
+     * @param object $request
+     *
      * @return array
      */
-    public function update(Int $id, $request)
+    public function update($request, Int $id)
     {
         $post = $this->post->find($id);
 
@@ -166,15 +166,15 @@ class PostRepository implements PostRepositoryContract
 
         $post->save();
 
-        return ["id" => $post->id];
+        return ['id' => $post->id];
     }
 
     /**
-     * Delete a post
+     * Delete a post.
      *
      * @return array
      */
-    public function delete($id)
+    public function delete(Int $id)
     {
         $post = $this->post->find($id);
 
@@ -183,35 +183,36 @@ class PostRepository implements PostRepositoryContract
         return [];
     }
 
-    /**
-     * Get a single post
-     *
-     * @param  int  $id
-     * @return array  $post_array
-     */
+     /**
+      * Get a single post.
+      *
+      * @param  int  $id
+      *
+      * @return array  $post_array
+      */
      public function getPost(int $id)
      {
-        $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
+         $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
 
-        $post_array = [
-            "admin" => $post->admin,
-            "category" => $post->category,
-            "title" => $post->title,
-            "content" => $post->content,
-            "thumb_img_path" => $post->thumb_img_path,
-            "status" => $post->status,
-            "tags" => $post->tags,
-            "publication_date" => $post->publication_date->format('Y-m-d H:i:s')
+         $post_array = [
+            'admin' => $post->admin,
+            'category' => $post->category,
+            'title' => $post->title,
+            'content' => $post->content,
+            'thumb_img_path' => $post->thumb_img_path,
+            'status' => $post->status,
+            'tags' => $post->tags,
+            'publication_date' => $post->publication_date->format('Y-m-d H:i:s'),
         ];
 
-		return $post_array;
-	}
+         return $post_array;
+     }
 
-    /**
-     * Get posts
-     *
-     * @return array  $post_array
-     */
+     /**
+      * Get posts.
+      *
+      * @return array  $post_array
+      */
      public function getPosts()
      {
          $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
@@ -220,15 +221,15 @@ class PostRepository implements PostRepositoryContract
 
          foreach ($posts as $post) {
              $post_array[] = [
-                 "id" => $post->id,
-                 "admin" => $post->admin,
-                 "category" => $post->category,
-                 "title" => $post->title,
-                 "content" => $post->content,
-                 "thumb_img_path" => $post->thumb_img_path,
-                 "status" => $post->status,
-                 "tags" => $post->tags,
-                 "publication_date" => $post->publication_date->format('Y-m-d H:i:s')
+                 'id' => $post->id,
+                 'admin' => $post->admin,
+                 'category' => $post->category,
+                 'title' => $post->title,
+                 'content' => $post->content,
+                 'thumb_img_path' => $post->thumb_img_path,
+                 'status' => $post->status,
+                 'tags' => $post->tags,
+                 'publication_date' => $post->publication_date->format('Y-m-d H:i:s'),
              ];
          }
 

@@ -8,51 +8,51 @@ use App\Models\Post;
 
 class TagRepository implements TagRepositoryContract
 {
-	public $tag;
+    public $tag;
 
-	public function __construct(Tag $tag,
+    public function __construct(Tag $tag,
                                 Post $post
-                                )
-	{
-		$this->tag = $tag;
-		$this->post = $post;
-	}
+                                ) {
+        $this->tag = $tag;
+        $this->post = $post;
+    }
 
-	/**
-	 * Edit a tag
-	 *
-	 * @param  int  $id
-	 * @param  object  $request
-	 * @return void
-	 */
-	public function edit(Int $id, $request)
-	{
+    /**
+     * Edit a tag.
+     *
+     * @param int    $id
+     * @param object $request
+     */
+    public function edit(Int $id, $request)
+    {
         $tag = $this->tag->find($id);
 
         $tag->name = $request->name;
 
         $tag->save();
-	}
 
-	/**
-	 * Delete a tag
-	 *
-	 * @return void
-	 */
-	public function delete(Int $id)
-	{
-		$tag = $this->tag->find($id)->delete();
-	}
+        return ['id' => $tag->id];
+    }
 
-	/**
-	 * Get tags
-	 *
-	 * @return object
-	 */
-	public function getTags()
-	{
-		$tags = $this->tag->get();
+    /**
+     * Delete a tag.
+     */
+    public function delete(Int $id)
+    {
+        $tag = $this->tag->find($id)->delete();
 
-		return $tags;
-	}
+        return [];
+    }
+
+    /**
+     * Get tags.
+     *
+     * @return object
+     */
+    public function getTags()
+    {
+        $tags = $this->tag->get();
+
+        return $tags;
+    }
 }
