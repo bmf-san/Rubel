@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import ReactTags from 'react-tag-autocomplete';
-import {createPost, fetchTags, suggestionTags} from '../actions/index';
+import {createPost, fetchTags, suggestionTags, deleteCompleteTags, addCompleteTags} from '../actions/index';
 import {Link} from 'react-router';
 
 const validate = props => {
@@ -104,10 +104,12 @@ class NewPost extends Component {
 
   handleDelete(i) {}
 
-  handleAddition(tag) {
-    console.log(this.props.tags);
-    const tags = this.props.tags.complete_tags
-    tags.push(tag)
+  handleAddition(props) {
+    const {addCompleteTags} = this.props;
+
+    addCompleteTags(props);
+    // const tags = this.props.tags.complete_tags
+    // tags.push(tag)
   }
 
   render() {
@@ -122,7 +124,7 @@ class NewPost extends Component {
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field name="title" type="text" component={renderTitleField} placeholder="Title"/>
-          <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete} handleAddition={this.handleAddition} allowNew={true}/>
+          <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true}/>
           <Field name="content" component={renderContentField} placeholder="Content"/>
           <button type="submit">Submit</button>
         </form>
@@ -137,4 +139,4 @@ function mapStateToProps(state) {
   return {tags: state.tags}
 }
 
-export default connect(mapStateToProps, {createPost, fetchTags})(form);
+export default connect(mapStateToProps, {createPost, fetchTags, deleteCompleteTags, addCompleteTags})(form);
