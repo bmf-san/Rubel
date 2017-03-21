@@ -16,7 +16,7 @@ const validate = props => {
   return errors;
 }
 
-const renderInputField = ({
+const renderNameField = ({
   input,
   label,
   type,
@@ -93,7 +93,7 @@ class Categories extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="name" type="text" component={renderInputField} placeholder="Category Name"/>
+          <Field name="name" type="text" component={renderNameField} placeholder="Category Name"/>
           <button type="submit">Submit</button>
         </form>
         <ul>
