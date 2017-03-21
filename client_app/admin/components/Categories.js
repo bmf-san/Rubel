@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
-import {createCategory, fetchCategories, deleteCategory, toggleDisplay} from '../actions/index';
+import {createCategory, fetchCategories, deleteCategory} from '../actions/index';
 import {Link} from 'react-router';
 
 const category_id_of_uncategorized = 1
@@ -62,10 +62,6 @@ class Categories extends Component {
     }
   }
 
-  handleToggleDisplay(id) {
-    this.props.toggleDisplay(id);
-  }
-
   componentWillMount() {
     this.props.fetchCategories();
   }
@@ -73,7 +69,7 @@ class Categories extends Component {
   renderDeleteBtn(id) {
     if (id !== category_id_of_uncategorized) {
       return (
-        <button onClick={this.handleDelete.bind(this, id)}>✕</button>
+        <button onClick={this.handleDelete.bind(this, id)}>DELETE</button>
       );
     }
   }
@@ -81,12 +77,8 @@ class Categories extends Component {
   renderCategories() {
     return this.props.categories.all.map((category) => {
       return (
-        <li key={category.id} onClick={this.handleToggleDisplay.bind(this, category.id)}>
-          <div style={this.props.categories.display
-            ? {}
-            : {
-              display: "none"
-            }}>
+        <li key={category.id}>
+          <div>
             {category.name}
             {this.renderDeleteBtn(category.id)}
           </div>
@@ -120,4 +112,4 @@ function mapStateToProps(state) {
   return {categories: state.categories};
 }
 
-export default connect(mapStateToProps, {createCategory, deleteCategory, fetchCategories, toggleDisplay})(form);
+export default connect(mapStateToProps, {createCategory, deleteCategory, fetchCategories})(form);
