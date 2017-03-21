@@ -104,10 +104,6 @@ class Categories extends Component {
   }
 }
 
-Categories.contextTypes = {
-  router: PropTypes.object
-}
-
 const form = reduxForm({form: 'CategoryForm', validate})(Categories)
 
 function mapStateToProps(state) {
