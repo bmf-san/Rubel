@@ -37,24 +37,6 @@ const renderTitleField = ({
   </div>
 )
 
-// いらないかも
-// const renderTagField = ({
-//   input,
-//   label,
-//   type,
-//   meta: {
-//     touched,
-//     error
-//   }
-// }) => (
-//   <div>
-//     <label>{label}</label>
-//     <div>
-//       <input {...input} placeholder={label} type={type}/>{touched && ((error && <span>{error}</span>))} {touched && ((error && <span>{error}</span>))}
-//     </div>
-//   </div>
-// )
-
 const renderContentField = ({
   input,
   label,
@@ -108,8 +90,6 @@ class NewPost extends Component {
     const {addCompleteTags} = this.props;
 
     addCompleteTags(props);
-    // const tags = this.props.tags.complete_tags
-    // tags.push(tag)
   }
 
   render() {
@@ -119,7 +99,6 @@ class NewPost extends Component {
       return {id: tag.id, name: tag.name}
     });
 
-    // <Field name="tag" component={renderTagField} placeholder="Tag"/> いらないかも
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
