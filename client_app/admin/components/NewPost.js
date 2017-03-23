@@ -61,15 +61,13 @@ class NewPost extends Component {
 
   onSubmit(props) {
     const {createPost, reset} = this.props;
-    console.log(props);
-    // もしredux-formのカスタムコンポーネントが使えなかったらこの方法使う
-    // const data = {
-    //   "title": props.title,
-    //   "tag": {
-    //     ['hoge']
-    //   },
-    //   "content": props.content
-    // };
+
+    // formating the data
+    const data = {
+      "title": props.title,
+      "tag": this.props.tags.complete_tags,
+      "content": props.content
+    };
 
     return createPost(props).then((res) => {
       // if (res.error) {
@@ -84,7 +82,11 @@ class NewPost extends Component {
     })
   }
 
-  handleDelete(i) {}
+  handleDelete(index) {
+    const {deleteCompleteTags} = this.props;
+
+    deleteCompleteTags(index);
+  }
 
   handleAddition(props) {
     const {addCompleteTags} = this.props;

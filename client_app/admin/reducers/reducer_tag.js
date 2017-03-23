@@ -14,10 +14,11 @@ export default function(state = INITIAL_STATE, action) {
       };
 
     case DELETE_COMPLETE_TAGS:
+      state.complete_tags.splice(action.payload, 1);
 
       return {
         ...state,
-        complete_tags: complete_tags
+        complete_tags: state.complete_tags
       }
 
     case ADD_COMPLETE_TAGS:
