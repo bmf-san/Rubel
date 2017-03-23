@@ -66,7 +66,9 @@ class NewPost extends Component {
     const data = {
       "title": props.title,
       "tag": this.props.tags.complete_tags,
-      "content": props.content
+      "category": "Here is category",
+      "content": props.content,
+      "publication_status": "Here is status"
     };
 
     return createPost(props).then((res) => {
