@@ -3,13 +3,13 @@ elixir.config.sourcemaps = false;
 
 elixir((mix) => {
   mix
-    //-------------------------------
-    // CSS
-    //-------------------------------
+  //-------------------------------
+  // CSS
+  //-------------------------------
     .styles('./node_modules/highlight.js/styles/atom-one-dark.css', 'public/css/admin/atom-one-dark.min.css')
 
-    //-------------------------------
-    // JavaScript
-    //-------------------------------
-    .webpack('./client_app/admin/index.js', 'public/js/admin/index.js')
+  //-------------------------------
+  // JavaScript
+  //-------------------------------
+    .webpack('./client_app/index.js', 'public/js/admin/index.js')
 });
