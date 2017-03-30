@@ -10,6 +10,7 @@ import Categories from './components/Categories';
 import Tags from './components/Tags';
 import Config from './components/Config';
 
+// FIXME: Rewrite route path
 export default(
   <Route path="/admin/dashboard" component={App}>
     <IndexRoute component={Home}/>
