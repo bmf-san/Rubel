@@ -8,7 +8,7 @@
 
 Route::get('/', 'Pages\TopController@getIndex');
 
-Route::get('post/{id}', 'Post\PostController@getPost')->where('id', '[0-9]+');;
+Route::get('post/{id}', 'Post\PostController@getPost')->where('id', '[0-9]+');
 Route::get('posts', 'Post\PostController@getPosts');
 
 Route::group(['middleware' => 'guest:admins'], function () {
@@ -18,6 +18,7 @@ Route::group(['middleware' => 'guest:admins'], function () {
 
 Route::post('admin/logout', 'Auth\Admin\LoginController@logout');
 
-Route::group(['middleware' => 'auth:admins', 'prefix' => '/admin/dashboard'], function () {
-    Route::any('{any?}', 'Admin\DashBoardController@getIndex');
-});
+// TODO: Remove later!
+// Route::group(['middleware' => 'auth:admins', 'prefix' => '/admin/dashboard'], function () {
+//     Route::any('{any?}', 'Admin\DashBoardController@getIndex');
+// });
