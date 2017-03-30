@@ -17,8 +17,3 @@ Route::group(['middleware' => 'guest:admins'], function () {
 });
 
 Route::post('admin/logout', 'Auth\Admin\LoginController@logout');
-
-// TODO: Remove later!
-// Route::group(['middleware' => 'auth:admins', 'prefix' => '/admin/dashboard'], function () {
-//     Route::any('{any?}', 'Admin\DashBoardController@getIndex');
-// });
