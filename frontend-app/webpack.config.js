@@ -1,10 +1,7 @@
-const path = require('path');
-
 module.exports = {
   entry: ['./src/index.js'],
   output: {
-    path: __dirname,
-    publicPath: '/dist',
+    path: __dirname + '/dist',
     filename: 'bundle.js'
   },
   module: {
@@ -19,6 +16,7 @@ module.exports = {
       }
     ]
   },
+  devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx']
   }
