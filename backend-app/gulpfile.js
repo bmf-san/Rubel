@@ -6,5 +6,6 @@ elixir((mix) => {
   //-------------------------------
   // CSS
   //-------------------------------
-    .styles('./node_modules/highlight.js/styles/atom-one-dark.css', 'public/css/admin/atom-one-dark.min.css')
+  // TODO: 必要があれば使う
+  // .styles('./node_modules/highlight.js/styles/atom-one-dark.css', 'public/css/admin/atom-one-dark.min.css')
 });

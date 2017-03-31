@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "webpack -d"
+    "watch": "webpack --watch --progress",
+    "build": "webpack --config webpack.config.js --progress"
   },
   "dependencies": {
     "axios": "~0.15.3",
