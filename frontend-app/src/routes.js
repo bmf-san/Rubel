@@ -12,13 +12,13 @@ import Config from './components/Config';
 
 // FIXME: Rewrite route path
 export default(
-  <Route path="/admin/dashboard" component={App}>
+  <Route path="/dashboard" component={App}>
     <IndexRoute component={Home}/>
-    <Route path="/admin/dashboard/posts" component={Posts}/>
-    <Route path="/admin/dashboard/new-post" component={NewPost}/>
-    <Route path="/admin/dashboard/edit-post/:id" component={EditPost}/>
-    <Route path="/admin/dashboard/categories" component={Categories}/>
-    <Route path="/admin/dashboard/tags" component={Tags}/>
-    <Route path="/admin/dashboard/config" component={Config}/>
+    <Route path="/dashboard/posts" component={Posts}/>
+    <Route path="/dashboard/new-post" component={NewPost}/>
+    <Route path="/dashboard/edit-post/:id" component={EditPost}/>
+    <Route path="/dashboard/categories" component={Categories}/>
+    <Route path="/dashboard/tags" component={Tags}/>
+    <Route path="/dashboard/config" component={Config}/>
   </Route>
 );
