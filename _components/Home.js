@@ -5,7 +5,7 @@ export default class Home extends React.Component {
     return (
       <div>
         <h1>Home</h1>
-        <p>Here is analytics data of your blog...</p>
+        <p>Here is analytics data of your blog.</p>
       </div>
     )
   }
