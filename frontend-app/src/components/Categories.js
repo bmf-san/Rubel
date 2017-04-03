@@ -6,33 +6,6 @@ import {Link} from 'react-router';
 
 const category_id_of_uncategorized = 1
 
-const validate = props => {
-  const errors = {}
-
-  if (!props.name) {
-    errors.name = 'Required'
-  }
-
-  return errors;
-}
-
-const renderNameField = ({
-  input,
-  label,
-  type,
-  meta: {
-    touched,
-    error
-  }
-}) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type}/> {touched && ((error && <span>{error}</span>))}
-    </div>
-  </div>
-)
-
 class Categories extends Component {
   componentWillMount() {
     this.props.fetchCategories();
@@ -74,6 +47,25 @@ class Categories extends Component {
     }
   }
 
+  renderNameField({
+    input,
+    label,
+    type,
+    meta: {
+      touched,
+      error
+    }
+  }) {
+    return (
+      <div>
+        <label>{label}</label>
+        <div>
+          <input {...input} placeholder={label} type={type}/> {touched && ((error && <span>{error}</span>))}
+        </div>
+      </div>
+    )
+  }
+
   renderCategories() {
     return this.props.categories.all.map((category) => {
       return (
@@ -93,7 +85,7 @@ class Categories extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="name" type="text" component={renderNameField} placeholder="Category Name"/>
+          <Field name="name" type="text" component={this.renderNameField} placeholder="Category Name"/>
           <button type="submit">Submit</button>
         </form>
         <ul>
@@ -102,6 +94,16 @@ class Categories extends Component {
       </div>
     );
   }
+}
+
+const validate = props => {
+  const errors = {}
+
+  if (!props.name) {
+    errors.name = 'Required'
+  }
+
+  return errors;
 }
 
 const form = reduxForm({form: 'CategoryForm', validate})(Categories)
