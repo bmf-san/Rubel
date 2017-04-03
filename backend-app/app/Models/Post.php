@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'admin_id', 'category_id', 'title', 'content', 'thumb_img_path', 'views', 'status'
+        'admin_id', 'category_id', 'title', 'content', 'thumb_img_path', 'views', 'publication_status',
     ];
 
     protected $hidden = [
-        'pivot'
+        'pivot',
     ];
 
     protected $dates = [
-        'publication_date', 'created_at', 'updated_at', 'deleted_at'
+        'publication_date', 'created_at', 'updated_at', 'deleted_at',
     ];
 
     public function admin()
@@ -24,17 +24,17 @@ class Post extends Model
     }
 
     public function category()
-	{
-		return $this->belongsTo('App\Models\Category');
-	}
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 
     public function comments()
     {
         return $this->hasMany('App\Models\Comment');
     }
 
-	public function tags()
-	{
-		return $this->belongsToMany('App\Models\Tag', 'tag_post')->withTimestamps();;
-	}
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag', 'tag_post')->withTimestamps();
+    }
 }

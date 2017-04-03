@@ -36,9 +36,9 @@ class NewPost extends Component {
       if (res.error) {
         const validation_msg = res.payload.response.data.messages
 
-        // throw new SubmissionError({
-        //   title: [validation_msg.title]
-        // });
+        throw new SubmissionError({
+          title: [validation_msg.title]
+        });
       } else {
         reset();
       }

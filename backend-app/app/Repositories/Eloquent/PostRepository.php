@@ -37,9 +37,9 @@ class PostRepository implements PostRepositoryContract
         $post->title = $request->title;
         $post->content = $request->content;
         $post->thumb_img_path = $request->thumb_img_path;
-        $post->status = $request->status;
+        $post->publication_status = $request->publication_status;
 
-        if ($request->status == 'public') {
+        if ($request->publication_status == 'public') {
             $post->publication_date = Carbon::now();
         }
 
@@ -101,9 +101,9 @@ class PostRepository implements PostRepositoryContract
         $post->title = $request->title;
         $post->content = $request->content;
         $post->thumb_img_path = $request->thumb_img_path;
-        $post->status = $request->status;
+        $post->publication_status = $request->publication_status;
 
-        if ($request->status == 'public') {
+        if ($request->publication_status == 'public') {
             $post->publication_date = Carbon::now();
         }
 
@@ -158,9 +158,9 @@ class PostRepository implements PostRepositoryContract
     {
         $post = $this->post->find($id);
 
-        $post->status = $request->status;
+        $post->publication_status = $request->publication_status;
 
-        if ($post->status == 'public') {
+        if ($post->publication_status == 'public') {
             $post->publication_date = Carbon::now();
         }
 
@@ -200,7 +200,7 @@ class PostRepository implements PostRepositoryContract
             'title' => $post->title,
             'content' => $post->content,
             'thumb_img_path' => $post->thumb_img_path,
-            'status' => $post->status,
+            'publication_status' => $post->publication_status,
             'tags' => $post->tags,
             'publication_date' => $post->publication_date->format('Y-m-d H:i:s'),
         ];
@@ -227,7 +227,7 @@ class PostRepository implements PostRepositoryContract
                  'title' => $post->title,
                  'content' => $post->content,
                  'thumb_img_path' => $post->thumb_img_path,
-                 'status' => $post->status,
+                 'publication_status' => $post->publication_status,
                  'tags' => $post->tags,
                  'publication_date' => $post->publication_date->format('Y-m-d H:i:s'),
              ];
