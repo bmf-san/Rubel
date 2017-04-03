@@ -30,8 +30,6 @@ class NewPost extends Component {
       "publication_status": props.publication_status
     };
 
-    console.log(data)
-
     return createPost(data).then((res) => {
       if (res.error) {
         const validation_msg = res.payload.response.data.messages

@@ -31,8 +31,7 @@ class PostRepository implements PostRepositoryContract
     {
         $post = $this->post;
 
-        // $post->admin_id = $request->user()->id;
-        $post->admin_id = $request->id;
+        $post->admin_id = $request->admin_id; // FIXME set authenticated admin id
         $post->category_id = $request->category_id;
         $post->title = $request->title;
         $post->content = $request->content;
@@ -96,7 +95,7 @@ class PostRepository implements PostRepositoryContract
     {
         $post = $this->post->find($id);
 
-        $post->admin_id = $request->admin_id;  // FIXME change this value to Authentication info -> admin_id
+        $post->admin_id = $request->admin_id; // FIXME set authenticated admin id
         $post->category_id = $request->category_id;
         $post->title = $request->title;
         $post->content = $request->content;
