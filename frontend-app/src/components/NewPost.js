@@ -80,7 +80,6 @@ class NewPost extends Component {
   onSubmit(props) {
     const {createPost, reset} = this.props;
 
-    // formating the data
     const data = {
       "title": props.title,
       "tag": this.props.tags.complete_tags,
@@ -156,7 +155,13 @@ class NewPost extends Component {
 const form = reduxForm({form: 'NewPostForm', validate})(NewPost)
 
 function mapStateToProps(state) {
-  return {posts: state.posts, tags: state.tags}
+  return {
+    posts: state.posts,
+    tags: state.tags,
+    initialValues: {
+      publication_status: 'draft'
+    }
+  }
 }
 
 export default connect(mapStateToProps, {createPost, fetchTags, deleteCompleteTags, addCompleteTags, updateMarkdown})(form);
