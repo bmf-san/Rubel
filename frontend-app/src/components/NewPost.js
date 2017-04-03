@@ -1,10 +1,15 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
-import marked from 'marked';
-import hljs from 'highlight.js';
 import ReactTags from 'react-tag-autocomplete';
-import {createPost, fetchTags, suggestionTags, deleteCompleteTags, addCompleteTags} from '../actions/index';
+import {
+  createPost,
+  fetchTags,
+  suggestionTags,
+  deleteCompleteTags,
+  addCompleteTags,
+  updateMarkdown
+} from '../actions/index';
 import {Link} from 'react-router';
 
 const validate = props => {
@@ -54,6 +59,19 @@ const renderContentField = ({
   </div>
 )
 
+const renderPublicationStatusField = ({input, label}) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <select {...input}>
+        <option value="draft">Draft</option>
+        <option value="private">Private</option>
+        <option value="public">Public</option>
+      </select>
+    </div>
+  </div>
+)
+
 class NewPost extends Component {
   componentWillMount() {
     this.props.fetchTags();
@@ -68,8 +86,10 @@ class NewPost extends Component {
       "tag": this.props.tags.complete_tags,
       "category": "Here is category",
       "content": props.content,
-      "publication_status": "Here is status"
+      "publication_status": props.publication_status
     };
+
+    console.log(data); // TODO: check request data
 
     return createPost(props).then((res) => {
       // if (res.error) {
@@ -96,6 +116,12 @@ class NewPost extends Component {
     addCompleteTags(props);
   }
 
+  handleUpdateMarkdown(e) {
+    const {updateMarkdown} = this.props;
+
+    updateMarkdown(e.target.value);
+  }
+
   render() {
     const {handleSubmit} = this.props
 
@@ -103,12 +129,18 @@ class NewPost extends Component {
       return {id: tag.id, name: tag.name}
     });
 
+    const html = this.props.posts.markdown;
+
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="title" type="text" component={renderTitleField} placeholder="Title"/>
+          <Field label="Title" name="title" type="text" component={renderTitleField} placeholder="Title"/>
           <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true}/>
-          <Field name="content" component={renderContentField} placeholder="Content"/>
+          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={renderContentField} placeholder="Content"/>
+          <div dangerouslySetInnerHTML={{
+            __html: html
+          }}></div>
+          <Field label="Publication Status" name="publication_status" component={renderPublicationStatusField}/>
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -119,7 +151,7 @@ class NewPost extends Component {
 const form = reduxForm({form: 'NewPostForm', validate})(NewPost)
 
 function mapStateToProps(state) {
-  return {tags: state.tags}
+  return {posts: state.posts, tags: state.tags}
 }
 
-export default connect(mapStateToProps, {createPost, fetchTags, deleteCompleteTags, addCompleteTags})(form);
+export default connect(mapStateToProps, {createPost, fetchTags, deleteCompleteTags, addCompleteTags, updateMarkdown})(form);

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const CREATE_POST = "CREATE_POST";
+export const UPDATE_MARKDOWN = "UPDATE_MARKDOWN";
 export const EDIT_POST = "EDIT_POST";
 export const FETCH_POSTS = "FETCH_POSTS";
 export const FETCH_POST = "FETCH_POST";
@@ -20,6 +21,10 @@ export function createPost(props) {
   const request = axios.post(`${ROOT_URL}/admin/post/create`, props);
 
   return {type: CREATE_POST, payload: request};
+}
+
+export function updateMarkdown(props) {
+  return {type: UPDATE_MARKDOWN, payload: props};
 }
 
 export function editPost(props) {
