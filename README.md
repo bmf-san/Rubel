@@ -4,12 +4,14 @@
 This is a blog boilerplate working with Laravel, React.
 
 # Architecture
-* PHP7
-* Laravel 5.3
-* React 15.4.1
-* react-redux
-* react-router
-* SPA
++ PHP7
++ Laravel 5.3
++ React 15.4.2
++ react-redux 5.0.2
++ redux-form 6.6.1
++ react-router 3.0.2
++ webpack
+
 
 # Building
 ```
