@@ -107,7 +107,7 @@ class NewPost extends Component {
           <Field label="Tag" name="title" component={({props, label}) => <div>
             <label>{label}</label>
             <div>
-              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autoFocus={false}/>
+              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
             </div>
           </div>}/>
           <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={({
