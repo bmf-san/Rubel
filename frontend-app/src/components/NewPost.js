@@ -135,7 +135,12 @@ class NewPost extends Component {
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field label="Title" name="title" type="text" component={renderTitleField} placeholder="Title"/>
-          <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true}/>
+          <Field label="Tag" name="title" component={({props, label}) => <div>
+            <label>{label}</label>
+            <div>
+              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true}/>
+            </div>
+          </div>}/>
           <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={renderContentField} placeholder="Content"/>
           <div dangerouslySetInnerHTML={{
             __html: html
