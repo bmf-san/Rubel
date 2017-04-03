@@ -8,6 +8,7 @@ import {
   suggestionTags,
   deleteCompleteTags,
   addCompleteTags,
+  fetchCategories,
   updateMarkdown
 } from '../actions/index';
 import {Link} from 'react-router';
@@ -25,56 +26,10 @@ const validate = props => {
   return errors;
 }
 
-const renderTitleField = ({
-  input,
-  label,
-  type,
-  meta: {
-    touched,
-    error
-  }
-}) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type}/>{touched && ((error && <span>{error}</span>))}
-    </div>
-  </div>
-)
-
-const renderContentField = ({
-  input,
-  label,
-  meta: {
-    touched,
-    error
-  }
-}) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <textarea {...input} placeholder={label} cols="30" rows="10"></textarea>
-      {touched && ((error && <span>{error}</span>))}
-    </div>
-  </div>
-)
-
-const renderPublicationStatusField = ({input, label}) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <select {...input}>
-        <option value="draft">Draft</option>
-        <option value="private">Private</option>
-        <option value="public">Public</option>
-      </select>
-    </div>
-  </div>
-)
-
 class NewPost extends Component {
   componentWillMount() {
     this.props.fetchTags();
+    this.props.fetchCategories();
   }
 
   onSubmit(props) {
@@ -83,23 +38,23 @@ class NewPost extends Component {
     const data = {
       "title": props.title,
       "tag": this.props.tags.complete_tags,
-      "category": "Here is category",
+      "category_id": props.category,
       "content": props.content,
       "publication_status": props.publication_status
     };
 
-    console.log(data); // TODO: check request data
+    console.log(data)
 
-    return createPost(props).then((res) => {
-      // if (res.error) {
-      //   const validation_msg = res.payload.response.data.messages
-      //
-      //   throw new SubmissionError({
-      //     title: [validation_msg.title]
-      //   });
-      // } else {
-      //   reset();
-      // }
+    return createPost(data).then((res) => {
+      if (res.error) {
+        const validation_msg = res.payload.response.data.messages
+
+        // throw new SubmissionError({
+        //   title: [validation_msg.title]
+        // });
+      } else {
+        reset();
+      }
     })
   }
 
@@ -133,18 +88,72 @@ class NewPost extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field label="Title" name="title" type="text" component={renderTitleField} placeholder="Title"/>
+          <Field label="Title" name="title" type="text" component={({
+            input,
+            label,
+            type,
+            meta: {
+              touched,
+              error
+            }
+          }) => (
+            <div>
+              <label>{label}</label>
+              <div>
+                <input {...input} placeholder={label} type={type}/>{touched && ((error && <span>{error}</span>))}
+              </div>
+            </div>
+          )} placeholder="Title"/>
           <Field label="Tag" name="title" component={({props, label}) => <div>
             <label>{label}</label>
             <div>
               <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true}/>
             </div>
           </div>}/>
-          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={renderContentField} placeholder="Content"/>
+          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={({
+            input,
+            label,
+            type,
+            meta: {
+              touched,
+              error
+            }
+          }) => (
+            <div>
+              <label>{label}</label>
+              <div>
+                <input {...input} placeholder={label} type={type}/>{touched && ((error && <span>{error}</span>))}
+              </div>
+            </div>
+          )} placeholder="Content"/>
           <div dangerouslySetInnerHTML={{
             __html: html
           }}></div>
-          <Field label="Publication Status" name="publication_status" component={renderPublicationStatusField}/>
+          <Field label="Categories" name="category" component={({input, label}) => (
+            <div>
+              <label>{label}</label>
+              <div>
+                {this.props.categories.all.map((category) => {
+                  return <div key={category.id}>
+                    <input type="radio" {...input} value={category.id}/>
+                    <span>{category.name}</span>
+                  </div>
+                })}
+              </div>
+            </div>
+          )}/>
+          <Field label="Publication Status" name="publication_status" component={({input, label}) => (
+            <div>
+              <label>{label}</label>
+              <div>
+                <select {...input}>
+                  <option value="draft">Draft</option>
+                  <option value="private">Private</option>
+                  <option value="public">Public</option>
+                </select>
+              </div>
+            </div>
+          )}/>
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -158,10 +167,18 @@ function mapStateToProps(state) {
   return {
     posts: state.posts,
     tags: state.tags,
+    categories: state.categories,
     initialValues: {
       publication_status: 'draft'
     }
   }
 }
 
-export default connect(mapStateToProps, {createPost, fetchTags, deleteCompleteTags, addCompleteTags, updateMarkdown})(form);
+export default connect(mapStateToProps, {
+  createPost,
+  fetchTags,
+  deleteCompleteTags,
+  addCompleteTags,
+  fetchCategories,
+  updateMarkdown
+})(form);
