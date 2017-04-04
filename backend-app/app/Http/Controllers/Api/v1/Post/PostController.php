@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api\v1\Post;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
-
 use App\Repositories\Eloquent\PostRepository;
+use App\Http\Requests\Api\v1\Post\CreatePostRequest;
+use App\Http\Requests\Api\v1\Post\EditPostRequest;
 
 class PostController extends Controller
 {
@@ -18,44 +18,48 @@ class PostController extends Controller
     }
 
     /**
-     * Create a new post
+     * Create a new post.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request) // TODO add form request for creating a post
+    public function create(CreatePostRequest $request)
     {
         return response()->json($this->post_repository->create($request));
     }
 
     /**
-     * Edit a post
+     * Edit a post.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, int $id) // TODO add form request for editting a post
+    public function edit(EditPostRequest $request, int $id)
     {
         return response()->json($this->post_repository->edit($request, $id));
     }
 
     /**
-    * Update publication status of post
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Update publication status of post.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, int $id) // TODO add form request for update this status
     {
         return response()->json($this->post_repository->update($request, $id));
     }
 
     /**
-     * Delete a post
+     * Delete a post.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function delete(int $id)
@@ -64,9 +68,10 @@ class PostController extends Controller
     }
 
     /**
-     * Show a single post
+     * Show a single post.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function getPost(Int $id)
@@ -75,7 +80,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show posts
+     * Show posts.
      *
      * @return \Illuminate\Http\Response
      */
