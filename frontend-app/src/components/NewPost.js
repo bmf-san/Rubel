@@ -20,24 +20,29 @@ class NewPost extends Component {
   }
 
   onSubmit(props) {
-    const {createPost, reset} = this.props;
+    const {createPost, deleteCompleteTags, reset} = this.props;
 
     const data = {
       "title": props.title,
       "tag": this.props.tags.complete_tags,
-      "category_id": props.category,
+      "category_id": props.category_id,
       "content": props.content,
       "publication_status": props.publication_status
     };
+
+    console.log(data);
 
     return createPost(data).then((res) => {
       if (res.error) {
         const validation_msg = res.payload.response.data.messages
 
-        throw new SubmissionError({
-          title: [validation_msg.title]
-        });
+        // throw new SubmissionError({
+        //   title: [validation_msg.title]
+        // });
       } else {
+        for (var i = 0; i <= this.props.tags.complete_tags.length; i++) {
+          deleteCompleteTags(i);
+        }
         reset();
       }
     })
@@ -160,7 +165,7 @@ class NewPost extends Component {
           <div dangerouslySetInnerHTML={{
             __html: html
           }}></div>
-          <Field label="Categories" name="category" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
+          <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
           <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
           <button type="submit">Submit</button>
         </form>
@@ -190,6 +195,7 @@ function mapStateToProps(state) {
     tags: state.tags,
     categories: state.categories,
     initialValues: {
+      category_id: 1,
       publication_status: 'draft'
     }
   }
