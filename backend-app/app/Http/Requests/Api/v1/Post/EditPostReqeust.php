@@ -31,6 +31,8 @@ class EditPostRequest extends FormRequest
                 'content' => 'required',
             ];
         }
+
+        return [];
     }
 
     /**
@@ -42,7 +44,7 @@ class EditPostRequest extends FormRequest
     {
         return [
             'title.required' => 'A title is required',
-            'content.unique' => 'A content has been existed',
+            'content.required' => 'A content is required',
         ];
     }
 
