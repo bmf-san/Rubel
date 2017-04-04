@@ -202,8 +202,9 @@ const validate = props => {
 
 const form = reduxForm({form: 'NewPostForm', validate})(EditPost)
 
-function mapStateToProps(state) {
-  // TODO get a sigle post date which is fethed date
+function mapStateToProps(state, ownProps) {
+  // TODO update initialValues
+  console.log(ownProps);
 
   return {
     posts: state.posts,
