@@ -25,14 +25,10 @@ class CreatePostRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->publication_status == 'public') {
-            return [
+        return [
                 'title' => 'required',
                 'content' => 'required',
             ];
-        }
-
-        return [];
     }
 
     /**
