@@ -39,13 +39,8 @@ class NewPost extends Component {
           content: [validation_msg.content]
         });
       } else {
-        // TODO Maybe these logics are not been required
-        // for (let i = -1; i < this.props.tags.complete_tags.length; i++) { // XXX why it works by -1 ??
-        //   deleteCompleteTags(i);
-        // }
-        // reset();
-
         const id = res.payload.data.id
+
         this.context.router.push(`/dashboard/edit-post/${id}`);
       }
     })

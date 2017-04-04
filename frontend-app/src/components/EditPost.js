@@ -36,7 +36,9 @@ class EditPost extends Component {
       "publication_status": props.publication_status
     };
 
-    return editPost(data).then((res) => {
+    const id = this.props.params.id
+
+    return editPost(data, id).then((res) => {
       if (res.error) {
         const validation_msg = res.payload.response.data.messages
 
@@ -199,6 +201,8 @@ const validate = props => {
 const form = reduxForm({form: 'NewPostForm', validate})(EditPost)
 
 function mapStateToProps(state) {
+  // TODO get a sigle post date which is fethed date
+
   return {
     posts: state.posts,
     tags: state.tags,

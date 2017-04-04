@@ -21,10 +21,10 @@ class Posts extends Component {
 
       return (
         <li key={post.id}>
-          <Link to={`/edit-post/${post.id}`}>
+          <Link to={`/dashboard/edit-post/${post.id}`}>
             <h1>{post.title}</h1>
-            <p>{post.publication_date}</p>
             <p>{post.category.name}</p>
+            <p>{post.publication_date}</p>
             {tags}
           </Link>
         </li>

@@ -27,7 +27,7 @@ export function updateMarkdown(props) {
   return {type: UPDATE_MARKDOWN, payload: props};
 }
 
-export function editPost(props) {
+export function editPost(props, id) {
   const request = axios.post(`${ROOT_URL}/admin/post/${id}/edit`, props);
 
   return {type: EDIT_POST, payload: request};
