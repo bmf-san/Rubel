@@ -31,12 +31,13 @@ class PostRepository implements PostRepositoryContract
     {
         $post = $this->post;
 
-        $post->admin_id = $request->admin_id; // FIXME set authenticated admin id
-        $post->category_id = $request->category_id;
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->thumb_img_path = $request->thumb_img_path;
-        $post->publication_status = $request->publication_status;
+        // $post->admin_id = (int) $request->admin_id; // FIXME set authenticated admin id
+        $post->admin_id = (int) 1;
+        $post->category_id = (int) $request->category_id;
+        $post->title = (string) $request->title;
+        $post->content = (string) $request->content;
+        $post->thumb_img_path = (string) $request->thumb_img_path;
+        $post->publication_status = (string) $request->publication_status;
 
         if ($request->publication_status == 'public') {
             $post->publication_date = Carbon::now();

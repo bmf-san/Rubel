@@ -40,10 +40,14 @@ class NewPost extends Component {
         //   title: [validation_msg.title]
         // });
       } else {
-        for (var i = 0; i <= this.props.tags.complete_tags.length; i++) {
+        for (let i = -1; i < this.props.tags.complete_tags.length; i++) { // XXX why it works by -1 ??
           deleteCompleteTags(i);
         }
         reset();
+
+        const id = res.payload.data.id
+        this.context.router.push(`/dashboard/edit-post/${id}`);
+
       }
     })
   }
@@ -174,15 +178,12 @@ class NewPost extends Component {
   }
 }
 
+NewPost.contextTypes = {
+  router: PropTypes.object
+}
+
 const validate = props => {
   const errors = {}
-
-  if (!props.title) {
-    errors.title = "Required"
-  }
-  if (!props.content) {
-    errors.content = "Required"
-  }
 
   return errors;
 }

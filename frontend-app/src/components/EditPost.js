@@ -1,15 +1,14 @@
-import React, { Component, PropTypes} from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { connect } from 'react-redux';
-import { editPost, fetchPost } from '../actions/index';
-import { Link } from 'react-router';
+import React, {Component, PropTypes} from 'react';
+import {reduxForm, Field} from 'redux-form';
+import {connect} from 'react-redux';
+import {editPost, fetchPost} from '../actions/index';
+import {Link} from 'react-router';
 
 class EditPost extends Component {
   onSubmit(props) {
-      this.props.editPost(props)
-        .then(() => {
-          // this.context.router.push('/');  // TODO: change this path.
-        })
+    this.props.editPost(props).then(() => {
+      // this.context.router.push('/');  // TODO: change this path.
+    })
   }
 
   componentWillMount() {
@@ -17,11 +16,7 @@ class EditPost extends Component {
   }
 
   render() {
-    const { post, handleSubmit } = this.props;
-
-    if (!post) {
-      return <div>loading...</div>;
-    }
+    const {post, handleSubmit} = this.props;
 
     console.log(post.tags.name);
 
@@ -33,14 +28,10 @@ class EditPost extends Component {
         <p>{post.content}</p>
 
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field
-            name="title"
-            component={title =>
-              <div>
-                <label>Title</label>
-                <input type="text" {...title} />
-              </div>
-            }/>
+          <Field name="title" component={title => <div>
+            <label>Title</label>
+            <input type="text" {...title}/>
+          </div>}/>
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -52,14 +43,10 @@ EditPost.contextTypes = {
   router: PropTypes.object
 }
 
-const form = reduxForm({
-  form: 'EditPostForm'
-})(EditPost)
+const form = reduxForm({form: 'EditPostForm'})(EditPost)
 
 function mapStateToProps(state) {
-  return {
-    post: state.posts.all
-  }
+  return {post: state.posts.all}
 }
 
-export default connect(mapStateToProps, { fetchPost })(form);
+export default connect(mapStateToProps, {fetchPost})(form);
