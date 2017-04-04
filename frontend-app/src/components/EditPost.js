@@ -22,6 +22,8 @@ class EditPost extends Component {
   }
 
   componentWillMount() {
+    this.props.fetchTags();
+    this.props.fetchCategories();
     this.props.fetchPost(this.props.params.id);
   }
 
