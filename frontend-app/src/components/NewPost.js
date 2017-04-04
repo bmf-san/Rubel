@@ -24,30 +24,29 @@ class NewPost extends Component {
 
     const data = {
       "title": props.title,
-      "tag": this.props.tags.complete_tags,
+      "tags": this.props.tags.complete_tags,
       "category_id": props.category_id,
       "content": props.content,
       "publication_status": props.publication_status
     };
 
-    console.log(data);
-
     return createPost(data).then((res) => {
       if (res.error) {
         const validation_msg = res.payload.response.data.messages
 
-        // throw new SubmissionError({
-        //   title: [validation_msg.title]
-        // });
+        throw new SubmissionError({
+          title: [validation_msg.title],
+          content: [validation_msg.content]
+        });
       } else {
-        for (let i = -1; i < this.props.tags.complete_tags.length; i++) { // XXX why it works by -1 ??
-          deleteCompleteTags(i);
-        }
-        reset();
+        // TODO Maybe these logics are not been required
+        // for (let i = -1; i < this.props.tags.complete_tags.length; i++) { // XXX why it works by -1 ??
+        //   deleteCompleteTags(i);
+        // }
+        // reset();
 
         const id = res.payload.data.id
         this.context.router.push(`/dashboard/edit-post/${id}`);
-
       }
     })
   }
@@ -90,6 +89,31 @@ class NewPost extends Component {
     )
   }
 
+  renderCategoryField({
+    input,
+    label,
+    meta: {
+      touched,
+      error
+    }
+  }) {
+    return (
+      <div>
+        <label>{label}</label>
+        <div>
+          {this.props.categories.all.map((category) => {
+            return <div key={category.id}>
+              <input type="radio" {...input} value={category.id} defaultChecked={category.id == input.value
+                ? "checked"
+                : ''}/>
+              <span>{category.name}</span>
+            </div>
+          })}
+        </div>
+      </div>
+    )
+  }
+
   renderPublicationStatusField({input, label}) {
     return (
       <div>
@@ -105,29 +129,6 @@ class NewPost extends Component {
     )
   }
 
-  renderCategoryField({
-    input,
-    label,
-    meta: {
-      touched,
-      error
-    }
-  }) {
-    return (
-      <div>
-        <label>{label}</label>
-        <div>
-          {this.props.categories.all.map((category) => {
-            return <div key={category.id}>
-              <input type="radio" {...input} value={category.id}/>
-              <span>{category.name}</span>
-            </div>
-          })}
-        </div>
-      </div>
-    )
-  }
-
   handleDelete(index) {
     const {deleteCompleteTags} = this.props;
 
@@ -138,6 +139,7 @@ class NewPost extends Component {
     const {addCompleteTags} = this.props;
 
     addCompleteTags(props);
+    this.onSubmit(this.props);
   }
 
   handleUpdateMarkdown(e) {
@@ -158,18 +160,18 @@ class NewPost extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
+          <Field onBlur={handleSubmit(this.onSubmit.bind(this))} label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
           <div>
             <label>Tag</label>
             <div>
-              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
+              <ReactTags onBlur={handleSubmit(this.onSubmit.bind(this))} tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
             </div>
           </div>
-          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
+          <Field onBlur={handleSubmit(this.onSubmit.bind(this))} label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
           <div dangerouslySetInnerHTML={{
             __html: html
           }}></div>
-          <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
+          <Field onBlur={handleSubmit(this.onSubmit.bind(this))} label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
           <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
           <button type="submit">Submit</button>
         </form>

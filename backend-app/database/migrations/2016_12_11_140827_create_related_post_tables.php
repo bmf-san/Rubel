@@ -7,34 +7,32 @@ class CreateRelatedPostTables extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-		Schema::create('categories', function (Blueprint $table) {
-			$table->increments('id');
-			$table->string('name');
-			$table->timestamps();
-			$table->softDeletes();
-		});
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+            $table->softDeletes();
+        });
 
-		Schema::create('posts', function (Blueprint $table) {
-			$table->increments('id');
+        Schema::create('posts', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('admin_id')->unsigned()->nullable();
             $table->integer('category_id')->unsigned()->default(1);
-			$table->string('title')->nullable();
-			$table->string('content')->nullable();
-			$table->string('thumb_img_path')->nullable();
-			$table->integer('views')->unsigned()->default(0);
-			$table->string('publication_status')->default('draft'); // public|private|draft
-			$table->dateTime('publication_date')->nullable();
-			$table->timestamps();
-			$table->softDeletes();
+            $table->string('title')->nullable();
+            $table->string('content')->nullable();
+            $table->string('thumb_img_path')->nullable();
+            $table->integer('views')->unsigned()->default(0);
+            $table->string('publication_status')->default('draft'); // public|private|draft
+            $table->dateTime('publication_date')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
 
-			$table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
-			$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-		});
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+        });
 
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
@@ -46,36 +44,34 @@ class CreateRelatedPostTables extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
 
-		Schema::create('tags', function (Blueprint $table) {
-			$table->increments('id');
-			$table->string('name');
-			$table->timestamps();
-			$table->softDeletes();
-		});
+        Schema::create('tags', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+            $table->softDeletes();
+        });
 
-		Schema::create('tag_post', function (Blueprint $table) {
-			$table->increments('id');
-			$table->integer('tag_id')->unsigned();
-			$table->integer('post_id')->unsigned();
-			$table->timestamps();
-			$table->softDeletes();
+        Schema::create('tag_post', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('tag_id')->unsigned();
+            $table->integer('post_id')->unsigned();
+            $table->timestamps();
+            $table->softDeletes();
 
-			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-			$table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-		});
-	}
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+        });
+    }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
-		Schema::drop('tag_post');
-		Schema::drop('posts');
-		Schema::drop('categories');
-		Schema::drop('comments');
-		Schema::drop('tags');
+        Schema::drop('tag_post');
+        Schema::drop('posts');
+        Schema::drop('categories');
+        Schema::drop('comments');
+        Schema::drop('tags');
     }
 }

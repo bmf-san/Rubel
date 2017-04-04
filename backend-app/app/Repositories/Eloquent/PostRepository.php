@@ -203,7 +203,7 @@ class PostRepository implements PostRepositoryContract
             'thumb_img_path' => $post->thumb_img_path,
             'publication_status' => $post->publication_status,
             'tags' => $post->tags,
-            'publication_date' => $post->publication_date->format('Y-m-d H:i:s'),
+            'publication_date' => $post->publication_date,
         ];
 
          return $post_array;
@@ -230,7 +230,7 @@ class PostRepository implements PostRepositoryContract
                  'thumb_img_path' => $post->thumb_img_path,
                  'publication_status' => $post->publication_status,
                  'tags' => $post->tags,
-                 'publication_date' => $post->publication_date->format('Y-m-d H:i:s'),
+                 'publication_date' => $post->publication_date,
              ];
          }
 
