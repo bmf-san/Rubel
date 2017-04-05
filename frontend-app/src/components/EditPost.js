@@ -5,6 +5,7 @@ import ReactTags from 'react-tag-autocomplete';
 import {
   editPost,
   fetchPost,
+  fetchInitPost,
   fetchTags,
   fetchCompleteTags,
   suggestionTags,
@@ -16,16 +17,12 @@ import {
 import {Link} from 'react-router';
 
 class EditPost extends Component {
-  onSubmit(props) {
-    this.props.editPost(props).then(() => {
-      // this.context.router.push('/');  // TODO: change this path.
-    })
-  }
-
   componentWillMount() {
     const id = this.props.params.id
-
-    this.props.fetchPost(id);
+    this.props.fetchPost(id).then((res) => {
+      this.props.updateMarkdown(res.payload.data.content);
+    });
+    this.props.fetchInitPost(id);
     this.props.fetchTags();
     this.props.fetchCompleteTags(id);
     this.props.fetchCategories();
@@ -43,10 +40,11 @@ class EditPost extends Component {
       "publication_status": props.publication_status
     };
 
+    console.log(data);
+
     return editPost(data).then((res) => {
       if (res.error) {
         const validation_msg = res.payload.response.data.messages
-
         throw new SubmissionError({
           title: [validation_msg.title],
           content: [validation_msg.content]
@@ -146,7 +144,6 @@ class EditPost extends Component {
     const {addCompleteTags} = this.props;
 
     addCompleteTags(props);
-    this.onSubmit(this.props);
   }
 
   handleUpdateMarkdown(e) {
@@ -167,18 +164,18 @@ class EditPost extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field onBlur={handleSubmit(this.onSubmit.bind(this))} label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
+          <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
           <div>
             <label>Tag</label>
             <div>
-              <ReactTags onBlur={handleSubmit(this.onSubmit.bind(this))} tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
+              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
             </div>
           </div>
-          <Field onBlur={handleSubmit(this.onSubmit.bind(this))} label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
+          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
           <div dangerouslySetInnerHTML={{
             __html: html
           }}></div>
-          <Field onBlur={handleSubmit(this.onSubmit.bind(this))} label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
+          <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
           <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
           <button type="submit">Submit</button>
         </form>
@@ -200,23 +197,13 @@ const validate = props => {
 const form = reduxForm({form: 'NewPostForm', validate})(EditPost)
 
 function mapStateToProps(state) {
-  // TODO update initialValues
-  // console.log(state.posts);
-
-  return {
-    posts: state.posts,
-    tags: state.tags,
-    categories: state.categories,
-    initialValues: {
-      category_id: 1,
-      publication_status: 'draft'
-    }
-  }
+  return {posts: state.posts, tags: state.tags, categories: state.categories, initialValues: state.posts.init_post}
 }
 
 export default connect(mapStateToProps, {
   editPost,
   fetchPost,
+  fetchInitPost,
   fetchTags,
   fetchCompleteTags,
   deleteCompleteTags,

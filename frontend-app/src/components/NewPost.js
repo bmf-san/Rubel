@@ -134,7 +134,6 @@ class NewPost extends Component {
     const {addCompleteTags} = this.props;
 
     addCompleteTags(props);
-    this.onSubmit(this.props);
   }
 
   handleUpdateMarkdown(e) {
@@ -155,18 +154,18 @@ class NewPost extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field onBlur={handleSubmit(this.onSubmit.bind(this))} label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
+          <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
           <div>
             <label>Tag</label>
             <div>
-              <ReactTags onBlur={handleSubmit(this.onSubmit.bind(this))} tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
+              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
             </div>
           </div>
-          <Field onBlur={handleSubmit(this.onSubmit.bind(this))} label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
+          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
           <div dangerouslySetInnerHTML={{
             __html: html
           }}></div>
-          <Field onBlur={handleSubmit(this.onSubmit.bind(this))} label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
+          <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
           <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
           <button type="submit">Submit</button>
         </form>

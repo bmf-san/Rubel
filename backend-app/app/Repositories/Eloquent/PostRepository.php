@@ -77,9 +77,10 @@ class PostRepository implements PostRepositoryContract
             } else {
                 $tag_id_array = $exist_tag_id_array;
             }
+            $post->tags()->sync($tag_id_array);
+        } else {
+            $post->tags()->sync($request->tags);
         }
-
-        $post->tags()->sync($tag_id_array);
 
         return ['id' => $post->id];
     }
@@ -140,9 +141,10 @@ class PostRepository implements PostRepositoryContract
             } else {
                 $tag_id_array = $exist_tag_id_array;
             }
+            $post->tags()->sync($tag_id_array);
+        } else {
+            $post->tags()->sync($request->tags);
         }
-
-        $post->tags()->sync($tag_id_array);
 
         return ['id' => $post->id];
     }
@@ -196,6 +198,7 @@ class PostRepository implements PostRepositoryContract
          $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
 
          $post_array = [
+            'id' => $post->id,
             'admin' => $post->admin,
             'category' => $post->category,
             'title' => $post->title,

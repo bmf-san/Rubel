@@ -5,6 +5,7 @@ export const UPDATE_MARKDOWN = "UPDATE_MARKDOWN";
 export const EDIT_POST = "EDIT_POST";
 export const FETCH_POSTS = "FETCH_POSTS";
 export const FETCH_POST = "FETCH_POST";
+export const FETCH_INIT_POST = "FETCH_INIT_POST";
 export const CREATE_CATEGORY = "CREATE_CATEGORY";
 export const EDIT_CATEGORY = "EDIT_CATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
@@ -45,6 +46,12 @@ export function fetchPost(id) {
   const request = axios.get(`${ROOT_URL}/post/${id}`);
 
   return {type: FETCH_POST, payload: request};
+}
+
+export function fetchInitPost(id) {
+  const request = axios.get(`${ROOT_URL}/post/${id}`);
+
+  return {type: FETCH_INIT_POST, payload: request};
 }
 
 export function createCategory(props) {

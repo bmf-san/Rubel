@@ -25,7 +25,7 @@ class EditPostRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->publication_status == 'public') {
+        if ($this->publication_status != 'draft') {
             return [
                 'title' => 'required',
                 'content' => 'required',
