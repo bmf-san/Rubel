@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import ReactTags from 'react-tag-autocomplete';
 import {
   editPost,
+  deletePost,
   fetchPost,
   fetchInitPost,
   fetchTags,
@@ -18,11 +19,15 @@ import {Link} from 'react-router';
 
 class EditPost extends Component {
   componentWillMount() {
+    const {initialize, formValues, filtersDefaults} = this.props;
+    formValues === undefined && initialize(filtersDefaults);
+
     const id = this.props.params.id
+
     this.props.fetchPost(id).then((res) => {
       this.props.updateMarkdown(res.payload.data.content);
     });
-    this.props.fetchInitPost(id);
+    this.props.fetchInitPost(id)
     this.props.fetchTags();
     this.props.fetchCompleteTags(id);
     this.props.fetchCategories();
@@ -40,8 +45,6 @@ class EditPost extends Component {
       "publication_status": props.publication_status
     };
 
-    console.log(data);
-
     return editPost(data).then((res) => {
       if (res.error) {
         const validation_msg = res.payload.response.data.messages
@@ -54,6 +57,19 @@ class EditPost extends Component {
         this.context.router.push(`/dashboard/edit-post/${id}`);
       }
     })
+  }
+
+  handleDeletePost() {
+    const id = this.props.params.id
+    if (window.confirm('Are you sure you want to delete?')) {
+      return this.props.deletePost(id).then((res) => {
+        if (res.error) {
+          console.log('Error!');
+        } else {
+          this.context.router.push(`/dashboard/posts`);
+        }
+      })
+    }
   }
 
   renderTitleField({
@@ -163,6 +179,7 @@ class EditPost extends Component {
 
     return (
       <div>
+        <button onClick={this.handleDeletePost.bind(this)}>Delete</button>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
           <div>
@@ -202,6 +219,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   editPost,
+  deletePost,
   fetchPost,
   fetchInitPost,
   fetchTags,

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const CREATE_POST = "CREATE_POST";
+export const DELETE_POST = "DELETE_POST";
 export const UPDATE_MARKDOWN = "UPDATE_MARKDOWN";
 export const INIT_MARKDOWN = "INIT_MARKDOWN";
 export const EDIT_POST = "EDIT_POST";
@@ -25,6 +26,12 @@ export function createPost(props) {
   const request = axios.post(`${ROOT_URL}/admin/post/create`, props);
 
   return {type: CREATE_POST, payload: request};
+}
+
+export function deletePost(id) {
+  const request = axios.post(`${ROOT_URL}/admin/post/${id}/delete`);
+
+  return {type: DELETE_POST, payload: request};
 }
 
 export function updateMarkdown(props) {
