@@ -28,7 +28,7 @@ class Categories extends Component {
     });
   }
 
-  handleDelete(props) {
+  handleCategoryDelete(props) {
     const {deleteCategory, fetchCategories} = this.props;
 
     if (window.confirm('Are you sure you want to delete this category?')) {
@@ -42,7 +42,7 @@ class Categories extends Component {
   renderDeleteBtn(id) {
     if (id !== category_id_of_uncategorized) {
       return (
-        <button onClick={this.handleDelete.bind(this, id)}>DELETE</button>
+        <button onClick={this.handleCategoryDelete.bind(this, id)}>DELETE</button>
       );
     }
   }

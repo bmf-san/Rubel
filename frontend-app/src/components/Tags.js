@@ -5,7 +5,7 @@ import {editTag, deleteTag, fetchTags} from '../actions/index';
 import {Link} from 'react-router';
 
 class Tags extends Component {
-  handleDelete(props) {
+  handleTagDelete(props) {
     const {deleteTag, fetchTags} = this.props;
 
     if (window.confirm('Are you sure you want to delete this tag?')) {
@@ -22,7 +22,7 @@ class Tags extends Component {
 
   renderDeleteBtn(id) {
     return (
-      <button onClick={this.handleDelete.bind(this, id)}>DELETE</button>
+      <button onClick={this.handleTagDelete.bind(this, id)}>DELETE</button>
     )
   }
 
