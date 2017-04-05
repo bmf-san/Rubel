@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const CREATE_POST = "CREATE_POST";
 export const UPDATE_MARKDOWN = "UPDATE_MARKDOWN";
+export const INIT_MARKDOWN = "INIT_MARKDOWN";
 export const EDIT_POST = "EDIT_POST";
 export const FETCH_POSTS = "FETCH_POSTS";
 export const FETCH_POST = "FETCH_POST";
@@ -27,6 +28,10 @@ export function createPost(props) {
 
 export function updateMarkdown(props) {
   return {type: UPDATE_MARKDOWN, payload: props};
+}
+
+export function initMarkdown() {
+  return {type: INIT_MARKDOWN, payload: null};
 }
 
 export function editPost(props) {

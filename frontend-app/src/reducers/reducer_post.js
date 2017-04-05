@@ -1,7 +1,7 @@
 import marked from 'marked';
 import hljs from 'highlight.js';
 
-import {FETCH_POSTS, FETCH_POST, FETCH_INIT_POST, UPDATE_MARKDOWN} from '../actions/index';
+import {FETCH_POSTS, FETCH_POST, FETCH_INIT_POST, UPDATE_MARKDOWN, INIT_MARKDOWN} from '../actions/index';
 
 const INITIAL_STATE = {
   all: [],
@@ -50,6 +50,12 @@ export default function(state = INITIAL_STATE, action) {
       return {
         ...state,
         markdown: html
+      }
+
+    case INIT_MARKDOWN:
+      return {
+        ...state,
+        markdown: null
       }
 
     default:

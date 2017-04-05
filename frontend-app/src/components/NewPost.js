@@ -9,7 +9,8 @@ import {
   deleteCompleteTags,
   addCompleteTags,
   fetchCategories,
-  updateMarkdown
+  updateMarkdown,
+  initMarkdown
 } from '../actions/index';
 import {Link} from 'react-router';
 
@@ -17,6 +18,7 @@ class NewPost extends Component {
   componentWillMount() {
     this.props.fetchTags();
     this.props.fetchCategories();
+    this.props.initMarkdown();
   }
 
   onSubmit(props) {
@@ -204,5 +206,6 @@ export default connect(mapStateToProps, {
   deleteCompleteTags,
   addCompleteTags,
   fetchCategories,
-  updateMarkdown
+  updateMarkdown,
+  initMarkdown
 })(form);
