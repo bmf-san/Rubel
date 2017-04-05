@@ -10,7 +10,6 @@ class Posts extends Component {
   }
 
   renderPosts() {
-    console.log(this.props.posts.length);
     return this.props.posts.map((post) => {
       let tags = [];
 

@@ -186,18 +186,18 @@ class PostRepository implements PostRepositoryContract
         return [];
     }
 
-     /**
-      * Get a single post.
-      *
-      * @param  int  $id
-      *
-      * @return array  $post_array
-      */
-     public function getPost(int $id)
-     {
-         $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
+    /**
+     * Get a single post.
+     *
+     * @param int $id
+     *
+     * @return array $post_array
+     */
+    public function getPost(int $id)
+    {
+        $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
 
-         $post_array = [
+        $post_array = [
             'id' => $post->id,
             'admin' => $post->admin,
             'category' => $post->category,
@@ -209,34 +209,34 @@ class PostRepository implements PostRepositoryContract
             'publication_date' => $post->publication_date,
         ];
 
-         return $post_array;
-     }
+        return $post_array;
+    }
 
-     /**
-      * Get posts.
-      *
-      * @return array  $post_array
-      */
-     public function getPosts()
-     {
-         $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
+    /**
+     * Get posts.
+     *
+     * @return array $post_array
+     */
+    public function getPosts()
+    {
+        $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
 
-         $post_array = [];
+        $post_array = [];
 
-         foreach ($posts as $post) {
-             $post_array[] = [
-                 'id' => $post->id,
-                 'admin' => $post->admin,
-                 'category' => $post->category,
-                 'title' => $post->title,
-                 'content' => $post->content,
-                 'thumb_img_path' => $post->thumb_img_path,
-                 'publication_status' => $post->publication_status,
-                 'tags' => $post->tags,
-                 'publication_date' => $post->publication_date,
-             ];
-         }
+        foreach ($posts as $post) {
+            $post_array[] = [
+                'id' => $post->id,
+                'admin' => $post->admin,
+                'category' => $post->category,
+                'title' => $post->title,
+                'content' => $post->content,
+                'thumb_img_path' => $post->thumb_img_path,
+                'publication_status' => $post->publication_status,
+                'tags' => $post->tags,
+                'publication_date' => $post->publication_date,
+            ];
+        }
 
-         return $post_array;
-     }
+        return $post_array;
+    }
 }
