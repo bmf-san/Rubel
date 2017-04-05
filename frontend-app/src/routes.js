@@ -19,5 +19,6 @@ export default(
     <Route path="/dashboard/categories" component={Categories}/>
     <Route path="/dashboard/tags" component={Tags}/>
     <Route path="/dashboard/config" component={Config}/>
+    <Route path="*" component={Config}/>
   </Route>
 );

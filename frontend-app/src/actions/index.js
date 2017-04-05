@@ -12,6 +12,7 @@ export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const EDIT_TAG = "EDIT_TAG";
 export const DELETE_TAG = "DELETE_TAG";
 export const FETCH_TAGS = "FETCH_TAGS";
+export const FETCH_COMPLETE_TAGS = "FETCH_COMPLETE_TAGS";
 export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS";
 export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 
@@ -27,7 +28,8 @@ export function updateMarkdown(props) {
   return {type: UPDATE_MARKDOWN, payload: props};
 }
 
-export function editPost(props, id) {
+export function editPost(props) {
+  const id = props.id
   const request = axios.post(`${ROOT_URL}/admin/post/${id}/edit`, props);
 
   return {type: EDIT_POST, payload: request};
@@ -87,6 +89,12 @@ export function fetchTags() {
   const request = axios.get(`${ROOT_URL}/tags`);
 
   return {type: FETCH_TAGS, payload: request}
+}
+
+export function fetchCompleteTags(id) {
+  const request = axios.get(`${ROOT_URL}/post/${id}`);
+
+  return {type: FETCH_COMPLETE_TAGS, payload: request};
 }
 
 export function deleteCompleteTags(props) {

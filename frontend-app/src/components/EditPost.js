@@ -6,6 +6,7 @@ import {
   editPost,
   fetchPost,
   fetchTags,
+  fetchCompleteTags,
   suggestionTags,
   deleteCompleteTags,
   addCompleteTags,
@@ -22,15 +23,19 @@ class EditPost extends Component {
   }
 
   componentWillMount() {
+    const id = this.props.params.id
+
+    this.props.fetchPost(id);
     this.props.fetchTags();
+    this.props.fetchCompleteTags(id);
     this.props.fetchCategories();
-    this.props.fetchPost(this.props.params.id);
   }
 
   onSubmit(props) {
     const {editPost, deleteCompleteTags, reset} = this.props;
 
     const data = {
+      "id": this.props.params.id,
       "title": props.title,
       "tags": this.props.tags.complete_tags,
       "category_id": props.category_id,
@@ -38,9 +43,7 @@ class EditPost extends Component {
       "publication_status": props.publication_status
     };
 
-    const id = this.props.params.id
-
-    return editPost(data, id).then((res) => {
+    return editPost(data).then((res) => {
       if (res.error) {
         const validation_msg = res.payload.response.data.messages
 
@@ -49,12 +52,6 @@ class EditPost extends Component {
           content: [validation_msg.content]
         });
       } else {
-        // TODO Maybe these logics are not been required
-        // for (let i = -1; i < this.props.tags.complete_tags.length; i++) { // XXX why it works by -1 ??
-        //   deleteCompleteTags(i);
-        // }
-        // reset();
-
         const id = res.payload.data.id
         this.context.router.push(`/dashboard/edit-post/${id}`);
       }
@@ -202,9 +199,9 @@ const validate = props => {
 
 const form = reduxForm({form: 'NewPostForm', validate})(EditPost)
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   // TODO update initialValues
-  console.log(ownProps);
+  // console.log(state.posts);
 
   return {
     posts: state.posts,
@@ -221,6 +218,7 @@ export default connect(mapStateToProps, {
   editPost,
   fetchPost,
   fetchTags,
+  fetchCompleteTags,
   deleteCompleteTags,
   addCompleteTags,
   fetchCategories,
