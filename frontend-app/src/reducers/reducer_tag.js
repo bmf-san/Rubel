@@ -1,4 +1,4 @@
-import {FETCH_TAGS, FETCH_COMPLETE_TAGS, DELETE_COMPLETE_TAGS, ADD_COMPLETE_TAGS} from '../actions/index';
+import {FETCH_TAGS, FETCH_COMPLETE_TAGS, INIT_COMPLETE_TAGS, DELETE_COMPLETE_TAGS, ADD_COMPLETE_TAGS} from '../actions/index';
 
 const INITIAL_STATE = {
   all: [],
@@ -17,6 +17,12 @@ export default function(state = INITIAL_STATE, action) {
       return {
         ...state,
         complete_tags: action.payload.data.tags
+      }
+
+    case INIT_COMPLETE_TAGS:
+      return {
+        ...state,
+        complete_tags: []
       }
 
     case DELETE_COMPLETE_TAGS:

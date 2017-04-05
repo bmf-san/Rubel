@@ -15,6 +15,7 @@ export const EDIT_TAG = "EDIT_TAG";
 export const DELETE_TAG = "DELETE_TAG";
 export const FETCH_TAGS = "FETCH_TAGS";
 export const FETCH_COMPLETE_TAGS = "FETCH_COMPLETE_TAGS";
+export const INIT_COMPLETE_TAGS = "INIT_COMPLETE_TAGS";
 export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS";
 export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 
@@ -107,6 +108,10 @@ export function fetchCompleteTags(id) {
   const request = axios.get(`${ROOT_URL}/post/${id}`);
 
   return {type: FETCH_COMPLETE_TAGS, payload: request};
+}
+
+export function initCompleteTags() {
+  return {type: INIT_COMPLETE_TAGS, payload: []};
 }
 
 export function deleteCompleteTags(props) {
