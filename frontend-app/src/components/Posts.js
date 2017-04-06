@@ -7,11 +7,22 @@ import {Link} from 'react-router';
 class Posts extends Component {
   componentWillMount() {
     const page = this.props.location.query.page;
+
+    this.props.fetchPosts(page);
+  }
+
+  componentDidUpdate(prevProps) {
+    const page = this.props.location.query.page;
+
+    if (prevProps.location.query.page === page) {
+      return false
+    }
+
     this.props.fetchPosts(page);
   }
 
   renderPosts() {
-    return this.props.posts.map((post) => {
+    return this.props.posts.records.map((post) => {
       let tags = [];
 
       for (let i in post.tags) {
@@ -32,12 +43,59 @@ class Posts extends Component {
     });
   }
 
+  renderPagination() {
+    const pagination = this.props.posts.pagination
+
+    const pages = [];
+
+    for (let i = 1; i <= pagination.last_page; i++) {
+      pages.push(i == pagination.current_page
+        ? <li key={i}>
+            Current {i}
+          </li>
+        : <li key={i}>
+          <Link to={`/dashboard/posts?page=${i}`}>{i}</Link>
+        </li>);
+    }
+
+    const prev = () => {
+      if (pagination.current_page > 1) {
+        return (
+          <li>prev</li>
+        )
+      }
+    }
+
+    const next = () => {
+      if (pagination.current_page < pagination.last_page) {
+        return (
+          <li>next</li>
+        )
+      }
+    }
+
+    return (
+      <ul>
+        {prev()}
+        {pages}
+        {next()}
+      </ul>
+    );
+
+    // return (
+    //   <Link to={`/dashboard/edit-post/${post.id}`}>
+    //     <h1>{post.title}</h1>
+    //   </Link>
+    // )
+  }
+
   render() {
     return (
       <div>
         <h3>Posts</h3>
         <ul>
           {this.renderPosts()}
+          {this.renderPagination()}
         </ul>
       </div>
     );
@@ -45,7 +103,7 @@ class Posts extends Component {
 }
 
 function mapStateToProps(state) {
-  return {posts: state.posts.all};
+  return {posts: state.posts};
 }
 
 export default connect(mapStateToProps, {fetchPosts})(Posts);

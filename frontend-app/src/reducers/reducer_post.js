@@ -4,7 +4,8 @@ import hljs from 'highlight.js';
 import {FETCH_POSTS, FETCH_POST, FETCH_INIT_POST, UPDATE_MARKDOWN, INIT_MARKDOWN} from '../actions/index';
 
 const INITIAL_STATE = {
-  all: [],
+  records: [],
+  pagination: [],
   post: null,
   init_post: null,
   markdown: null
@@ -13,9 +14,18 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_POSTS:
+      const original_data = action.payload.data
+
+      const records = original_data.data
+      const pagination = () => {
+        delete original_data.data;
+        return original_data;
+      }
+
       return {
         ...state,
-        all: action.payload.data
+        records: records,
+        pagination: pagination()
       };
 
     case FETCH_POST:
