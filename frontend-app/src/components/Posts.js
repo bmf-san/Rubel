@@ -61,7 +61,9 @@ class Posts extends Component {
     const prev = () => {
       if (pagination.current_page > 1) {
         return (
-          <li>prev</li>
+          <li>
+            <Link to={`/dashboard/posts?page=${pagination.current_page - 1}`}>Prev</Link>
+          </li>
         )
       }
     }
@@ -69,7 +71,7 @@ class Posts extends Component {
     const next = () => {
       if (pagination.current_page < pagination.last_page) {
         return (
-          <li>next</li>
+          <Link to={`/dashboard/posts?page=${pagination.current_page + 1}`}>Next</Link>
         )
       }
     }
@@ -81,12 +83,6 @@ class Posts extends Component {
         {next()}
       </ul>
     );
-
-    // return (
-    //   <Link to={`/dashboard/edit-post/${post.id}`}>
-    //     <h1>{post.title}</h1>
-    //   </Link>
-    // )
   }
 
   render() {
