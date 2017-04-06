@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     protected $hidden = [
-        'pivot'
+        'pivot',
     ];
 
     protected $dates = [
-        'created_at', 'updated_at', 'deleted_at'
+        'created_at', 'updated_at', 'deleted_at',
     ];
 
     public function posts()
