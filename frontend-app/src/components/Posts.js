@@ -45,11 +45,13 @@ class Posts extends Component {
 
   renderPagination() {
     const pagination = this.props.posts.pagination
+    const last_page = pagination.last_page
+    const current_page = pagination.current_page
 
     const pages = [];
 
-    for (let i = 1; i <= pagination.last_page; i++) {
-      pages.push(i == pagination.current_page
+    for (let i = 1; i <= last_page; i++) {
+      pages.push(i == current_page
         ? <li key={i}>
             Current {i}
           </li>
@@ -59,7 +61,7 @@ class Posts extends Component {
     }
 
     const prev = () => {
-      if (pagination.current_page > 1) {
+      if (current_page > 1) {
         return (
           <li>
             <Link to={`/dashboard/posts?page=${pagination.current_page - 1}`}>Prev</Link>
@@ -69,7 +71,7 @@ class Posts extends Component {
     }
 
     const next = () => {
-      if (pagination.current_page < pagination.last_page) {
+      if (current_page < last_page) {
         return (
           <Link to={`/dashboard/posts?page=${pagination.current_page + 1}`}>Next</Link>
         )
