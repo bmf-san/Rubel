@@ -197,19 +197,7 @@ class PostRepository implements PostRepositoryContract
     {
         $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
 
-        $post_array = [
-            'id' => $post->id,
-            'admin' => $post->admin,
-            'category' => $post->category,
-            'title' => $post->title,
-            'content' => $post->content,
-            'thumb_img_path' => $post->thumb_img_path,
-            'publication_status' => $post->publication_status,
-            'tags' => $post->tags,
-            'publication_date' => $post->publication_date,
-        ];
-
-        return $post_array;
+        return $post;
     }
 
     /**
@@ -221,22 +209,6 @@ class PostRepository implements PostRepositoryContract
     {
         $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
 
-        $post_array = [];
-
-        foreach ($posts as $post) {
-            $post_array[] = [
-                'id' => $post->id,
-                'admin' => $post->admin,
-                'category' => $post->category,
-                'title' => $post->title,
-                'content' => $post->content,
-                'thumb_img_path' => $post->thumb_img_path,
-                'publication_status' => $post->publication_status,
-                'tags' => $post->tags,
-                'publication_date' => $post->publication_date,
-            ];
-        }
-
-        return $post_array;
+        return $posts;
     }
 }

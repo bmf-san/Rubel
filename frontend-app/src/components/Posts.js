@@ -6,7 +6,8 @@ import {Link} from 'react-router';
 
 class Posts extends Component {
   componentWillMount() {
-    this.props.fetchPosts();
+    const page = this.props.location.query.page;
+    this.props.fetchPosts(page);
   }
 
   renderPosts() {

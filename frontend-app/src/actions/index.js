@@ -49,8 +49,8 @@ export function editPost(props) {
   return {type: EDIT_POST, payload: request};
 }
 
-export function fetchPosts() {
-  const request = axios.get(`${ROOT_URL}/posts`);
+export function fetchPosts(page) {
+  const request = axios.get(`${ROOT_URL}/posts?page=${page}`);
 
   return {type: FETCH_POSTS, payload: request};
 }
