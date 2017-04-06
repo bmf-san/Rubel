@@ -41,20 +41,21 @@ class Posts extends Component {
 
       for (let i in post.tags) {
         tags.push(
-          <p key={i}>{post.tags[i].name}</p>
+          <span key={i}>{post.tags[i].name}</span>
         );
       }
 
       return (
         <li key={post.id}>
           <Link to={`/dashboard/edit-post/${post.id}`}>
-            <h1>{post.title}</h1>
+            <h1>Title: {post.title}</h1>
           </Link>
+          <p>Category: {post.category.name}</p>
+          <p>Tags: {tags}</p>
+          <p>Status: {post.publication_status}</p>
           <button onClick={() => {
             this.handleDeletePost(post.id)
           }}>Delete</button>
-          <p>{post.category.name}</p>
-          {tags}
         </li>
       );
     });
