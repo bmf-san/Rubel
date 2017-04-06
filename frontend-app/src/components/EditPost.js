@@ -61,6 +61,7 @@ class EditPost extends Component {
 
   handleDeletePost() {
     const id = this.props.params.id
+
     if (window.confirm('Are you sure you want to delete?')) {
       return this.props.deletePost(id).then((res) => {
         if (res.error) {

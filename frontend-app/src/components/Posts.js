@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchPosts} from '../actions/index';
+import {fetchPosts, deletePost} from '../actions/index';
 import {Link} from 'react-router';
 
 class Posts extends Component {
@@ -21,6 +21,20 @@ class Posts extends Component {
     this.props.fetchPosts(page);
   }
 
+  handleDeletePost(id) {
+    const page = this.props.location.query.page
+
+    if (window.confirm('Are you sure you want to delete?')) {
+      return this.props.deletePost(id).then((res) => {
+        if (res.error) {
+          console.log('Error!');
+        } else {
+          this.props.fetchPosts(page);
+        }
+      })
+    }
+  }
+
   renderPosts() {
     return this.props.posts.records.map((post) => {
       let tags = [];
@@ -36,6 +50,9 @@ class Posts extends Component {
           <Link to={`/dashboard/edit-post/${post.id}`}>
             <h1>{post.title}</h1>
           </Link>
+          <button onClick={() => {
+            this.handleDeletePost(post.id)
+          }}>Delete</button>
           <p>{post.category.name}</p>
           {tags}
         </li>
@@ -104,4 +121,4 @@ function mapStateToProps(state) {
   return {posts: state.posts};
 }
 
-export default connect(mapStateToProps, {fetchPosts})(Posts);
+export default connect(mapStateToProps, {fetchPosts, deletePost})(Posts);
