@@ -1,7 +1,11 @@
 **Under Development**
 
-# Laravel React Blog Boilerplate
-This is a blog boilerplate working with Laravel, React.
+# Rubel
+Rubel is the cms working with Laravel and React.
+
+# Features
++ Easy to use
++ Developer friendly
 
 # Architecture
 + PHP7
