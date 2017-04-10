@@ -29,7 +29,7 @@ export function createPost(props) {
 }
 
 export function deletePost(id) {
-  const request = axios.post(`${ROOT_URL}/admin/post/${id}/delete`);
+  const request = axios.delete(`${ROOT_URL}/admin/post/${id}/delete`);
 
   return {type: DELETE_POST, payload: request};
 }
@@ -44,7 +44,7 @@ export function initMarkdown() {
 
 export function editPost(props) {
   const id = props.id
-  const request = axios.post(`${ROOT_URL}/admin/post/${id}/edit`, props);
+  const request = axios.patch(`${ROOT_URL}/admin/post/${id}/edit`, props);
 
   return {type: EDIT_POST, payload: request};
 }
@@ -74,14 +74,14 @@ export function createCategory(props) {
 }
 
 export function editCategory(props) {
-  const request = axios.post(`${ROOT_URL}/admin/category/${id}/edit`, props);
+  const request = axios.patch(`${ROOT_URL}/admin/category/${id}/edit`, props);
 
   return {type: EDIT_CATEGORY, payload: request};
 }
 
 export function deleteCategory(props) {
   const post_id = props;
-  const request = axios.post(`${ROOT_URL}/admin/category/${post_id}/delete`, props);
+  const request = axios.delete(`${ROOT_URL}/admin/category/${post_id}/delete`, props);
 
   return {type: DELETE_CATEGORY, payload: request};
 }
@@ -93,14 +93,14 @@ export function fetchCategories() {
 }
 
 export function editTag(props) {
-  const request = axios.post(`${ROOT_URL}/tag/${id}/edit`, props);
+  const request = axios.patch(`${ROOT_URL}/tag/${id}/edit`, props);
 
   return {type: EDIT_TAG, payload: request}
 }
 
 export function deleteTag(props) {
   const post_id = props;
-  const request = axios.post(`${ROOT_URL}/admin/tag/${post_id}/delete`, props);
+  const request = axios.delte(`${ROOT_URL}/admin/tag/${post_id}/delete`, props);
 
   return {type: DELETE_TAG, payload: request};
 }
