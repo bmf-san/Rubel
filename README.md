@@ -15,6 +15,7 @@ Rubel is the cms working with Laravel and React.
 + redux-form 6.6.1
 + react-router 3.0.2
 + webpack 2.3.2
++ Bulma 0.4.0
 
 
 # Building
