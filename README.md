@@ -10,7 +10,7 @@ This is a blog boilerplate working with Laravel, React.
 + react-redux 5.0.2
 + redux-form 6.6.1
 + react-router 3.0.2
-+ webpack
++ webpack 2.3.2
 
 
 # Building
