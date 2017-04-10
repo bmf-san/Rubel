@@ -92,6 +92,10 @@ class Posts extends Component {
         return (
           <Link to={`/dashboard/posts?page=${pagination.current_page - 1}`} className="pagination-previous">Prev</Link>
         )
+      } else {
+        return (
+          <a className="pagination-previous" disabled>Prev</a>
+        )
       }
     }
 
@@ -99,6 +103,10 @@ class Posts extends Component {
       if (current_page < last_page) {
         return (
           <Link to={`/dashboard/posts?page=${pagination.current_page + 1}`} className="pagination-next">Next</Link>
+        )
+      } else {
+        return (
+          <a className="pagination-next" disabled>Next</a>
         )
       }
     }
