@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 export default class App extends React.Component {
   render() {
     return (
-      <div class="columns">
+      <div className="columns">
         <aside className="column is-2 aside hero is-fullheight is-hidden-mobile">
           <div>
             <div className="main">
@@ -49,7 +49,40 @@ export default class App extends React.Component {
           </div>
         </aside>
         <div className="column is-10 admin-panel">
-
+          <nav className="nav has-shadow" id="top">
+            <div className="container">
+              <div className="nav-left">
+                <a className="nav-item" href="../index.html">
+                  <img src={'https://dansup.github.io/bulma-templates/images/bulma.png'} alt="Description"/>
+                </a>
+              </div>
+              <span className="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <div className="nav-right nav-menu is-hidden-tablet">
+                <Link to="/dashboard" className="nav-item is-active">
+                  Dashboard
+                </Link>
+                <Link to="/dashboard/posts" className="item active">
+                  Posts
+                </Link>
+                <Link to="/dashboard/new-post" className="item active">
+                  NewPost
+                </Link>
+                <Link to="/dashboard/categories" className="item active">
+                  Categories
+                </Link>
+                <Link to="/dashboard/tags" className="item active">
+                  Tags
+                </Link>
+                <Link to="/dashboard/config" className="item active">
+                  config
+                </Link>
+              </div>
+            </div>
+          </nav>
           {this.props.children}
         </div>
       </div>

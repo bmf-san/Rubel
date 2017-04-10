@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 
 import App from './components/App';
-import Home from './containers/Home';
+import Dashboard from './containers/Dashboard';
 import Posts from './components/Posts';
 import NewPost from './components/NewPost';
 import EditPost from './components/EditPost';
@@ -12,7 +12,7 @@ import Config from './components/Config';
 
 export default(
   <Route path="/dashboard" component={App}>
-    <IndexRoute component={Home}/>
+    <IndexRoute component={Dashboard}/>
     <Route path="/dashboard/posts" component={Posts}/>
     <Route path="/dashboard/new-post" component={NewPost}/>
     <Route path="/dashboard/edit-post/:id" component={EditPost}/>
