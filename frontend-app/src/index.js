@@ -8,6 +8,8 @@ import promise from 'redux-promise';
 import reducers from './reducers/reducer_root';
 import routes from './routes';
 
+require('../node_modules/bulma/css/bulma.css');
+
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
