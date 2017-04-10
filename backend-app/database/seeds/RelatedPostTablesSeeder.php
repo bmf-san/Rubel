@@ -26,7 +26,7 @@ class RelatedPostTablesSeeder extends Seeder
         ]);
 
         $this->db->table('posts')->insert([
-            'author_id' => 1,
+            'admin_id' => 1,
             'category_id' => 1,
             'title' => 'Title-1',
             'content' => 'This is 1 content.',
@@ -58,7 +58,7 @@ class RelatedPostTablesSeeder extends Seeder
             ]);
 
             $this->db->table('posts')->insert([
-                'author_id' => 1,
+                'admin_id' => 1,
                 'category_id' => $i,
                 'title' => "Title-{$i}",
                 'content' => "This is {$i} content.",
