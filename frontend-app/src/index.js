@@ -11,6 +11,7 @@ import routes from './routes';
 require('../node_modules/bulma/css/bulma.css');
 require('../node_modules/highlight.js/styles/atom-one-dark.css');
 require('../node_modules/font-awesome/css/font-awesome.css');
+require('./styles/admin.css');
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
