@@ -156,24 +156,34 @@ class NewPost extends Component {
     const html = this.props.posts.markdown;
 
     return (
-      <div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
-          <div>
-            <label>Tag</label>
+      <section className="section">
+        <div className="container">
+          <div className="heading">
+            <h1 className="title">NewPost</h1>
+            <h2 className="subtitle">
+              Here is perfomance infomation.
+            </h2>
             <div>
-              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
+              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
+                <div>
+                  <label>Tag</label>
+                  <div>
+                    <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
+                  </div>
+                </div>
+                <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
+                <div dangerouslySetInnerHTML={{
+                  __html: html
+                }}></div>
+                <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
+                <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
+                <button type="submit">Submit</button>
+              </form>
             </div>
           </div>
-          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
-          <div dangerouslySetInnerHTML={{
-            __html: html
-          }}></div>
-          <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
-          <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+        </div>
+      </section>
     );
   }
 }

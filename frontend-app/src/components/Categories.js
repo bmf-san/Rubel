@@ -83,15 +83,25 @@ class Categories extends Component {
     const {handleSubmit} = this.props
 
     return (
-      <div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="name" type="text" component={this.renderNameField} placeholder="Category Name"/>
-          <button type="submit">Submit</button>
-        </form>
-        <ul>
-          {this.renderCategories()}
-        </ul>
-      </div>
+      <section className="section">
+        <div className="container">
+          <div className="heading">
+            <h1 className="title">Categories</h1>
+            <h2 className="subtitle">
+              Here is perfomance infomation.
+            </h2>
+            <div>
+              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <Field name="name" type="text" component={this.renderNameField} placeholder="Category Name"/>
+                <button type="submit">Submit</button>
+              </form>
+              <ul>
+                {this.renderCategories()}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
     );
   }
 }
