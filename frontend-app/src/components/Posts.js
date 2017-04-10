@@ -50,15 +50,19 @@ class Posts extends Component {
       }
 
       return (
-        <tr key={post.id} onClick={() => handleLink(post.id)}>
+        <tr key={post.id} onClick={() => {
+          handleLink(post.id);
+        }}>
           <th>{post.id}</th>
           <td>{post.title}</td>
           <td>{post.category.name}</td>
           <td>{tags}</td>
           <td>{post.publication_status}</td>
           <td>
-            <button onClick={() => {
-              this.handleDeletePost(post.id)
+            <button onClick={(e) => {
+              e.stopPropagation();
+              e.nativeEvent.stopImmediatePropagation();
+              this.handleDeletePost(post.id);
             }}>Delete</button>
           </td>
         </tr>
@@ -76,19 +80,17 @@ class Posts extends Component {
     for (let i = 1; i <= last_page; i++) {
       pages.push(i == current_page
         ? <li key={i}>
-            Current {i}
+            <Link to={`/dashboard/posts?page=${i}`} className="pagination-link is-current">{i}</Link>
           </li>
         : <li key={i}>
-          <Link to={`/dashboard/posts?page=${i}`}>{i}</Link>
+          <Link to={`/dashboard/posts?page=${i}`} className="pagination-link">{i}</Link>
         </li>);
     }
 
     const prev = () => {
       if (current_page > 1) {
         return (
-          <li>
-            <Link to={`/dashboard/posts?page=${pagination.current_page - 1}`}>Prev</Link>
-          </li>
+          <Link to={`/dashboard/posts?page=${pagination.current_page - 1}`} className="pagination-previous">Prev</Link>
         )
       }
     }
@@ -96,17 +98,19 @@ class Posts extends Component {
     const next = () => {
       if (current_page < last_page) {
         return (
-          <Link to={`/dashboard/posts?page=${pagination.current_page + 1}`}>Next</Link>
+          <Link to={`/dashboard/posts?page=${pagination.current_page + 1}`} className="pagination-next">Next</Link>
         )
       }
     }
 
     return (
-      <ul>
+      <nav className="pagination is-centered">
         {prev()}
-        {pages}
         {next()}
-      </ul>
+        <ul className="pagination-list">
+          {pages}
+        </ul>
+      </nav>
     );
   }
 
@@ -119,39 +123,34 @@ class Posts extends Component {
             <h2 className="subtitle">
               Here is perfomance infomation.
             </h2>
-            <div>
-              <h3>Posts</h3>
-              <ul>
-                {this.renderPagination()}
-              </ul>
-            </div>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>TITLE</th>
-                  <th>CATEGORIES</th>
-                  <th>TAGS</th>
-                  <th>STATUS</th>
-                  <th>DELETE</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>ID</th>
-                  <th>TITLE</th>
-                  <th>CATEGORIES</th>
-                  <th>TAGS</th>
-                  <th>STATUS</th>
-                  <th>DELETE</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                {this.renderPosts()}
-              </tbody>
-            </table>
           </div>
         </div>
+        <table className="table is-centered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>TITLE</th>
+              <th>CATEGORIES</th>
+              <th>TAGS</th>
+              <th>STATUS</th>
+              <th>DELETE</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>ID</th>
+              <th>TITLE</th>
+              <th>CATEGORIES</th>
+              <th>TAGS</th>
+              <th>STATUS</th>
+              <th>DELETE</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {this.renderPosts()}
+          </tbody>
+        </table>
+        {this.renderPagination()}
       </section>
     );
   }
