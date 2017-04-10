@@ -59,11 +59,13 @@ class Posts extends Component {
           <td>{tags}</td>
           <td>{post.publication_status}</td>
           <td>
-            <button onClick={(e) => {
+            <span className="icon" onClick={(e) => {
               e.stopPropagation();
               e.nativeEvent.stopImmediatePropagation();
               this.handleDeletePost(post.id);
-            }}>Delete</button>
+            }}>
+              <i className="fa fa-trash-o"></i>
+            </span>
           </td>
         </tr>
       );
