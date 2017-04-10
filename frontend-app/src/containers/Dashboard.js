@@ -14,7 +14,6 @@ export default class Dashboard extends React.Component {
             </h2>
           </div>
         </div>
-
         <div className="hero-foot">
           <nav className="level">
             <div className="level-item has-text-centered">

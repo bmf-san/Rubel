@@ -5,7 +5,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="columns">
+        <div className="columns is-marginless">
           <aside className="column is-2 aside hero is-fullheight is-hidden-mobile">
             <div>
               <div className="main">
@@ -87,7 +87,7 @@ export default class App extends React.Component {
             {this.props.children}
           </div>
         </div>
-        <footer className="footer">
+        <footer className="footer admin-footer">
           <div className="container">
             <div className="has-text-centered">
               <p>

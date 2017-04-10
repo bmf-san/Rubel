@@ -72,3 +72,7 @@ body {
 .hero .tabs ul {
     border-bottom: 1px solid #d3d6db;
 }
+
+.admin-footer {
+    padding: 2rem 1.5rem 1rem;
+}
