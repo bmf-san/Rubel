@@ -54,7 +54,7 @@ export default class App extends React.Component {
               <div className="container">
                 <div className="nav-left">
                   <a className="nav-item" href="../index.html">
-                    <img src={'https://dansup.github.io/bulma-templates/images/bulma.png'} alt="Description"/>
+                    <h1 className="title">Rubel</h1>
                   </a>
                 </div>
                 <span className="nav-toggle">
