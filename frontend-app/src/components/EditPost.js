@@ -83,10 +83,10 @@ class EditPost extends Component {
     }
   }) {
     return (
-      <div>
-        <label>{label}</label>
-        <div>
-          <input {...input} placeholder={label} type={type}/>{touched && ((error && <span>{error}</span>))}
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="control">
+          <input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger")) || 'input'}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
         </div>
       </div>
     )
@@ -96,7 +96,7 @@ class EditPost extends Component {
     const html = this.props.posts.markdown
 
     return (
-      <div dangerouslySetInnerHTML={{
+      <div className="content markdown-area" dangerouslySetInnerHTML={{
         __html: html
       }}></div>
     )
@@ -112,12 +112,17 @@ class EditPost extends Component {
     }
   }) {
     return (
-      <div>
-        <label>{label}</label>
-        <div>
-          <textarea {...input} placeholder={label} cols="30" rows="10"></textarea>
-          {touched && ((error && <span>{error}</span>))}
-          {markdownField}
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="control">
+          <div className="columns">
+            <div className="column">
+              <textarea {...input} placeholder={label} className={touched && ((error && "input is-danger is-resizeless markdown-area")) || 'input is-resizeless markdown-area'}></textarea>{touched && ((error && <span className="help is-danger">{error}</span>))}
+            </div>
+            <div className="column">
+              {markdownField}
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -147,20 +152,27 @@ class EditPost extends Component {
     )
   }
 
-  renderSubmitBtnField({input}) {
+  renderSubmitBtnField({input, handleDeletePost}) {
     return (
-      <div className="field is-grouped is-pulled-right">
-        <div className="control">
-          <span className="select">
-            <select {...input}>
-              <option value="draft">Draft</option>
-              <option value="private">Private</option>
-              <option value="public">Public</option>
-            </select>
-          </span>
+      <div className="field">
+        <div className="field is-grouped is-pulled-left">
+          <div className="control">
+            <button className="button is-danger" onClick={handleDeletePost}>Delete</button>
+          </div>
         </div>
-        <div className="control">
-          <button className="button is-primary">Submit</button>
+        <div className="field is-grouped is-pulled-right">
+          <div className="control">
+            <span className="select">
+              <select {...input}>
+                <option value="draft">Draft</option>
+                <option value="private">Private</option>
+                <option value="public">Public</option>
+              </select>
+            </span>
+          </div>
+          <div className="control">
+            <button className="button is-primary">Submit</button>
+          </div>
         </div>
       </div>
     )
@@ -202,7 +214,6 @@ class EditPost extends Component {
           </div>
         </div>
         <div>
-          <button onClick={this.handleDeletePost.bind(this)}>Delete</button>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
             <div>
@@ -213,7 +224,7 @@ class EditPost extends Component {
             </div>
             <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
             <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
-            <Field name="publication_status" component={this.renderSubmitBtnField}/>
+            <Field name="publication_status" component={this.renderSubmitBtnField} handleDeletePost={this.handleDeletePost.bind(this)}/>
           </form>
         </div>
       </section>

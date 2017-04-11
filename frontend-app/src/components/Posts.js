@@ -37,13 +37,14 @@ class Posts extends Component {
 
   renderPosts() {
     return this.props.posts.records.map((post) => {
-      let tags = [];
-
-      for (let i in post.tags) {
-        tags.push(
-          <span key={i}>{post.tags[i].name}</span>
-        );
-      }
+      // TODO It this necessary?
+      // let tags = [];
+      //
+      // for (let i in post.tags) {
+      //   tags.push(
+      //     <span key={i}>{post.tags[i].name}</span>
+      //   );
+      // }
 
       const handleLink = (id) => {
         this.context.router.push(`/dashboard/edit-post/${id}`);
@@ -56,7 +57,6 @@ class Posts extends Component {
           <th>{post.id}</th>
           <td>{post.title}</td>
           <td>{post.category.name}</td>
-          <td>{tags}</td>
           <td>{post.publication_status}</td>
           <td>
             <span className="icon" onClick={(e) => {
@@ -141,7 +141,6 @@ class Posts extends Component {
               <th>ID</th>
               <th>TITLE</th>
               <th>CATEGORIES</th>
-              <th>TAGS</th>
               <th>STATUS</th>
               <th>DELETE</th>
             </tr>
@@ -151,7 +150,6 @@ class Posts extends Component {
               <th>ID</th>
               <th>TITLE</th>
               <th>CATEGORIES</th>
-              <th>TAGS</th>
               <th>STATUS</th>
               <th>DELETE</th>
             </tr>
