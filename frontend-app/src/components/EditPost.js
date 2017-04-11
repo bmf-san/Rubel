@@ -132,17 +132,16 @@ class EditPost extends Component {
     }
   }) {
     return (
-      <div>
-        <label>{label}</label>
-        <div>
-          {this.props.categories.all.map((category) => {
-            return <div key={category.id}>
-              <input type="radio" {...input} value={category.id} defaultChecked={category.id == input.value
-                ? "checked"
-                : ''}/>
-              <span>{category.name}</span>
-            </div>
-          })}
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="control">
+          <span className="select">
+            <select {...input}>
+              {this.props.categories.all.map((category) => {
+                return <option key={category.id} value={category.id}>{category.name}</option>
+              })}
+            </select>
+          </span>
         </div>
       </div>
     )

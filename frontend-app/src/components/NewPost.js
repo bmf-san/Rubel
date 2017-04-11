@@ -118,14 +118,15 @@ class NewPost extends Component {
   }) {
     return (
       <div className="field">
+        <label className="label">{label}</label>
         <div className="control">
-          {this.props.categories.all.map((category) => {
-            return <label key={category.id} className="radio">
-              <input type="radio" {...input} value={category.id} defaultChecked={category.id == input.value
-                ? "checked"
-                : ''}/> {category.name}
-            </label>
-          })}
+          <span className="select">
+            <select {...input}>
+              {this.props.categories.all.map((category) => {
+                return <option key={category.id} value={category.id}>{category.name}</option>
+              })}
+            </select>
+          </span>
         </div>
       </div>
     )
