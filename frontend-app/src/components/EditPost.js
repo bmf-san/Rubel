@@ -92,9 +92,20 @@ class EditPost extends Component {
     )
   }
 
+  renderMarkdownField() {
+    const html = this.props.posts.markdown
+
+    return (
+      <div dangerouslySetInnerHTML={{
+        __html: html
+      }}></div>
+    )
+  }
+
   renderContentField({
     input,
     label,
+    markdownField,
     meta: {
       touched,
       error
@@ -106,6 +117,7 @@ class EditPost extends Component {
         <div>
           <textarea {...input} placeholder={label} cols="30" rows="10"></textarea>
           {touched && ((error && <span>{error}</span>))}
+          {markdownField}
         </div>
       </div>
     )
@@ -176,8 +188,6 @@ class EditPost extends Component {
       return {id: tag.id, name: tag.name}
     })
 
-    const html = this.props.posts.markdown;
-
     return (
       <section className="section">
         <div className="container">
@@ -198,10 +208,7 @@ class EditPost extends Component {
                 <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
               </div>
             </div>
-            <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
-            <div dangerouslySetInnerHTML={{
-              __html: html
-            }}></div>
+            <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
             <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
             <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
             <button type="submit">Submit</button>

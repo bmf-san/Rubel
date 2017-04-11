@@ -69,9 +69,20 @@ class NewPost extends Component {
     )
   }
 
+  renderMarkdownField() {
+    const html = this.props.posts.markdown
+
+    return (
+      <div dangerouslySetInnerHTML={{
+        __html: html
+      }}></div>
+    )
+  }
+
   renderContentField({
     input,
     label,
+    markdownField,
     meta: {
       touched,
       error
@@ -81,7 +92,7 @@ class NewPost extends Component {
       <div className="field">
         <label className="label">{label}</label>
         <p className="control">
-          <textarea {...input} placeholder={label} className={touched && ((error && "input is-danger")) || 'input'}></textarea>{touched && ((error && <p className="help is-danger">{error}</p>))}
+          <textarea {...input} placeholder={label} className={touched && ((error && "input is-danger")) || 'input'}></textarea>{touched && ((error && <p className="help is-danger">{error}</p>))} {markdownField}
         </p>
       </div>
     )
@@ -112,15 +123,27 @@ class NewPost extends Component {
 
   renderPublicationStatusField({input, label}) {
     return (
-      <div>
-        <label>{label}</label>
-        <div>
-          <select {...input}>
-            <option value="draft">Draft</option>
-            <option value="private">Private</option>
-            <option value="public">Public</option>
-          </select>
-        </div>
+      <div className="field">
+        <label className="label">{label}</label>
+        <p className="control">
+          <span className="select">
+            <select {...input}>
+              <option value="draft">Draft</option>
+              <option value="private">Private</option>
+              <option value="public">Public</option>
+            </select>
+          </span>
+        </p>
+      </div>
+    )
+  }
+
+  renderSubmitBtn() {
+    return (
+      <div className="field is-grouped">
+        <p className="control">
+          <button className="button is-primary">Submit</button>
+        </p>
       </div>
     )
   }
@@ -150,8 +173,6 @@ class NewPost extends Component {
       return {id: tag.id, name: tag.name}
     })
 
-    const html = this.props.posts.markdown;
-
     return (
       <section className="section">
         <div className="container">
@@ -170,16 +191,10 @@ class NewPost extends Component {
               <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
             </div>
           </div>
-          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
-          <div dangerouslySetInnerHTML={{
-            __html: html
-          }}></div>
+          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
           <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
-          <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
-          <button type="submit">Submit</button>
-
+          <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/> {this.renderSubmitBtn()}
         </form>
-
       </section>
     );
   }
