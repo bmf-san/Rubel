@@ -1,24 +1,24 @@
 **Under Development**
 
 # Rubel
+A CMS for Developer.
+
+## Description
 Rubel is the cms working with Laravel and React.
 
-# Features
+***DEMO***
+Coming soon...
+
+## Features
 + Easy to use
 + Developer friendly
 
-# Architecture
+## Requirement
 + PHP7
-+ Laravel 5.3
-+ React 15.4.2
-+ react-redux 5.0.2
-+ redux-form 6.6.1
-+ react-router 3.0.2
-+ webpack 2.3.2
-+ Bulma 0.4.0
++ npm
++ Node.js
 
-
-# Building
+## Get Started
 ```
 git clone https://github.com/bmf-san/laravel-react-redux-blog-boilerplate.git
 ```
@@ -48,15 +48,16 @@ php artisan migration
 php artisan db:seed
 ```
 
-Now you can start Application!
+Now you can start Rubel!
 
-# API Documentation
-Check the [Wiki - API Documentation](https://github.com/bmf-san/laravel-react-blog-boilerplate/wiki/API-Documentation)
+## Anything Else
++ [Wiki - API Documentation](https://github.com/bmf-san/laravel-react-blog-boilerplate/wiki/API-Documentation)
 
-# License
+## License
 This project is licensed under the terms of the MIT license.
 
-# Author
+## Author
 bmf - A Web Developer in Japan.
-* [@bmf-san](https://twitter.com/bmf_san)
-* [bmf-tech](http://bmf-tech.com/)
+
++ [@bmf-san](https://twitter.com/bmf_san)
++ [bmf-tech](http://bmf-tech.com/)
