@@ -15,6 +15,8 @@ import {
 } from '../actions/index';
 import {Link} from 'react-router';
 
+require('../styles/markdown.css');
+
 class NewPost extends Component {
   componentWillMount() {
     this.props.fetchTags();
@@ -62,9 +64,9 @@ class NewPost extends Component {
     return (
       <div className="field">
         <label className="label">{label}</label>
-        <p className="control">
-          <input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger")) || 'input'}/>{touched && ((error && <p className="help is-danger">{error}</p>))}
-        </p>
+        <div className="control">
+          <input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger")) || 'input'}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
+        </div>
       </div>
     )
   }
@@ -73,7 +75,7 @@ class NewPost extends Component {
     const html = this.props.posts.markdown
 
     return (
-      <div dangerouslySetInnerHTML={{
+      <div className="content is-paddingless" dangerouslySetInnerHTML={{
         __html: html
       }}></div>
     )
@@ -91,9 +93,18 @@ class NewPost extends Component {
     return (
       <div className="field">
         <label className="label">{label}</label>
-        <p className="control">
-          <textarea {...input} placeholder={label} className={touched && ((error && "input is-danger")) || 'input'}></textarea>{touched && ((error && <p className="help is-danger">{error}</p>))} {markdownField}
-        </p>
+        <div className="control">
+          <div className="columns">
+            <div className="column">
+              <textarea {...input} placeholder={label} className={touched && ((error && "input is-danger is-resizeless")) || 'input is-resizeless'}></textarea>{touched && ((error && <span className="help is-danger">{error}</span>))}
+            </div>
+            <div className="column">
+              <div className="markdown-column">
+                {markdownField}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -108,7 +119,7 @@ class NewPost extends Component {
   }) {
     return (
       <div className="field">
-        <p className="control">
+        <div className="control">
           {this.props.categories.all.map((category) => {
             return <label key={category.id} className="radio">
               <input type="radio" {...input} value={category.id} defaultChecked={category.id == input.value
@@ -116,7 +127,7 @@ class NewPost extends Component {
                 : ''}/> {category.name}
             </label>
           })}
-        </p>
+        </div>
       </div>
     )
   }
@@ -125,7 +136,7 @@ class NewPost extends Component {
     return (
       <div className="field">
         <label className="label">{label}</label>
-        <p className="control">
+        <div className="control">
           <span className="select">
             <select {...input}>
               <option value="draft">Draft</option>
@@ -133,7 +144,7 @@ class NewPost extends Component {
               <option value="public">Public</option>
             </select>
           </span>
-        </p>
+        </div>
       </div>
     )
   }
@@ -141,9 +152,9 @@ class NewPost extends Component {
   renderSubmitBtn() {
     return (
       <div className="field is-grouped">
-        <p className="control">
+        <div className="control">
           <button className="button is-primary">Submit</button>
-        </p>
+        </div>
       </div>
     )
   }
