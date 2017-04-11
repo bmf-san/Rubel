@@ -148,16 +148,20 @@ class EditPost extends Component {
     )
   }
 
-  renderPublicationStatusField({input, label}) {
+  renderSubmitBtnField({input}) {
     return (
-      <div>
-        <label>{label}</label>
-        <div>
-          <select {...input}>
-            <option value="draft">Draft</option>
-            <option value="private">Private</option>
-            <option value="public">Public</option>
-          </select>
+      <div className="field is-grouped is-pulled-right">
+        <div className="control">
+          <span className="select">
+            <select {...input}>
+              <option value="draft">Draft</option>
+              <option value="private">Private</option>
+              <option value="public">Public</option>
+            </select>
+          </span>
+        </div>
+        <div className="control">
+          <button className="button is-primary">Submit</button>
         </div>
       </div>
     )
@@ -210,8 +214,7 @@ class EditPost extends Component {
             </div>
             <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
             <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
-            <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
-            <button type="submit">Submit</button>
+            <Field name="publication_status" component={this.renderSubmitBtnField}/>
           </form>
         </div>
       </section>
