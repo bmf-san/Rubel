@@ -60,11 +60,11 @@ class NewPost extends Component {
     }
   }) {
     return (
-      <div>
-        <label>{label}</label>
-        <div>
-          <input {...input} placeholder={label} type={type}/>{touched && ((error && <span>{error}</span>))}
-        </div>
+      <div className="field">
+        <label className="label">{label}</label>
+        <p className="control">
+          <input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger")) || 'input'}/>{touched && ((error && <p className="help is-danger">{error}</p>))}
+        </p>
       </div>
     )
   }
@@ -78,12 +78,11 @@ class NewPost extends Component {
     }
   }) {
     return (
-      <div>
-        <label>{label}</label>
-        <div>
-          <textarea {...input} placeholder={label} cols="30" rows="10"></textarea>
-          {touched && ((error && <span>{error}</span>))}
-        </div>
+      <div className="field">
+        <label className="label">{label}</label>
+        <p className="control">
+          <textarea {...input} placeholder={label} className={touched && ((error && "input is-danger")) || 'input'}></textarea>{touched && ((error && <p className="help is-danger">{error}</p>))}
+        </p>
       </div>
     )
   }
@@ -97,18 +96,16 @@ class NewPost extends Component {
     }
   }) {
     return (
-      <div>
-        <label>{label}</label>
-        <div>
+      <div className="field">
+        <p className="control">
           {this.props.categories.all.map((category) => {
-            return <div key={category.id}>
+            return <label key={category.id} className="radio">
               <input type="radio" {...input} value={category.id} defaultChecked={category.id == input.value
                 ? "checked"
-                : ''}/>
-              <span>{category.name}</span>
-            </div>
+                : ''}/> {category.name}
+            </label>
           })}
-        </div>
+        </p>
       </div>
     )
   }
@@ -163,26 +160,26 @@ class NewPost extends Component {
             <h2 className="subtitle">
               Here is perfomance infomation.
             </h2>
-            <div>
-              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
-                <div>
-                  <label>Tag</label>
-                  <div>
-                    <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
-                  </div>
-                </div>
-                <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
-                <div dangerouslySetInnerHTML={{
-                  __html: html
-                }}></div>
-                <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
-                <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
-                <button type="submit">Submit</button>
-              </form>
-            </div>
           </div>
         </div>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
+          <div>
+            <label>Tag</label>
+            <div>
+              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
+            </div>
+          </div>
+          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content"/>
+          <div dangerouslySetInnerHTML={{
+            __html: html
+          }}></div>
+          <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
+          <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/>
+          <button type="submit">Submit</button>
+
+        </form>
+
       </section>
     );
   }
