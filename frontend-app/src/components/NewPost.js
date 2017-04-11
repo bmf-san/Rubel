@@ -75,7 +75,7 @@ class NewPost extends Component {
     const html = this.props.posts.markdown
 
     return (
-      <div className="content is-paddingless" dangerouslySetInnerHTML={{
+      <div className="content markdown-area" dangerouslySetInnerHTML={{
         __html: html
       }}></div>
     )
@@ -96,12 +96,10 @@ class NewPost extends Component {
         <div className="control">
           <div className="columns">
             <div className="column">
-              <textarea {...input} placeholder={label} className={touched && ((error && "input is-danger is-resizeless")) || 'input is-resizeless'}></textarea>{touched && ((error && <span className="help is-danger">{error}</span>))}
+              <textarea {...input} placeholder={label} className={touched && ((error && "input is-danger is-resizeless markdown-area")) || 'input is-resizeless markdown-area'}></textarea>{touched && ((error && <span className="help is-danger">{error}</span>))}
             </div>
             <div className="column">
-              <div className="markdown-column">
-                {markdownField}
-              </div>
+              {markdownField}
             </div>
           </div>
         </div>
@@ -132,10 +130,9 @@ class NewPost extends Component {
     )
   }
 
-  renderPublicationStatusField({input, label}) {
+  renderSubmitBtnField({input}) {
     return (
-      <div className="field">
-        <label className="label">{label}</label>
+      <div className="field is-grouped is-pulled-right">
         <div className="control">
           <span className="select">
             <select {...input}>
@@ -145,13 +142,6 @@ class NewPost extends Component {
             </select>
           </span>
         </div>
-      </div>
-    )
-  }
-
-  renderSubmitBtn() {
-    return (
-      <div className="field is-grouped">
         <div className="control">
           <button className="button is-primary">Submit</button>
         </div>
@@ -204,7 +194,7 @@ class NewPost extends Component {
           </div>
           <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
           <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
-          <Field label="Publication Status" name="publication_status" component={this.renderPublicationStatusField}/> {this.renderSubmitBtn()}
+          <Field name="publication_status" component={this.renderSubmitBtnField}/>
         </form>
       </section>
     );
