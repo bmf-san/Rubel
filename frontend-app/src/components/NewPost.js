@@ -16,6 +16,7 @@ import {
 import {Link} from 'react-router';
 
 require('../styles/markdown.css');
+require('../styles/react_tags.css');
 
 class NewPost extends Component {
   componentWillMount() {
