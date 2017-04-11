@@ -187,9 +187,9 @@ class NewPost extends Component {
         </div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
-          <div>
-            <label>Tag</label>
-            <div>
+          <div className="field">
+            <label className="label">Tag</label>
+            <div className="control">
               <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
             </div>
           </div>
