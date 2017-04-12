@@ -47,8 +47,6 @@ class PostRepository implements PostRepositoryContract
 
         $tag = $this->tag;
 
-        $tag_id_array = [];
-
         // HACK
         if ($request->tags) {
             $request_tag_array = [];
@@ -63,6 +61,8 @@ class PostRepository implements PostRepositoryContract
             $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
 
             $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
+
+            $tag_id_array = [];
 
             if ($new_tag_name_array) {
                 // Create new tags if there are new tags which has not been registerd.
@@ -129,6 +129,8 @@ class PostRepository implements PostRepositoryContract
             $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
 
             $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
+
+            $tag_id_array = [];
 
             if ($new_tag_name_array) {
                 // Create new tags if there are new tags which has not been registerd.

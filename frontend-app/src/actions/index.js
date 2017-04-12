@@ -23,13 +23,13 @@ export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 const ROOT_URL = '/api/v1';
 
 export function createPost(props) {
-  const request = axios.post(`${ROOT_URL}/admin/post/create`, props);
+  const request = axios.post(`${ROOT_URL}/admin/post`, props);
 
   return {type: CREATE_POST, payload: request};
 }
 
 export function deletePost(id) {
-  const request = axios.delete(`${ROOT_URL}/admin/post/${id}/delete`);
+  const request = axios.delete(`${ROOT_URL}/admin/post/${id}`);
 
   return {type: DELETE_POST, payload: request};
 }
@@ -44,7 +44,7 @@ export function initMarkdown() {
 
 export function editPost(props) {
   const id = props.id
-  const request = axios.patch(`${ROOT_URL}/admin/post/${id}/edit`, props);
+  const request = axios.patch(`${ROOT_URL}/admin/post/${id}`, props);
 
   return {type: EDIT_POST, payload: request};
 }
@@ -68,20 +68,20 @@ export function fetchInitPost(id) {
 }
 
 export function createCategory(props) {
-  const request = axios.post(`${ROOT_URL}/admin/category/create`, props);
+  const request = axios.post(`${ROOT_URL}/admin/category`, props);
 
   return {type: CREATE_CATEGORY, payload: request};
 }
 
 export function editCategory(props) {
-  const request = axios.patch(`${ROOT_URL}/admin/category/${id}/edit`, props);
+  const request = axios.patch(`${ROOT_URL}/admin/category/${id}`, props);
 
   return {type: EDIT_CATEGORY, payload: request};
 }
 
 export function deleteCategory(props) {
   const post_id = props;
-  const request = axios.delete(`${ROOT_URL}/admin/category/${post_id}/delete`, props);
+  const request = axios.delete(`${ROOT_URL}/admin/category/${post_id}`, props);
 
   return {type: DELETE_CATEGORY, payload: request};
 }
@@ -93,14 +93,14 @@ export function fetchCategories() {
 }
 
 export function editTag(props) {
-  const request = axios.patch(`${ROOT_URL}/tag/${id}/edit`, props);
+  const request = axios.patch(`${ROOT_URL}/tag/${id}`, props);
 
   return {type: EDIT_TAG, payload: request}
 }
 
 export function deleteTag(props) {
   const post_id = props;
-  const request = axios.delte(`${ROOT_URL}/admin/tag/${post_id}/delete`, props);
+  const request = axios.delte(`${ROOT_URL}/admin/tag/${post_id}`, props);
 
   return {type: DELETE_TAG, payload: request};
 }
