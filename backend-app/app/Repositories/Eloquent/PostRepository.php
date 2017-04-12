@@ -65,6 +65,7 @@ class PostRepository implements PostRepositoryContract
             $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
 
             if ($new_tag_name_array) {
+                // Create new tags if there are new tags which has not been registerd.
                 foreach ($new_tag_name_array as $new_tag_name) {
                     $tag->create([
                         'name' => $new_tag_name,
@@ -77,6 +78,7 @@ class PostRepository implements PostRepositoryContract
             } else {
                 $tag_id_array = $exist_tag_id_array;
             }
+
             $post->tags()->sync($tag_id_array);
         } else {
             $post->tags()->sync($request->tags);
@@ -129,6 +131,7 @@ class PostRepository implements PostRepositoryContract
             $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
 
             if ($new_tag_name_array) {
+                // Create new tags if there are new tags which has not been registerd.
                 foreach ($new_tag_name_array as $new_tag_name) {
                     $tag->create([
                         'name' => $new_tag_name,
@@ -141,6 +144,7 @@ class PostRepository implements PostRepositoryContract
             } else {
                 $tag_id_array = $exist_tag_id_array;
             }
+
             $post->tags()->sync($tag_id_array);
         } else {
             $post->tags()->sync($request->tags);

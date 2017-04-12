@@ -188,6 +188,7 @@ class NewPost extends Component {
         </div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
+          <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
           <div className="field">
             <label className="label">Tag</label>
             <div className="control">
@@ -195,7 +196,6 @@ class NewPost extends Component {
             </div>
           </div>
           <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
-          <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
           <Field name="publication_status" component={this.renderSubmitBtnField}/>
         </form>
       </section>

@@ -216,14 +216,14 @@ class EditPost extends Component {
         <div>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
+            <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
             <div>
-              <label>Tag</label>
+              <label className="label">Tag</label>
               <div>
                 <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
               </div>
             </div>
             <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
-            <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
             <Field name="publication_status" component={this.renderSubmitBtnField} handleDeletePost={this.handleDeletePost.bind(this)}/>
           </form>
         </div>
