@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\v1\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCategoryRequest extends FormRequest
+class StoreCategoryRequest extends FormRequest
 {
     const NOT_FOUND_CODE = 400;
 

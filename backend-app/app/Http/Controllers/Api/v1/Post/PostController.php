@@ -23,7 +23,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return response()->json($this->post_repository->index());
+        return response()->json($this->post_repository->index(), (int) self::STATUS_CODE_OK);
     }
 
     /**
@@ -35,7 +35,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        return response()->json($this->post_repository->store($request));
+        return response()->json($this->post_repository->store($request), (int) self::STATUS_CODE_OK);
     }
 
     /**
@@ -47,11 +47,11 @@ class PostController extends Controller
      */
     public function show(Int $id)
     {
-        return response()->json($this->post_repository->show($id));
+        return response()->json($this->post_repository->show($id), (int) self::STATUS_CODE_OK);
     }
 
     /**
-     * Update the specified resouce in storage.
+     * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
@@ -60,11 +60,11 @@ class PostController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        return response()->json($this->post_repository->update($request, $id));
+        return response()->json($this->post_repository->update($request, $id), (int) self::STATUS_CODE_OK);
     }
 
     /**
-     * Remove the specified resouce from storage.
+     * Remove the specified resource from storage.
      *
      * @param int $id
      *
@@ -72,6 +72,6 @@ class PostController extends Controller
      */
     public function destroy(int $id)
     {
-        return response()->json($this->post_repository->destroy($id));
+        return response()->json($this->post_repository->destroy($id), (int) self::STATUS_CODE_OK);
     }
 }

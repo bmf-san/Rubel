@@ -5,6 +5,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateRelatedPostTables extends Migration
 {
+    const DEFAULT_CATEGORY_ID = 1;
+    const DEFAULT_VIEW_NUM = 0;
+
     /**
      * Run the migrations.
      */
@@ -20,11 +23,11 @@ class CreateRelatedPostTables extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('admin_id')->unsigned()->nullable();
-            $table->integer('category_id')->unsigned()->default(1);
+            $table->integer('category_id')->unsigned()->default((int) self::DEFAULT_CATEGORY_ID);
             $table->string('title')->nullable();
             $table->string('content')->nullable();
             $table->string('thumb_img_path')->nullable();
-            $table->integer('views')->unsigned()->default(0);
+            $table->integer('views')->unsigned()->default((int) self::DEFAULT_VIEW_NUM);
             $table->string('publication_status')->default('draft'); // public|private|draft
             $table->timestamps();
             $table->softDeletes();

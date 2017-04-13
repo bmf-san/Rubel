@@ -12,56 +12,75 @@ class CategoryRepository implements CategoryRepositoryContract
 
     private $category;
 
-    public function __construct(Category $category,
-                                Post $post)
+    public function __construct(Category $category, Post $post)
     {
         $this->category = $category;
         $this->post = $post;
     }
 
     /**
-     * Create a new category.
+     * Display a listing of the resource.
+     *
+     * @return array
+     */
+    public function index()
+    {
+        $categories = $this->category->get();
+
+        return $categories;
+    }
+
+    /**
+     * Store a newly created resource in storage.
      *
      * @param object $request
      *
      * @return array
      */
-    public function create($request)
+    public function store($request)
     {
         $category = $this->category;
+        $category = $this->saveCategory($category, $request);
 
-        $category->name = $request->name;
-
-        $category->save();
-
-        return ['id' => $category->id]; // TODO: Add status code
+        return ['id' => $category->id];
     }
 
     /**
-     * Edit a post.
+     * Display the specified resource.
+     *
+     * @param int $id [description]
+     *
+     * @return [type] [description]
+     */
+    public function show(int $id)
+    {
+        $category = $this->category->with('posts')->find($id);
+
+        return $category;
+    }
+
+    /**
+     * Update the specified resouce in storage.
      *
      * @param int    $id
      * @param object $request
      *
      * @return array
      */
-    public function edit($request, int $id)
+    public function update($request, int $id)
     {
         $category = $this->category->findOrFail($id);
-
-        $category->name = $request->name;
-
-        $category->save();
+        $category->update($request->all());
 
         return ['id' => $category->id];
     }
 
     /**
-     * Delete a post.
+     * Remove the specified resouce from storage.
      *
      * @return array
      */
-    public function delete(int $id)
+    public function destroy(int $id)
     {
         $category = $this->category->findOrFail($id);
         $posts = $category->posts;
@@ -81,15 +100,12 @@ class CategoryRepository implements CategoryRepositoryContract
         return [];
     }
 
-    /**
-     * Get categories.
-     *
-     * @return array
-     */
-    public function getCategories()
+    private function saveCategory(Category $category, $request)
     {
-        $categories = $this->category->get();
+        $category = $category->create([
+            'name' => $request->name,
+        ]);
 
-        return $categories;
+        return $category;
     }
 }

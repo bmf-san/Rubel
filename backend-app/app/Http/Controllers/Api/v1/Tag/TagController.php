@@ -8,7 +8,7 @@ use App\Repositories\Eloquent\TagRepository;
 
 class TagController extends Controller
 {
-    const OK_CODE = 200;
+    const STATUS_CODE_OK = 200;
 
     private $tag_repository;
 
@@ -27,7 +27,7 @@ class TagController extends Controller
      */
     public function edit(Request $request, int $id) // TODO add form request for editting a tag
     {
-        return response()->json($this->tag_repository->edit($request, $id), (int) self::OK_CODE);
+        return response()->json($this->tag_repository->edit($request, $id), (int) self::STATUS_CODE_OK);
     }
 
     /**
@@ -39,7 +39,7 @@ class TagController extends Controller
      */
     public function delete(int $id)
     {
-        return response()->json($this->tag_repository->delete($id), (int) self::OK_CODE);
+        return response()->json($this->tag_repository->delete($id), (int) self::STATUS_CODE_OK);
     }
 
     /**
@@ -49,6 +49,6 @@ class TagController extends Controller
      */
     public function getTags()
     {
-        return response()->json($this->tag_repository->getTags(), (int) self::OK_CODE);
+        return response()->json($this->tag_repository->getTags(), (int) self::STATUS_CODE_OK);
     }
 }

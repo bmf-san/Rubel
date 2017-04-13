@@ -28,7 +28,7 @@ interface PostRepositoryContract
     public function show(int $id);
 
     /**
-     * Update the specified resouce in storage.
+     * Update the specified resource in storage.
      *
      * @param int                      $id
      * @param \Illuminate\Http\Request $request
@@ -38,7 +38,7 @@ interface PostRepositoryContract
     public function update($request, int $id);
 
     /**
-     * Remove the specified resouce from storage.
+     * Remove the specified resource from storage.
      *
      * @param int $id
      *

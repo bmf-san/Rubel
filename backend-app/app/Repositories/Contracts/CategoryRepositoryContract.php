@@ -5,37 +5,46 @@ namespace App\Repositories\Contracts;
 interface CategoryRepositoryContract
 {
     /**
-     * Create a new category.
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     * */
+    public function index();
+
+    /**
+     * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($request);
+    public function store($request);
 
     /**
-     * Edit a category.
+     * Display the specified resource.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(int $id);
+
+    /**
+     * Update the specified resource in storage.
      *
      * @param int                      $id
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($request, int $id);
+    public function update($request, int $id);
 
     /**
-     * Delete a category.
+     * Remove the specified resource from storage.
      *
      * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function delete(int $id);
-
-    /**
-     * Get categories.
-     *
-     * @return \Illuminate\Http\Response
-     * */
-    public function getCategories();
+    public function destroy(int $id);
 }

@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api\v1\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Eloquent\CategoryRepository;
-use App\Http\Requests\Api\v1\Category\CreateCategoryRequest;
+use App\Http\Requests\Api\v1\Category\StoreCategoryRequest;
 
 class CategoryController extends Controller
 {
-    const OK_CODE = 200;
+    const STATUS_CODE_OK = 200;
 
     private $category_repository;
 
@@ -19,48 +19,61 @@ class CategoryController extends Controller
     }
 
     /**
-     * Create a new category.
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return response()->json($this->category_repository->index(), (int) self::STATUS_CODE_OK);
+    }
+
+    /**
+     * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CreateCategoryRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
-        return response()->json($this->category_repository->create($request), (int) self::OK_CODE);
+        return response()->json($this->category_repository->store($request), (int) self::STATUS_CODE_OK);
     }
 
     /**
-     * Edit a category.
+     * Display the specified resource.
      *
      * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, int $id) // TODO add a form request for editting a category
+    public function show(int $id)
     {
-        return response()->json($this->category_repository->edit($request, $id), (int) self::OK_CODE);
+        return response()->json($this->category_repository->show($id), (int) self::STATUS_CODE_OK);
     }
 
     /**
-     * Delete a category.
+     * Update the specified resource in storage.
+     *
+     * @param [type] $request [description]
+     * @param int    $id      [description]
+     *
+     * @return [type] [description]
+     */
+    public function update(Request $request, int $id)
+    {
+        return response()->json($this->category_repository->update($request, $id), (int) self::STATUS_CODE_OK);
+    }
+
+    /**
+     * Remove the specified resouce from storage.
      *
      * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function delete(int $id)
+    public function destroy(int $id)
     {
-        return response()->json($this->category_repository->delete($id), (int) self::OK_CODE);
-    }
-
-    /**
-     * Show categories.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getCategories()
-    {
-        return response()->json($this->category_repository->getCategories(), (int) self::OK_CODE);
+        return response()->json($this->category_repository->destroy($id), (int) self::STATUS_CODE_OK);
     }
 }

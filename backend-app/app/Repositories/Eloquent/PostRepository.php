@@ -72,7 +72,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function update($request, Int $id)
     {
-        $post = $this->post->find($id);
+        $post = $this->post->findOrFail($id);
 
         $post->update($request->all());
 
