@@ -9,6 +9,8 @@ use App\Http\Requests\Api\v1\Post\StorePostRequest;
 
 class PostController extends Controller
 {
+    const STATUS_CODE_OK = 200;
+
     private $post_repository;
 
     public function __construct(PostRepository $post_repository)
