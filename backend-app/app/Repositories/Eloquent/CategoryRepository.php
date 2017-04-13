@@ -10,7 +10,7 @@ class CategoryRepository implements CategoryRepositoryContract
 {
     const CATEGORY_ID_OF_UNCATEGORIZED = 1;
 
-    public $category;
+    private $category;
 
     public function __construct(Category $category,
                                 Post $post)

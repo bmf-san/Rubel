@@ -5,51 +5,44 @@ namespace App\Repositories\Contracts;
 interface PostRepositoryContract
 {
     /**
-     * Create a new post
+     * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create($request);
+    public function index();
 
     /**
-     * Edit a post
+     * Store a newly created resource in storage.
      *
-     * @param  int  $id
-	 * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit($request, int $id);
+    public function store($request);
 
     /**
-     * Update publication status of post
+     * Display the specified resource.
      *
-	 * @param  int  $id
-     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function show(int $id);
+
+    /**
+     * Update the specified resouce in storage.
+     *
+     * @param int                      $id
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function update($request, int $id);
 
     /**
-     * Delete a post
+     * Remove the specified resouce from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function delete(int $id);
-
-    /**
-     * Get a single post
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function getPost(int $id);
-
-    /**
-     * Get posts
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPosts();
+    public function destroy(int $id);
 }

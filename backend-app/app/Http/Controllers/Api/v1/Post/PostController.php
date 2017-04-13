@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Eloquent\PostRepository;
-use App\Http\Requests\Api\v1\Post\CreatePostRequest;
-use App\Http\Requests\Api\v1\Post\EditPostRequest;
+use App\Http\Requests\Api\v1\Post\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -18,74 +17,61 @@ class PostController extends Controller
     }
 
     /**
-     * Create a new post.
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return response()->json($this->post_repository->index());
+    }
+
+    /**
+     * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CreatePostRequest $request)
+    public function store(StorePostRequest $request)
     {
-        return response()->json($this->post_repository->create($request));
+        return response()->json($this->post_repository->store($request));
     }
 
     /**
-     * Edit a post.
+     * Display the specified resource.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Int $id)
+    {
+        return response()->json($this->post_repository->show($id));
+    }
+
+    /**
+     * Update the specified resouce in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(EditPostRequest $request, int $id)
-    {
-        return response()->json($this->post_repository->edit($request, $id));
-    }
-
-    /**
-     * Update publication status of post.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, int $id) // TODO add form request for update this status
+    public function update(Request $request, int $id)
     {
         return response()->json($this->post_repository->update($request, $id));
     }
 
     /**
-     * Delete a post.
+     * Remove the specified resouce from storage.
      *
      * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function delete(int $id)
+    public function destroy(int $id)
     {
-        return response()->json($this->post_repository->delete($id));
-    }
-
-    /**
-     * Show a single post.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getPost(Int $id)
-    {
-        return response()->json($this->post_repository->getPost($id));
-    }
-
-    /**
-     * Show posts.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getPosts()
-    {
-        return response()->json($this->post_repository->getPosts());
+        return response()->json($this->post_repository->destroy($id));
     }
 }

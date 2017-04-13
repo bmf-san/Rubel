@@ -8,7 +8,7 @@ use App\Models\Post;
 
 class TagRepository implements TagRepositoryContract
 {
-    public $tag;
+    private $tag;
 
     public function __construct(Tag $tag,
                                 Post $post

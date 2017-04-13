@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\v1\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePostRequest extends FormRequest
+class StorePostRequest extends FormRequest
 {
     const NOT_FOUND_CODE = 400;
 

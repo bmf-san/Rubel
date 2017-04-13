@@ -5,158 +5,65 @@ namespace App\Repositories\Eloquent;
 use App\Repositories\Contracts\PostRepositoryContract;
 use App\Models\Post;
 use App\Models\Tag;
-use Carbon\Carbon;
 
 class PostRepository implements PostRepositoryContract
 {
     const POST_PAGINATE_NUM = 10;
 
-    public $post, $tag;
+    private $post, $tag;
 
-    public function __construct(Post $post,
-                                Tag $tag
-                                ) {
+    public function __construct(Post $post, Tag $tag)
+    {
         $this->post = $post;
         $this->tag = $tag;
     }
 
     /**
-     * Create a new post.
+     * Display a listing of the resource.
+     *
+     * @return array $post_array
+     */
+    public function index()
+    {
+        $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
+
+        return $posts;
+    }
+
+    /**
+     * Store a newly created resource in storage.
      *
      * @param object $request
      *
      * @return array
      */
-    public function create($request)
+    public function store($request)
     {
         $post = $this->post;
-
-        // $post->admin_id = (int) $request->admin_id; // FIXME set authenticated admin id
-        $post->admin_id = (int) 1;
-        $post->category_id = (int) $request->category_id;
-        $post->title = (string) $request->title;
-        $post->content = (string) $request->content;
-        $post->thumb_img_path = (string) $request->thumb_img_path;
-        $post->publication_status = (string) $request->publication_status;
-
-        if ($request->publication_status == 'public') {
-            $post->publication_date = Carbon::now();
-        }
-
-        $post->save();
+        $post = $this->savePost($post, $request);
 
         $tag = $this->tag;
-
-        // HACK
-        if ($request->tags) {
-            $request_tag_array = [];
-
-            foreach ($request->tags as $request_tag) {
-                $request_tag_array[] = $request_tag['name'];
-            }
-
-            $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
-
-            $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
-            $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
-
-            $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
-
-            $tag_id_array = [];
-
-            if ($new_tag_name_array) {
-                // Create new tags if there are new tags which has not been registerd.
-                foreach ($new_tag_name_array as $new_tag_name) {
-                    $tag->create([
-                        'name' => $new_tag_name,
-                    ]);
-                }
-
-                $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
-
-                $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
-            } else {
-                $tag_id_array = $exist_tag_id_array;
-            }
-
-            $post->tags()->sync($tag_id_array);
-        } else {
-            $post->tags()->sync($request->tags);
-        }
+        $this->syncTags($post, $tag, $request->tags);
 
         return ['id' => $post->id];
     }
 
     /**
-     * Edit a post.
+     * Display the specified resource.
      *
-     * @param int    $id
-     * @param object $request
+     * @param int $id
      *
-     * @return array
+     * @return array $post_array
      */
-    public function edit($request, int $id)
+    public function show(int $id)
     {
-        $post = $this->post->find($id);
+        $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
 
-        // $post->admin_id = (int) $request->admin_id; // FIXME set authenticated admin id
-        $post->admin_id = (int) 1;
-        $post->category_id = (int) $request->category_id;
-        $post->title = (string) $request->title;
-        $post->content = (string) $request->content;
-        $post->thumb_img_path = (string) $request->thumb_img_path;
-        $post->publication_status = (string) $request->publication_status;
-
-        if ($request->publication_status == 'public') {
-            $post->publication_date = Carbon::now();
-        }
-
-        $post->save();
-
-        $tag = $this->tag;
-
-        // HACK
-        if ($request->tags) {
-            $request_tag_array = [];
-
-            foreach ($request->tags as $request_tag) {
-                $request_tag_array[] = $request_tag['name'];
-            }
-
-            $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
-
-            $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
-            $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
-
-            $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
-
-            $tag_id_array = [];
-
-            if ($new_tag_name_array) {
-                // Create new tags if there are new tags which has not been registerd.
-                foreach ($new_tag_name_array as $new_tag_name) {
-                    $tag->create([
-                        'name' => $new_tag_name,
-                    ]);
-                }
-
-                $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
-
-                $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
-            } else {
-                $tag_id_array = $exist_tag_id_array;
-            }
-
-            $post->tags()->sync($tag_id_array);
-        } else {
-            $post->tags()->sync($request->tags);
-        }
-
-        return ['id' => $post->id];
+        return $post;
     }
 
     /**
-     * Update publication status of post.
+     * Update the specified resouce in storage.
      *
      * @param int    $id
      * @param object $request
@@ -167,23 +74,20 @@ class PostRepository implements PostRepositoryContract
     {
         $post = $this->post->find($id);
 
-        $post->publication_status = $request->publication_status;
+        $post->update($request->all());
 
-        if ($post->publication_status == 'public') {
-            $post->publication_date = Carbon::now();
-        }
-
-        $post->save();
+        $tag = $this->tag;
+        $this->syncTags($post, $tag, $request->tags);
 
         return ['id' => $post->id];
     }
 
     /**
-     * Delete a post.
+     * Remove the specified resouce from storage.
      *
      * @return array
      */
-    public function delete(Int $id)
+    public function destroy(Int $id)
     {
         $post = $this->post->find($id);
 
@@ -193,28 +97,73 @@ class PostRepository implements PostRepositoryContract
     }
 
     /**
-     * Get a single post.
+     * Save post.
      *
-     * @param int $id
+     * @param Post   $post    [description]
+     * @param [type] $request [description]
      *
-     * @return array $post_array
+     * @return [type] [description]
      */
-    public function getPost(int $id)
+    private function savePost(Post $post, $request)
     {
-        $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
+        $post = $post->create([
+            'admin_id' => (int) 1, // FIXME set authenticated admin id
+            'category_id' => (int) $request->category_id,
+            'title' => (string) $request->title,
+            'content' => (string) $request->content,
+            'thumb_img_path' => (string) $request->thumb_img_path,
+            'publication_status' => (string) $request->publication_status,
+        ]);
 
         return $post;
     }
 
     /**
-     * Get posts.
+     * Sync tags.
      *
-     * @return array $post_array
+     * @param Post   $post [description]
+     * @param Tag    $tag  [description]
+     * @param [type] $tags [description]
+     *
+     * @return [type] [description]
      */
-    public function getPosts()
+    private function syncTags(Post $post, Tag $tag, $tags)
     {
-        $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
+        // HACK
+        if ($tags) {
+            $request_tag_array = [];
 
-        return $posts;
+            foreach ($tags as $request_tag) {
+                $request_tag_array[] = $request_tag['name'];
+            }
+
+            $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
+
+            $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
+            $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
+
+            $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
+
+            $tag_id_array = [];
+
+            if ($new_tag_name_array) {
+                // Create new tags if there are new tags which has not been registerd.
+                foreach ($new_tag_name_array as $new_tag_name) {
+                    $tag->create([
+                        'name' => $new_tag_name,
+                    ]);
+                }
+
+                $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
+
+                $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
+            } else {
+                $tag_id_array = $exist_tag_id_array;
+            }
+
+            $post->tags()->sync($tag_id_array);
+        } else {
+            $post->tags()->sync($tags);
+        }
     }
 }
