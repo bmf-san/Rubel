@@ -12,19 +12,19 @@ export default class App extends React.Component {
                 <div className="title">Main</div>
                 <Link to="/dashboard" className="item active">
                   <span className="icon">
-                    <i className="fa fa-home"></i>
+                    <i className="fa fa-tachometer"></i>
                   </span>
                   <span className="name">Dashboard</span>
                 </Link>
                 <Link to="/dashboard/posts" className="item active">
                   <span className="icon">
-                    <i className="fa fa-home"></i>
+                    <i className="fa fa-list"></i>
                   </span>
                   <span className="name">Posts</span>
                 </Link>
                 <Link to="/dashboard/new-post" className="item active">
                   <span className="icon">
-                    <i className="fa fa-map-marker"></i>
+                    <i className="fa fa-pencil"></i>
                   </span>
                   <span className="name">NewPost</span>
                 </Link>
@@ -36,13 +36,13 @@ export default class App extends React.Component {
                 </Link>
                 <Link to="/dashboard/tags" className="item active">
                   <span className="icon">
-                    <i className="fa fa-folder-o"></i>
+                    <i className="fa fa-tags"></i>
                   </span>
                   <span className="name">Tags</span>
                 </Link>
                 <Link to="/dashboard/config" className="item active">
                   <span className="icon">
-                    <i className="fa fa-folder-o"></i>
+                    <i className="fa fa-cog"></i>
                   </span>
                   <span className="name">Config</span>
                 </Link>
