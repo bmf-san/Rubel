@@ -1,6 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router';
 
+// TODO React でかく
+// (function() {
+//     var burger = document.querySelector('.nav-toggle');
+//     var menu = document.querySelector('.nav-menu');
+//     burger.addEventListener('click', function() {
+//         burger.classList.toggle('is-active');
+//         menu.classList.toggle('is-active');
+//     });
+// })();
+
 export default class App extends React.Component {
   render() {
     return (
