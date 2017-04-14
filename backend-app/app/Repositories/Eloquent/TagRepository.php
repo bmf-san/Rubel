@@ -10,49 +10,85 @@ class TagRepository implements TagRepositoryContract
 {
     private $tag;
 
-    public function __construct(Tag $tag,
-                                Post $post
-                                ) {
+    public function __construct(Tag $tag, Post $post)
+    {
         $this->tag = $tag;
         $this->post = $post;
     }
 
     /**
-     * Edit a tag.
+     * Display a listing of the resource.
      *
-     * @param int    $id
-     * @param object $request
+     * @return object
      */
-    public function edit(Int $id, $request)
+    public function index()
     {
-        $tag = $this->tag->find($id);
+        $tags = $this->tag->get();
 
-        $tag->name = $request->name;
+        return $tags;
+    }
 
-        $tag->save();
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param object $request
+     *
+     * @return array
+     */
+    public function store($request)
+    {
+        $tag = $this->tag;
+        $tag = $this->saveTag($tag, $request);
 
         return ['id' => $tag->id];
     }
 
     /**
-     * Delete a tag.
+     * Display the specified resource.
+     *
+     * @param int $id [description]
+     *
+     * @return [type] [description]
      */
-    public function delete(Int $id)
+    public function show(int $id)
+    {
+        $tag = $this->tag->with('posts')->find($id);
+
+        return $tag;
+    }
+
+    /**
+     * Update the specified resouce in storage.
+     *
+     * @param int    $id
+     * @param object $request
+     */
+    public function update($request, Int $id)
+    {
+        $tag = $this->tag->find($id);
+        $tag->update($request->all());
+
+        return ['id' => $tag->id];
+    }
+
+    /**
+     * Remove the specified resouce from storage.
+     *
+     * @return array
+     */
+    public function destroy(Int $id)
     {
         $tag = $this->tag->find($id)->delete();
 
         return [];
     }
 
-    /**
-     * Get tags.
-     *
-     * @return object
-     */
-    public function getTags()
+    private function saveTag(Tag $tag, $request)
     {
-        $tags = $this->tag->get();
+        $tag = $tag->create([
+            'name' => $request->name,
+        ]);
 
-        return $tags;
+        return $tag;
     }
 }
