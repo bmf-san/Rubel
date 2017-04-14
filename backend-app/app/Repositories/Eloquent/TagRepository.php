@@ -66,6 +66,7 @@ class TagRepository implements TagRepositoryContract
     public function update($request, Int $id)
     {
         $tag = $this->tag->find($id);
+
         $tag->update($request->all());
 
         return ['id' => $tag->id];

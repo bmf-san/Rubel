@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 
-class TopController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
