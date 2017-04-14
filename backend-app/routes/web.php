@@ -6,6 +6,13 @@
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', 'Pages\TopController@getIndex');
-Route::get('post/{id}', 'Post\PostController@getPost')->where('id', '[0-9]+');
-Route::get('posts', 'Post\PostController@getPosts');
+/**
+ * Home.
+ */
+Route::get('/', 'Web\HomeController@index');
+
+/*
+ * Post
+ */
+Route::get('posts', 'Web\PostController@index');
+Route::get('post/{id}', 'Web\PostController@show')->where('id', '[0-9]+');

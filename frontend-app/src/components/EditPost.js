@@ -92,6 +92,30 @@ class EditPost extends Component {
     )
   }
 
+  renderCategoryField({
+    input,
+    label,
+    meta: {
+      touched,
+      error
+    }
+  }) {
+    return (
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="control">
+          <span className="select">
+            <select {...input}>
+              {this.props.categories.all.map((category) => {
+                return <option key={category.id} value={category.id}>{category.name}</option>
+              })}
+            </select>
+          </span>
+        </div>
+      </div>
+    )
+  }
+
   renderMarkdownField() {
     const html = this.props.posts.markdown
 
@@ -123,30 +147,6 @@ class EditPost extends Component {
               {markdownField}
             </div>
           </div>
-        </div>
-      </div>
-    )
-  }
-
-  renderCategoryField({
-    input,
-    label,
-    meta: {
-      touched,
-      error
-    }
-  }) {
-    return (
-      <div className="field">
-        <label className="label">{label}</label>
-        <div className="control">
-          <span className="select">
-            <select {...input}>
-              {this.props.categories.all.map((category) => {
-                return <option key={category.id} value={category.id}>{category.name}</option>
-              })}
-            </select>
-          </span>
         </div>
       </div>
     )
