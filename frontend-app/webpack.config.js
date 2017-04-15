@@ -1,6 +1,13 @@
+const glob = require('glob')
+
+const index = ['./src/index.js']
+const styles = glob.sync('./src/styles/*.css')
+const node_modules = ['./node_modules/bulma/css/bulma.css', './node_modules/font-awesome/css/font-awesome.css']
+const entries = index.concat(node_modules, styles)
+
 module.exports = [
   {
-    entry: ['./src/index.js'],
+    entry: entries,
     output: {
       path: __dirname + '/dist',
       filename: 'bundle.js'

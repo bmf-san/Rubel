@@ -128,7 +128,6 @@ class Posts extends Component {
     return (
       <div>
         <div className="title is-2">Posts</div>
-
         <table className="table is-centered">
           <thead>
             <tr>
