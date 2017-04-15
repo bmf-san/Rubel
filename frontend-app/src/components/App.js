@@ -52,11 +52,6 @@ export default class App extends React.Component {
         <div className="columns">
           <aside className="column is-2 aside hero is-fullheight is-hidden-mobile">
             <div>
-              <div className="uploader has-text-centered">
-                <a className="button">
-                  <i className="fa fa-upload"></i>
-                </a>
-              </div>
               <div className="main">
                 <div className="title">Main</div>
                 <Link to="/dashboard" className="item active">

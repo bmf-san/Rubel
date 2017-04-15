@@ -1,9 +1,4 @@
-const glob = require('glob')
-
-const index = ['./src/index.js']
-const styles = glob.sync('./src/styles/*.css')
-const node_modules = ['./node_modules/bulma/css/bulma.css', './node_modules/font-awesome/css/font-awesome.css']
-const entries = index.concat(node_modules, styles)
+const entries = ['./src/index.js', './node_modules/font-awesome/css/font-awesome.css', './node_modules/bulma/css/bulma.css', './src/styles/app.css']
 
 module.exports = [
   {
