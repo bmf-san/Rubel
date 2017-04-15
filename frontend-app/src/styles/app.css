@@ -40,6 +40,10 @@ body {
     color: #6F7B7E;
 }
 
+.aside .main .item:hover {
+    color: #F6F7F7;
+}
+
 .aside .main .item.active {
     color: #F6F7F7;
 }

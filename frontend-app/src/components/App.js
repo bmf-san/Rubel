@@ -28,22 +28,34 @@ export default class App extends React.Component {
               <span></span>
             </span>
             <div className="nav-right nav-menu is-hidden-tablet">
-              <Link to="/dashboard" className="nav-item is-tab active">
+              <Link to="/dashboard" className={(this.props.location.pathname == '/dashboard' || this.props.location.pathname == '/dashboard/')
+                ? 'nav-item is-tab active'
+                : 'nav-item is-tab'}>
                 Dashboard
               </Link>
-              <Link to="/posts" className="nav-item is-tab">
+              <Link to="/posts" className={(this.props.location.pathname == '/dashboard/posts')
+                ? 'nav-item is-tab active'
+                : 'nav-item is-tab'}>
                 Posts
               </Link>
-              <Link to="/new-post" className="nav-item is-tab">
+              <Link to="/new-post" className={(this.props.location.pathname == '/dashboard/new-post/')
+                ? 'nav-item is-tab active'
+                : 'nav-item is-tab'}>
                 NewPost
               </Link>
-              <Link to="/categories" className="nav-item is-tab">
+              <Link to="/categories" className={(this.props.location.pathname == '/dashboard/categories/')
+                ? 'nav-item is-tab active'
+                : 'nav-item is-tab'}>
                 Categories
               </Link>
-              <Link to="/tags" className="nav-item is-tab">
+              <Link to="/tags" className={(this.props.location.pathname == '/dashboard/tags/')
+                ? 'nav-item is-tab active'
+                : 'nav-item is-tab'}>
                 Tags
               </Link>
-              <Link to="/config" className="nav-item is-tab">
+              <Link to="/config" className={(this.props.location.pathname == '/dashboard/config/')
+                ? 'nav-item is-tab active'
+                : 'nav-item is-tab'}>
                 Config
               </Link>
             </div>
@@ -54,37 +66,49 @@ export default class App extends React.Component {
             <div>
               <div className="main">
                 <div className="title">Main</div>
-                <Link to="/dashboard" className="item active">
+                <Link to="/dashboard" className={(this.props.location.pathname == '/dashboard' || this.props.location.pathname == '/dashboard/')
+                  ? 'item active'
+                  : 'item'}>
                   <span className="icon">
                     <i className="fa fa-tachometer"></i>
                   </span>
                   <span className="name">Dashboard</span>
                 </Link>
-                <Link to="/dashboard/posts" className="item">
+                <Link to="/dashboard/posts" className={(this.props.location.pathname == '/dashboard/posts')
+                  ? 'item active'
+                  : 'item'}>
                   <span className="icon">
                     <i className="fa fa-list"></i>
                   </span>
                   <span className="name">Posts</span>
                 </Link>
-                <Link to="/dashboard/new-post" className="item">
+                <Link to="/dashboard/new-post" className={(this.props.location.pathname == '/dashboard/new-post')
+                  ? 'item active'
+                  : 'item'}>
                   <span className="icon">
                     <i className="fa fa-pencil"></i>
                   </span>
                   <span className="name">NewPost</span>
                 </Link>
-                <Link to="/dashboard/categories" className="item">
+                <Link to="/dashboard/categories" className={(this.props.location.pathname == '/dashboard/categories')
+                  ? 'item active'
+                  : 'item'}>
                   <span className="icon">
                     <i className="fa fa-th-list"></i>
                   </span>
                   <span className="name">Categories</span>
                 </Link>
-                <Link to="/dashboard/tags" className="item">
+                <Link to="/dashboard/tags" className={(this.props.location.pathname == '/dashboard/tags')
+                  ? 'item active'
+                  : 'item'}>
                   <span className="icon">
                     <i className="fa fa-tags"></i>
                   </span>
                   <span className="name">Tags</span>
                 </Link>
-                <Link to="/dashboard/config" className="item">
+                <Link to="/dashboard/config" className={(this.props.location.pathname == '/dashboard/config')
+                  ? 'item active'
+                  : 'item'}>
                   <span className="icon">
                     <i className="fa fa-cog"></i>
                   </span>
