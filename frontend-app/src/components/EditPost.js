@@ -204,30 +204,21 @@ class EditPost extends Component {
     })
 
     return (
-      <section className="section">
-        <div className="container">
-          <div className="heading">
-            <h1 className="title">EditPost</h1>
-            <h2 className="subtitle">
-              Here is perfomance infomation.
-            </h2>
-          </div>
-        </div>
-        <div>
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
-            <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
+      <div>
+        <div className="title is-2">Edit Post</div>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
+          <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
+          <div>
+            <label className="label">Tag</label>
             <div>
-              <label className="label">Tag</label>
-              <div>
-                <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
-              </div>
+              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false}/>
             </div>
-            <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
-            <Field name="publication_status" component={this.renderSubmitBtnField} handleDeletePost={this.handleDeletePost.bind(this)}/>
-          </form>
-        </div>
-      </section>
+          </div>
+          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
+          <Field name="publication_status" component={this.renderSubmitBtnField} handleDeletePost={this.handleDeletePost.bind(this)}/>
+        </form>
+      </div>
     )
   }
 }

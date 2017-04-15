@@ -84,7 +84,7 @@ class Categories extends Component {
 
     return (
       <div>
-        <div className="title is-2">Overview</div>
+        <div className="title is-2">Categories</div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field name="name" type="text" component={this.renderNameField} placeholder="Category Name"/>
           <button type="submit">Submit</button>
