@@ -15,9 +15,48 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="columns is-marginless">
+        <nav className="nav is-dark has-shadow" id="top">
+          <div className="container">
+            <div className="nav-left">
+              <a className="nav-item" href="../index.html">
+                <span>Title</span>
+              </a>
+            </div>
+            <span className="nav-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <div className="nav-right nav-menu is-hidden-tablet">
+              <Link to="/dashboard" className="nav-item is-tab active">
+                Dashboard
+              </Link>
+              <Link to="/posts" className="nav-item is-tab">
+                Posts
+              </Link>
+              <Link to="/new-post" className="nav-item is-tab">
+                NewPost
+              </Link>
+              <Link to="/categories" className="nav-item is-tab">
+                Categories
+              </Link>
+              <Link to="/tags" className="nav-item is-tab">
+                Tags
+              </Link>
+              <Link to="/config" className="nav-item is-tab">
+                Config
+              </Link>
+            </div>
+          </div>
+        </nav>
+        <div className="columns">
           <aside className="column is-2 aside hero is-fullheight is-hidden-mobile">
             <div>
+              <div className="uploader has-text-centered">
+                <a className="button">
+                  <i className="fa fa-upload"></i>
+                </a>
+              </div>
               <div className="main">
                 <div className="title">Main</div>
                 <Link to="/dashboard" className="item active">
@@ -26,31 +65,31 @@ export default class App extends React.Component {
                   </span>
                   <span className="name">Dashboard</span>
                 </Link>
-                <Link to="/dashboard/posts" className="item active">
+                <Link to="/dashboard/posts" className="item">
                   <span className="icon">
                     <i className="fa fa-list"></i>
                   </span>
                   <span className="name">Posts</span>
                 </Link>
-                <Link to="/dashboard/new-post" className="item active">
+                <Link to="/dashboard/new-post" className="item">
                   <span className="icon">
                     <i className="fa fa-pencil"></i>
                   </span>
                   <span className="name">NewPost</span>
                 </Link>
-                <Link to="/dashboard/categories" className="item active">
+                <Link to="/dashboard/categories" className="item">
                   <span className="icon">
                     <i className="fa fa-th-list"></i>
                   </span>
                   <span className="name">Categories</span>
                 </Link>
-                <Link to="/dashboard/tags" className="item active">
+                <Link to="/dashboard/tags" className="item">
                   <span className="icon">
                     <i className="fa fa-tags"></i>
                   </span>
                   <span className="name">Tags</span>
                 </Link>
-                <Link to="/dashboard/config" className="item active">
+                <Link to="/dashboard/config" className="item">
                   <span className="icon">
                     <i className="fa fa-cog"></i>
                   </span>
@@ -59,45 +98,11 @@ export default class App extends React.Component {
               </div>
             </div>
           </aside>
-          <div className="column is-10 admin-panel">
-            <nav className="nav has-shadow" id="top">
-              <div className="container">
-                <div className="nav-left">
-                  <a className="nav-item" href="../index.html">
-                    <h1 className="title">Rubel</h1>
-                  </a>
-                </div>
-                <span className="nav-toggle">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </span>
-                <div className="nav-right nav-menu is-hidden-tablet">
-                  <Link to="/dashboard" className="nav-item is-active">
-                    Dashboard
-                  </Link>
-                  <Link to="/dashboard/posts" className="item active">
-                    Posts
-                  </Link>
-                  <Link to="/dashboard/new-post" className="item active">
-                    NewPost
-                  </Link>
-                  <Link to="/dashboard/categories" className="item active">
-                    Categories
-                  </Link>
-                  <Link to="/dashboard/tags" className="item active">
-                    Tags
-                  </Link>
-                  <Link to="/dashboard/config" className="item active">
-                    config
-                  </Link>
-                </div>
-              </div>
-            </nav>
+          <div className="content column is-10">
             {this.props.children}
           </div>
         </div>
-        <footer className="footer admin-footer">
+        <footer className="footer">
           <div className="container">
             <div className="has-text-centered">
               <p>

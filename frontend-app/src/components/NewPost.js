@@ -177,15 +177,8 @@ class NewPost extends Component {
     })
 
     return (
-      <section className="section">
-        <div className="container">
-          <div className="heading">
-            <h1 className="title">NewPost</h1>
-            <h2 className="subtitle">
-              Here is perfomance infomation.
-            </h2>
-          </div>
-        </div>
+      <div>
+        <div className="title is-2">New Post</div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>
           <Field label="Categories" name="category_id" component={this.renderCategoryField.bind(this)} placeholder="Cateogory"/>
@@ -198,7 +191,7 @@ class NewPost extends Component {
           <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
           <Field name="publication_status" component={this.renderSubmitBtnField}/>
         </form>
-      </section>
+      </div>
     );
   }
 }

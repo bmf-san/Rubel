@@ -41,17 +41,10 @@ class Tags extends Component {
 
   render() {
     return (
-      <section className="section">
-        <div className="container">
-          <div className="heading">
-            <h1 className="title">Tags</h1>
-            <h2 className="subtitle">
-              Here is tags page.
-            </h2>
-          </div>
-        </div>
+      <div>
+        <div className="title is-2">Tags</div>
         {this.renderTags()}
-      </section>
+      </div>
     );
   }
 }

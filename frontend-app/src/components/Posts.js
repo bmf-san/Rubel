@@ -126,15 +126,9 @@ class Posts extends Component {
 
   render() {
     return (
-      <section className="section">
-        <div className="container">
-          <div className="heading">
-            <h1 className="title">Posts</h1>
-            <h2 className="subtitle">
-              Here is perfomance infomation.
-            </h2>
-          </div>
-        </div>
+      <div>
+        <div className="title is-2">Posts</div>
+
         <table className="table is-centered">
           <thead>
             <tr>
@@ -159,7 +153,7 @@ class Posts extends Component {
           </tbody>
         </table>
         {this.renderPagination()}
-      </section>
+      </div>
     );
   }
 }

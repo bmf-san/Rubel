@@ -8,9 +8,7 @@
     border: none;
     border-radius: 3px;
     box-shadow: none;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
+    display: block;
     font-size: 1rem;
     height: 2.25em;
     -webkit-box-pack: start;
