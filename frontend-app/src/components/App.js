@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-// TODO React でかく
+// TODO React でかく utils内にコンポーネントとして構築
 // (function() {
 //     var burger = document.querySelector('.nav-toggle');
 //     var menu = document.querySelector('.nav-menu');
