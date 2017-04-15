@@ -47,7 +47,8 @@ body {
 .aside .main .icon {
     font-size: 19px;
     padding-right: 30px;
-    padding-bottom: 3px: display: inline-block;
+    padding-bottom: 3px;
+    display: inline-block;
 }
 
 .icon .fa {
