@@ -100,7 +100,7 @@ export function editTag(props) {
 
 export function deleteTag(props) {
   const post_id = props;
-  const request = axios.delte(`${ROOT_URL}/admin/tag/${post_id}`, props);
+  const request = axios.delete(`${ROOT_URL}/admin/tag/${post_id}`, props);
 
   return {type: DELETE_TAG, payload: request};
 }

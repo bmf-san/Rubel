@@ -22,19 +22,22 @@ class Tags extends Component {
 
   renderDeleteBtn(id) {
     return (
-      <button onClick={this.handleTagDelete.bind(this, id)}>DELETE</button>
+      <span className="icon" onClick={this.handleTagDelete.bind(this, id)}>
+        <i className="fa fa-trash-o"></i>
+      </span>
     )
   }
 
   renderTags() {
     return this.props.tags.all.map((tag) => {
       return (
-        <li key={tag.id}>
-          <div key={tag.id}>
-            {tag.name}
+        <tr key={tag.id}>
+          <td>{tag.id}</td>
+          <td>{tag.name}</td>
+          <td>
             {this.renderDeleteBtn(tag.id)}
-          </div>
-        </li>
+          </td>
+        </tr>
       );
     });
   }
@@ -43,7 +46,27 @@ class Tags extends Component {
     return (
       <div>
         <div className="title is-2">Tags</div>
-        {this.renderTags()}
+        <div className="column is-one-third">
+          <table className="table is-centered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>DELETE</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>DELETE</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              {this.renderTags()}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

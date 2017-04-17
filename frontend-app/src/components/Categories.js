@@ -42,12 +42,16 @@ class Categories extends Component {
   renderDeleteBtn(id) {
     if (id !== category_id_of_uncategorized) {
       return (
-        <button onClick={this.handleCategoryDelete.bind(this, id)}>DELETE</button>
+        <div className="control">
+          <span className="icon" onClick={this.handleCategoryDelete.bind(this, id)}>
+            <i className="fa fa-trash-o"></i>
+          </span>
+        </div>
       );
     }
   }
 
-  renderNameField({
+  renderCategoryField({
     input,
     label,
     type,
@@ -57,10 +61,10 @@ class Categories extends Component {
     }
   }) {
     return (
-      <div>
-        <label>{label}</label>
-        <div>
-          <input {...input} placeholder={label} type={type}/> {touched && ((error && <span>{error}</span>))}
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="control">
+          <input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger is-resizeless")) || 'input is-resizeless'}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
         </div>
       </div>
     )
@@ -69,12 +73,17 @@ class Categories extends Component {
   renderCategories() {
     return this.props.categories.all.map((category) => {
       return (
-        <li key={category.id}>
-          <div key={category.id}>
+        <tr key={category.id}>
+          <td>
+            {category.id}
+          </td>
+          <td>
             {category.name}
+          </td>
+          <td>
             {this.renderDeleteBtn(category.id)}
-          </div>
-        </li>
+          </td>
+        </tr>
       );
     });
   }
@@ -85,13 +94,35 @@ class Categories extends Component {
     return (
       <div>
         <div className="title is-2">Categories</div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="name" type="text" component={this.renderNameField} placeholder="Category Name"/>
-          <button type="submit">Submit</button>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column is-one-third">
+          <Field label="Category" name="name" type="text" component={this.renderCategoryField} placeholder="Category Name"/>
+          <div className="field is-grouped is-pulled-right">
+            <div className="control">
+              <button className="button is-primary">Submit</button>
+            </div>
+          </div>
         </form>
-        <ul>
-          {this.renderCategories()}
-        </ul>
+        <div className="column is-one-third">
+          <table className="table is-centered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>DELETE</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>DELETE</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              {this.renderCategories()}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
