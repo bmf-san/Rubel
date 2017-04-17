@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\DatabaseManager;
-
 use Carbon\Carbon;
 
 class AdminsTableSeeder extends Seeder
@@ -19,9 +17,9 @@ class AdminsTableSeeder extends Seeder
         $this->db->table('admins')->truncate();
 
         $this->db->table('admins')->insert([
-           'name' => env('ADMIN_NAME', 'admin'),
-           'email' => env('ADMIN_EMAIL', 'admin@gmail.com'),
-           'password' => bcrypt(env('ADMIN_PASSWORD', 'adminpass')),
+           'name' => config('rubel.admin_info.name'),
+           'email' => config('rubel.admin_info.email'),
+           'password' => bcrypt(config('rubel.admin_info.password')),
            'created_at' => Carbon::now(),
            'updated_at' => Carbon::now(),
         ]);
