@@ -37,29 +37,50 @@
     </div>
     <section class="section">
       <div class="container">
-        <div class="columns">
-          <div class="column">
-            content-1
-          </div>
-          <div class="column">
-            content-1
-          </div>
+        <div class="column is-8 is-offset-2">
+          <p>
+            2 days ago
+          </p>
+          <h1 class="title">
+            Cras feugiat euismod sem accumsan ultrices.
+          </h1>
+          <h2 class="blog-summary">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare malesuada dolor ut dictum. Pellentesque eget orci nisl. Vivamus sit amet ullamcorper elit. Donec mattis scelerisque dui sed convallis.
+          </h2>
         </div>
-        <div class="columns">
-          <div class="column">
-            content-2
-          </div>
-          <div class="column">
-            content-2
-          </div>
+        <div class="column is-8 is-offset-2">
+          <p>
+            2 days ago
+          </p>
+          <h1 class="title">
+            Cras feugiat euismod sem accumsan ultrices.
+          </h1>
+          <h2 class="blog-summary">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare malesuada dolor ut dictum. Pellentesque eget orci nisl. Vivamus sit amet ullamcorper elit. Donec mattis scelerisque dui sed convallis.
+          </h2>
         </div>
-        <div class="columns">
-          <div class="column">
-            content-3
-          </div>
-          <div class="column">
-            content-3
-          </div>
+        <div class="column is-8 is-offset-2">
+          <p>
+            2 days ago
+          </p>
+          <h1 class="title">
+            Cras feugiat euismod sem accumsan ultrices.
+          </h1>
+          <h2 class="blog-summary">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare malesuada dolor ut dictum. Pellentesque eget orci nisl. Vivamus sit amet ullamcorper elit. Donec mattis scelerisque dui sed convallis.
+          </h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="tabs is-centered">
+          <ul>
+            <li><a href={{ url('/posts') }}>View more posts</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-8 is-offset-2">
+            next contents
         </div>
       </div>
     </section>
