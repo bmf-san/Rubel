@@ -2620,7 +2620,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n}\n\n.header-image {\n    background-image: linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.89)), url('https://images.unsplash.com/1/iphone-4-closeup.jpg?dpr=1&auto=format&crop=middle&fit=crop&w=2000&h=700&q=80');\n}\n\n.is-outlined {\n    background-color: transparent;\n    color: #fff;\n}\n\n.hero-cta {\n    padding: 30px 0;\n}\n\n.panel-block.section p {\n    font-size: 17px;\n    line-height: 1.4;\n    color: #95A5A6;\n}\n\n.section.main {\n    background-color: #F0F0F0;\n}\n\n.icon-block {\n    font-size: 5em;\n}\n", ""]);
+exports.push([module.i, "body {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n}\n\n.header-image {\n    background-size: cover;\n    background-image: linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.7)), url('/img/header.jpg');\n}\n\n.is-outlined {\n    background-color: transparent;\n    color: #fff;\n}\n\n.hero-cta {\n    padding: 30px 0;\n}\n\n.panel-block.section p {\n    font-size: 17px;\n    line-height: 1.4;\n    color: #95A5A6;\n}\n\n.section.main {\n    background-color: #F0F0F0;\n}\n\n.icon-block {\n    font-size: 5em;\n}\n", ""]);
 
 // exports
 

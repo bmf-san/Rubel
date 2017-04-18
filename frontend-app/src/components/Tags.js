@@ -46,26 +46,28 @@ class Tags extends Component {
     return (
       <div>
         <div className="title is-2">Tags</div>
-        <div className="column is-one-third">
-          <table className="table is-centered">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>DELETE</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>DELETE</th>
-              </tr>
-            </tfoot>
-            <tbody>
-              {this.renderTags()}
-            </tbody>
-          </table>
+        <div className="columns">
+          <div className="column is-one-third">
+            <table className="table is-centered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>DELETE</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>DELETE</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                {this.renderTags()}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );

@@ -94,34 +94,39 @@ class Categories extends Component {
     return (
       <div>
         <div className="title is-2">Categories</div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column is-one-third">
-          <Field label="Category" name="name" type="text" component={this.renderCategoryField} placeholder="Category Name"/>
-          <div className="field is-grouped is-pulled-right">
-            <div className="control">
-              <button className="button is-primary">Submit</button>
+        <div className="columns">
+
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column is-one-third">
+            <Field label="Category" name="name" type="text" component={this.renderCategoryField} placeholder="Category Name"/>
+            <div className="field is-grouped is-pulled-right">
+              <div className="control">
+                <button className="button is-primary">Submit</button>
+              </div>
             </div>
+          </form>
+        </div>
+        <div className="columns">
+          <div className="column is-one-third">
+            <table className="table is-centered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>DELETE</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>DELETE</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                {this.renderCategories()}
+              </tbody>
+            </table>
           </div>
-        </form>
-        <div className="column is-one-third">
-          <table className="table is-centered">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>DELETE</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>DELETE</th>
-              </tr>
-            </tfoot>
-            <tbody>
-              {this.renderCategories()}
-            </tbody>
-          </table>
         </div>
       </div>
     );

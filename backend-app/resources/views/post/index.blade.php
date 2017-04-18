@@ -20,10 +20,10 @@
     <section class="section">
       <div class="container">
         <div class="column is-8 is-offset-2">
-          <h1 class="blog-timestamp">
+          <p>
             2 days ago
-          </h1>
-          <h1 class="blog-title">
+          </p>
+          <h1 class="title">
             Cras feugiat euismod sem accumsan ultrices.
           </h1>
           <h2 class="blog-summary">
@@ -31,10 +31,21 @@
           </h2>
         </div>
         <div class="column is-8 is-offset-2">
-          <h1 class="blog-timestamp">
+          <p>
             2 days ago
+          </p>
+          <h1 class="title">
+            Cras feugiat euismod sem accumsan ultrices.
           </h1>
-          <h1 class="blog-title">
+          <h2 class="blog-summary">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare malesuada dolor ut dictum. Pellentesque eget orci nisl. Vivamus sit amet ullamcorper elit. Donec mattis scelerisque dui sed convallis.
+          </h2>
+        </div>
+        <div class="column is-8 is-offset-2">
+          <p>
+            2 days ago
+          </p>
+          <h1 class="title">
             Cras feugiat euismod sem accumsan ultrices.
           </h1>
           <h2 class="blog-summary">
