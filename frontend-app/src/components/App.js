@@ -1,17 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-// TODO React でかく utils内にコンポーネントとして構築
-// (function() {
-//     var burger = document.querySelector('.nav-toggle');
-//     var menu = document.querySelector('.nav-menu');
-//     burger.addEventListener('click', function() {
-//         burger.classList.toggle('is-active');
-//         menu.classList.toggle('is-active');
-//     });
-// })();
-
 export default class App extends React.Component {
+  componentDidMount() {
+    // Toggle menu
+    const burger = document.querySelector('.nav-toggle');
+    const menu = document.querySelector('.nav-menu');
+
+    burger.addEventListener('click', function() {
+      burger.classList.toggle('is-active');
+      menu.classList.toggle('is-active');
+    });
+  }
+
   render() {
     return (
       <div>

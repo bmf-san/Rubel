@@ -1,8 +1,7 @@
 {
   "scripts": {
     "watch": "webpack --watch --progress",
-    "build": "webpack --config webpack.config.js --progress",
-    "start": "webpack-dev-server --history-api-fallback"
+    "build": "webpack --config webpack.config.js --progress"
   },
   "dependencies": {
     "axios": "~0.15.3",
