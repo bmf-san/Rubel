@@ -8,10 +8,10 @@
     {{-- Content area --}}
     @yield('content')
 
-    {{-- Common script --}}
-    <script type="text/javascript" src="{{ asset('/dist/app.bundle.js') }}"></script>
-
     {{-- Additional script --}}
     @yield('additional-script')
+
+    {{-- Common script --}}
+    <script type="text/javascript" src="{{ asset('/dist/app.bundle.js') }}"></script>
 </body>
 </html>

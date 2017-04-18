@@ -2,6 +2,11 @@
  * App
  */
 
+.tag-list .tag {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
 
 /**
   * Utils
@@ -9,4 +14,8 @@
 
 .mt-one-and-a-half {
     margin-top: 1.5rem;
+}
+
+.mb-one-and-a-half {
+    margin-bottom: 1.5rem;
 }

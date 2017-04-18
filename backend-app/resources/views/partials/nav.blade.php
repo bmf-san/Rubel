@@ -11,17 +11,17 @@
     <span></span>
     </span>
     <div class="nav-right nav-menu">
-      <a class="nav-item is-active">
-      Home
+      <a class="nav-item is-active" href={{ url('/') }}>
+        Home
       </a>
-      <a class="nav-item">
-      Examples
+      <a class="nav-item" href={{ url('/posts') }}>
+        Posts
       </a>
-      <a class="nav-item">
-      Documentation
+      <a class="nav-item" href={{ url('#') }}>
+        Other
       </a>
-      <a class="nav-item">
-      New Post
+      <a class="nav-item" href={{ url('#') }}>
+        Other
       </a>
     </div>
   </div>

@@ -1,3 +1,41 @@
+<aside class="mb-one-and-a-half">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <nav class="panel">
+          <a class="panel-block">
+            <span class="panel-icon">
+              <i class="fa fa-book"></i>
+            </span>
+            bulma
+          </a>
+          <a class="panel-block">
+            <span class="panel-icon">
+              <i class="fa fa-book"></i>
+            </span>
+            marksheet
+          </a>
+        </nav>
+      </div>
+      <div class="column">
+        <div class="card">
+          <div class="card-content tag-list">
+            <span class="tag">
+              <a href="#">Tag</a>
+            </span>
+            <span class="tag">
+              <a href="#">Tag</a>
+            </span>
+            <span class="tag">
+              <a href="#">Tag</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
