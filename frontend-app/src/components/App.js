@@ -7,7 +7,7 @@ export default class App extends React.Component {
     const burger = document.querySelector('.nav-toggle');
     const menu = document.querySelector('.nav-menu');
 
-    burger.addEventListener('click', function() {
+    burger.addEventListener('click', () => {
       burger.classList.toggle('is-active');
       menu.classList.toggle('is-active');
     });
