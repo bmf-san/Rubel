@@ -7,25 +7,25 @@ interface TagRepositoryContract
     /**
      * Display a listing of the resource.
      *
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response
      */
     public function index();
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param [type] $request [description]
+     * @param \Illuminate\Http\Request $request
      *
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response
      */
     public function store($request);
 
     /**
      * Display the specified resource.
      *
-     * @param int $id [description]
+     * @param int $id
      *
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response
      */
     public function show(int $id);
 

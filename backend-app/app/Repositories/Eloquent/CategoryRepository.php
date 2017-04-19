@@ -21,7 +21,7 @@ class CategoryRepository implements CategoryRepositoryContract
     /**
      * Display a listing of the resource.
      *
-     * @return array
+     * @return array $categories
      */
     public function index()
     {
@@ -48,9 +48,9 @@ class CategoryRepository implements CategoryRepositoryContract
     /**
      * Display the specified resource.
      *
-     * @param int $id [description]
+     * @param int $id
      *
-     * @return [type] [description]
+     * @return array $category
      */
     public function show(int $id)
     {
@@ -78,6 +78,8 @@ class CategoryRepository implements CategoryRepositoryContract
     /**
      * Remove the specified resouce from storage.
      *
+     * @param int $id
+     *
      * @return array
      */
     public function destroy(int $id)
@@ -100,6 +102,14 @@ class CategoryRepository implements CategoryRepositoryContract
         return [];
     }
 
+    /**
+     * Save category
+     *
+     * @param  Category $category
+     * @param  Object   $request
+     *
+     * @return int $category
+     */
     private function saveCategory(Category $category, $request)
     {
         $category = $category->create([

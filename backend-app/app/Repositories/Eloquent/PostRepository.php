@@ -10,7 +10,8 @@ class PostRepository implements PostRepositoryContract
 {
     const POST_PAGINATE_NUM = 10;
 
-    private $post, $tag;
+    private $post;
+    private $tag;
 
     public function __construct(Post $post, Tag $tag)
     {
@@ -21,7 +22,7 @@ class PostRepository implements PostRepositoryContract
     /**
      * Display a listing of the resource.
      *
-     * @return array $post_array
+     * @return array $posts
      */
     public function index()
     {
@@ -53,7 +54,7 @@ class PostRepository implements PostRepositoryContract
      *
      * @param int $id
      *
-     * @return array $post_array
+     * @return array $post
      */
     public function show(int $id)
     {
@@ -99,10 +100,10 @@ class PostRepository implements PostRepositoryContract
     /**
      * Save post.
      *
-     * @param Post   $post    [description]
-     * @param [type] $request [description]
+     * @param Post   $post
+     * @param Object $request
      *
-     * @return [type] [description]
+     * @return int $post
      */
     private function savePost(Post $post, $request)
     {
@@ -121,11 +122,9 @@ class PostRepository implements PostRepositoryContract
     /**
      * Sync tags.
      *
-     * @param Post   $post [description]
-     * @param Tag    $tag  [description]
-     * @param [type] $tags [description]
-     *
-     * @return [type] [description]
+     * @param Post  $post
+     * @param Tag   $tag
+     * @param Array $tags
      */
     private function syncTags(Post $post, Tag $tag, $tags)
     {

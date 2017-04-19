@@ -46,9 +46,9 @@ class TagRepository implements TagRepositoryContract
     /**
      * Display the specified resource.
      *
-     * @param int $id [description]
+     * @param int $id
      *
-     * @return [type] [description]
+     * @return array $tag
      */
     public function show(int $id)
     {
@@ -62,6 +62,8 @@ class TagRepository implements TagRepositoryContract
      *
      * @param int    $id
      * @param object $request
+     *
+     * @return array
      */
     public function update($request, Int $id)
     {
@@ -75,6 +77,8 @@ class TagRepository implements TagRepositoryContract
     /**
      * Remove the specified resouce from storage.
      *
+     * @param int $id
+     *
      * @return array
      */
     public function destroy(Int $id)
@@ -84,6 +88,12 @@ class TagRepository implements TagRepositoryContract
         return [];
     }
 
+    /**
+     * Save tag
+     * @param  Tag    $tag
+     * @param  Object $request
+     * @return int    $tga
+     */
     private function saveTag(Tag $tag, $request)
     {
         $tag = $tag->create([
