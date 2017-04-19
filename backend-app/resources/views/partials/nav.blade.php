@@ -1,7 +1,7 @@
 <header class="nav">
   <div class="container">
     <div class="nav-left">
-      <a class="nav-item" href="../index.html">
+      <a class="nav-item" href={{ url('/') }}>
         Rubel
       </a>
     </div>

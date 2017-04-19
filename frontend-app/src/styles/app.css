@@ -48,6 +48,10 @@ body {
     color: #F6F7F7;
 }
 
+a.nav-item.is-tab.active {
+    color: #222324;
+}
+
 .aside .main .icon {
     font-size: 19px;
     padding-right: 30px;

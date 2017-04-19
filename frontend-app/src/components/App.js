@@ -19,7 +19,7 @@ export default class App extends React.Component {
         <nav className="nav is-dark has-shadow" id="top">
           <div className="container">
             <div className="nav-left">
-              <a className="nav-item" href="../index.html">
+              <a className="nav-item" href="/dashboard">
                 <span>Rubel</span>
               </a>
             </div>
