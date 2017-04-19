@@ -31,9 +31,9 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreTagRequest $request [description]
+     * @param \Illuminate\Http\Request $request
      *
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response
      */
     public function store(StoreTagRequest $request)
     {
@@ -43,9 +43,9 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id [description]
+     * @param int $id
      *
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response
      */
     public function show(int $id)
     {

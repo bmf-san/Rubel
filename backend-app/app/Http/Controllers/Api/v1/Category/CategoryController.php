@@ -53,12 +53,11 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Store a newly created resource in storage.
      *
-     * @param [type] $request [description]
-     * @param int    $id      [description]
+     * @param \Illuminate\Http\Request $request
      *
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
     {
