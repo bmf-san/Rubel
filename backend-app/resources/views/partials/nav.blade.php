@@ -17,11 +17,11 @@
       <a class="nav-item" href={{ url('/posts') }}>
         Posts
       </a>
-      <a class="nav-item" href={{ url('#') }}>
-        Other
+      <a class="nav-item" href={{ url('/profile') }}>
+        Profile
       </a>
-      <a class="nav-item" href={{ url('#') }}>
-        Other
+      <a class="nav-item" href={{ url('/contact') }}>
+        Contact
       </a>
     </div>
   </div>
