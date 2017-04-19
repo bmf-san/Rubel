@@ -11,16 +11,16 @@
     <span></span>
     </span>
     <div class="nav-right nav-menu">
-      <a class="nav-item is-active" href={{ url('/') }}>
+      <a class="nav-item {{ (request()->path() == '/') ? 'is-active' : '' }}" href={{ url('/') }}>
         Home
       </a>
-      <a class="nav-item" href={{ url('/posts') }}>
+      <a class="nav-item {{ (request()->path() == 'posts') ? 'is-active' : '' }}" href={{ url('/posts') }}>
         Posts
       </a>
-      <a class="nav-item" href={{ url('/profile') }}>
+      <a class="nav-item {{ (request()->path() == 'profile') ? 'is-active' : '' }}" href={{ url('/profile') }}>
         Profile
       </a>
-      <a class="nav-item" href={{ url('/contact') }}>
+      <a class="nav-item {{ (request()->path() == 'contact') ? 'is-active' : '' }}" href={{ url('/contact') }}>
         Contact
       </a>
     </div>
