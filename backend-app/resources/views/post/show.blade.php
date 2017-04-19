@@ -78,7 +78,7 @@
                 <a class="card-footer-item">Share on G+</a>
               </footer>
             </div>
-            <div class="box mt-one-and-a-half">
+            <div class="mt-one-and-a-half">
               <nav class="pagination is-centered">
                 <a class="pagination-previous"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;[title is here]</a>
                 <a class="pagination-next">[title is here]&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a>

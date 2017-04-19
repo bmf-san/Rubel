@@ -10,36 +10,25 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-2">
-            Hero Heading
+            [Here is title]
           </h1>
           <h2 class="subtitle is-5">
-            A hero description could go here.
+            [Here is sub title]
           </h2>
-          <p>
-            <a class="button is-outlined">
-              <span class="icon">
-                <i class="fa fa-download"></i>
-              </span>
-              <span>
-                Download
-              </span>
-            </a>
-          </p>
         </div>
       </div>
     </section>
-    <div class="hero-cta">
-      <nav class="level">
-        <div class="level-item has-text-centered">
-          <p class="title">Call to action here! <a class="button is-primary"><span class="icon"><i class="fa fa-download"></i></span><span>Intent</span></a></p>
-        </div>
-      </nav>
+    <div class="tabs is-centered">
+      <ul>
+        <li class="is-active"><a>New Posts</a></li>
+        <li><a>Popular</a></li>
+      </ul>
     </div>
     <section class="section">
       <div class="container">
         <div class="column is-8 is-offset-2">
           <p>
-            2 days ago
+            <span class="tag is-danger">New!</span>
           </p>
           <h1 class="title">
             Cras feugiat euismod sem accumsan ultrices.
@@ -76,11 +65,6 @@
           <ul>
             <li><a href={{ url('/posts') }}>View more posts</a></li>
           </ul>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column is-8 is-offset-2">
-            next contents
         </div>
       </div>
     </section>

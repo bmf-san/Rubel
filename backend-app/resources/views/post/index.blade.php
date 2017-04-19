@@ -62,7 +62,7 @@
       </div>
       <div class="columns">
         <div class="column is-8 is-offset-2">
-          <div class="box mt-one-and-a-half">
+          <div class="mt-one-and-a-half">
             <nav class="pagination is-centered">
               <a class="pagination-previous">Previous</a>
               <a class="pagination-next">Next page</a>
