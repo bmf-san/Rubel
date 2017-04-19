@@ -2,7 +2,7 @@
   <div class="container">
     <div class="nav-left">
       <a class="nav-item" href="../index.html">
-      <img src="http://bulma.io/images/bulma-logo.png" alt="Logo">
+        Rubel
       </a>
     </div>
     <span class="nav-toggle">

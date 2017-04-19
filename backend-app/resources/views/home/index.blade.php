@@ -10,10 +10,10 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-2">
-            [Here is title]
+            Rubel
           </h1>
           <h2 class="subtitle is-5">
-            [Here is sub title]
+            A Simple CMS worked by Laravel and React.
           </h2>
         </div>
       </div>
@@ -27,7 +27,6 @@
     <section class="section">
       <div class="container recent-tab">
         <div class="column is-8 is-offset-2">
-          recent
           <p>
             <span class="tag is-danger">New!</span>
           </p>
