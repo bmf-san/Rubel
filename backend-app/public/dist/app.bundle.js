@@ -2742,7 +2742,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "/**\n * App\n */\n\n.tag-list .tag {\n    margin-top: 0.2rem;\n    margin-bottom: 0.2rem;\n}\n\n\n/**\n  * Utils\n  */\n\n.mt-one-and-a-half {\n    margin-top: 1.5rem;\n}\n\n.mb-one-and-a-half {\n    margin-bottom: 1.5rem;\n}\n", ""]);
+exports.push([module.i, "/**\n * App\n */\n\nbody {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n}\n\n.tag-list .tag {\n    margin-top: 0.2rem;\n    margin-bottom: 0.2rem;\n}\n\n\n/**\n  * Utils\n  */\n\n.mt-one-and-a-half {\n    margin-top: 1.5rem;\n}\n\n.mb-one-and-a-half {\n    margin-bottom: 1.5rem;\n}\n", ""]);
 
 // exports
 
