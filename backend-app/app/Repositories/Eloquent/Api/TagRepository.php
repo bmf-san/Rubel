@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace App\Repositories\Eloquent\Api;
 
-use App\Repositories\Contracts\TagRepositoryContract;
+use App\Repositories\Contracts\Api\TagRepositoryContract;
 use App\Models\Tag;
 use App\Models\Post;
 

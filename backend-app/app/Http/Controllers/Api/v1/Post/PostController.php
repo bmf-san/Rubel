@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1\Post;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Eloquent\PostRepository;
+use App\Repositories\Eloquent\Api\PostRepository;
 use App\Http\Requests\Api\v1\Post\StorePostRequest;
 
 class PostController extends Controller

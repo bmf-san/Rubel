@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace App\Repositories\Eloquent\Api;
 
-use App\Repositories\Contracts\CategoryRepositoryContract;
+use App\Repositories\Contracts\Api\CategoryRepositoryContract;
 use App\Models\Category;
 use App\Models\Post;
 

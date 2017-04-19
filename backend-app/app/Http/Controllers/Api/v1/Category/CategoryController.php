@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1\Category;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Eloquent\CategoryRepository;
+use App\Repositories\Eloquent\Api\CategoryRepository;
 use App\Http\Requests\Api\v1\Category\StoreCategoryRequest;
 
 class CategoryController extends Controller

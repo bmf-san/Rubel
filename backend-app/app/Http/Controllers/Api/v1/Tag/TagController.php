@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1\Tag;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Eloquent\TagRepository;
+use App\Repositories\Eloquent\Api\TagRepository;
 use App\Http\Requests\Api\v1\Tag\StoreTagRequest;
 
 class TagController extends Controller
