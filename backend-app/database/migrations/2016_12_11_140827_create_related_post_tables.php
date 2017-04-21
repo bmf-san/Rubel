@@ -28,7 +28,8 @@ class CreateRelatedPostTables extends Migration
             $table->string('content')->nullable();
             $table->string('thumb_img_path')->nullable();
             $table->integer('views')->unsigned()->default((int) self::DEFAULT_VIEW_NUM);
-            $table->string('publication_status')->default('draft'); // public|private|draft
+            $table->string('publication_status')->default('draft');
+            $table->datetime('publication_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

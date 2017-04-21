@@ -21,8 +21,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // TODO　リポジトリーつくる？？
-        // $recent_posts =
+        // $recent_posts =　$this->post->
         // $category_posts =
         // return view('home.index', ['recent_post' => $recent_posts, 'popular_post' => $popular_posts];
 

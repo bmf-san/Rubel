@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent\Api;
 use App\Repositories\Contracts\Api\PostRepositoryContract;
 use App\Models\Post;
 use App\Models\Tag;
+use Carbon\Carbon;
 
 class PostRepository implements PostRepositoryContract
 {
@@ -75,10 +76,12 @@ class PostRepository implements PostRepositoryContract
     {
         $post = $this->post->findOrFail($id);
 
-        $post->update($request->all());
+        $this->updatePost($post, $request);
 
-        $tag = $this->tag;
-        $this->syncTags($post, $tag, $request->tags);
+        if ($request->tags) {
+            $tag = $this->tag;
+            $this->syncTags($post, $tag, $request->tags);
+        }
 
         return ['id' => $post->id];
     }
@@ -107,6 +110,12 @@ class PostRepository implements PostRepositoryContract
      */
     private function savePost(Post $post, $request)
     {
+        $publication_date = null;
+
+        if ($request->publication_status == 'public') {
+            $publication_date = Carbon::now();
+        }
+
         $post = $post->create([
             'admin_id' => (int) 1, // FIXME set authenticated admin id
             'category_id' => (int) $request->category_id,
@@ -114,9 +123,37 @@ class PostRepository implements PostRepositoryContract
             'content' => (string) $request->content,
             'thumb_img_path' => (string) $request->thumb_img_path,
             'publication_status' => (string) $request->publication_status,
+            'publication_date' => $publication_date
         ]);
 
         return $post;
+    }
+
+    /**
+     * Update post.
+     *
+     * @param Post   $post
+     * @param Object $request
+     */
+    public function updatePost(Post $post, $request)
+    {
+        $publication_date = $post->publication_date;
+
+        if ($request->publication_status == 'public') {
+            if (is_null($publication_date)) {
+                $publication_date = Carbon::now();
+            }
+        }
+
+        $post->update([
+            'admin_id' => (int) 1, // FIXME set authenticated admin id
+            'category_id' => (int) $request->category_id,
+            'title' => (string) $request->title,
+            'content' => (string) $request->content,
+            'thumb_img_path' => (string) $request->thumb_img_path,
+            'publication_status' => (string) $request->publication_status,
+            'publication_date' => $publication_date
+        ]);
     }
 
     /**

@@ -165,7 +165,6 @@ class EditPost extends Component {
             <span className="select">
               <select {...input}>
                 <option value="draft">Draft</option>
-                <option value="private">Private</option>
                 <option value="public">Public</option>
               </select>
             </span>

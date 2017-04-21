@@ -30,7 +30,7 @@ class RelatedPostTablesSeeder extends Seeder
             'category_id' => 1,
             'title' => 'Title-1',
             'content' => 'This is 1 content.',
-            'thumb_img_path' => 'http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg',
+            'thumb_img_path' => '/img/header.jpg',
             'created_at' => Carbon::now(),
         ]);
 
@@ -62,7 +62,7 @@ class RelatedPostTablesSeeder extends Seeder
                 'category_id' => $i,
                 'title' => "Title-{$i}",
                 'content' => "This is {$i} content.",
-                'thumb_img_path' => 'http://sns-gazo.co/twitterheader/images/new/twitter-new-header_01994.jpg',
+                'thumb_img_path' => '/img/header.jpg',
                 'created_at' => Carbon::now(),
             ]);
 
