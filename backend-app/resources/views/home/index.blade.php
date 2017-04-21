@@ -28,7 +28,7 @@
       <div class="container recent-tab">
         @foreach($recent_posts as $post)
           <div class="column is-8 is-offset-2">
-            @if ($post->publication_date)
+            @if(isDateWithinAWeek($post->publication_date))
               <p>
                 <span class="tag is-danger">New!</span>
               </p>

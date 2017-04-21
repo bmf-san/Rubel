@@ -1,7 +1,14 @@
 <?php
 
-
-function sayHi()
+/**
+ * Check the date is within a week.
+ *
+ * @param  string  $date
+ * @return boolean
+ */
+function isDateWithinAWeek($date)
 {
-    echo 'hello';
+    $carbon_post_date = new \Carbon\Carbon($date);
+
+    return $carbon_post_date->gt(\Carbon\Carbon::now()->subWeek());
 }
