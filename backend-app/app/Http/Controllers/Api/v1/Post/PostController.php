@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Eloquent\Api\PostRepository;
 use App\Http\Requests\Api\v1\Post\StorePostRequest;
+use App\Http\Requests\Api\v1\Post\UpdatePostRequest;
 
 class PostController extends Controller
 {
@@ -60,7 +61,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(UpdatePostRequest $request, int $id)
     {
         return response()->json($this->post_repository->update($request, $id), (int) self::STATUS_CODE_OK);
     }

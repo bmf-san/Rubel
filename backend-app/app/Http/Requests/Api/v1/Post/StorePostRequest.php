@@ -28,7 +28,7 @@ class StorePostRequest extends FormRequest
         if ($this->publication_status != 'draft') {
             return [
                 'title' => 'required',
-                'content' => 'required',
+                'md_content' => 'required',
             ];
         }
 
@@ -44,7 +44,7 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title.required' => 'A title is required',
-            'content.required' => 'A content is required',
+            'md_content.required' => 'A content is required',
         ];
     }
 

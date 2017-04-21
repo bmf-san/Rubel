@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\v1\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditPostRequest extends FormRequest
+class UpdatePostRequest extends FormRequest
 {
     const NOT_FOUND_CODE = 400;
 
@@ -28,7 +28,7 @@ class EditPostRequest extends FormRequest
         if ($this->publication_status != 'draft') {
             return [
                 'title' => 'required',
-                'content' => 'required',
+                'md_content' => 'required',
             ];
         }
 
@@ -44,7 +44,7 @@ class EditPostRequest extends FormRequest
     {
         return [
             'title.required' => 'A title is required',
-            'content.required' => 'A content is required',
+            'md_content.required' => 'A content is required',
         ];
     }
 
