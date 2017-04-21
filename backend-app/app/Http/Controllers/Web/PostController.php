@@ -41,6 +41,9 @@ class PostController extends Controller
     {
         $post = $this->post_model->findOrFail($id);
 
-        return view('post.show', ['post' => $post]);
+        $previous_post = $this->post_model->where('id', '<', $id)->first();
+        $next_post = $this->post_model->where('id', '>', $id)->first();
+
+        return view('post.show', ['post' => $post, 'previous_post' => $previous_post, 'next_post' => $next_post]);
     }
 }

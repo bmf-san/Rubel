@@ -24,15 +24,15 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-8 is-offset-2">
+          <div class="column is-7 is-offset-2">
             <div class="content section">
-              <p class="has-text-right has-text-muted">published 2 days ago</p>
+              <p class="has-text-right has-text-muted">{{ $post->publication_date }}</p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit massa eget mauris hendrerit, sit amet laoreet ex mattis. Aenean finibus massa eget finibus faucibus. Etiam dolor lacus, imperdiet et nisl vitae, lacinia euismod arcu. Aliquam non sapien hendrerit nisi semper rhoncus a eget erat. Maecenas accumsan semper ante eu molestie. Integer tristique erat sit amet posuere cursus. Aliquam placerat sit amet lectus laoreet vestibulum. Sed pharetra neque ac libero ornare, nec viverra ante tristique. Mauris eget urna metus.
+                {{ $post->content }}
               </p>
             </div>
           </div>
-          <div class="column is-2">
+          <div class="column is-3">
             <aside class="menu">
               <ul class="menu-list">
                 <li>
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column is-8 is-offset-2">
+          <div class="column is-7 is-offset-2">
             <div class="card is-fullwidth">
               <header class="card-header">
                 <p class="card-header-title">
@@ -84,8 +84,12 @@
             </div>
             <div class="mt-one-and-a-half">
               <nav class="pagination is-centered">
-                <a class="pagination-previous"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;[title is here]</a>
-                <a class="pagination-next">[title is here]&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                @if($previous_post)
+                  <a class="pagination-previous" href="/post/{{ $previous_post->id }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;{{ mb_str_limit($previous_post->title, 20, '...')}}</a>
+                @endif
+                @if($next_post)
+                  <a class="pagination-next" href="/post/{{ $next_post->id }}">{{ mb_str_limit($next_post->title, 20, '...') }}&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                @endif
               </nav>
             </div>
           </div>

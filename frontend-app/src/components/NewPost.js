@@ -117,7 +117,7 @@ class NewPost extends Component {
         <label className="label">{label}</label>
         <div className="control">
           <div className="columns">
-            <div className="column">
+            <div className="column is-overflow">
               <textarea {...input} placeholder={label} className={touched && ((error && "input is-danger is-resizeless markdown-area")) || 'input is-resizeless markdown-area'}></textarea>{touched && ((error && <span className="help is-danger">{error}</span>))}
             </div>
             <div className="column">
