@@ -42,10 +42,9 @@
               </p>
               <p class="has-text-right has-text-muted">{{ $post->publication_date }}</p>
             </div>
-              <p>
-                {{ $post->content }}
-              </p>
-            </div>
+            <p>
+              {{ $post->content }}
+            </p>
           </div>
           <div class="column is-3">
             <aside class="menu">

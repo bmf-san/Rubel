@@ -208,9 +208,9 @@ a.nav-item.is-tab.active {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: whitesmoke;
+    background-color: #00d1b2;
     border-radius: 290486px;
-    color: #4a4a4a;
+    color: #fff;
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
@@ -220,6 +220,7 @@ a.nav-item.is-tab.active {
     -ms-flex-pack: center;
     justify-content: center;
     line-height: 1.5;
+    margin-right: 0.5rem;
     padding-left: 0.875em;
     padding-right: 0.875em;
     vertical-align: top;

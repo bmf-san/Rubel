@@ -27,7 +27,7 @@
             </a>
             <a href="#">
               <span class="tag is-primary">
-                  Tag
+                  Tagfffff
               </span>
             </a>
             <a href="#">
