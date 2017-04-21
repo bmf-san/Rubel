@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -448,41 +448,10 @@ function updateLink(linkElement, options, obj) {
 
 /***/ }),
 
-/***/ 13:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(27);
-
-// Tabs
-(() => {
-  const recentBtn = document.querySelector('.recent-btn');
-  const popularBtn = document.querySelector('.popular-btn');
-
-  const recentTab = document.querySelector('.recent-tab');
-  const popularTab = document.querySelector('.popular-tab');
-
-  // Init
-  recentBtn.classList.add('is-active');
-  popularTab.style.display = 'none';
-
-  recentBtn.addEventListener('click', () => {
-    if (!recentBtn.classList.contains('is-active')) {
-      recentBtn.classList.toggle('is-active');
-      popularBtn.classList.toggle('is-active');
-      recentTab.style.display = 'block';
-      popularTab.style.display = 'none';
-    }
-  });
-
-  popularBtn.addEventListener('click', () => {
-    if (!popularBtn.classList.contains('is-active')) {
-      popularBtn.classList.toggle('is-active');
-      recentBtn.classList.toggle('is-active');
-      popularTab.style.display = 'block';
-      recentTab.style.display = 'none';
-    }
-  });
-})();
+__webpack_require__(30);
 
 
 /***/ }),
@@ -609,7 +578,7 @@ function fromByteArray (uint8) {
 
 /***/ }),
 
-/***/ 22:
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -617,37 +586,10 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, ".header-image {\n    background-size: cover;\n    background-image: linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.7)), url('/img/header.jpg');\n}\n\n.is-outlined {\n    background-color: transparent;\n    color: #fff;\n}\n\n.hero-cta {\n    padding: 30px 0;\n}\n\n.panel-block.section p {\n    font-size: 17px;\n    line-height: 1.4;\n    color: #95A5A6;\n}\n\n.section.main {\n    background-color: #F0F0F0;\n}\n\n.icon-block {\n    font-size: 5em;\n}\n", ""]);
+exports.push([module.i, ".header-image {\n    background-size: cover;\n    background-image: linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.7)), url('/img/header.jpg');\n}\n", ""]);
 
 // exports
 
-
-/***/ }),
-
-/***/ 27:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(22);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./index.css", function() {
-			var newContent = require("!!../../../../node_modules/css-loader/index.js!./index.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
 
 /***/ }),
 
@@ -2449,11 +2391,30 @@ function isnan (val) {
 
 /***/ }),
 
-/***/ 39:
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(13);
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
+// load the styles
+var content = __webpack_require__(25);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./index.css", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!./index.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 
@@ -2544,6 +2505,14 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
   buffer[offset + i - d] |= s * 128
 }
+
+
+/***/ }),
+
+/***/ 41:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(16);
 
 
 /***/ }),

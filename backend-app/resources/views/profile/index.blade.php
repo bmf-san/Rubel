@@ -27,3 +27,7 @@
   </div>
   @include('partials.footer')
 @endsection
+
+@section('additional-script')
+  <script type="text/javascript" src={{ asset('/dist/profile.bundle.js') }}></script>
+@endsection

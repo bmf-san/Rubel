@@ -63,12 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 38);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -150,8 +149,7 @@ function toComment(sourceMap) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-
-/***/ 1:
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -447,47 +445,7 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-
-/***/ 13:
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(27);
-
-// Tabs
-(() => {
-  const recentBtn = document.querySelector('.recent-btn');
-  const popularBtn = document.querySelector('.popular-btn');
-
-  const recentTab = document.querySelector('.recent-tab');
-  const popularTab = document.querySelector('.popular-tab');
-
-  // Init
-  recentBtn.classList.add('is-active');
-  popularTab.style.display = 'none';
-
-  recentBtn.addEventListener('click', () => {
-    if (!recentBtn.classList.contains('is-active')) {
-      recentBtn.classList.toggle('is-active');
-      popularBtn.classList.toggle('is-active');
-      recentTab.style.display = 'block';
-      popularTab.style.display = 'none';
-    }
-  });
-
-  popularBtn.addEventListener('click', () => {
-    if (!popularBtn.classList.contains('is-active')) {
-      popularBtn.classList.toggle('is-active');
-      recentBtn.classList.toggle('is-active');
-      popularTab.style.display = 'block';
-      recentTab.style.display = 'none';
-    }
-  });
-})();
-
-
-/***/ }),
-
-/***/ 2:
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -608,50 +566,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-
-/***/ 22:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".header-image {\n    background-size: cover;\n    background-image: linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.7)), url('/img/header.jpg');\n}\n\n.is-outlined {\n    background-color: transparent;\n    color: #fff;\n}\n\n.hero-cta {\n    padding: 30px 0;\n}\n\n.panel-block.section p {\n    font-size: 17px;\n    line-height: 1.4;\n    color: #95A5A6;\n}\n\n.section.main {\n    background-color: #F0F0F0;\n}\n\n.icon-block {\n    font-size: 5em;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 27:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(22);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./index.css", function() {
-			var newContent = require("!!../../../../node_modules/css-loader/index.js!./index.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 3:
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2448,16 +2363,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-
-/***/ 39:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(13);
-
-
-/***/ }),
-
-/***/ 4:
+/* 4 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2547,8 +2453,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-
-/***/ 5:
+/* 5 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2559,8 +2464,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-
-/***/ 6:
+/* 6 */
 /***/ (function(module, exports) {
 
 
@@ -2655,8 +2559,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-
-/***/ 7:
+/* 7 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2682,6 +2585,86 @@ try {
 module.exports = g;
 
 
-/***/ })
+/***/ }),
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/******/ });
+__webpack_require__(26);
+
+
+/***/ }),
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".header-image {\n    background-size: cover;\n    background-image: linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.7)), url('/img/header.jpg');\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(21);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./index.css", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!./index.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(12);
+
+
+/***/ })
+/******/ ]);

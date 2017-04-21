@@ -3,7 +3,11 @@ module.exports = [
     "entry": {
       "app": "./resources/assets/js/app.js",
       "home": ["./resources/assets/js/home/index.js"],
-      "post": ["./resources/assets/js/post/index.js", "./resources/assets/js/post/show.js"]
+      "post": [
+        "./resources/assets/js/post/index.js", "./resources/assets/js/post/show.js"
+      ],
+      "profile": ["./resources/assets/js/profile/index.js"],
+      "contact": ["./resources/assets/js/contact/index.js"]
     },
     "output": {
       path: __dirname + '/public/dist',

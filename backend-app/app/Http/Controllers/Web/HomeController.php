@@ -21,10 +21,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $recent_posts =　$this->post->
-        // $category_posts =
-        // return view('home.index', ['recent_post' => $recent_posts, 'popular_post' => $popular_posts];
+        $recent_posts = $this->post->where('publication_status', 'public')->take(10)->get();
+        $popular_posts = $this->post->where('publication_status', 'public')->take(10)->orderBy('views')->get();
 
-        return view('home.index');
+        return view('home.index', ['recent_posts' => $recent_posts, 'popular_posts' => $popular_posts]);
     }
 }
