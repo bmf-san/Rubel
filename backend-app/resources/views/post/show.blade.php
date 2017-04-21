@@ -85,10 +85,14 @@
             <div class="mt-one-and-a-half">
               <nav class="pagination is-centered">
                 @if($previous_post)
-                  <a class="pagination-previous" href="/post/{{ $previous_post->id }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;{{ mb_str_limit($previous_post->title, 20, '...')}}</a>
+                  <a class="pagination-previous" href="/post/{{ $previous_post->id }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;{{ mb_str_limit($previous_post->title, 15, '...')}}</a>
+                @else
+                  <span></span>
                 @endif
                 @if($next_post)
-                  <a class="pagination-next" href="/post/{{ $next_post->id }}">{{ mb_str_limit($next_post->title, 20, '...') }}&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                  <a class="pagination-next" href="/post/{{ $next_post->id }}">{{ mb_str_limit($next_post->title, 15, '...') }}&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                @else
+                  <span></span>
                 @endif
               </nav>
             </div>
