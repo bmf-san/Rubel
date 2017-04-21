@@ -4,9 +4,9 @@
   <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="pagination-previous">Previous</a>
 @endif
 @if ($paginator->hasMorePages())
-  <a class="pagination-next" disabled>Next page</a>
-@else
   <a class="pagination-next" href="{{ $paginator->nextPageUrl() }}" rel="next">Next page</a>
+@else
+  <a class="pagination-next" disabled>Next page</a>
 @endif
 <ul class="pagination-list">
   @foreach ($elements as $element)

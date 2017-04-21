@@ -43,7 +43,7 @@
         <div class="column is-8 is-offset-2">
           <div class="mt-one-and-a-half">
             <nav class="pagination is-centered">
-              {{ $posts->links('vendor.pagination.bulma') }}
+              {{ $posts->links('partials.pagination') }}
             </nav>
           </div>
         </div>
