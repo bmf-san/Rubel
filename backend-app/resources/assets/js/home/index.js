@@ -1,4 +1,4 @@
-require('../../css/home/index.css');
+require('../../scss/home/index.scss');
 
 // Tabs
 (() => {

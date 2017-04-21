@@ -11,13 +11,13 @@ class PostRepository implements PostRepositoryContract
 {
     const POST_PAGINATE_NUM = 10;
 
-    private $post;
-    private $tag;
+    private $post_model;
+    private $tag_model;
 
-    public function __construct(Post $post, Tag $tag)
+    public function __construct(Post $post_model, Tag $tag_model)
     {
-        $this->post = $post;
-        $this->tag = $tag;
+        $this->post_model = $post_model;
+        $this->tag_model = $tag_model;
     }
 
     /**
@@ -27,7 +27,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function index()
     {
-        $posts = $this->post->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
+        $posts = $this->post_model->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
 
         return $posts;
     }
@@ -41,10 +41,10 @@ class PostRepository implements PostRepositoryContract
      */
     public function store($request)
     {
-        $post = $this->post;
+        $post = $this->post_model;
         $post = $this->savePost($post, $request);
 
-        $tag = $this->tag;
+        $tag = $this->tag_model;
         $this->syncTags($post, $tag, $request->tags);
 
         return ['id' => $post->id];
@@ -59,7 +59,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function show(int $id)
     {
-        $post = $this->post->with('admin', 'category', 'comments', 'tags')->find($id);
+        $post = $this->post_model->with('admin', 'category', 'comments', 'tags')->find($id);
 
         return $post;
     }
@@ -74,12 +74,12 @@ class PostRepository implements PostRepositoryContract
      */
     public function update($request, Int $id)
     {
-        $post = $this->post->findOrFail($id);
+        $post = $this->post_model->findOrFail($id);
 
         $this->updatePost($post, $request);
 
         if ($request->tags) {
-            $tag = $this->tag;
+            $tag = $this->tag_model;
             $this->syncTags($post, $tag, $request->tags);
         }
 
@@ -93,7 +93,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function destroy(Int $id)
     {
-        $post = $this->post->find($id);
+        $post = $this->post_model->find($id);
 
         $post->delete();
 

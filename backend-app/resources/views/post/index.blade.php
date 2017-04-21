@@ -9,11 +9,8 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-2">
-            Blog post title
+            Posts
           </h1>
-          <h2 class="subtitle is-4">
-            Blog post subtitle
-          </h2>
         </div>
       </div>
     </section>
@@ -30,7 +27,9 @@
               <span>{{ $post->publication_date }}</span>
             </p>
             <h1 class="title">
-              {{ mb_str_limit($post->title, 20, '...') }}
+              <a href='/post/{{ $post->id }}'>
+                {{ mb_str_limit($post->title, 20, '...') }}
+              </a>
             </h1>
             <h2 class="blog-summary">
               {{ mb_str_limit($post->content, 80, '...') }}

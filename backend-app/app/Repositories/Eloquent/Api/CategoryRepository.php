@@ -4,18 +4,16 @@ namespace App\Repositories\Eloquent\Api;
 
 use App\Repositories\Contracts\Api\CategoryRepositoryContract;
 use App\Models\Category;
-use App\Models\Post;
 
 class CategoryRepository implements CategoryRepositoryContract
 {
     const CATEGORY_ID_OF_UNCATEGORIZED = 1;
 
-    private $category;
+    private $category_model;
 
-    public function __construct(Category $category, Post $post)
+    public function __construct(Category $category_model)
     {
-        $this->category = $category;
-        $this->post = $post;
+        $this->category_model = $category_model;
     }
 
     /**
@@ -25,7 +23,7 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function index()
     {
-        $categories = $this->category->get();
+        $categories = $this->category_model->get();
 
         return $categories;
     }
@@ -39,7 +37,7 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function store($request)
     {
-        $category = $this->category;
+        $category = $this->category_model;
         $category = $this->saveCategory($category, $request);
 
         return ['id' => $category->id];
@@ -54,7 +52,7 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function show(int $id)
     {
-        $category = $this->category->with('posts')->find($id);
+        $category = $this->category_model->with('posts')->find($id);
 
         return $category;
     }
@@ -69,7 +67,7 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function update($request, int $id)
     {
-        $category = $this->category->findOrFail($id);
+        $category = $this->category_model->findOrFail($id);
         $category->update($request->all());
 
         return ['id' => $category->id];
@@ -84,7 +82,7 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function destroy(int $id)
     {
-        $category = $this->category->findOrFail($id);
+        $category = $this->category_model->findOrFail($id);
         $posts = $category->posts;
 
         if ($posts->count() > 0) {

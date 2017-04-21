@@ -26,7 +26,7 @@
     </div>
     <section class="section">
       <div class="container recent-tab">
-        @foreach($recent_posts as $post)
+        @forelse($recent_posts as $post)
           <div class="column is-8 is-offset-2">
             @if(isDateWithinAWeek($post->publication_date))
               <p>
@@ -37,17 +37,23 @@
               <span>{{ $post->publication_date }}</span>
             </p>
             <h1 class="title">
-              {{ mb_str_limit($post->title, 20, '...') }}
+              <a href='/post/{{ $post->id }}'>
+                {{ mb_str_limit($post->title, 20, '...') }}
+              </a>
             </h1>
             <h2 class="blog-summary">
               {{ mb_str_limit($post->content, 80, '...') }}
             </h2>
             <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
           </div>
-        @endforeach
+        @empty
+          <div class="column is-8 is-offset-2">
+            <p class="has-text-centered">Nothing Found.</p>
+          </div>
+        @endforelse
       </div>
       <div class="container popular-tab">
-        @foreach($popular_posts as $post)
+        @forelse($popular_posts as $post)
           <div class="column is-8 is-offset-2">
             @if(isDateWithinAWeek($post->publication_date))
               <p>
@@ -58,14 +64,20 @@
               <span>{{ $post->publication_date }}</span>
             </p>
             <h1 class="title">
-              {{ mb_str_limit($post->title, 20, '...') }}
+              <a href='/post/{{ $post->id }}'>
+                {{ mb_str_limit($post->title, 20, '...') }}
+              </a>
             </h1>
             <h2 class="blog-summary">
               {{ mb_str_limit($post->content, 80, '...') }}
             </h2>
             <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
           </div>
-        @endforeach
+        @empty
+          <div class="column is-8 is-offset-2">
+            <p class="has-text-centered">Nothing Found.</p>
+          </div>
+        @endforelse
       </div>
       <div class="container">
         <div class="tabs is-centered">

@@ -9,11 +9,11 @@ class PostController extends Controller
 {
     const POST_PAGINATE_NUM = 10;
 
-    private $post;
+    private $post_model;
 
-    public function __construct(Post $post)
+    public function __construct(Post $post_model)
     {
-        $this->post = $post;
+        $this->post_model = $post_model;
     }
 
     /**
@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = $this->post->where('publication_status', 'public')->paginate(self::POST_PAGINATE_NUM);
+        $posts = $this->post_model->where('publication_status', 'public')->paginate(self::POST_PAGINATE_NUM);
 
         return view('post.index', ['posts' => $posts]);
     }
@@ -39,6 +39,8 @@ class PostController extends Controller
      */
     public function show(int $id)
     {
-        return view('post.show');
+        $post = $this->post_model->findOrFail($id);
+
+        return view('post.show', ['post' => $post]);
     }
 }

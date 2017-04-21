@@ -5,15 +5,19 @@
 @section('content')
   <div class="container-fluid">
     @include('partials.nav')
-    <section class="hero is-primary is-medium"> <!-- TODO chage header image by post thumb img -->
+    <section class="hero is-primary is-medium header-image">
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-2">
-            Blog post title
+            {{ $post->title }}
           </h1>
-          <h2 class="subtitle is-4">
-            Blog post subtitle
-          </h2>
+          @foreach ($post->tags as $tag)
+            <span class="tag">
+              <a href="#">
+                {{ $tag->name }}
+              </a>
+            </span>
+          @endforeach
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-const entries = ['./src/index.js', './node_modules/font-awesome/css/font-awesome.css', './node_modules/bulma/css/bulma.css', './src/styles/app.css']
+const entries = ['./src/index.js', './src/styles/scss/app.scss']
 
 module.exports = [
   {
@@ -22,6 +22,12 @@ module.exports = [
         }, {
           test: /\.css$/,
           loaders: ['style-loader', 'css-loader']
+        }, {
+          test: /\.scss$/,
+          loader: ['style-loader', 'css-loader', 'sass-loader']
+        }, {
+          test: /\.sass$/,
+          loader: ['style-loader', 'css-loader', 'sass-loader']
         }, {
           test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
           loader: 'url-loader?mimetype=image/svg+xml'

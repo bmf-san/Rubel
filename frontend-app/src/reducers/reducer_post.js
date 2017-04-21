@@ -42,7 +42,6 @@ export default function(state = INITIAL_STATE, action) {
           category_id: action.payload.data.category.id,
           title: action.payload.data.title,
           content: action.payload.data.content,
-          thumb_img_path: action.payload.data.thumb_img_path,
           publication_status: action.payload.data.publication_status,
           tags: action.payload.data.tags
         }

@@ -4,16 +4,14 @@ namespace App\Repositories\Eloquent\Api;
 
 use App\Repositories\Contracts\Api\TagRepositoryContract;
 use App\Models\Tag;
-use App\Models\Post;
 
 class TagRepository implements TagRepositoryContract
 {
-    private $tag;
+    private $tag_model;
 
-    public function __construct(Tag $tag, Post $post)
+    public function __construct(Tag $tag_model)
     {
-        $this->tag = $tag;
-        $this->post = $post;
+        $this->tag_model = $tag_model;
     }
 
     /**
@@ -23,7 +21,7 @@ class TagRepository implements TagRepositoryContract
      */
     public function index()
     {
-        $tags = $this->tag->get();
+        $tags = $this->tag_model->get();
 
         return $tags;
     }
@@ -37,7 +35,7 @@ class TagRepository implements TagRepositoryContract
      */
     public function store($request)
     {
-        $tag = $this->tag;
+        $tag = $this->tag_model;
         $tag = $this->saveTag($tag, $request);
 
         return ['id' => $tag->id];
@@ -52,7 +50,7 @@ class TagRepository implements TagRepositoryContract
      */
     public function show(int $id)
     {
-        $tag = $this->tag->with('posts')->find($id);
+        $tag = $this->tag_model->with('posts')->find($id);
 
         return $tag;
     }
@@ -67,7 +65,7 @@ class TagRepository implements TagRepositoryContract
      */
     public function update($request, Int $id)
     {
-        $tag = $this->tag->find($id);
+        $tag = $this->tag_model->find($id);
 
         $tag->update($request->all());
 
@@ -83,7 +81,7 @@ class TagRepository implements TagRepositoryContract
      */
     public function destroy(Int $id)
     {
-        $tag = $this->tag->find($id)->delete();
+        $tag = $this->tag_model->find($id)->delete();
 
         return [];
     }

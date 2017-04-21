@@ -1,0 +1,32 @@
+@import "../../../node_modules/font-awesome/css/font-awesome.css";
+@import "../../../node_modules/bulma/sass/utilities/_all.sass";
+@import "./_variables.scss";
+@import "../../../node_modules/bulma/bulma.sass";
+@import "../../../node_modules/highlight.js/styles/atom-one-dark.css";
+
+
+/**
+ * App
+ */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.tag-list .tag {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+
+/**
+  * Utils
+  */
+
+.mt-one-and-a-half {
+    margin-top: 1.5rem;
+}
+
+.mb-one-and-a-half {
+    margin-bottom: 1.5rem;
+}

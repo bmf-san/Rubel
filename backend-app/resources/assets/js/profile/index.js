@@ -1,1 +1,1 @@
-require('../../css/profile/index.css');
+require('../../scss/profile/index.scss');

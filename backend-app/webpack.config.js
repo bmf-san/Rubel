@@ -22,6 +22,12 @@ module.exports = [
           test: /\.css$/,
           loaders: ['style-loader', 'css-loader']
         }, {
+          test: /\.scss$/,
+          loader: ['style-loader', 'css-loader', 'sass-loader']
+        }, {
+          test: /\.sass$/,
+          loader: ['style-loader', 'css-loader', 'sass-loader']
+        }, {
           test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
           loader: 'url-loader?mimetype=image/svg+xml'
         }, {
