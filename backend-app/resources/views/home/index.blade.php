@@ -33,12 +33,16 @@
                 <span class="tag is-danger">New!</span>
               </p>
             @endif
+            <p>
+              <span>{{ $post->publication_date }}</span>
+            </p>
             <h1 class="title">
-              {{ $post->title }}
+              {{ mb_str_limit($post->title, 20, '...') }}
             </h1>
             <h2 class="blog-summary">
-              {{ $post->content }}
+              {{ mb_str_limit($post->content, 80, '...') }}
             </h2>
+            <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
           </div>
         @endforeach
       </div>
@@ -50,12 +54,16 @@
                 <span class="tag is-danger">New!</span>
               </p>
             @endif
+            <p>
+              <span>{{ $post->publication_date }}</span>
+            </p>
             <h1 class="title">
-              {{ $post->title }}
+              {{ mb_str_limit($post->title, 20, '...') }}
             </h1>
             <h2 class="blog-summary">
-              {{ $post->content }}
+              {{ mb_str_limit($post->content, 80, '...') }}
             </h2>
+            <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
           </div>
         @endforeach
       </div>

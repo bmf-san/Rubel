@@ -19,61 +19,55 @@
     </section>
     <section class="section">
       <div class="container">
-        <div class="column is-8 is-offset-2">
-          <p>
-            2 days ago
-          </p>
-          <h1 class="title">
-            Cras feugiat euismod sem accumsan ultrices.
-          </h1>
-          <h2 class="blog-summary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare malesuada dolor ut dictum. Pellentesque eget orci nisl. Vivamus sit amet ullamcorper elit. Donec mattis scelerisque dui sed convallis.
-          </h2>
-        </div>
-        <div class="column is-8 is-offset-2">
-          <p>
-            2 days ago
-          </p>
-          <h1 class="title">
-            Cras feugiat euismod sem accumsan ultrices.
-          </h1>
-          <h2 class="blog-summary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare malesuada dolor ut dictum. Pellentesque eget orci nisl. Vivamus sit amet ullamcorper elit. Donec mattis scelerisque dui sed convallis.
-          </h2>
-        </div>
-        <div class="column is-8 is-offset-2">
-          <p>
-            2 days ago
-          </p>
-          <h1 class="title">
-            Cras feugiat euismod sem accumsan ultrices.
-          </h1>
-          <h2 class="blog-summary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare malesuada dolor ut dictum. Pellentesque eget orci nisl. Vivamus sit amet ullamcorper elit. Donec mattis scelerisque dui sed convallis.
-          </h2>
-        </div>
-      </div>
-      <div class="container">
-        <div class="tabs is-centered">
-          <ul>
-            <li><a href="#">View more posts</a></li>
-          </ul>
-        </div>
+        @foreach ($posts as $post)
+          <div class="column is-8 is-offset-2">
+            @if(isDateWithinAWeek($post->publication_date))
+              <p>
+                <span class="tag is-danger">New!</span>
+              </p>
+            @endif
+            <p>
+              <span>{{ $post->publication_date }}</span>
+            </p>
+            <h1 class="title">
+              {{ mb_str_limit($post->title, 20, '...') }}
+            </h1>
+            <h2 class="blog-summary">
+              {{ mb_str_limit($post->content, 80, '...') }}
+            </h2>
+            <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
+          </div>
+        @endforeach
       </div>
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <div class="mt-one-and-a-half">
             <nav class="pagination is-centered">
-              <a class="pagination-previous">Previous</a>
-              <a class="pagination-next">Next page</a>
+              @if ($paginator->onFirstPage())
+                <a class="pagination-previous" disabled>Previous</a>
+              @else
+                <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="pagination-previous">Previous</a>
+              @endif
+              @if ($paginator->hasMorePages())
+                <a class="pagination-next" disabled>Next page</a>
+              @else
+                <a class="pagination-next" href="{{ $paginator->nextPageUrl() }}" rel="next">Next page</a>
+              @endif
               <ul class="pagination-list">
-                <li><a class="pagination-link">1</a></li>
-                <li><span class="pagination-ellipsis">&hellip;</span></li>
-                <li><a class="pagination-link">45</a></li>
-                <li><a class="pagination-link is-current">46</a></li>
-                <li><a class="pagination-link">47</a></li>
-                <li><span class="pagination-ellipsis">&hellip;</span></li>
-                <li><a class="pagination-link">86</a></li>
+                @foreach ($elements as $element)
+                  @if (is_string($element))
+                      <li class="disabled"><span>{{ $element }}</span></li>
+                  @endif
+                  @if (is_array($element))
+                    @foreach ($element as $page => $url)
+                      @if ($page == $paginator->currentPage())
+                        <li><a href="{{ $url }}" class="pagination-link is-current">{{ $page }}</a></li>
+                      @else
+                        <li><a href="{{ $url }}" class="pagination-link">{{ $page }}</a></li>
+                      @endif
+                    @endforeach
+                  @endif
+                @endforeach
               </ul>
             </nav>
           </div>
