@@ -38,7 +38,7 @@
             </p>
             <h1 class="title">
               <a href='/post/{{ $post->id }}'>
-                {{ mb_str_limit($post->title, 20, '...') }}
+                {{ mb_str_limit($post->title, 40, '...') }}
               </a>
             </h1>
             <h2 class="blog-summary">
@@ -65,7 +65,7 @@
             </p>
             <h1 class="title">
               <a href='/post/{{ $post->id }}'>
-                {{ mb_str_limit($post->title, 20, '...') }}
+                {{ mb_str_limit($post->title, 40, '...') }}
               </a>
             </h1>
             <h2 class="blog-summary">

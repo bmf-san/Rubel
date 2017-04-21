@@ -26,7 +26,7 @@
         <div class="columns">
           <div class="column is-7 is-offset-2">
             <div class="content section">
-              <h2 class="title is-2">{{ $post->title }}</h2>
+              <h2 class="title is-3">{{ $post->title }}</h2>
               <p class="has-text-right has-text-muted">{{ $post->publication_date }}</p>
               <p>
                 {{ $post->content }}
