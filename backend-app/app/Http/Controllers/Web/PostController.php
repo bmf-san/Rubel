@@ -39,10 +39,10 @@ class PostController extends Controller
      */
     public function show(int $id)
     {
-        $post = $this->post_model->findOrFail($id);
+        $post = $this->post_model->where('publication_status', 'public')->findOrFail($id);
 
-        $previous_post = $this->post_model->where('id', '<', $id)->first();
-        $next_post = $this->post_model->where('id', '>', $id)->first();
+        $previous_post = $this->post_model->where('id', '<', $id)->where('publication_status', 'public')->orderBy('id', 'desc')->first();
+        $next_post = $this->post_model->where('id', '>', $id)->where('publication_status', 'public')->first();
 
         return view('post.show', ['post' => $post, 'previous_post' => $previous_post, 'next_post' => $next_post]);
     }

@@ -26,6 +26,7 @@
         <div class="columns">
           <div class="column is-7 is-offset-2">
             <div class="content section">
+              <h2 class="title is-2">{{ $post->title }}</h2>
               <p class="has-text-right has-text-muted">{{ $post->publication_date }}</p>
               <p>
                 {{ $post->content }}
@@ -91,8 +92,6 @@
                 @endif
                 @if($next_post)
                   <a class="pagination-next" href="/post/{{ $next_post->id }}">{{ mb_str_limit($next_post->title, 15, '...') }}&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-                @else
-                  <span></span>
                 @endif
               </nav>
             </div>
