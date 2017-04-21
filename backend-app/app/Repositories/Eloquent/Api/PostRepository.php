@@ -121,7 +121,6 @@ class PostRepository implements PostRepositoryContract
             'category_id' => (int) $request->category_id,
             'title' => (string) $request->title,
             'content' => (string) $request->content,
-            'thumb_img_path' => (string) $request->thumb_img_path,
             'publication_status' => (string) $request->publication_status,
             'publication_date' => $publication_date
         ]);
@@ -150,7 +149,6 @@ class PostRepository implements PostRepositoryContract
             'category_id' => (int) $request->category_id,
             'title' => (string) $request->title,
             'content' => (string) $request->content,
-            'thumb_img_path' => (string) $request->thumb_img_path,
             'publication_status' => (string) $request->publication_status,
             'publication_date' => $publication_date
         ]);

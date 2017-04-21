@@ -26,7 +26,6 @@ class CreateRelatedPostTables extends Migration
             $table->integer('category_id')->unsigned()->default((int) self::DEFAULT_CATEGORY_ID);
             $table->string('title')->nullable();
             $table->string('content')->nullable();
-            $table->string('thumb_img_path')->nullable();
             $table->integer('views')->unsigned()->default((int) self::DEFAULT_VIEW_NUM);
             $table->string('publication_status')->default('draft');
             $table->datetime('publication_date')->nullable();
