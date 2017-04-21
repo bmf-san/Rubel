@@ -25,59 +25,69 @@
       </ul>
     </div>
     <section class="section">
-      <div class="container recent-tab">
-        @forelse($recent_posts as $post)
-          <div class="column is-8 is-offset-2">
-            @if(isDateWithinAWeek($post->publication_date))
+      <div class="container">
+        <div class="columns">
+          <div class="column is-7 is-offset-2 recent-tab">
+            @forelse($recent_posts as $post)
+              @if(isDateWithinAWeek($post->publication_date))
+                <p>
+                  <span class="tag is-danger">New!</span>
+                </p>
+              @endif
               <p>
-                <span class="tag is-danger">New!</span>
+                <span>{{ $post->publication_date }}</span>
               </p>
-            @endif
-            <p>
-              <span>{{ $post->publication_date }}</span>
-            </p>
-            <h1 class="title">
-              <a href='/post/{{ $post->id }}'>
-                {{ mb_str_limit($post->title, 40, '...') }}
-              </a>
-            </h1>
-            <h2 class="blog-summary">
-              {{ mb_str_limit($post->content, 80, '...') }}
-            </h2>
-            <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
+              <h1 class="title">
+                <a href='/post/{{ $post->id }}'>
+                  {{ mb_str_limit($post->title, 40, '...') }}
+                </a>
+              </h1>
+              <h2 class="blog-summary">
+                {{ mb_str_limit($post->html_content, 80, '...') }}
+              </h2>
+              <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
+            @empty
+              <p class="has-text-centered">Nothing Found.</p>
+            @endforelse
           </div>
-        @empty
-          <div class="column is-8 is-offset-2">
-            <p class="has-text-centered">Nothing Found.</p>
-          </div>
-        @endforelse
-      </div>
-      <div class="container popular-tab">
-        @forelse($popular_posts as $post)
-          <div class="column is-8 is-offset-2">
-            @if(isDateWithinAWeek($post->publication_date))
+          <div class="column is-7 is-offset-2 popular-tab">
+            @forelse($popular_posts as $post)
+              @if(isDateWithinAWeek($post->publication_date))
+                <p>
+                  <span class="tag is-danger">New!</span>
+                </p>
+              @endif
               <p>
-                <span class="tag is-danger">New!</span>
+                <span>{{ $post->publication_date }}</span>
               </p>
-            @endif
-            <p>
-              <span>{{ $post->publication_date }}</span>
-            </p>
-            <h1 class="title">
-              <a href='/post/{{ $post->id }}'>
-                {{ mb_str_limit($post->title, 40, '...') }}
-              </a>
-            </h1>
-            <h2 class="blog-summary">
-              {{ mb_str_limit($post->content, 80, '...') }}
-            </h2>
-            <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
+              <h1 class="title">
+                <a href='/post/{{ $post->id }}'>
+                  {{ mb_str_limit($post->title, 40, '...') }}
+                </a>
+              </h1>
+              <h2 class="blog-summary">
+                {{ mb_str_limit($post->html_content, 80, '...') }}
+              </h2>
+              <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
+            @empty
+              <p class="has-text-centered">Nothing Found.</p>
+            @endforelse
           </div>
-        @empty
-          <div class="column is-8 is-offset-2">
-            <p class="has-text-centered">Nothing Found.</p>
+          <div class="column is-3">
+            <aside class="menu">
+              <ul class="menu-list">
+                <li>
+                  <a>Table of contents</a>
+                  <ul>
+                    <li><a>Membershogehohgeohgeoghehogehogehgoeoghe</a></li>
+                    <li><a>Plugins</a></li>
+                    <li><a>Add a member</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </aside>
           </div>
-        @endforelse
+        </div>
       </div>
       <div class="container">
         <div class="tabs is-centered">

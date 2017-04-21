@@ -31,7 +31,9 @@ class RelatedPostTablesSeeder extends Seeder
             'title' => 'Title-1',
             'md_content' => 'This is 1 content.',
             'html_content' => "<h1>This is 1 content.</h1>",
+            'publication_status' => 'public',
             'created_at' => Carbon::now(),
+            'publication_date' => Carbon::now()
         ]);
 
         $this->db->table('comments')->insert([
@@ -63,7 +65,9 @@ class RelatedPostTablesSeeder extends Seeder
                 'title' => "Title-{$i}",
                 'md_content' => "This is {$i} content.",
                 'html_content' => "<h2>This is {$i} content.</h2>",
+                'publication_status' => 'public',
                 'created_at' => Carbon::now(),
+                'publication_date' => Carbon::now()
             ]);
 
             $this->db->table('comments')->insert([

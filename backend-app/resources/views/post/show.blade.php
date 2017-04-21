@@ -25,7 +25,7 @@
       <div class="container">
         <div class="columns">
           <div class="column is-7 is-offset-2">
-            <div class="content section">
+            <div class="content">
               <h2 class="title is-3">{{ $post->title }}</h2>
               <p class="has-text-right has-text-muted">
                 <a href="#">
@@ -42,9 +42,9 @@
               </p>
               <p class="has-text-right has-text-muted">{{ $post->publication_date }}</p>
             </div>
-            <p>
-              {{ $post->content }}
-            </p>
+            <div class="content">
+              {!! $post->html_content !!}
+            </div>
           </div>
           <div class="column is-3">
             <aside class="menu">
