@@ -20,15 +20,31 @@
       <div class="column">
         <div class="card">
           <div class="card-content tag-list">
-            <span class="tag">
-              <a href="#">Tag</a>
-            </span>
-            <span class="tag">
-              <a href="#">Tag</a>
-            </span>
-            <span class="tag">
-              <a href="#">Tag</a>
-            </span>
+            <a href="#">
+              <span class="tag is-primary">
+                  Tag
+              </span>
+            </a>
+            <a href="#">
+              <span class="tag is-primary">
+                  Tag
+              </span>
+            </a>
+            <a href="#">
+              <span class="tag is-primary">
+                  Tag
+              </span>
+            </a>
+            <a href="#">
+              <span class="tag is-primary">
+                  Tag
+              </span>
+            </a>
+            <a href="#">
+              <span class="tag is-primary">
+                  Tag
+              </span>
+            </a>
           </div>
         </div>
       </div>

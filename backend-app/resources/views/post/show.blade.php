@@ -12,11 +12,11 @@
             {{ $post->title }}
           </h1>
           @foreach ($post->tags as $tag)
-            <span class="tag">
-              <a href="#">
-                {{ $tag->name }}
-              </a>
-            </span>
+            <a href="#">
+              <span class="tag is-primary">
+                  {{ $tag->name }}
+              </span>
+            </a>
           @endforeach
         </div>
       </div>
@@ -27,7 +27,21 @@
           <div class="column is-7 is-offset-2">
             <div class="content section">
               <h2 class="title is-3">{{ $post->title }}</h2>
+              <p class="has-text-right has-text-muted">
+                <a href="#">
+                  {{ $post->category->name }}</p>
+                </a>
+              <p class="has-text-right">
+                @foreach ($post->tags as $tag)
+                  <a href="#">
+                    <span class="tag is-primary">
+                        {{ $tag->name }}
+                    </span>
+                  </a>
+                @endforeach
+              </p>
               <p class="has-text-right has-text-muted">{{ $post->publication_date }}</p>
+            </div>
               <p>
                 {{ $post->content }}
               </p>
@@ -80,7 +94,7 @@
               <footer class="card-footer">
                 <a class="card-footer-item">Share on Facebook</a>
                 <a class="card-footer-item">Share on Twitter</a>
-                <a class="card-footer-item">Share on G+</a>
+                <a class="card-footer-item">Share on Hatena</a>
               </footer>
             </div>
             <div class="mt-one-and-a-half">
