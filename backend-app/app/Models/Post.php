@@ -10,7 +10,7 @@ class Post extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'admin_id', 'category_id', 'title', 'content', 'views', 'publication_status', 'publication_date'
+        'admin_id', 'category_id', 'title', 'md_content', 'html_content', 'views', 'publication_status', 'publication_date'
     ];
 
     protected $hidden = [

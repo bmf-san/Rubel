@@ -29,7 +29,8 @@ class RelatedPostTablesSeeder extends Seeder
             'admin_id' => 1,
             'category_id' => 1,
             'title' => 'Title-1',
-            'content' => 'This is 1 content.',
+            'md_content' => 'This is 1 content.',
+            'html_content' => "<h1>This is 1 content.</h1>",
             'created_at' => Carbon::now(),
         ]);
 
@@ -60,7 +61,8 @@ class RelatedPostTablesSeeder extends Seeder
                 'admin_id' => 1,
                 'category_id' => $i,
                 'title' => "Title-{$i}",
-                'content' => "This is {$i} content.",
+                'md_content' => "This is {$i} content.",
+                'html_content' => "<h2>This is {$i} content.</h2>",
                 'created_at' => Carbon::now(),
             ]);
 

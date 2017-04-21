@@ -120,7 +120,8 @@ class PostRepository implements PostRepositoryContract
             'admin_id' => (int) 1, // FIXME set authenticated admin id
             'category_id' => (int) $request->category_id,
             'title' => (string) $request->title,
-            'content' => (string) $request->content,
+            'md_content' => (string) $request->md_content,
+            'html_content' => (string) $request->html_content,
             'publication_status' => (string) $request->publication_status,
             'publication_date' => $publication_date
         ]);
@@ -148,7 +149,8 @@ class PostRepository implements PostRepositoryContract
             'admin_id' => (int) 1, // FIXME set authenticated admin id
             'category_id' => (int) $request->category_id,
             'title' => (string) $request->title,
-            'content' => (string) $request->content,
+            'md_content' => (string) $request->md_content,
+            'html_content' => (string) $request->html_content,
             'publication_status' => (string) $request->publication_status,
             'publication_date' => $publication_date
         ]);

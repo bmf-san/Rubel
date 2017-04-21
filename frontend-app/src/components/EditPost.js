@@ -25,7 +25,7 @@ class EditPost extends Component {
     const id = this.props.params.id
 
     this.props.fetchPost(id).then((res) => {
-      this.props.updateMarkdown(res.payload.data.content);
+      this.props.updateMarkdown(res.payload.data.md_content);
     });
     this.props.fetchInitPost(id)
     this.props.fetchTags();
@@ -41,7 +41,8 @@ class EditPost extends Component {
       "title": props.title,
       "tags": this.props.tags.complete_tags,
       "category_id": props.category_id,
-      "content": props.content,
+      "md_content": props.md_content,
+      "html_content": this.props.posts.markdown,
       "publication_status": props.publication_status
     };
 
@@ -50,7 +51,7 @@ class EditPost extends Component {
         const validation_msg = res.payload.response.data.messages
         throw new SubmissionError({
           title: [validation_msg.title],
-          content: [validation_msg.content]
+          md_content: [validation_msg.md_content]
         });
       } else {
         const id = res.payload.data.id
@@ -214,7 +215,7 @@ class EditPost extends Component {
               <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false} placeholder="Tags"/>
             </div>
           </div>
-          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
+          <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="md_content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
           <Field name="publication_status" component={this.renderSubmitBtnField} handleDeletePost={this.handleDeletePost.bind(this)}/>
         </form>
       </div>

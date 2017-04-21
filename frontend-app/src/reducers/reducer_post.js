@@ -41,7 +41,7 @@ export default function(state = INITIAL_STATE, action) {
           id: action.payload.data.id,
           category_id: action.payload.data.category.id,
           title: action.payload.data.title,
-          content: action.payload.data.content,
+          md_content: action.payload.data.md_content,
           publication_status: action.payload.data.publication_status,
           tags: action.payload.data.tags
         }
