@@ -48,6 +48,7 @@
           </div>
           <div class="column is-3">
             @include('partials.toc')
+            @include('partials.sidebar')
           </div>
         </div>
         <div class="columns">
