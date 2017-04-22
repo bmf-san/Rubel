@@ -32,7 +32,7 @@
               </a>
             </h1>
             <h2 class="blog-summary">
-              {{ mb_str_limit($post->content, 80, '...') }}
+              {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
             </h2>
             <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
           </div>

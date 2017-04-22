@@ -42,7 +42,7 @@
               </p>
               <p class="has-text-right has-text-muted">{{ $post->publication_date }}</p>
             </div>
-            <div class="content">
+            <div class="content post-content">
               {!! $post->html_content !!}
             </div>
           </div>
