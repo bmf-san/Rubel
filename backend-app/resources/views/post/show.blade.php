@@ -42,7 +42,7 @@
               </p>
               <p class="has-text-right has-text-muted">{{ $post->publication_date }}</p>
             </div>
-            <div class="content post-content">
+            <div id="post-content" class="content">
               {!! $post->html_content !!}
             </div>
           </div>
@@ -51,11 +51,7 @@
               <ul class="menu-list">
                 <li>
                   <a>Table of contents</a>
-                  <ul>
-                    <li><a>Membershogehohgeohgeoghehogehogehgoeoghe</a></li>
-                    <li><a>Plugins</a></li>
-                    <li><a>Add a member</a></li>
-                  </ul>
+                  <ul id="post-toc"></ul>
                 </li>
               </ul>
             </aside>
