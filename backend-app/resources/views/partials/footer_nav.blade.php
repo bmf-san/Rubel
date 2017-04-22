@@ -3,48 +3,30 @@
     <div class="columns">
       <div class="column">
         <nav class="panel">
-          <a class="panel-block">
-            <span class="panel-icon">
-              <i class="fa fa-book"></i>
-            </span>
-            bulma
-          </a>
-          <a class="panel-block">
-            <span class="panel-icon">
-              <i class="fa fa-book"></i>
-            </span>
-            marksheet
-          </a>
+          @forelse ($categories as $category)
+            <a class="panel-block">
+              <span class="panel-icon">
+                <i class="fa fa-book"></i>
+              </span>
+              {{ $category->name }}
+            </a>
+          @empty
+            No Categories.
+          @endforelse
         </nav>
       </div>
       <div class="column">
         <div class="card">
           <div class="card-content tag-list">
-            <a href="#">
-              <span class="tag is-primary">
-                  Tag
-              </span>
-            </a>
-            <a href="#">
-              <span class="tag is-primary">
-                  Tagfffff
-              </span>
-            </a>
-            <a href="#">
-              <span class="tag is-primary">
-                  Tag
-              </span>
-            </a>
-            <a href="#">
-              <span class="tag is-primary">
-                  Tag
-              </span>
-            </a>
-            <a href="#">
-              <span class="tag is-primary">
-                  Tag
-              </span>
-            </a>
+            @forelse($tags as $tag)
+              <a href="#">
+                <span class="tag is-primary">
+                  {{ $tag->name }}
+                </span>
+              </a>
+            @empty
+              No Tags.
+            @endforelse
           </div>
         </div>
       </div>
