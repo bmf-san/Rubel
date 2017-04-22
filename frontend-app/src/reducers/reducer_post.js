@@ -49,12 +49,16 @@ export default function(state = INITIAL_STATE, action) {
 
     case UPDATE_MARKDOWN:
       const marked_request = marked.setOptions({
+        breaks: true,
         highlight: function(code, lang) {
           return hljs.highlightAuto(code, [lang]).value;
         }
       });
 
-      const html = marked(action.payload);
+      let html = marked(action.payload);
+
+      html = html.replace(/\[x\]/g, '<input type="checkbox" checked="checked">');
+      html = html.replace(/\[ \]/g, '<input type="checkbox">');
 
       return {
         ...state,
