@@ -97,6 +97,7 @@
         </div>
       </div>
     </section>
+    @include('partials.footer_nav')
     @include('partials.footer')
 @endsection
 
