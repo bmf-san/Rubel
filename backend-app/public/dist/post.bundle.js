@@ -2600,6 +2600,7 @@ __webpack_require__(20)
 
 __webpack_require__(21);
 
+// Table of contents
 (() => {
   const dom = document.querySelectorAll('#post-content h1');
   const headings = Array.prototype.map.call(dom, function(elm) {

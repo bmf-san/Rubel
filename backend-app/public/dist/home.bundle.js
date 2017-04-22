@@ -2594,11 +2594,11 @@ __webpack_require__(19);
 
 // Tabs
 (() => {
-  const recentBtn = document.querySelector('.recent-btn');
-  const popularBtn = document.querySelector('.popular-btn');
+  const recentBtn = document.querySelector('#recent-btn');
+  const popularBtn = document.querySelector('#popular-btn');
 
-  const recentTab = document.querySelector('.recent-tab');
-  const popularTab = document.querySelector('.popular-tab');
+  const recentTab = document.querySelector('#recent-tab');
+  const popularTab = document.querySelector('#popular-tab');
 
   // Init
   recentBtn.classList.add('is-active');

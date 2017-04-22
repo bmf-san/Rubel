@@ -1,5 +1,6 @@
 require('../../scss/post/show.scss');
 
+// Table of contents
 (() => {
   const dom = document.querySelectorAll('#post-content h1');
   const headings = Array.prototype.map.call(dom, function(elm) {

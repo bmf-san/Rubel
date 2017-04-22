@@ -20,14 +20,14 @@
     </section>
     <div class="tabs is-centered">
       <ul>
-        <li class="recent-btn"><a>Recent</a></li>
-        <li class="popular-btn"><a>Popular</a></li>
+        <li id="recent-btn"><a>Recent</a></li>
+        <li id="popular-btn"><a>Popular</a></li>
       </ul>
     </div>
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-7 is-offset-2 recent-tab">
+          <div id="recent-tab" class="column is-7 is-offset-2">
             @forelse($recent_posts as $post)
               @if(isDateWithinAWeek($post->publication_date))
                 <p>
@@ -50,7 +50,7 @@
               <p class="has-text-centered">Nothing Found.</p>
             @endforelse
           </div>
-          <div class="column is-7 is-offset-2 popular-tab">
+          <div id="popular-tab" class="column is-7 is-offset-2">
             @forelse($popular_posts as $post)
               @if(isDateWithinAWeek($post->publication_date))
                 <p>
