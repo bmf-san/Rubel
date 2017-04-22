@@ -2,7 +2,9 @@
   <div class="container">
     <div class="nav-left">
       <a class="nav-item" href={{ url('/') }}>
-        Rubel
+        <h1 class="title">
+          Rubel
+        </h1>
       </a>
     </div>
     <span class="nav-toggle">
