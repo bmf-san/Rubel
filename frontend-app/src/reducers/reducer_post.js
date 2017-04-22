@@ -50,6 +50,7 @@ export default function(state = INITIAL_STATE, action) {
     case UPDATE_MARKDOWN:
       const marked_request = marked.setOptions({
         breaks: true,
+        sanitize: true,
         highlight: function(code, lang) {
           return hljs.highlightAuto(code, [lang]).value;
         }
