@@ -14,10 +14,12 @@
     padding: 30px 0;
 }
 
-.panel-block.section p {
-    font-size: 17px;
-    line-height: 1.4;
-    color: #95A5A6;
+.panel-block.section {
+  p {
+      font-size: 17px;
+      line-height: 1.4;
+      color: #95A5A6;
+  }
 }
 
 .section.main {
@@ -28,6 +30,8 @@
     font-size: 5em;
 }
 
-.menu-list a {
+.menu-list {
+  a {
     word-wrap: break-word;
+  }
 }

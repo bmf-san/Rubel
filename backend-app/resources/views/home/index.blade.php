@@ -74,18 +74,7 @@
             @endforelse
           </div>
           <div class="column is-3">
-            <aside class="menu">
-              <ul class="menu-list">
-                <li>
-                  <a>Table of contents</a>
-                  <ul>
-                    <li><a>Membershogehohgeohgeoghehogehogehgoeoghe</a></li>
-                    <li><a>Plugins</a></li>
-                    <li><a>Add a member</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </aside>
+            @include('partials.sidebar')
           </div>
         </div>
       </div>
@@ -97,7 +86,6 @@
         </div>
       </div>
     </section>
-    @include('partials.footer_nav')
     @include('partials.footer')
 @endsection
 

@@ -5,12 +5,16 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.7)), url('/img/header.jpg');
 }
 
-.hero.is-primary a {
-  color: $turquoise;
+.hero.is-primary {
+  a {
+    color: $turquoise;
+  }
 }
 
-.menu-list a {
+.menu-list {
+  a {
     word-wrap: break-word;
+  }
 }
 
 pre code {

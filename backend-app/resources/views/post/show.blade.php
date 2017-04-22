@@ -47,14 +47,7 @@
             </div>
           </div>
           <div class="column is-3">
-            <aside class="menu">
-              <ul class="menu-list">
-                <li>
-                  <a>Table of contents</a>
-                  <ul id="post-toc"></ul>
-                </li>
-              </ul>
-            </aside>
+            @include('partials.toc')
           </div>
         </div>
         <div class="columns">
@@ -109,7 +102,6 @@
       </div>
     </section>
   </div>
-  @include('partials.footer_nav')
   @include('partials.footer')
 @endsection
 
