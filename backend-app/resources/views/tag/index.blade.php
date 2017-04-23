@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Tag')
+@section('title', 'Profile')
 
 @section('content')
   <div class="container-fluid">
@@ -9,25 +9,32 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-2">
-            Blog post title
+            Tag
           </h1>
-          <h2 class="subtitle is-4">
-            Blog post subtitle
-          </h2>
         </div>
       </div>
     </section>
     <section class="section">
       <div class="container">
         <div class="column is-8 is-offset-2">
-          @forelse ($tags as $tag)
-            {{ $tag->name }}
-          @empty
-            No Tags.
-          @endforelse
+          <ul class="tag-list">
+            @forelse($tags as $tag)
+              <a href="#">
+                <span class="tag is-primary">
+                  {{ $tag->name }}
+                </span>
+              </a>
+            @empty
+              No Tags.
+            @endforelse
+          </ul>
         </div>
       </div>
     </section>
   </div>
   @include('partials.footer')
+@endsection
+
+@section('additional-script')
+  <script type="text/javascript" src={{ asset('/dist/profile.bundle.js') }}></script>
 @endsection

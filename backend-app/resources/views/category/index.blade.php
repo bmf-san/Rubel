@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Category')
+@section('title', 'Profile')
 
 @section('content')
   <div class="container-fluid">
@@ -9,19 +9,18 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-2">
-            Blog post title
+            Category
           </h1>
-          <h2 class="subtitle is-4">
-            Blog post subtitle
-          </h2>
         </div>
       </div>
     </section>
     <section class="section">
       <div class="container">
         <div class="column is-8 is-offset-2">
-          @forelse ($categories as $category)
-            {{ $category->name }}
+          @forelse($categories as $category)
+            <p class="title is-4">
+              {{ $category->name }}
+            </p>
           @empty
             No Categories.
           @endforelse
@@ -30,4 +29,8 @@
     </section>
   </div>
   @include('partials.footer')
+@endsection
+
+@section('additional-script')
+  <script type="text/javascript" src={{ asset('/dist/profile.bundle.js') }}></script>
 @endsection

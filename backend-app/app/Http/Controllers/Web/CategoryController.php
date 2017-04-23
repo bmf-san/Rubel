@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
     public function __construct(Category $category_model)
     {
-        $this->tag_model = $category_model;
+        $this->category_model = $category_model;
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $categories = $this->category_model->all();
 
-        return view('category.index', ['categories', $categories]);
+        return view('category.index', ['categories' => $categories]);
     }
 
     /**
