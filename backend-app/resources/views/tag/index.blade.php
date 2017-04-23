@@ -19,7 +19,7 @@
         <div class="column is-8 is-offset-2">
           <ul class="tag-list">
             @forelse($tags as $tag)
-              <a href="#">
+              <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
                 <span class="tag is-primary">
                   {{ $tag->name }}
                 </span>

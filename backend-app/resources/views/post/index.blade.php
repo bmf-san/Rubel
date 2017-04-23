@@ -17,7 +17,7 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-7 is-offset-2">
+          <div class="column is-7 is-offset-2 posts-column">
             @foreach ($posts as $post)
               @if(isDateWithinAWeek($post->publication_date))
                 <p>
@@ -33,8 +33,24 @@
                 </a>
               </h1>
               <h2 class="blog-summary">
-                {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
+                {{ mb_str_limit(strip_tags($post->html_content), 300, '...') }}
               </h2>
+              <p class="has-text-right has-text-muted">
+                <a href="/post/category/{{ $post->category->id }}/{{ $post->category->name }}">
+                  {{ $post->category->name }}
+                </a>
+              </p>
+              <p class="has-text-right">
+                @forelse ($post->tags as $tag)
+                  <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
+                    <span class="tag is-primary">
+                      {{ $tag->name }}
+                    </span>
+                  </a>
+                @empty
+                  No Tags.
+                @endforelse
+              </p>
               <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
             @endforeach
           </div>

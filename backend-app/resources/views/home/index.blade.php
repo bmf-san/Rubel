@@ -27,7 +27,7 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div id="recent-tab" class="column is-7 is-offset-2">
+          <div id="recent-tab" class="column is-7 is-offset-2 posts-column">
             @forelse($recent_posts as $post)
               @if(isDateWithinAWeek($post->publication_date))
                 <p>
@@ -45,12 +45,28 @@
               <h2 class="blog-summary">
                 {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
               </h2>
+              <p class="has-text-right has-text-muted">
+                <a href="/post/category/{{ $post->category->id }}/{{ $post->category->name }}">
+                  {{ $post->category->name }}
+                </a>
+              </p>
+              <p class="has-text-right">
+                @forelse ($post->tags as $tag)
+                  <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
+                    <span class="tag is-primary">
+                      {{ $tag->name }}
+                    </span>
+                  </a>
+                @empty
+                  No Tags.
+                @endforelse
+              </p>
               <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
             @empty
               <p class="has-text-centered">Nothing Found.</p>
             @endforelse
           </div>
-          <div id="popular-tab" class="column is-7 is-offset-2">
+          <div id="popular-tab" class="column is-7 is-offset-2 posts-column">
             @forelse($popular_posts as $post)
               @if(isDateWithinAWeek($post->publication_date))
                 <p>
@@ -68,6 +84,22 @@
               <h2 class="blog-summary">
                 {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
               </h2>
+              <p class="has-text-right has-text-muted">
+                <a href="/post/category/{{ $post->category->id }}/{{ $post->category->name }}">
+                  {{ $post->category->name }}
+                </a>
+              </p>
+              <p class="has-text-right">
+                @forelse ($post->tags as $tag)
+                  <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
+                    <span class="tag is-primary">
+                      {{ $tag->name }}
+                    </span>
+                  </a>
+                @empty
+                  No Tags.
+                @endforelse
+              </p>
               <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
             @empty
               <p class="has-text-centered">Nothing Found.</p>

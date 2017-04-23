@@ -19,7 +19,9 @@
         <div class="column is-8 is-offset-2">
           @forelse($categories as $category)
             <p class="title is-4">
-              {{ $category->name }}
+              <a href="/post/category/{{ $category->id }}">
+                {{ $category->name }}
+              </a>
             </p>
           @empty
             No Categories.

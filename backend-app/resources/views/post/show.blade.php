@@ -11,13 +11,6 @@
           <h1 class="title is-2">
             {{ $post->title }}
           </h1>
-          @foreach ($post->tags as $tag)
-            <a href="#">
-              <span class="tag is-primary">
-                  {{ $tag->name }}
-              </span>
-            </a>
-          @endforeach
         </div>
       </div>
     </section>
@@ -28,14 +21,15 @@
             <div class="content">
               <h2 class="title is-3">{{ $post->title }}</h2>
               <p class="has-text-right has-text-muted">
-                <a href="#">
-                  {{ $post->category->name }}</p>
+                <a href="/post/category/{{ $post->category->id }}/{{ $post->category->name }}">
+                  {{ $post->category->name }}
                 </a>
+              </p>
               <p class="has-text-right">
                 @foreach ($post->tags as $tag)
-                  <a href="#">
+                  <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
                     <span class="tag is-primary">
-                        {{ $tag->name }}
+                      {{ $tag->name }}
                     </span>
                   </a>
                 @endforeach

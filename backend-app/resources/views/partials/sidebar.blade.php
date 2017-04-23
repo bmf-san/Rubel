@@ -6,7 +6,7 @@
     <li>
       <ul>
         @forelse ($categories as $category)
-          <li><a href="#">{{ $category->name }}</a></li>
+          <li><a href="/post/category/{{ $category->id }}">{{ $category->name }}</a></li>
         @empty
           No Categories.
         @endforelse
@@ -22,7 +22,7 @@
     <li>
       <ul class="tag-list">
         @forelse ($tags as $tag)
-          <a href="#">
+          <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
             <span class="tag is-primary">
               {{ $tag->name }}
             </span>
