@@ -23,8 +23,10 @@ class TagController extends Controller
      */
     public function index()
     {
-    }
+        $tags = $this->tag_model->all();
 
+        return view('tag.index', ['tags' => $tags]);
+    }
     /**
      * Display a listing of the resource.
      *

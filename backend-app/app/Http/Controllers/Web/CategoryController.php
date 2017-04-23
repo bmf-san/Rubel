@@ -23,6 +23,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $categories = $this->category_model->all();
+
+        return view('category.index', ['categories', $categories]);
     }
 
     /**
