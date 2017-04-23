@@ -16,6 +16,7 @@ Coming soon...
 ## Requirement
 + PHP7
 + npm
++ yarn
 + Node.js
 
 ## Get Started

@@ -12,7 +12,7 @@
             Post
           </h1>
           <h2 class="subtitle is-5">
-            {{ $tags->find()}}
+            {{ request()->segment(count(request()->segments())) }}
           </h2>
         </div>
       </div>

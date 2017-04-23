@@ -6,7 +6,7 @@
     <li>
       <ul>
         @forelse ($categories as $category)
-          <li><a href="/post/category/{{ $category->id }}">{{ $category->name }}</a></li>
+          <li><a href="/post/category/{{ $category->id }}/{{ $category->name }}">{{ $category->name }}</a></li>
         @empty
           No Categories.
         @endforelse

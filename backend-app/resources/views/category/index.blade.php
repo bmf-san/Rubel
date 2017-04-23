@@ -19,7 +19,7 @@
         <div class="column is-8 is-offset-2">
           @forelse($categories as $category)
             <p class="title is-4">
-              <a href="/post/category/{{ $category->id }}">
+              <a href="/post/category/{{ $category->id }}/{{ $category->name }}">
                 {{ $category->name }}
               </a>
             </p>

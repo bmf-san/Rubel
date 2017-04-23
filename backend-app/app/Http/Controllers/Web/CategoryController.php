@@ -38,7 +38,7 @@ class CategoryController extends Controller
      */
     public function getPosts(int $id)
     {
-        $posts = $this->category_model->find($id)->posts()->where('publication_status', 'public')->take(10)->paginate(self::POST_PAGINATE_NUM);
+        $posts = $this->category_model->find($id)->posts()->where('publication_status', 'public')->paginate(self::POST_PAGINATE_NUM);
 
         $categories = $this->category_model->all();
         $tags = $this->tag_model->all();
