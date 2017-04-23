@@ -20,7 +20,11 @@
     <section class="section">
       <div class="container">
         <div class="column is-8 is-offset-2">
-          Here is category page.
+          @forelse ($categories as $category)
+            {{ $category->name }}
+          @empty
+            No Categories.
+          @endforelse
         </div>
       </div>
     </section>

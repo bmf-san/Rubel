@@ -20,7 +20,11 @@
     <section class="section">
       <div class="container">
         <div class="column is-8 is-offset-2">
-          Here is tag page.
+          @forelse ($tags as $tag)
+            {{ $tag->name }}
+          @empty
+            No Tags.
+          @endforelse
         </div>
       </div>
     </section>
