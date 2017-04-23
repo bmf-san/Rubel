@@ -11,4 +11,4 @@ Homestead.yaml
 yarn.lock
 composer.lock
 /frontend-app/node_modules
-/frontend-app/dist/bundle.js
+/frontend-app/dist

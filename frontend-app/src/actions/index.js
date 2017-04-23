@@ -12,6 +12,7 @@ export const CREATE_CATEGORY = "CREATE_CATEGORY";
 export const EDIT_CATEGORY = "EDIT_CATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const CREATE_TAG = "CREATE_TAG";
 export const EDIT_TAG = "EDIT_TAG";
 export const DELETE_TAG = "DELETE_TAG";
 export const FETCH_TAGS = "FETCH_TAGS";
@@ -20,16 +21,16 @@ export const INIT_COMPLETE_TAGS = "INIT_COMPLETE_TAGS";
 export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS";
 export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 
-const ROOT_URL = '/api/v1';
+const ROOT_URL = '/v1';
 
 export function createPost(props) {
-  const request = axios.post(`${ROOT_URL}/admin/post`, props);
+  const request = axios.post(`${ROOT_URL}/posts`, props);
 
   return {type: CREATE_POST, payload: request};
 }
 
 export function deletePost(id) {
-  const request = axios.delete(`${ROOT_URL}/admin/post/${id}`);
+  const request = axios.delete(`${ROOT_URL}/posts/${id}`);
 
   return {type: DELETE_POST, payload: request};
 }
@@ -44,7 +45,7 @@ export function initMarkdown() {
 
 export function editPost(props) {
   const id = props.id
-  const request = axios.patch(`${ROOT_URL}/admin/post/${id}`, props);
+  const request = axios.patch(`${ROOT_URL}/posts/${id}`, props);
 
   return {type: EDIT_POST, payload: request};
 }
@@ -56,32 +57,32 @@ export function fetchPosts(page) {
 }
 
 export function fetchPost(id) {
-  const request = axios.get(`${ROOT_URL}/post/${id}`);
+  const request = axios.get(`${ROOT_URL}/posts/${id}`);
 
   return {type: FETCH_POST, payload: request};
 }
 
 export function fetchInitPost(id) {
-  const request = axios.get(`${ROOT_URL}/post/${id}`);
+  const request = axios.get(`${ROOT_URL}/posts/${id}`);
 
   return {type: FETCH_INIT_POST, payload: request};
 }
 
 export function createCategory(props) {
-  const request = axios.post(`${ROOT_URL}/admin/category`, props);
+  const request = axios.post(`${ROOT_URL}/categories`, props);
 
   return {type: CREATE_CATEGORY, payload: request};
 }
 
 export function editCategory(props) {
-  const request = axios.patch(`${ROOT_URL}/admin/category/${id}`, props);
+  const request = axios.patch(`${ROOT_URL}/categories/${id}`, props);
 
   return {type: EDIT_CATEGORY, payload: request};
 }
 
 export function deleteCategory(props) {
   const post_id = props;
-  const request = axios.delete(`${ROOT_URL}/admin/category/${post_id}`, props);
+  const request = axios.delete(`${ROOT_URL}/categories/${post_id}`, props);
 
   return {type: DELETE_CATEGORY, payload: request};
 }
@@ -92,15 +93,21 @@ export function fetchCategories() {
   return {type: FETCH_CATEGORIES, payload: request};
 }
 
+export function createTag(props) {
+  const request = axios.post(`${ROOT_URL}/tags`, props);
+
+  return {type: CREATE_TAG, payload: request};
+}
+
 export function editTag(props) {
-  const request = axios.patch(`${ROOT_URL}/tag/${id}`, props);
+  const request = axios.patch(`${ROOT_URL}/tags/${id}`, props);
 
   return {type: EDIT_TAG, payload: request}
 }
 
 export function deleteTag(props) {
   const post_id = props;
-  const request = axios.delete(`${ROOT_URL}/admin/tag/${post_id}`, props);
+  const request = axios.delete(`${ROOT_URL}/tags/${post_id}`, props);
 
   return {type: DELETE_TAG, payload: request};
 }
@@ -112,7 +119,7 @@ export function fetchTags() {
 }
 
 export function fetchCompleteTags(id) {
-  const request = axios.get(`${ROOT_URL}/post/${id}`);
+  const request = axios.get(`${ROOT_URL}/posts/${id}`);
 
   return {type: FETCH_COMPLETE_TAGS, payload: request};
 }

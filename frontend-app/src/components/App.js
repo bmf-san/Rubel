@@ -20,7 +20,9 @@ export default class App extends React.Component {
           <div className="container">
             <div className="nav-left">
               <a className="nav-item" href="/dashboard">
-                <span>Rubel</span>
+                <h1 className="title">
+                  Rubel
+                </h1>
               </a>
             </div>
             <span className="nav-toggle">

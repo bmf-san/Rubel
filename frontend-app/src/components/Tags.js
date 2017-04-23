@@ -1,10 +1,31 @@
 import React, {Component, PropTypes} from 'react';
-import {reduxForm, Field} from 'redux-form';
+import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
-import {editTag, deleteTag, fetchTags} from '../actions/index';
+import {createTag, editTag, deleteTag, fetchTags} from '../actions/index';
 import {Link} from 'react-router';
 
 class Tags extends Component {
+  componentWillMount() {
+    this.props.fetchTags();
+  }
+
+  onSubmit(props) {
+    const {createTag, fetchTags, reset} = this.props;
+
+    return createTag(props).then((res) => {
+      if (res.error) {
+        const validation_msg = res.payload.response.data.messages
+
+        throw new SubmissionError({
+          name: [validation_msg.name]
+        });
+      } else {
+        reset();
+        fetchTags();
+      }
+    });
+  }
+
   handleTagDelete(props) {
     const {deleteTag, fetchTags} = this.props;
 
@@ -16,15 +37,30 @@ class Tags extends Component {
     }
   }
 
-  componentWillMount() {
-    this.props.fetchTags();
-  }
-
   renderDeleteBtn(id) {
     return (
       <span className="icon" onClick={this.handleTagDelete.bind(this, id)}>
         <i className="fa fa-trash-o"></i>
       </span>
+    )
+  }
+
+  renderTagField({
+    input,
+    label,
+    type,
+    meta: {
+      touched,
+      error
+    }
+  }) {
+    return (
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="control">
+          <input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger is-resizeless")) || 'input is-resizeless'}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
+        </div>
+      </div>
     )
   }
 
@@ -43,9 +79,21 @@ class Tags extends Component {
   }
 
   render() {
+    const {handleSubmit} = this.props
+
     return (
       <div>
         <div className="title is-2">Tags</div>
+        <div className="columns">
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column is-one-third">
+            <Field label="Tag" name="name" type="text" component={this.renderTagField} placeholder="Tag Name"/>
+            <div className="field is-grouped is-pulled-right">
+              <div className="control">
+                <button className="button is-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
         <div className="columns">
           <div className="column is-one-third">
             <table className="table is-centered">
@@ -74,12 +122,20 @@ class Tags extends Component {
   }
 }
 
-Tags.contextTypes = {
-  router: PropTypes.object
+const validate = props => {
+  const errors = {}
+
+  if (!props.name) {
+    errors.name = 'Requires'
+  }
+
+  return errors;
 }
+
+const form = reduxForm({form: 'TagForm', validate})(Tags)
 
 function mapStateToProps(state) {
   return {tags: state.tags}
 }
 
-export default connect(mapStateToProps, {editTag, deleteTag, fetchTags})(Tags);
+export default connect(mapStateToProps, {createTag, editTag, deleteTag, fetchTags})(form);
