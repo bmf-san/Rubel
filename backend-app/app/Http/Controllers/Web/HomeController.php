@@ -23,7 +23,7 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {

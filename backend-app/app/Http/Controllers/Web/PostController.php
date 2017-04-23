@@ -27,7 +27,7 @@ class PostController extends Controller
      *
      * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {
@@ -44,7 +44,7 @@ class PostController extends Controller
      *
      * @param string $id
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function show(int $id)
     {

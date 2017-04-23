@@ -19,19 +19,29 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param string $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return view
+     */
     public function getPosts()
     {
     }
 
-    public function getPost()
+    /**
+     * Display the specified resource.
+     *
+     * @param string $id
+     *
+     * @return view
+     */
+    public function getPost(int $id)
     {
     }
 }
