@@ -20,14 +20,10 @@
     <section class="section">
       <div class="container">
         <div class="column is-8 is-offset-2">
-          Here is contact page.
+          Here is category page.
         </div>
       </div>
     </section>
   </div>
   @include('partials.footer')
-@endsection
-
-@section('additional-script')
-  <script type="text/javascript" src={{ asset('/dist/contact.bundle.js') }}></script>
 @endsection
