@@ -18,11 +18,9 @@ Route::group(['prefix' => 'post'], function () {
     Route::get('/', 'Web\PostController@index');
     Route::get('/{id}', 'Web\PostController@show')->where('id', '[0-9]+');
 
-    Route::get('/category', 'Web\CategoryController@getPosts');
-    Route::get('/category/{id}', 'Web\CategoryController@getPost')->where('id', '[0-9]+');
+    Route::get('/category/{id}', 'Web\CategoryController@getPosts')->where('id', '[0-9]+');
 
-    Route::get('/tag', 'Web\TagController@getPosts');
-    Route::get('/tag/{id}', 'Web\TagController@getPost')->where('id', '[0-9]+');
+    Route::get('/tag/{id}', 'Web\TagController@getPosts')->where('id', '[0-9]+');
 });
 
 /**

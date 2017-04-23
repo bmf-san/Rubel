@@ -36,5 +36,5 @@
 @endsection
 
 @section('additional-script')
-  <script type="text/javascript" src={{ asset('/dist/profile.bundle.js') }}></script>
+  <script type="text/javascript" src={{ asset('/dist/tag.bundle.js') }}></script>
 @endsection

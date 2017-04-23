@@ -5,6 +5,8 @@ module.exports = [
       "post": [
         "./resources/assets/js/post/index.js", "./resources/assets/js/post/show.js"
       ],
+      "category": ["./resources/assets/js/category/index.js"],
+      "tag": ["./resources/assets/js/tag/index.js"],
       "profile": ["./resources/assets/js/profile/index.js"],
       "contact": ["./resources/assets/js/contact/index.js"]
     },

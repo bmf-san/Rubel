@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Tag;
 
 class CategoryController extends Controller
 {
     const POST_PAGINATE_NUM = 10;
 
     private $category_model;
+    private $tag_model;
 
-    public function __construct(Category $category_model)
+    public function __construct(Category $category_model, Tag $tag_model)
     {
         $this->category_model = $category_model;
+        $this->tag_model = $tag_model;
     }
 
     /**
@@ -33,18 +36,13 @@ class CategoryController extends Controller
      *
      * @return view
      */
-    public function getPosts()
+    public function getPosts(int $id)
     {
-    }
+        $posts = $this->category_model->find($id)->posts()->where('publication_status', 'public')->take(10)->paginate(self::POST_PAGINATE_NUM);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param string $id
-     *
-     * @return view
-     */
-    public function getPost(int $id)
-    {
+        $categories = $this->category_model->all();
+        $tags = $this->tag_model->all();
+
+        return view('post.category', ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
 }
