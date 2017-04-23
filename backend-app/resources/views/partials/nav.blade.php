@@ -16,8 +16,8 @@
       <a class="nav-item {{ (request()->path() == '/') ? 'is-active' : '' }}" href={{ url('/') }}>
         Home
       </a>
-      <a class="nav-item {{ (request()->path() == 'posts') ? 'is-active' : '' }}" href={{ url('/posts') }}>
-        Posts
+      <a class="nav-item {{ (request()->path() == 'post') ? 'is-active' : '' }}" href={{ url('/post') }}>
+        Post
       </a>
       <a class="nav-item {{ (request()->path() == 'profile') ? 'is-active' : '' }}" href={{ url('/profile') }}>
         Profile

@@ -14,8 +14,17 @@ Route::get('/', 'Web\HomeController@index');
 /*
  * Post
  */
-Route::get('posts', 'Web\PostController@index');
-Route::get('post/{id}', 'Web\PostController@show')->where('id', '[0-9]+');
+Route::group(['prefix' => 'post'], function () {
+    Route::get('/', 'Web\PostController@index');
+    Route::get('/{id}', 'Web\PostController@show')->where('id', '[0-9]+');
+
+    Route::get('/category', 'WebPostController@indexCategory');
+    Route::get('/category/{id}', 'WebPostController@showCategory');
+
+    Route::get('/tag', 'WebPostController@indexTag');
+    Route::get('/tag/{id}', 'WebPostController@showTag');
+});
+
 
 /**
  * Profile
