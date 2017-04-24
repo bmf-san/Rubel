@@ -70,7 +70,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::group([
-            'middleware' => 'api',
+            'middleware' => ['api', 'cors'],
             'namespace' => $this->namespace,
             'prefix' => 'v1',
             'domain' => config('api_domain')

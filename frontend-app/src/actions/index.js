@@ -21,7 +21,6 @@ export const INIT_COMPLETE_TAGS = "INIT_COMPLETE_TAGS";
 export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS";
 export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 
-// axios.defaults.baseURL = 'http://api.rubel/v1';
 const api = axios.create({
   baseURL: 'http://api.rubel/v1',
   timeout: 10000,
