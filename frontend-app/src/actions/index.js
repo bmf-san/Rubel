@@ -24,7 +24,6 @@ export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 const api = axios.create({
   baseURL: 'http://api.rubel/v1',
   timeout: 10000,
-  withCredentials: true,
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
