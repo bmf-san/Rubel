@@ -21,16 +21,25 @@ export const INIT_COMPLETE_TAGS = "INIT_COMPLETE_TAGS";
 export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS";
 export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 
-const ROOT_URL = '/v1';
+// axios.defaults.baseURL = 'http://api.rubel/v1';
+const api = axios.create({
+  baseURL: 'http://api.rubel/v1',
+  timeout: 10000,
+  withCredentials: true,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
 
 export function createPost(props) {
-  const request = axios.post(`${ROOT_URL}/posts`, props);
+  const request = api.post(`/posts`, props);
 
   return {type: CREATE_POST, payload: request};
 }
 
 export function deletePost(id) {
-  const request = axios.delete(`${ROOT_URL}/posts/${id}`);
+  const request = api.delete(`/posts/${id}`);
 
   return {type: DELETE_POST, payload: request};
 }
@@ -45,81 +54,81 @@ export function initMarkdown() {
 
 export function editPost(props) {
   const id = props.id
-  const request = axios.patch(`${ROOT_URL}/posts/${id}`, props);
+  const request = api.patch(`/posts/${id}`, props);
 
   return {type: EDIT_POST, payload: request};
 }
 
 export function fetchPosts(page) {
-  const request = axios.get(`${ROOT_URL}/posts?page=${page}`);
+  const request = api.get(`/posts?page=${page}`);
 
   return {type: FETCH_POSTS, payload: request};
 }
 
 export function fetchPost(id) {
-  const request = axios.get(`${ROOT_URL}/posts/${id}`);
+  const request = api.get(`/posts/${id}`);
 
   return {type: FETCH_POST, payload: request};
 }
 
 export function fetchInitPost(id) {
-  const request = axios.get(`${ROOT_URL}/posts/${id}`);
+  const request = api.get(`/posts/${id}`);
 
   return {type: FETCH_INIT_POST, payload: request};
 }
 
 export function createCategory(props) {
-  const request = axios.post(`${ROOT_URL}/categories`, props);
+  const request = api.post(`/categories`, props);
 
   return {type: CREATE_CATEGORY, payload: request};
 }
 
 export function editCategory(props) {
-  const request = axios.patch(`${ROOT_URL}/categories/${id}`, props);
+  const request = api.patch(`/categories/${id}`, props);
 
   return {type: EDIT_CATEGORY, payload: request};
 }
 
 export function deleteCategory(props) {
   const post_id = props;
-  const request = axios.delete(`${ROOT_URL}/categories/${post_id}`, props);
+  const request = api.delete(`/categories/${post_id}`, props);
 
   return {type: DELETE_CATEGORY, payload: request};
 }
 
 export function fetchCategories() {
-  const request = axios.get(`${ROOT_URL}/categories`);
+  const request = api.get(`/categories`);
 
   return {type: FETCH_CATEGORIES, payload: request};
 }
 
 export function createTag(props) {
-  const request = axios.post(`${ROOT_URL}/tags`, props);
+  const request = api.post(`/tags`, props);
 
   return {type: CREATE_TAG, payload: request};
 }
 
 export function editTag(props) {
-  const request = axios.patch(`${ROOT_URL}/tags/${id}`, props);
+  const request = api.patch(`/tags/${id}`, props);
 
   return {type: EDIT_TAG, payload: request}
 }
 
 export function deleteTag(props) {
   const post_id = props;
-  const request = axios.delete(`${ROOT_URL}/tags/${post_id}`, props);
+  const request = api.delete(`/tags/${post_id}`, props);
 
   return {type: DELETE_TAG, payload: request};
 }
 
 export function fetchTags() {
-  const request = axios.get(`${ROOT_URL}/tags`);
+  const request = api.get(`/tags`);
 
   return {type: FETCH_TAGS, payload: request}
 }
 
 export function fetchCompleteTags(id) {
-  const request = axios.get(`${ROOT_URL}/posts/${id}`);
+  const request = api.get(`/posts/${id}`);
 
   return {type: FETCH_COMPLETE_TAGS, payload: request};
 }
