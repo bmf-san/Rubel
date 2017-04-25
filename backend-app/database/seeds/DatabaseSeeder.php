@@ -20,10 +20,11 @@ class DatabaseSeeder extends Seeder
     {
         Eloquent::unguard();
 
-		$this->db->statement('SET FOREIGN_KEY_CHECKS=0;');
+        $this->db->statement('SET FOREIGN_KEY_CHECKS=0;');
 
         $this->call(AdminsTableSeeder::class);
         $this->call(RelatedPostTablesSeeder::class);
+        $this->call(ConfigsTableSeeder::class);
 
         $this->db->statement('SET FOREIGN_KEY_CHECKS=1;');
     }
