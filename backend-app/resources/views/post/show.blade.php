@@ -60,15 +60,15 @@
                 <article class="media">
                   <div class="media-left">
                     <figure class="image is-64x64">
-                      <img src="http://placehold.it/128x128" alt="Image">
+                      <img src="https://pbs.twimg.com/profile_images/746059944118476800/DZCoTKfy.jpg" alt="Image">
                     </figure>
                   </div>
                   <div class="media-content">
                     <div class="content">
                       <p>
-                        <strong>John Smith</strong> <small>@johnsmith</small>
+                        <strong>bmf san</strong> <a href="https://twitter.com/bmf_san" target="_blank"><small>@bmf_san</small></a>
                         <br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                        A web developer in Japan.
                       </p>
                     </div>
                   </div>
