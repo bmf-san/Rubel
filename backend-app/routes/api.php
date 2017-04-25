@@ -60,4 +60,4 @@ Route::delete('tags/{id}', 'Api\v1\TagController@destroy')->where('id', '[0-9]+'
 /**
  * Config
  */
-Route::patch('configs/{name}', 'Api\v1\ConfigController@update')->where('name', '[A-Za-z]+');
+Route::patch('configs', 'Api\v1\ConfigController@update');

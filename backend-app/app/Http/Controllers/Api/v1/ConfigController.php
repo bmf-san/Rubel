@@ -31,12 +31,11 @@ class ConfigController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param String                      $name
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, String $name)
+    public function update(Request $request)
     {
-        return response()->json($this->config_repository->update($request, $name), (int) self::STATUS_CODE_OK);
+        return response()->json($this->config_repository->update($request), (int) self::STATUS_CODE_OK);
     }
 }

@@ -14,10 +14,9 @@ interface ConfigRepositoryContract
     /**
      * Update the specified resource in storage.
      *
-     * @param string                      $name
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function update($request, String $name);
+    public function update($request);
 }

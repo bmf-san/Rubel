@@ -29,26 +29,32 @@ class ConfigRepository implements ConfigRepositoryContract
     /**
      * Update the specified resouce in storage.
      *
-     * @param string $name
      * @param object $request
      *
      * @return array
      */
-    public function update($request, String $name)
+    public function update($request)
     {
-        $config = $this->config_model->where('name', $name)->firstOrFail();
+        $this->updateConfig($request);
 
-        dd($config);
+        return [];
     }
 
     /**
      * Update config
      *
-     * @param Config $config
      * @param \Illuminate\Http\Request $request
      */
-    public function updateConfig(Config $config, $request)
+    public function updateConfig($request)
     {
-        dd('hoge');
+        $configs = $request->all();
+
+        foreach ($configs as $key => $value) {
+            $config = $this->config_model->where('name', $key)->firstOrFail();
+
+            $config->update([
+                'value' => $value
+            ]);
+        }
     }
 }
