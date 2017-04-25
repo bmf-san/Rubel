@@ -27,7 +27,7 @@ const api = axios.create({
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    // 'withCredentials': 'true'
+    // 'withCredentials': 'true' 　// MEMO あってもなくても動く
   }
 });
 
