@@ -26,8 +26,7 @@ const api = axios.create({
   timeout: 10000,
   headers: {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    // 'withCredentials': 'true' 　// MEMO あってもなくても動く
+    'Content-Type': 'application/json'
   }
 });
 
