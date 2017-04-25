@@ -1,0 +1,38 @@
+{
+    "name": "barryvdh/laravel-cors",
+    "description": "Adds CORS (Cross-Origin Resource Sharing) headers support in your Laravel application",
+    "keywords": ["laravel", "cors", "crossdomain", "api"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Barry vd. Heuvel",
+            "email": "barryvdh@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.1.x|5.2.x|5.3.x|5.4.x",
+        "symfony/http-foundation": "~2.7|~3.0",
+        "symfony/http-kernel": "~2.7|~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Barryvdh\\Cors\\": "src/"
+        },
+        "classmap": [
+            "tests"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.9-dev",
+            "dev-develop": "1.0-dev"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.2",
+        "orchestra/testbench": "3.x"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

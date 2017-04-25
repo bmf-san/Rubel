@@ -25,8 +25,7 @@ const api = axios.create({
   baseURL: 'http://api.rubel/v1',
   timeout: 10000,
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'X-Requested-With': 'XMLHttpRequest'
   }
 });
 
