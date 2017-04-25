@@ -89,7 +89,7 @@ class TagRepository implements TagRepositoryContract
     /**
      * Save tag
      * @param  Tag    $tag
-     * @param  Object $request
+     * @param  \Illuminate\Http\Request $request
      * @return int    $tga
      */
     private function saveTag(Tag $tag, $request)

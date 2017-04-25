@@ -104,7 +104,7 @@ class PostRepository implements PostRepositoryContract
      * Save post.
      *
      * @param Post   $post
-     * @param Object $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return int $post
      */
@@ -133,7 +133,7 @@ class PostRepository implements PostRepositoryContract
      * Update post.
      *
      * @param Post   $post
-     * @param Object $request
+     * @param \Illuminate\Http\Request $request
      */
     public function updatePost(Post $post, $request)
     {

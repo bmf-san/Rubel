@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Category;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Eloquent\Api\CategoryRepository;
-use App\Http\Requests\Api\v1\Category\StoreCategoryRequest;
+use App\Repositories\Eloquent\Api\TagRepository;
+use App\Http\Requests\Api\v1\Tag\StoreTagRequest;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     const STATUS_CODE_OK = 200;
 
-    private $category_repository;
+    private $tag_repository;
 
-    public function __construct(CategoryRepository $category_repository)
+    public function __construct(TagRepository $tag_repository)
     {
-        $this->category_repository = $category_repository;
+        $this->tag_repository = $tag_repository;
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return response()->json($this->category_repository->index(), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tag_repository->index(), (int) self::STATUS_CODE_OK);
     }
 
     /**
@@ -35,9 +35,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreTagRequest $request)
     {
-        return response()->json($this->category_repository->store($request), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tag_repository->store($request), (int) self::STATUS_CODE_OK);
     }
 
     /**
@@ -49,19 +49,20 @@ class CategoryController extends Controller
      */
     public function show(int $id)
     {
-        return response()->json($this->category_repository->show($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tag_repository->show($id), (int) self::STATUS_CODE_OK);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
     {
-        return response()->json($this->category_repository->update($request, $id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tag_repository->update($request, $id), (int) self::STATUS_CODE_OK);
     }
 
     /**
@@ -73,6 +74,6 @@ class CategoryController extends Controller
      */
     public function destroy(int $id)
     {
-        return response()->json($this->category_repository->destroy($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tag_repository->destroy($id), (int) self::STATUS_CODE_OK);
     }
 }
