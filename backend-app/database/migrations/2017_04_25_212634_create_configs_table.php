@@ -18,6 +18,7 @@ class CreateConfigsTable extends Migration
             $table->string('title')->default('Rubel');
             $table->string('sub_title')->default('A Simple CMS worked by Laravel, React, and Bulma.');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
