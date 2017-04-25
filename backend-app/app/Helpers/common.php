@@ -8,9 +8,9 @@
  */
 function getBlogInfo(String $info)
 {
-    $config = App\Models\Config::firstOrFail();
+    $config = App\Models\Config::where('name', $info)->firstOrFail();
 
-    return $config->$info;
+    return $config->value;
 }
 
 /**
