@@ -95,7 +95,7 @@ class Categories extends Component {
       <div>
         <div className="title is-2">Categories</div>
         <div className="columns">
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column is-one-third">
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column is-half">
             <Field label="Category" name="name" type="text" component={this.renderCategoryField} placeholder="Category Name"/>
             <div className="field is-grouped is-pulled-right">
               <div className="control">
@@ -105,7 +105,7 @@ class Categories extends Component {
           </form>
         </div>
         <div className="columns">
-          <div className="column is-one-third">
+          <div className="column is-half">
             <table className="table is-centered">
               <thead>
                 <tr>
