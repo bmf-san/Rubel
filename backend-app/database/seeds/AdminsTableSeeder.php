@@ -17,9 +17,9 @@ class AdminsTableSeeder extends Seeder
         $this->db->table('admins')->truncate();
 
         $this->db->table('admins')->insert([
-           'name' => config('rubel.admin_info.name'),
-           'email' => config('rubel.admin_info.email'),
-           'password' => bcrypt(config('rubel.admin_info.password')),
+           'name' => config('rubel.admin.name'),
+           'email' => config('rubel.admin.email'),
+           'password' => bcrypt(config('rubel.admin.password')),
            'created_at' => Carbon::now(),
            'updated_at' => Carbon::now(),
         ]);

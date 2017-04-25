@@ -21,11 +21,15 @@ class ConfigsTableSeeder extends Seeder
     {
         $this->db->table('configs')->truncate();
 
-        $this->db->table('configs')->insert([
-            'title' => 'Rubel',
-            'sub_title' => 'A Simple CMS worked by Laravel, React, and Bulma.',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        $configs = config('rubel.config');
+
+        foreach ($configs as $key => $value) {
+            $this->db->table('configs')->insert([
+                'name' => $key,
+                'value' => $value,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
     }
 }

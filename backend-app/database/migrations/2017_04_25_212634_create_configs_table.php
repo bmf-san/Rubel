@@ -15,8 +15,8 @@ class CreateConfigsTable extends Migration
     {
         Schema::create('configs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->default('Rubel');
-            $table->string('sub_title')->default('A Simple CMS worked by Laravel, React, and Bulma.');
+            $table->string('name');
+            $table->string('value');
             $table->timestamps();
             $table->softDeletes();
         });
