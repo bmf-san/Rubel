@@ -1,6 +1,19 @@
 <?php
 
 /**
+ * Get a blog info
+ *
+ * @param  string $info
+ * @return string
+ */
+function getBlogInfo(String $info)
+{
+    $config = App\Models\Config::firstOrFail();
+
+    return $config->$info;
+}
+
+/**
  * Check the date is within a week.
  *
  * @param  string  $date

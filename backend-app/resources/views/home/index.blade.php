@@ -10,10 +10,10 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-2">
-            Rubel
+            {{ getBlogInfo('title') }}
           </h1>
           <h2 class="subtitle is-5">
-            A Simple CMS worked by Laravel and React.
+            {{ getBlogInfo('sub_title') }}
           </h2>
         </div>
       </div>
