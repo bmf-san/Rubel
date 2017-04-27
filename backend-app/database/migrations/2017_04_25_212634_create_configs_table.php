@@ -16,6 +16,7 @@ class CreateConfigsTable extends Migration
         Schema::create('configs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('alias_name');
             $table->string('value');
             $table->timestamps();
             $table->softDeletes();

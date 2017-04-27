@@ -20,6 +20,8 @@ export const FETCH_COMPLETE_TAGS = "FETCH_COMPLETE_TAGS";
 export const INIT_COMPLETE_TAGS = "INIT_COMPLETE_TAGS";
 export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS";
 export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
+export const EDIT_CONFIG = "EDIT_CONFIG";
+export const FETCH_CONFIGS = "FETCH_CONFIGS";
 
 const api = axios.create({
   baseURL: 'http://api.rubel/v1',
@@ -140,4 +142,16 @@ export function deleteCompleteTags(props) {
 
 export function addCompleteTags(props) {
   return {type: ADD_COMPLETE_TAGS, payload: props}
+}
+
+export function editConfig(props) {
+  const request = api.patch(`/configs`, props);
+
+  return {type: EDIT_CONFIG, payload: request}
+}
+
+export function fetchConfigs(props) {
+  const request = api.get(`/configs`);
+
+  return {type: FETCH_CONFIGS, payload: request}
 }

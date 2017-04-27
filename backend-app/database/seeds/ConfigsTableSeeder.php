@@ -26,6 +26,7 @@ class ConfigsTableSeeder extends Seeder
         foreach ($configs as $key => $value) {
             $this->db->table('configs')->insert([
                 'name' => $key,
+                'alias_name' => str_replace("_", " ", mb_ucfirst($key, mb_internal_encoding())),
                 'value' => $value,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

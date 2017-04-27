@@ -42,3 +42,20 @@ function mb_str_limit(String $value, Int $limit, String $end)
     }
     return rtrim(mb_substr($value, 0, $limit, 'UTF-8')).$end;
 }
+
+/**
+ * ucfirst() function for multibyte character encodings
+ *
+ * @param  string $string
+ * @param  string $encoding
+ *
+ * @return string
+ */
+function mb_ucfirst($string, $encoding)
+{
+    $strlen = mb_strlen($string, $encoding);
+    $firstChar = mb_substr($string, 0, 1, $encoding);
+    $then = mb_substr($string, 1, $strlen - 1, $encoding);
+
+    return mb_strtoupper($firstChar, $encoding) . $then;
+}
