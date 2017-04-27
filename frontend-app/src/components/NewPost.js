@@ -26,14 +26,14 @@ class NewPost extends Component {
   }
 
   onSubmit(props) {
-    const {createPost, deleteCompleteTags, reset} = this.props
+    const {tags, posts, createPost, deleteCompleteTags, reset} = this.props
 
     const data = {
       "title": props.title,
-      "tags": this.props.tags.complete_tags,
+      "tags": tags.complete_tags,
       "category_id": props.category_id,
       "md_content": props.md_content,
-      "html_content": this.props.posts.markdown,
+      "html_content": posts.markdown,
       "publication_status": props.publication_status
     };
 
@@ -97,11 +97,11 @@ class NewPost extends Component {
   }
 
   renderMarkdownField() {
-    const html = this.props.posts.markdown
+    const {posts} = this.props
 
     return (
       <div className="content markdown-area" dangerouslySetInnerHTML={{
-        __html: html
+        __html: posts.markdown
       }}></div>
     )
   }
@@ -169,9 +169,9 @@ class NewPost extends Component {
   }
 
   render() {
-    const {handleSubmit} = this.props
+    const {tags, handleSubmit} = this.props
 
-    const suggestions = this.props.tags.all.map((tag) => {
+    const suggestions = tags.all.map((tag) => {
       return {id: tag.id, name: tag.name}
     })
 

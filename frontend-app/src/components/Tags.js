@@ -6,7 +6,9 @@ import {Link} from 'react-router';
 
 class Tags extends Component {
   componentWillMount() {
-    this.props.fetchTags();
+    const {fetchTags} = this.props
+
+    fetchTags();
   }
 
   onSubmit(props) {
@@ -65,7 +67,9 @@ class Tags extends Component {
   }
 
   renderTags() {
-    return this.props.tags.all.map((tag) => {
+    const {tags} = this.props
+
+    return tags.all.map((tag) => {
       return (
         <tr key={tag.id}>
           <td>{tag.id}</td>

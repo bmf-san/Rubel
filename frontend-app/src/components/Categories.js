@@ -8,7 +8,9 @@ const category_id_of_uncategorized = 1
 
 class Categories extends Component {
   componentWillMount() {
-    this.props.fetchCategories();
+    const {fetchCategories} = this.props
+
+    fetchCategories();
   }
 
   onSubmit(props) {
@@ -71,7 +73,9 @@ class Categories extends Component {
   }
 
   renderCategories() {
-    return this.props.categories.all.map((category) => {
+    const {categories} = this.props
+
+    return categories.all.map((category) => {
       return (
         <tr key={category.id}>
           <td>

@@ -35,14 +35,12 @@ class EditPost extends Component {
 
     formValues === undefined && initialize(filtersDefaults);
 
-    const id = params.id
-
-    fetchPost(id).then((res) => {
+    fetchPost(params.id).then((res) => {
       updateMarkdown(res.payload.data.md_content);
     });
-    fetchInitPost(id)
+    fetchInitPost(params.id)
     fetchTags();
-    fetchCompleteTags(id);
+    fetchCompleteTags(params.id);
     fetchCategories();
   }
 
