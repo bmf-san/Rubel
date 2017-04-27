@@ -17,14 +17,16 @@ import {Link} from 'react-router';
 
 class NewPost extends Component {
   componentWillMount() {
-    this.props.fetchTags();
-    this.props.fetchCategories();
-    this.props.initCompleteTags();
-    this.props.initMarkdown();
+    const {fetchTags, fetchCategories, initCompleteTags, initMarkdown} = this.props;
+
+    fetchTags();
+    fetchCategories();
+    initCompleteTags();
+    initMarkdown();
   }
 
   onSubmit(props) {
-    const {createPost, deleteCompleteTags, reset} = this.props;
+    const {createPost, deleteCompleteTags, reset} = this.props
 
     const data = {
       "title": props.title,

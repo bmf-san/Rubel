@@ -6,30 +6,31 @@ import {Link} from 'react-router';
 
 class Posts extends Component {
   componentWillMount() {
-    const page = this.props.location.query.page;
+    const {location, fetchPosts} = this.props
+    const page = location.query.page
 
-    this.props.fetchPosts(page);
+    fetchPosts(page);
   }
 
   componentDidUpdate(prevProps) {
-    const page = this.props.location.query.page;
+    const {location, fetchPosts} = this.props
 
-    if (prevProps.location.query.page === page) {
+    if (prevProps.location.query.page === location.query.page) {
       return false
     }
 
-    this.props.fetchPosts(page);
+    fetchPosts(page);
   }
 
   handleDeletePost(id) {
-    const page = this.props.location.query.page
+    const {location, deletePost, fetchPosts} = this.props
 
     if (window.confirm('Are you sure you want to delete?')) {
-      return this.props.deletePost(id).then((res) => {
+      return deletePost(id).then((res) => {
         if (res.error) {
           console.log('Error!');
         } else {
-          this.props.fetchPosts(page);
+          fetchPosts(location.query.page);
         }
       })
     }
@@ -73,7 +74,9 @@ class Posts extends Component {
   }
 
   renderPagination() {
-    const pagination = this.props.posts.pagination
+    const {posts} = this.props
+
+    const pagination = posts.pagination
     const last_page = pagination.last_page
     const current_page = pagination.current_page
 

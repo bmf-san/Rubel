@@ -6,6 +6,7 @@ import {
   editPost,
   deletePost,
   fetchPost,
+  fetchPosts,
   fetchInitPost,
   fetchTags,
   fetchCompleteTags,
@@ -19,30 +20,49 @@ import {Link} from 'react-router';
 
 class EditPost extends Component {
   componentWillMount() {
-    const {initialize, formValues, filtersDefaults} = this.props;
+    const {
+      params,
+      initialize,
+      formValues,
+      filtersDefaults,
+      fetchPost,
+      updateMarkdown,
+      fetchInitPost,
+      fetchTags,
+      fetchCompleteTags,
+      fetchCategories
+    } = this.props
+
     formValues === undefined && initialize(filtersDefaults);
 
-    const id = this.props.params.id
+    const id = params.id
 
-    this.props.fetchPost(id).then((res) => {
-      this.props.updateMarkdown(res.payload.data.md_content);
+    fetchPost(id).then((res) => {
+      updateMarkdown(res.payload.data.md_content);
     });
-    this.props.fetchInitPost(id)
-    this.props.fetchTags();
-    this.props.fetchCompleteTags(id);
-    this.props.fetchCategories();
+    fetchInitPost(id)
+    fetchTags();
+    fetchCompleteTags(id);
+    fetchCategories();
   }
 
   onSubmit(props) {
-    const {editPost, deleteCompleteTags, reset} = this.props;
+    const {
+      params,
+      tags,
+      posts,
+      editPost,
+      deleteCompleteTags,
+      reset
+    } = this.props
 
     const data = {
-      "id": this.props.params.id,
+      "id": params.id,
       "title": props.title,
-      "tags": this.props.tags.complete_tags,
+      "tags": tags.complete_tags,
       "category_id": props.category_id,
       "md_content": props.md_content,
-      "html_content": this.props.posts.markdown,
+      "html_content": posts.markdown,
       "publication_status": props.publication_status
     };
 
@@ -60,14 +80,17 @@ class EditPost extends Component {
     })
   }
 
-  handleDeletePost() {
-    const id = this.props.params.id
+  handleDeletePost(e) {
+    const {params, deletePost, fetchPosts} = this.props
+
+    e.preventDefault();
 
     if (window.confirm('Are you sure you want to delete?')) {
-      return this.props.deletePost(id).then((res) => {
+      return deletePost(params.id).then((res) => {
         if (res.error) {
           console.log('Error!');
         } else {
+          fetchPosts();
           this.context.router.push(`/dashboard/posts`);
         }
       })
@@ -118,11 +141,11 @@ class EditPost extends Component {
   }
 
   renderMarkdownField() {
-    const html = this.props.posts.markdown
+    const {posts} = this.props
 
     return (
       <div className="content markdown-area" dangerouslySetInnerHTML={{
-        __html: html
+        __html: posts.markdown
       }}></div>
     )
   }
@@ -179,27 +202,27 @@ class EditPost extends Component {
   }
 
   handleDelete(index) {
-    const {deleteCompleteTags} = this.props;
+    const {deleteCompleteTags} = this.props
 
     deleteCompleteTags(index);
   }
 
   handleAddition(props) {
-    const {addCompleteTags} = this.props;
+    const {addCompleteTags} = this.props
 
     addCompleteTags(props);
   }
 
   handleUpdateMarkdown(e) {
-    const {updateMarkdown} = this.props;
+    const {updateMarkdown} = this.props
 
     updateMarkdown(e.target.value);
   }
 
   render() {
-    const {handleSubmit} = this.props
+    const {tags, handleSubmit} = this.props
 
-    const suggestions = this.props.tags.all.map((tag) => {
+    const suggestions = tags.all.map((tag) => {
       return {id: tag.id, name: tag.name}
     })
 
@@ -212,7 +235,7 @@ class EditPost extends Component {
           <div>
             <label className="label">Tag</label>
             <div>
-              <ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false} placeholder="Tags"/>
+              <ReactTags tags={tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false} placeholder="Tags"/>
             </div>
           </div>
           <Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="md_content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
@@ -233,7 +256,7 @@ const validate = props => {
   return errors;
 }
 
-const form = reduxForm({form: 'NewPostForm', validate})(EditPost)
+const form = reduxForm({form: 'NewPostForm', enableReinitialize: true, validate})(EditPost)
 
 function mapStateToProps(state) {
   return {posts: state.posts, tags: state.tags, categories: state.categories, initialValues: state.posts.init_post}
@@ -243,6 +266,7 @@ export default connect(mapStateToProps, {
   editPost,
   deletePost,
   fetchPost,
+  fetchPosts,
   fetchInitPost,
   fetchTags,
   fetchCompleteTags,

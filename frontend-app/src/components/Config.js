@@ -6,7 +6,9 @@ import {Link} from 'react-router';
 
 class Configs extends Component {
   componentWillMount() {
-    this.props.fetchConfigs();
+    const {fetchConfigs} = this.props
+
+    fetchConfigs();
   }
 
   onSubmit(props) {
@@ -18,6 +20,7 @@ class Configs extends Component {
       } else {
         reset();
         fetchConfigs();
+        this.context.router.push(`/dashboard/config`);
       }
     });
   }
@@ -62,22 +65,20 @@ class Configs extends Component {
   }
 }
 
-const form = reduxForm({form: 'ConfigForm'})(Configs)
+Configs.contextTypes = {
+  router: PropTypes.object
+}
+
+const form = reduxForm({form: 'ConfigForm', enableReinitialize: true})(Configs)
+
 function mapStateToProps(state) {
+  const obj = {}
+
   state.configs.all.map((config) => {
-    return {
-      [config.name]: [config.value]
-    }
+    obj[config.name] = config.value
   })
-  // const ary = [];
-  // state.configs.map((config) => {
-  //   ary.push({
-  //     [config.name]: [config.value]
-  //   })
-  // })
-  //
-  // return ary;
-  // return {configs: state.configs}
+
+  return {configs: state.configs, initialValues: obj}
 }
 
 export default connect(mapStateToProps, {editConfig, fetchConfigs})(form);

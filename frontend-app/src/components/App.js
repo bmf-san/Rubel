@@ -1,7 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import {fetchConfigs} from '../actions/index';
 
-export default class App extends React.Component {
+class App extends Component {
+  componentWillMount() {
+    const {fetchConfigs} = this.props
+
+    fetchConfigs();
+  }
   componentDidMount() {
     // Toggle menu
     const burger = document.querySelector('.nav-toggle');
@@ -14,6 +21,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    const {config} = this.props
     return (
       <div>
         <nav className="nav is-dark has-shadow" id="top">
@@ -21,7 +29,7 @@ export default class App extends React.Component {
             <div className="nav-left">
               <a className="nav-item" href="/dashboard">
                 <h1 className="title">
-                  Rubel
+                  {config.title}
                 </h1>
               </a>
             </div>
@@ -146,3 +154,15 @@ export default class App extends React.Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  const obj = {}
+
+  state.configs.all.map((config) => {
+    obj[config.name] = config.value
+  })
+
+  return {configs: state.configs, config: obj};
+}
+
+export default connect(mapStateToProps, {fetchConfigs})(App);
