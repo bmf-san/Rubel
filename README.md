@@ -4,7 +4,7 @@
 
 
 # Rubel
-A CMS for Developer.
+A Simple CMS worked by Laravel, React, and Bulma.
 
 ## Description
 Rubel is the cms working with Laravel and React.
