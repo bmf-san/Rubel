@@ -12,6 +12,7 @@ Coming soon...
 ## Features
 + Easy to use
 + Developer friendly
++ Beatiful UI
 
 ## Requirement
 + PHP7
