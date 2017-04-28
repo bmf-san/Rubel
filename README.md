@@ -29,7 +29,7 @@ https://github.com/bmf-san/Rubel.git
 
 ### Setting for backend-app
 ```
-cd Rubel/backend-app
+cd path/to/backend-app
 
 composer install
 npm install
@@ -54,7 +54,7 @@ API_DOMAIN=api.rubel
 ### Setting for frontend-app
 
 ```
-cd Rubel/frontend-app
+cd path/to/frontend-app
 
 npm install
 yarn run build
@@ -78,7 +78,11 @@ Please customize it as necessary.
 
 ```
 vagrant ssh
-cd /path/to/Rubel
+mysql -uroot -p   # password has been written in /path/to/ansible/group_vars/vagrant.yml
+create database rubel;
+exit;
+
+cd /path/to/backend-app
 
 php artisan migration
 php artisan db:seed
