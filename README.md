@@ -1,5 +1,8 @@
 **Under Development**
 
+===Progress===
+
+
 # Rubel
 A CMS for Developer.
 
@@ -20,32 +23,66 @@ Coming soon...
 + Node.js
 
 ## Get Started
+
+### Clone a respository
 ```
-git clone https://github.com/bmf-san/laravel-react-redux-blog-boilerplate.git
+https://github.com/bmf-san/Rubel.git
 ```
 
+### Setting for backend-app
 ```
+cd Rubel/backend-app
+
 composer install
-```
-
-```
 npm install
+yarn run build
+
+cp .env.example .env
 ```
 
-Create a env file from .env_example, and change environment variables.
-You need to change these variables.
+Please change these environment variables as necessary.
 
 ```
-ADMIN_NAME, ADMIN_EMAIL, ADMIN_PASSWORD
+/* Setting for Rubel */
+ADMIN_INFO_NAME=admin
+ADMIN_INFO_EMAIL=admin@admin.com
+ADMIN_INFO_PASSWORD=admin
+
+DOMAIN=rubel
+ADMIN_DOMAIN=admin.rubel
+API_DOMAIN=api.rubel
 ```
 
-Then, you have to create database, and use artisan commands.
+### Setting for frontend-app
 
 ```
+cd Rubel/frontend-app
+
+npm install
+yarn run build
+```
+
+### Provisioning
+
+```
+cd Rubel
+
+vagrant init
+vagrant provision
+```
+
+If you have no vagrant box in your host machine, you need to prepare a vagrant box before `vagrant init`.
+
+An Ansible playbook has been in a directory. 
+Please customize it as necessary.
+
+### Setting a database
+
+```
+vagrant ssh
+cd /path/to/Rubel
+
 php artisan migration
-```
-
-```
 php artisan db:seed
 ```
 
