@@ -1,0 +1,15 @@
+---
+- name: Vagrant Environment Configuration
+  hosts: vagrant
+  become: yes
+  user: vagrant
+  roles:
+  # - common
+  # - nginx
+  - mysql
+  - php
+  - ruby
+  - python
+  - composer
+  - redis
+  - mailcatcher

@@ -12,3 +12,5 @@ yarn.lock
 composer.lock
 /frontend-app/node_modules
 /frontend-app/dist
+Vagrantfile
+.vagrant

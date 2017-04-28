@@ -1,0 +1,34 @@
+---
+- name: Download redis
+  get_url: >
+   url=http://download.redis.io/releases/redis-stable.tar.gz
+   dest=/tmp/redis-stable.tar.gz
+
+- name: Unarchive redis
+  command: >
+   tar zxvf redis-stable.tar.gz
+   chdir=/tmp/
+
+- name: Make
+  command: >
+   make
+   chdir=/tmp/redis-stable
+
+- name: Make install
+  command: >
+   make install
+   chdir=/tmp/redis-stable
+
+- name: Set deamonize on
+  replace: >
+   dest=/tmp/redis-stable/redis.conf
+   regexp='daemonize no'
+   replace='daemonize yes'
+
+- name: Copy redis configuration
+  template: src=../templates/redis.conf dest=/etc/redis.conf
+
+- name: Run redis
+  command: >
+   redis-server /etc/redis.conf
+  become: no

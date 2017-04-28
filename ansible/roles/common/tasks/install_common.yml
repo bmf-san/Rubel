@@ -1,0 +1,21 @@
+---
+- name: Install common
+  yum: name={{ item }} state=latest
+  with_items:
+   - vim
+   - gcc-c++
+   - git
+   - make
+   - gcc
+   - wget
+   - zlib
+   - zlib-devel
+   - openssl
+   - openssl-devel
+   - readline
+   - readline-devel
+   - sqlite
+   - sqlite-devel
+   - bzip2
+   - bzip2-devel
+   - patch

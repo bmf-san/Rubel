@@ -1,0 +1,50 @@
+---
+- name: Install php-fpm-70
+  yum: name={{ item }} state=latest enablerepo=remi,remi-php70
+  with_items:
+   - php
+   - php-devel
+   - php-fpm
+   - php-mbstring
+   - php-pdo
+   - php-mcrypt
+   - php-mysqlnd
+   - php-opcache
+   - php-xml
+
+- name: Set php.ini timezone
+  lineinfile: >-
+   dest='/etc/php.ini'
+   regexp=';date.timezone ='
+   line='date.timezone = Asia/Tokyo'
+
+- name: Set php.ini session max life time
+  lineinfile: >-
+   dest='/etc/php.ini'
+   regexp='session.gc_maxlifetime ='
+   line='session.gc_maxlifetime = 1800'
+
+- name: Set php.ini memory limit
+  lineinfile: >-
+   dest='/etc/php.ini'
+   regexp='memory_limit ='
+   line='memory_limit = 256M'
+
+- name: Set php-fpm setting
+  copy: src=../templates/www.conf dest=/etc/php-fpm.d/www.conf
+
+- name: Run php-fpm
+  shell: |
+   systemctl start php-fpm
+   systemctl enable php-fpm
+
+- name: Set permission php session
+  shell: |
+   chown nginx /var/lib/php/session
+   chgrp nginx /var/lib/php/session
+
+- name: Restart php-fpm
+  shell: systemctl restart php-fpm
+
+- name: Restart nginx
+  shell: systemctl restart nginx

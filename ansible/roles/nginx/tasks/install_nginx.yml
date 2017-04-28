@@ -1,0 +1,15 @@
+---
+- name: Install nginx
+  yum: name=nginx
+
+- name: Chkconfig nginx
+  command: systemctl enable nginx.service
+
+- name: Copy nginx default configuration
+  template: src={{item.src}} dest={{item.dest}}
+  with_items:
+   - { src: '../templates/nginx.conf', dest: '/etc/nginx/nginx.conf' }
+   - { src: '../templates/rubel.conf', dest: '/etc/nginx/conf.d' }
+
+- name: Restart nginx
+  command: systemctl restart nginx
