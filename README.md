@@ -65,7 +65,7 @@ yarn run build
 ```
 cd Rubel
 
-vagrant init
+vagrant init   # And customize a Vagrantfile by referring to the Vagrantfile.example.
 vagrant provision
 ```
 
