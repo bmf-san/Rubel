@@ -4,8 +4,8 @@
   become: yes
   user: vagrant
   roles:
-  # - common
-  # - nginx
+  - common
+  - nginx
   - mysql
   - php
   - ruby

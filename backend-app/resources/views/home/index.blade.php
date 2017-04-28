@@ -113,7 +113,7 @@
       <div class="container">
         <div class="tabs is-centered">
           <ul>
-            <li><a href={{ url('/posts') }}>View more posts</a></li>
+            <li><a href={{ url('/post') }}>View more posts</a></li>
           </ul>
         </div>
       </div>
