@@ -1,10 +1,9 @@
 **Under Development**
 
-===Progress===
-
-
 # Rubel
 A Simple CMS worked by Laravel, React, and Bulma.
+
+
 
 ## Description
 Rubel is the cms working with Laravel and React.
