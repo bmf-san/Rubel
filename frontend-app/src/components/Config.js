@@ -3,6 +3,7 @@ import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
 import {editConfig, fetchConfigs} from '../actions/index';
 import {Link} from 'react-router';
+import Loader from '../utils/Loader';
 
 class Configs extends Component {
   componentWillMount() {
@@ -45,7 +46,11 @@ class Configs extends Component {
   }
 
   render() {
-    const {handleSubmit, configs} = this.props
+    const {handleSubmit, configs, submitting} = this.props
+
+    if (submitting) {
+      return (<Loader/>);
+    }
 
     return (
       <div>

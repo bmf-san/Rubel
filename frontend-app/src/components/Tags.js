@@ -3,6 +3,7 @@ import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
 import {createTag, editTag, deleteTag, fetchTags} from '../actions/index';
 import {Link} from 'react-router';
+import Loader from '../utils/Loader';
 
 class Tags extends Component {
   componentWillMount() {
@@ -67,7 +68,11 @@ class Tags extends Component {
   }
 
   renderTags() {
-    const {tags} = this.props
+    const {tags submitting} = this.props
+
+    if (submitting) {
+      return (<Loader/>);
+    }
 
     return tags.all.map((tag) => {
       return (

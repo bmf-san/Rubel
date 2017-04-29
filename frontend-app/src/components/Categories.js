@@ -3,6 +3,7 @@ import {reduxForm, Field, SubmissionError} from 'redux-form';
 import {connect} from 'react-redux';
 import {createCategory, deleteCategory, fetchCategories} from '../actions/index';
 import {Link} from 'react-router';
+import Loader from '../utils/Loader';
 
 const category_id_of_uncategorized = 1
 
@@ -93,7 +94,11 @@ class Categories extends Component {
   }
 
   render() {
-    const {handleSubmit} = this.props
+    const {handleSubmit, submitting} = this.props
+
+    if (submitting) {
+      return (<Loader/>);
+    }
 
     return (
       <div>

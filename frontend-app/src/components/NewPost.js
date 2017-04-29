@@ -14,6 +14,7 @@ import {
   initCompleteTags
 } from '../actions/index';
 import {Link} from 'react-router';
+import Loader from '../utils/Loader';
 
 class NewPost extends Component {
   componentWillMount() {
@@ -169,11 +170,15 @@ class NewPost extends Component {
   }
 
   render() {
-    const {tags, handleSubmit} = this.props
+    const {tags, handleSubmit, submitting} = this.props
 
     const suggestions = tags.all.map((tag) => {
       return {id: tag.id, name: tag.name}
     })
+
+    if (submitting) {
+      return (<Loader/>);
+    }
 
     return (
       <div>
