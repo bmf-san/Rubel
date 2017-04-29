@@ -8,9 +8,8 @@ import Loader from '../utils/Loader';
 class Posts extends Component {
   componentWillMount() {
     const {location, fetchPosts} = this.props
-    const page = location.query.page
 
-    fetchPosts(page);
+    fetchPosts(location.query.page);
   }
 
   componentDidUpdate(prevProps) {
@@ -20,7 +19,7 @@ class Posts extends Component {
       return false
     }
 
-    fetchPosts(page);
+    fetchPosts(location.query.page);
   }
 
   handleDeletePost(id) {
