@@ -68,7 +68,7 @@ class Tags extends Component {
   }
 
   renderTags() {
-    const {tags submitting} = this.props
+    const {tags, submitting} = this.props
 
     if (submitting) {
       return (<Loader/>);
