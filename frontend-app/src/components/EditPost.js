@@ -68,10 +68,21 @@ class EditPost extends Component {
     return editPost(data).then((res) => {
       if (res.error) {
         const validation_msg = res.payload.response.data.messages
-        throw new SubmissionError({
-          title: [validation_msg.title],
-          md_content: [validation_msg.md_content]
-        });
+
+        if (validation_msg.title && !validation_msg.md_content) {
+          throw new SubmissionError({
+            title: [validation_msg.title]
+          });
+        } else if (validation_msg.md_content && !validation_msg.title) {
+          throw new SubmissionError({
+            md_content: [validation_msg.md_content]
+          });
+        } else if (validation_msg.title && validation_msg.md_content) {
+          throw new SubmissionError({
+            title: [validation_msg.title],
+            md_content: [validation_msg.md_content]
+          });
+        }
       } else {
         const id = res.payload.data.id
         this.context.router.push(`/dashboard/edit-post/${id}`);
