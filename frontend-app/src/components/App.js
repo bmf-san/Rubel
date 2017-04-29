@@ -22,6 +22,7 @@ class App extends Component {
 
   render() {
     const {config} = this.props
+
     return (
       <div>
         <nav className="nav is-dark has-shadow" id="top">

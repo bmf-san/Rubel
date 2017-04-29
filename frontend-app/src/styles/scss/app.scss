@@ -122,6 +122,27 @@ a.nav-item.is-tab.active {
     color: #2EB398;
 }
 
+/**
+ * Loader
+ */
+.loader-overray {
+  position: fixed;
+	top: 0;
+	left: 0;
+	height:	100%;
+	width: 100%;
+	background: gray;
+	opacity: 0.5;
+	z-index: 9999;
+
+  .loader {
+    margin: 0 auto;
+    top: 50%;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
 
 /**
  * Markdown
@@ -320,7 +341,7 @@ pre code {
 
 
 /**
- * Utils
+ * Helper
  */
 
 .is-resizeless {

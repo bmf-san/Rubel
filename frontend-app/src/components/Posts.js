@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchPosts, deletePost} from '../actions/index';
 import {Link} from 'react-router';
+import Loader from '../utils/Loader';
 
 class Posts extends Component {
   componentWillMount() {
