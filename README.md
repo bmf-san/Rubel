@@ -1,4 +1,4 @@
-*s*Under Development**
+**Under Development**
 
 # Rubel
 A Simple CMS worked by Laravel, React, and Bulma.
