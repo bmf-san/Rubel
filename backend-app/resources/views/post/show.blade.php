@@ -74,11 +74,6 @@
                   </div>
                 </article>
               </div>
-              <footer class="card-footer">
-                <a class="card-footer-item">Share on Facebook</a>
-                <a class="card-footer-item">Share on Twitter</a>
-                <a class="card-footer-item">Share on Hatena</a>
-              </footer>
             </div>
             <div class="mt-one-and-a-half">
               <nav class="pagination is-centered">
@@ -102,4 +97,7 @@
 
 @section('additional-script')
   <script type="text/javascript" src={{ asset('/dist/post.bundle.js') }}></script>
+  <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async">
+    {lang: "ja"}
+  </script>
 @endsection

@@ -2656,9 +2656,6 @@ __webpack_require__(32);
   toc.innerHTML = list.join("");
 })();
 
-var elem = document.getElementsByClassName("test");
-elem.innerHTML = "<span style='color: red;'>span要素に変更したよ！</span>";
-
 
 /***/ }),
 /* 19 */,

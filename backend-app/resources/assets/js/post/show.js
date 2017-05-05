@@ -18,6 +18,3 @@ require('../../scss/post/show.scss');
   }
   toc.innerHTML = list.join("");
 })();
-
-var elem = document.getElementsByClassName("test");
-elem.innerHTML = "<span style='color: red;'>span要素に変更したよ！</span>";
