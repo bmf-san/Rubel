@@ -3,7 +3,7 @@
   "description": "A Simple CMS worked by Laravel, React, and Bulma.",
   "keywords": ["laravel", "react", "bulma", "spa", "cms"],
   "type": "cms",
-  "licence": "MIT",
+  "license": "MIT",
   "authors": [{
     "name": "bmf",
     "email": "bmf.infomation@gmail.com"
