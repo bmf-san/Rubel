@@ -7,12 +7,5 @@
   "authors": [{
     "name": "bmf",
     "email": "bmf.infomation@gmail.com"
-  }],
-  "require": {
-    "rubel/rubel": "*"
-  },
-  "config": {
-    "preferred-install": "dist",
-    "sort-packages": true
-  }
+  }]
 }
