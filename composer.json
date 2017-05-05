@@ -7,8 +7,5 @@
   "authors": [{
     "name": "bmf",
     "email": "bmf.infomation@gmail.com"
-  }],
-  "require": {
-    "rubel/rubel": "master"
-  }
+  }]
 }

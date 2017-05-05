@@ -3,6 +3,9 @@
 # Rubel
 A Simple CMS worked by Laravel, React, and Bulma.
 
+- [github - bmf-san/Rubel](https://github.com/bmf-san/Rubel))
+- [packagist - rubel/rubel](https://packagist.org/packages/rubel/rubel)
+
 ## Description
 Rubel is the cms working with Laravel and React.
 
@@ -22,7 +25,11 @@ Coming soon...
 
 ## Get Started
 
-### Clone a respository
+### Install a Rubel
+```
+composer install rubel/rubel
+```
+
 ```
 https://github.com/bmf-san/Rubel.git
 ```
@@ -71,7 +78,7 @@ vagrant provision
 
 If you have no vagrant box in your host machine, you need to prepare a vagrant box before `vagrant init`.
 
-An Ansible playbook has been in a directory. 
+An Ansible playbook has been in a directory.
 Please customize it as necessary.
 
 ### Setting a database
