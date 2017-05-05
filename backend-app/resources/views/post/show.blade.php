@@ -74,6 +74,10 @@
                   </div>
                 </article>
               </div>
+              <footer class="card-footer">
+                <a href="javascript:void(0);" onclick="window.open('https://twitter.com/share?url={{ url()->current() }}&text={{ $post->title }}&hashtags=bmf-tech&related=bmf_san', 'mywindow4', 'width=400, height=300, menubar=no, toolbar=no, scrollbars=yes');" class="card-footer-item">Share on Twitter</a>
+                <a href="javascript:void(0);" onclick="window.open('http://b.hatena.ne.jp/add?url={{ url()->current() }}', 'mywindow4', 'width=400, height=300, menubar=no, toolbar=no, scrollbars=yes');" class="card-footer-item">Share on Hatena</a>
+              </footer>
             </div>
             <div class="mt-one-and-a-half">
               <nav class="pagination is-centered">
