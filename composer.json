@@ -7,5 +7,6 @@
   "authors": [{
     "name": "bmf",
     "email": "bmf.infomation@gmail.com"
-  }]
+  }],
+  "minimum-stability": "dev"
 }
