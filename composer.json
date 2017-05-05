@@ -1,7 +1,7 @@
 {
   "name": "rubel/rubel",
   "description": "A Simple CMS worked by Laravel, React, and Bulma.",
-  "keywords": ["laravel;", "react", "bulma", "spa", "cms"],
+  "keywords": ["laravel", "react", "bulma", "spa", "cms"],
   "type": "cms",
   "licence": "MIT",
   "authors": [{
