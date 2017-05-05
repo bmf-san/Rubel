@@ -1,12 +1,14 @@
 {
   "name": "rubel/rubel",
   "description": "A Simple CMS worked by Laravel, React, and Bulma.",
-  "keywords": ["Laravel;", "React", "Bulma", "SPA", "CMS"],
+  "keywords": ["laravel;", "react", "bulma", "spa", "cms"],
   "type": "cms",
   "licence": "MIT",
   "authors": [{
     "name": "bmf",
     "email": "bmf.infomation@gmail.com"
   }],
-  "require": {}
+  "require": {
+    "rubel/rubel": "master"
+  }
 }
