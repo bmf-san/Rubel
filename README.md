@@ -26,8 +26,11 @@ Coming soon...
 ## Get Started
 
 ### Installation
-`git clone git@github.com:bmf-san/Rubel.git`
+Latest
+`git clone git@github.com:bmf-san/Rubel.git rubel`　
 
+Specified version
+`git clone -branch 1.0.0 git@github.com:bmf-san/Rubel.git rubel`
 
 ### Setting for backend-app
 ```
