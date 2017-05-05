@@ -27,7 +27,7 @@ Coming soon...
 
 ### Installation
 ```
-composer create-project rubel/rubel --prefer-dist rubel
+composer create-project rubel/rubel rubel --prefer-dist
 ```
 
 ### Setting for backend-app
