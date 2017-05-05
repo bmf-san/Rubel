@@ -26,7 +26,7 @@ Coming soon...
 ## Get Started
 
 ### Installation
-
+`git clone git@github.com:bmf-san/Rubel.git`
 
 
 ### Setting for backend-app
