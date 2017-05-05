@@ -1,4 +1,4 @@
-**Under Development**
+*s*Under Development**
 
 # Rubel
 A Simple CMS worked by Laravel, React, and Bulma.
@@ -13,25 +13,21 @@ Rubel is the cms working with Laravel and React.
 Coming soon...
 
 ## Features
-+ Easy to use
-+ Developer friendly
-+ Beatiful UI
+- Easy to use
+- Developer friendly
+- Beatiful UI
 
-## Requirement
-+ PHP7
-+ npm
-+ yarn
-+ Node.js
+## Requirements
+- PHP7
+- npm
+- yarn
+- Node.js
 
 ## Get Started
 
-### Install a Rubel
+### Installation
 ```
-composer install rubel/rubel
-```
-
-```
-https://github.com/bmf-san/Rubel.git
+composer create-project rubel/rubel --prefer-dist rubel
 ```
 
 ### Setting for backend-app
@@ -98,7 +94,7 @@ php artisan db:seed
 Now you can start Rubel!
 
 ## Anything Else
-+ [Wiki - API Documentation](https://github.com/bmf-san/laravel-react-blog-boilerplate/wiki/API-Documentation)
+- [Wiki - API Documentation](https://github.com/bmf-san/laravel-react-blog-boilerplate/wiki/API-Documentation)
 
 ## License
 This project is licensed under the terms of the MIT license.
@@ -106,5 +102,5 @@ This project is licensed under the terms of the MIT license.
 ## Author
 bmf - A Web Developer in Japan.
 
-+ [@bmf-san](https://twitter.com/bmf_san)
-+ [bmf-tech](http://bmf-tech.com/)
+- [@bmf-san](https://twitter.com/bmf_san)
+- [bmf-tech](http://bmf-tech.com/)
