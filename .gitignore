@@ -1,7 +1,9 @@
+# Root
 Vagrantfile
 .vagrant
 /doc
 
+# backend-app
 /backend-app/node_modules
 /backend-app/public/dist
 /backend-app/public/storage
@@ -12,5 +14,6 @@ Vagrantfile
 /backend-app/Homestead.json
 /backend-app/Homestead.yaml
 
+# frontend-app
 /frontend-app/node_modules
 /frontend-app/dist
