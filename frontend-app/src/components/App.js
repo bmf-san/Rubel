@@ -45,27 +45,27 @@ class App extends Component {
                 : 'nav-item is-tab'}>
                 Dashboard
               </Link>
-              <Link to="/posts" className={(this.props.location.pathname == '/dashboard/posts')
+              <Link to="/dashboard/posts" className={(this.props.location.pathname == '/dashboard/posts')
                 ? 'nav-item is-tab active'
                 : 'nav-item is-tab'}>
                 Posts
               </Link>
-              <Link to="/new-post" className={(this.props.location.pathname == '/dashboard/new-post/')
+              <Link to="/dashboard/new-post" className={(this.props.location.pathname == '/dashboard/new-post/')
                 ? 'nav-item is-tab active'
                 : 'nav-item is-tab'}>
                 NewPost
               </Link>
-              <Link to="/categories" className={(this.props.location.pathname == '/dashboard/categories/')
+              <Link to="/dashboard/categories" className={(this.props.location.pathname == '/dashboard/categories/')
                 ? 'nav-item is-tab active'
                 : 'nav-item is-tab'}>
                 Categories
               </Link>
-              <Link to="/tags" className={(this.props.location.pathname == '/dashboard/tags/')
+              <Link to="/dashboard/tags" className={(this.props.location.pathname == '/dashboard/tags/')
                 ? 'nav-item is-tab active'
                 : 'nav-item is-tab'}>
                 Tags
               </Link>
-              <Link to="/config" className={(this.props.location.pathname == '/dashboard/config/')
+              <Link to="/dashboard/config" className={(this.props.location.pathname == '/dashboard/config/')
                 ? 'nav-item is-tab active'
                 : 'nav-item is-tab'}>
                 Config
