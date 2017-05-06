@@ -23,8 +23,10 @@ export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 export const EDIT_CONFIG = "EDIT_CONFIG";
 export const FETCH_CONFIGS = "FETCH_CONFIGS";
 
+const apiDomain = process.env.API_DOMAIN
+
 const api = axios.create({
-  baseURL: 'http://api.rubel/v1',
+  baseURL: `http://${apiDomain}/v1`,
   timeout: 10000,
   headers: {
     'X-Requested-With': 'XMLHttpRequest'
