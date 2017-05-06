@@ -11,7 +11,7 @@
  * Post.
  */
 Route::get('posts', 'Api\v1\PostController@index');
-Route::get('posts/{id}', 'Api\v1\Postcontroller@show')->where('id', '[0-9]+');
+Route::get('posts/{id}', 'Api\v1\PostController@show')->where('id', '[0-9]+');
 
 /*
  * Category
