@@ -25,11 +25,9 @@ export const FETCH_CONFIGS = "FETCH_CONFIGS";
 
 const apiDomain = process.env.API_DOMAIN
 
-if (process.env.APP_ENV == 'production') {
-  const protocol = 'https'
-} else {
-  const protocol = 'http'
-}
+const protocol = (process.env.APP_ENV == 'production')
+  ? 'https'
+  : 'http'
 
 const api = axios.create({
   baseURL: `${protocol}://${apiDomain}/v1`,
