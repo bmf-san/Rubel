@@ -1,12 +1,12 @@
 @if ($paginator->onFirstPage())
-  <a class="pagination-previous" disabled>Previous</a>
+  <a class="pagination-previous is-hidden-mobile" disabled>Previous</a>
 @else
-  <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="pagination-previous">Previous</a>
+  <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="pagination-previous is-hidden-mobile">Previous</a>
 @endif
 @if ($paginator->hasMorePages())
-  <a class="pagination-next" href="{{ $paginator->nextPageUrl() }}" rel="next">Next page</a>
+  <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="pagination-next is-hidden-mobile">Next page</a>
 @else
-  <a class="pagination-next" disabled>Next page</a>
+  <a class="pagination-next is-hidden-mobile" disabled>Next page</a>
 @endif
 <ul class="pagination-list">
   @foreach ($elements as $element)
