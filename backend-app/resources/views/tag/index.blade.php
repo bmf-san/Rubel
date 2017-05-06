@@ -3,7 +3,7 @@
 @section('title', 'Profile')
 
 @section('content')
-  <div class="container-fluid">
+  <div>
     @include('partials.nav')
     <section class="hero is-primary is-medium header-image">
       <div class="hero-body">
