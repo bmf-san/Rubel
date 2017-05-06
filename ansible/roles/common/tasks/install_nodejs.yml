@@ -1,0 +1,3 @@
+---
+  - name: Install nodejs and npm
+    shell: yum install -y nodejs npm --enablerepo=epel && npm install -g n && npm install -g yarn && n stable
