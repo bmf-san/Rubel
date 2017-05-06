@@ -25,8 +25,14 @@ export const FETCH_CONFIGS = "FETCH_CONFIGS";
 
 const apiDomain = process.env.API_DOMAIN
 
+if (process.env.APP_ENV == 'production') {
+  const protocol = 'https'
+} else {
+  const protocol = 'http'
+}
+
 const api = axios.create({
-  baseURL: `http://${apiDomain}/v1`,
+  baseURL: `${protocol}://${apiDomain}/v1`,
   timeout: 10000,
   headers: {
     'X-Requested-With': 'XMLHttpRequest'
