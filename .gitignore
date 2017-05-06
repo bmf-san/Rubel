@@ -1,5 +1,6 @@
 Vagrantfile
 .vagrant
+/doc
 
 /backend-app/node_modules
 /backend-app/public/dist
