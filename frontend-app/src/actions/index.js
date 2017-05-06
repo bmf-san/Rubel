@@ -25,7 +25,7 @@ export const FETCH_CONFIGS = "FETCH_CONFIGS";
 
 const apiDomain = process.env.API_DOMAIN
 
-const protocol = (process.env.APP_ENV == 'production')
+const protocol = (process.env.APP_ENV === 'production')
   ? 'https'
   : 'http'
 
