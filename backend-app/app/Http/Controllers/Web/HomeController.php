@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recent_posts = $this->post_model->where('publication_status', 'public')->take(10)->get();
+        $recent_posts = $this->post_model->where('publication_status', 'public')->take(10)->orderBy('created_at', 'desc')->get();
         $popular_posts = $this->post_model->where('publication_status', 'public')->take(10)->orderBy('views', 'desc')->get();
 
         $categories = $this->category_model->all();

@@ -31,7 +31,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = $this->post_model->where('publication_status', 'public')->paginate(self::POST_PAGINATE_NUM);
+        $posts = $this->post_model->where('publication_status', 'public')->orderBy('created_at', 'desc')->paginate(self::POST_PAGINATE_NUM);
 
         $categories = $this->category_model->all();
         $tags = $this->tag_model->all();
