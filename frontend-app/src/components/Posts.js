@@ -95,11 +95,11 @@ class Posts extends Component {
     const prev = () => {
       if (current_page > 1) {
         return (
-          <Link to={`/dashboard/posts?page=${pagination.current_page - 1}`} className="pagination-previous">Prev</Link>
+          <Link to={`/dashboard/posts?page=${pagination.current_page - 1}`} className="pagination-previous is-hidden-mobile">Prev</Link>
         )
       } else {
         return (
-          <a className="pagination-previous" disabled>Prev</a>
+          <a className="pagination-previous is-hidden-mobile" disabled>Prev</a>
         )
       }
     }
@@ -107,11 +107,11 @@ class Posts extends Component {
     const next = () => {
       if (current_page < last_page) {
         return (
-          <Link to={`/dashboard/posts?page=${pagination.current_page + 1}`} className="pagination-next">Next</Link>
+          <Link to={`/dashboard/posts?page=${pagination.current_page + 1}`} className="pagination-next is-hidden-mobile">Next</Link>
         )
       } else {
         return (
-          <a className="pagination-next" disabled>Next</a>
+          <a className="pagination-next is-hidden-mobile" disabled>Next</a>
         )
       }
     }
