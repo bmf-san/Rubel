@@ -27,10 +27,6 @@ class AppServiceProvider extends ServiceProvider
         $this->registerConfigRepository();
         $this->registerPostRepository();
         $this->registerTagRepository();
-
-        if ($this->app->environment() !== 'production') {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-        }
     }
 
     public function registerConfigRepository()

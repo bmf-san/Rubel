@@ -8,7 +8,8 @@
     "php": ">=5.6.4",
     "laravel/framework": "5.3.*",
     "erusev/parsedown": "^1.6",
-    "barryvdh/laravel-cors": "^0.9.2"
+    "barryvdh/laravel-cors": "^0.9.2",
+    "doctrine/dbal": "^2.5"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
@@ -44,6 +45,8 @@
     ],
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "php artisan ide-helper:generate",
+      "php artisan ide-helper:meta",
       "php artisan optimize"
     ]
   },
