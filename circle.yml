@@ -13,4 +13,4 @@ dependencies:
 
 test:
   override:
-    - echo "test"
+    - "true"
