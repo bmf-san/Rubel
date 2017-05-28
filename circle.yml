@@ -1,7 +1,7 @@
 machine:
  timezone: Asia/Tokyo
  php:
-  version: 7.0.18
+  version: 7.1.3
  node:
   version: 7.10.0
 
