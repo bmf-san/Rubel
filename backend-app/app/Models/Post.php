@@ -23,21 +23,21 @@ class Post extends Model
 
     public function admin()
     {
-        return $this->belongsTo('App\Models\Admin');
+        return $this->belongsTo(Admin::class);
     }
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo(Category::class);
     }
 
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany(Comment::class);
     }
 
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Tag', 'tag_post')->withTimestamps();
+        return $this->belongsToMany(Tag::class, 'tag_post')->withTimestamps();
     }
 }
