@@ -1,0 +1,12 @@
+machine:
+ timezone: Asia/Tokyo
+ php:
+  version: 7.1.3
+ node:
+  version: 7.10.0
+
+dependencies:
+ pre:
+  - cd backend-app; composer install --prefer-dist
+  - cd backend-app; npm install --no-optional
+  - cd backend-app; npm run build

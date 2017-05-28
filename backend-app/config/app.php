@@ -128,6 +128,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
