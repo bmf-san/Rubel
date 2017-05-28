@@ -10,3 +10,7 @@ dependencies:
   - cd backend-app; composer install --prefer-dist
   - cd backend-app; npm install --no-optional
   - cd backend-app; npm run build
+
+test:
+  override:
+    - echo "test"
