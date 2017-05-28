@@ -1,8 +1,8 @@
 **Under Development**
 
-# Rubel
-[![CircleCI](https://circleci.com/gh/bmf-san/Rubel.svg?style=svg)](https://circleci.com/gh/bmf-san/Rubel)
+[![CircleCI](https://circleci.com/gh/bmf-san/Rubel.svg?style=svg)](https://circleci.com/gh/bmf-s    an/Rubel)
 
+# Rubel
 A Simple CMS worked by Laravel, React, and Bulma.
 
 - [github - bmf-san/Rubel](https://github.com/bmf-san/Rubel)
