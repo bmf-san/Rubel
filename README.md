@@ -72,7 +72,14 @@ yarn run build
 ```
 cd Rubel
 
-vagrant init   # And customize a Vagrantfile by referring to the Vagrantfile.example.
+vagrant init
+
+cd Rubel/ansible/group_vars/vagrant.yml.sample
+cp vagrant.yml.sample vagrant.yml
+
+cd Rubel/ansible
+cp host.sample host
+
 vagrant provision
 ```
 
@@ -85,11 +92,11 @@ Please customize it as necessary.
 
 ```
 vagrant ssh
-mysql -uroot -p   # password has been written in /path/to/ansible/group_vars/vagrant.yml
+mysql -uroot -p   # password has been written in path/to/ansible/group_vars/vagrant.yml
 create database rubel;
 exit;
 
-cd /path/to/backend-app
+cd path/to/backend-app
 
 php artisan migration
 php artisan db:seed
