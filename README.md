@@ -37,7 +37,7 @@ Specified version `git clone -branch 1.0.0 git@github.com:bmf-san/Rubel.git rube
 
 ### Setting for backend-app
 
-```
+```console
 cd path/to/backend-app
 
 composer install
@@ -49,7 +49,7 @@ cp .env.example .env
 
 Please change these environment variables as necessary.
 
-```
+```console
 /* Setting for Rubel */
 ADMIN_INFO_NAME=admin
 ADMIN_INFO_EMAIL=admin@admin.com
@@ -62,7 +62,7 @@ API_DOMAIN=api.rubel
 
 ### Setting for frontend-app
 
-```
+```console
 cd path/to/frontend-app
 
 npm install
@@ -71,7 +71,7 @@ npm run build
 
 ### Provisioning
 
-```
+```console
 cd Rubel
 
 vagrant init
@@ -91,7 +91,7 @@ An Ansible playbook has been in a directory. Please customize it as necessary.
 
 ### Setting a database
 
-```
+```console
 vagrant ssh
 mysql -uroot -p   # password has been written in path/to/ansible/group_vars/vagrant.yml
 create database rubel;
@@ -111,7 +111,7 @@ Now you can start Rubel!
 
 ## Contributing
 
-We welcome your isuue or pull request from everyone. Please check these steps to contribute.
+We welcome your isuue or pull request from everyone. Please check [these steps](https://github.com/bmf-san/Rubel/issues) to contribute.
 
 ## License
 
