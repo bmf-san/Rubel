@@ -3,44 +3,46 @@
 [![CircleCI](https://circleci.com/gh/bmf-san/Rubel.svg?style=svg)](https://circleci.com/gh/bmf-san/Rubel)
 
 # Rubel
+
 A Simple CMS worked by Laravel, React, and Bulma.
 
 - [github - bmf-san/Rubel](https://github.com/bmf-san/Rubel)
 - [packagist - rubel/rubel](https://packagist.org/packages/rubel/rubel)
 
 ## Description
+
 Rubel is the cms working with Laravel and React.
 
-***DEMO***
-Coming soon...
+**_DEMO_** Coming soon...
 
 ## Features
+
 - Easy to use
 - Developer friendly
 - Beatiful UI
 
 ## Requirements
+
 - PHP7
 - npm
-- yarn
 - Node.js
 
 ## Get Started
 
 ### Installation
-Latest
-`git clone git@github.com:bmf-san/Rubel.git rubel`　
 
-Specified version
-`git clone -branch 1.0.0 git@github.com:bmf-san/Rubel.git rubel`
+Latest `git clone git@github.com:bmf-san/Rubel.git rubel`
+
+Specified version `git clone -branch 1.0.0 git@github.com:bmf-san/Rubel.git rubel`
 
 ### Setting for backend-app
+
 ```
 cd path/to/backend-app
 
 composer install
 npm install
-yarn run build
+npm run build
 
 cp .env.example .env
 ```
@@ -64,7 +66,7 @@ API_DOMAIN=api.rubel
 cd path/to/frontend-app
 
 npm install
-yarn run build
+npm run build
 ```
 
 ### Provisioning
@@ -85,8 +87,7 @@ vagrant provision
 
 If you have no vagrant box in your host machine, you need to prepare a vagrant box before `vagrant init`.
 
-An Ansible playbook has been in a directory.
-Please customize it as necessary.
+An Ansible playbook has been in a directory. Please customize it as necessary.
 
 ### Setting a database
 
@@ -105,12 +106,19 @@ php artisan db:seed
 Now you can start Rubel!
 
 ## Anything Else
+
 - [Wiki - API Documentation](https://github.com/bmf-san/laravel-react-blog-boilerplate/wiki/API-Documentation)
 
+## Contributing
+
+We welcome your isuue or pull request from everyone. Please check these steps to contribute.
+
 ## License
+
 This project is licensed under the terms of the MIT license.
 
 ## Author
+
 bmf - A Web Developer in Japan.
 
 - [@bmf-san](https://twitter.com/bmf_san)
