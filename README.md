@@ -7,7 +7,6 @@
 A Simple CMS worked by Laravel, React, and Bulma.
 
 - [github - bmf-san/Rubel](https://github.com/bmf-san/Rubel)
-- [packagist - rubel/rubel](https://packagist.org/packages/rubel/rubel)
 
 ## Description
 
