@@ -4,7 +4,6 @@ import {Provider} from "react-redux"
 import {createStore, applyMiddleware} from "redux"
 import {Router, browserHistory} from "react-router"
 import promise from "redux-promise"
-
 import reducers from "./reducers/reducer_root"
 import routes from "./routes"
 
