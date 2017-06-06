@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from "react"
 import {Link} from "react-router"
 
+<<<<<<< HEAD
 class Login extends Component {
 	render() {
 		return (
@@ -52,4 +53,38 @@ class Login extends Component {
 			</section>
 		)
 	}
+=======
+export default class Login extends Component {
+  render() {
+    return (
+      <section className="hero is-fullheight is-dark is-bold">
+        <div className="hero-body">
+          <div className="container">
+            <div className="columns is-vcentered">
+              <div className="column is-4 is-offset-4">
+                <h1 className="title">
+                  Login
+                </h1>
+                <div className="box">
+                  <label className="label">Name</label>
+                  <p className="control">
+                    <input className="input" type="text" placeholder="John Smith"/>
+                  </p>
+                  <label className="label">Password</label>
+                  <p className="control">
+                    <input className="input" type="password" placeholder="●●●●●●●"/>
+                  </p>
+                  <hr/>
+                  <p className="control">
+                    <button className="button is-primary">Login</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+>>>>>>> [update] login view
 }
