@@ -10,10 +10,10 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-2">
-            {{ getBlogInfo('title') }}
+            {{ get_blog_info('title') }}
           </h1>
           <h2 class="subtitle is-5">
-            {{ getBlogInfo('sub_title') }}
+            {{ get_blog_info('sub_title') }}
           </h2>
         </div>
       </div>
@@ -29,7 +29,7 @@
         <div class="columns">
           <div id="recent-tab" class="column is-7 is-offset-2 posts-column">
             @forelse($recent_posts as $post)
-              @if(isDateWithinAWeek($post->publication_date))
+              @if(is_date_within_a_week($post->publication_date))
                 <p>
                   <span class="tag is-danger">New!</span>
                 </p>
@@ -68,7 +68,7 @@
           </div>
           <div id="popular-tab" class="column is-7 is-offset-2 posts-column">
             @forelse($popular_posts as $post)
-              @if(isDateWithinAWeek($post->publication_date))
+              @if(is_date_within_a_week($post->publication_date))
                 <p>
                   <span class="tag is-danger">New!</span>
                 </p>

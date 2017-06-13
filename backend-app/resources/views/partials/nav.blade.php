@@ -3,7 +3,7 @@
     <div class="nav-left">
       <a class="nav-item" href={{ url('/') }}>
         <h1 class="title">
-          {{ getBlogInfo('title') }}
+          {{ get_blog_info('title') }}
         </h1>
       </a>
     </div>

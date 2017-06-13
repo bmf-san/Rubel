@@ -19,7 +19,7 @@
         <div class="columns">
           <div class="column is-7 is-offset-2 posts-column">
             @foreach ($posts as $post)
-              @if(isDateWithinAWeek($post->publication_date))
+              @if(is_date_within_a_week($post->publication_date))
                 <p>
                   <span class="tag is-danger">New!</span>
                 </p>
