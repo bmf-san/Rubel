@@ -1,8 +1,8 @@
 $fa-font-path: "~font-awesome/fonts";
-@import "../../../node_modules/font-awesome/scss/font-awesome";
+@import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 $turquoise: hsl(171, 100%, 41%);
-@import "../../../node_modules/bulma/bulma";
-@import "../../../node_modules/highlight.js/styles/atom-one-dark";
+@import "../../../node_modules/bulma/bulma.sass";
+@import "../../../node_modules/highlight.js/styles/atom-one-dark.css";
 
 
 /**
