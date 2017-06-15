@@ -18,4 +18,4 @@ Vagrantfile
 
 # frontend-app
 /frontend-app/node_modules
-/frontend-app/dist/*
+/frontend-app/dist/
