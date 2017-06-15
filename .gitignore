@@ -1,7 +1,6 @@
 # Root
 Vagrantfile
 .vagrant
-circle.yml
 /doc
 /ansible/host
 /ansible/group_vars/vagrant.yml
