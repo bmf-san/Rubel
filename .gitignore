@@ -5,7 +5,6 @@ Vagrantfile
 /ansible/host
 /ansible/group_vars/vagrant.yml
 
-
 # backend-app
 /backend-app/node_modules
 /backend-app/public/dist
