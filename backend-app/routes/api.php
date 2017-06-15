@@ -10,25 +10,25 @@
 /**
  * Post.
  */
-Route::get('posts', 'PostController@index');
-Route::get('posts/{id}', 'PostController@show')->where('id', '[0-9]+');
+$router->get('posts', 'PostController@index');
+$router->get('posts/{id}', 'PostController@show')->where('id', '[0-9]+');
 
 /*
  * Category
  */
-Route::get('categories', 'CategoryController@index');
-Route::get('categories/{id}', 'CategoryController@show')->where('id', '[0-9]+');
+$router->get('categories', 'CategoryController@index');
+$router->get('categories/{id}', 'CategoryController@show')->where('id', '[0-9]+');
 
 /*
 * Tag
 */
-Route::get('tags', 'TagController@index');
-Route::get('tags/{id}', 'TagController@show')->where('id', '[0-9]+');
+$router->get('tags', 'TagController@index');
+$router->get('tags/{id}', 'TagController@show')->where('id', '[0-9]+');
 
 /**
  * Config
  */
-Route::get('configs', 'ConfigController@index');
+$router->get('configs', 'ConfigController@index');
 
 /*
 |--------------------------------------------------------------------------
@@ -39,25 +39,25 @@ Route::get('configs', 'ConfigController@index');
 /*
  * Post
  */
-Route::post('posts', 'PostController@store');
-Route::patch('posts/{id}', 'PostController@update')->where('id', '[0-9]+');
-Route::delete('posts/{id}', 'PostController@destroy')->where('id', '[0-9]+');
+$router->post('posts', 'PostController@store');
+$router->patch('posts/{id}', 'PostController@update')->where('id', '[0-9]+');
+$router->delete('posts/{id}', 'PostController@destroy')->where('id', '[0-9]+');
 
 /*
 * Category
 */
-Route::post('categories', 'CategoryController@store');
-Route::patch('categories/{id}', 'CategoryController@update')->where('id', '[0-9]+');
-Route::delete('categories/{id}', 'CategoryController@destroy')->where('id', '[0-9]+');
+$router->post('categories', 'CategoryController@store');
+$router->patch('categories/{id}', 'CategoryController@update')->where('id', '[0-9]+');
+$router->delete('categories/{id}', 'CategoryController@destroy')->where('id', '[0-9]+');
 
 /*
  * Tag
  */
-Route::post('tags', 'TagController@store');
-Route::patch('tags/{id}', 'TagController@update')->where('id', '[0-9]+');
-Route::delete('tags/{id}', 'TagController@destroy')->where('id', '[0-9]+');
+$router->post('tags', 'TagController@store');
+$router->patch('tags/{id}', 'TagController@update')->where('id', '[0-9]+');
+$router->delete('tags/{id}', 'TagController@destroy')->where('id', '[0-9]+');
 
 /**
  * Config
  */
-Route::patch('configs', 'ConfigController@update');
+$router->patch('configs', 'ConfigController@update');
