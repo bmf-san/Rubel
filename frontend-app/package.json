@@ -12,6 +12,7 @@
     "highlight.js": "^9.10.0",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
+    "prop-types": "^15.5.10",
     "react": "~15.4.2",
     "react-dom": "~15.4.2",
     "react-redux": "~5.0.2",
