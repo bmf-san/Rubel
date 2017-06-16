@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react"
+import React, {Component} from "react"
+import PropTypes from "prop-types"
 import {reduxForm, Field, SubmissionError} from "redux-form"
 import {connect} from "react-redux"
 import {createCategory, deleteCategory, fetchCategories} from "../actions/index"
@@ -139,6 +140,16 @@ class Categories extends Component {
 			</div>
 		)
 	}
+}
+
+Categories.propTypes = {
+	fetchCategories: PropTypes.object,
+	createCategory: PropTypes.object,
+	reset: PropTypes.object,
+	deleteCategory: PropTypes.object,
+	categories: PropTypes.object,
+	handleSubmit: PropTypes.object,
+	submitting: PropTypes.object
 }
 
 const validate = props => {

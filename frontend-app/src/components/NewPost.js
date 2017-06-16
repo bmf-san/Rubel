@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react"
+import React, {Component} from "react"
+import PropTypes from "prop-types"
 import {reduxForm, Field, SubmissionError} from "redux-form"
 import {connect} from "react-redux"
 import ReactTags from "react-tag-autocomplete"
@@ -199,7 +200,7 @@ class NewPost extends Component {
 					<div className="field">
 						<label className="label">Tag</label>
 						<div className="control">
-							<ReactTags tags={this.props.tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false} placeholder="Tags"/>
+							<ReactTags tags={tags.complete_tags} suggestions={suggestions} handleDelete={this.handleDelete.bind(this)} handleAddition={this.handleAddition.bind(this)} allowNew={true} autofocus={false} placeholder="Tags"/>
 						</div>
 					</div>
 					<Field label="Content" onChange={this.handleUpdateMarkdown.bind(this)} name="md_content" component={this.renderContentField} placeholder="Content" markdownField={this.renderMarkdownField()}/>
@@ -208,6 +209,24 @@ class NewPost extends Component {
 			</div>
 		)
 	}
+}
+
+NewPost.propTypes = {
+	fetchTags: PropTypes.object,
+	fetchCategories: PropTypes.object,
+	initCompleteTags: PropTypes.object,
+	initMarkdown: PropTypes.object,
+	categories: PropTypes.object,
+	tags: PropTypes.object,
+	posts: PropTypes.object,
+	createPost: PropTypes.object,
+	reset: PropTypes.object,
+	data: PropTypes.object,
+	deleteCompleteTags: PropTypes.object,
+	addCompleteTags: PropTypes.object,
+	updateMarkdown: PropTypes.object,
+	handleSubmit: PropTypes.object,
+	submitting: PropTypes.object
 }
 
 NewPost.contextTypes = {

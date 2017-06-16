@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react"
+import React, {Component} from "react"
+import PropTypes from "prop-types"
 import {reduxForm, Field, SubmissionError} from "redux-form"
 import {connect} from "react-redux"
 import ReactTags from "react-tag-autocomplete"
@@ -258,6 +259,33 @@ class EditPost extends Component {
 			</div>
 		)
 	}
+}
+
+EditPost.propTypes = {
+	params: PropTypes.object,
+	initialize: PropTypes.object,
+	formValues: PropTypes.object,
+	filtersDefaults: PropTypes.object,
+	fetchPost: PropTypes.object,
+	updateMarkdown: PropTypes.object,
+	fetchInitPost: PropTypes.object,
+	fetchTags: PropTypes.object,
+	fetchPosts: PropTypes.object,
+	fetchCompleteTags: PropTypes.object,
+	fetchCategories: PropTypes.object,
+	categories: PropTypes.object,
+	tags: PropTypes.object,
+	posts: PropTypes.object,
+	editPost: PropTypes.object,
+	deleteCompleteTags: PropTypes.object,
+	reset: PropTypes.object,
+	data: PropTypes.object,
+	deletePost: PropTypes.object,
+	deleteCompleteTags: PropTypes.object,
+	addCompleteTags: PropTypes.object,
+	updateMarkdown: PropTypes.object,
+	handleSubmit: PropTypes.object,
+	submitting: PropTypes.object
 }
 
 EditPost.contextTypes = {

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react"
+import React, {Component} from "react"
+import PropTypes from "prop-types"
 import {reduxForm, Field, SubmissionError} from "redux-form"
 import {connect} from "react-redux"
 import {createTag, editTag, deleteTag, fetchTags} from "../actions/index"
@@ -129,6 +130,18 @@ class Tags extends Component {
 			</div>
 		)
 	}
+}
+
+Tags.propTypes = {
+	fetchTags: PropTypes.object,
+	createTag: PropTypes.object,
+	reset: PropTypes.object,
+	fetchTags: PropTypes.object,
+	deleteTag: PropTypes.object,
+	tags: PropTypes.object,
+	deleteTag: PropTypes.object,
+	handleSubmit: PropTypes.object,
+	submitting: PropTypes.object
 }
 
 const validate = props => {

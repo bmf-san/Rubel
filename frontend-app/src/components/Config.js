@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react"
+import React, {Component} from "react"
+import PropTypes from "prop-types"
 import {reduxForm, Field, SubmissionError} from "redux-form"
 import {connect} from "react-redux"
 import {editConfig, fetchConfigs} from "../actions/index"
@@ -68,6 +69,15 @@ class Configs extends Component {
 			</div>
 		)
 	}
+}
+
+Configs.propTypes = {
+	fetchConfigs: PropTypes.object,
+	editConfig: PropTypes.object,
+	reset: PropTypes.object,
+	handleSubmit: PropTypes.object,
+	configs: PropTypes.object,
+	submitting: PropTypes.object
 }
 
 Configs.contextTypes = {

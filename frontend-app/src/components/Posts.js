@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react"
+import React, {Component} from "react"
+import PropTypes from "prop-types"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import {fetchPosts, deletePost} from "../actions/index"
@@ -38,15 +39,6 @@ class Posts extends Component {
 
 	renderPosts() {
 		return this.props.posts.records.map((post) => {
-			// TODO It this necessary?
-			// let tags = [];
-			//
-			// for (let i in post.tags) {
-			//   tags.push(
-			//     <span key={i}>{post.tags[i].name}</span>
-			//   );
-			// }
-
 			const handleLink = (id) => {
 				this.context.router.push(`/dashboard/edit-post/${id}`)
 			}
@@ -158,6 +150,16 @@ class Posts extends Component {
 			</div>
 		)
 	}
+}
+
+Posts.propTypes = {
+	location: PropTypes.object,
+	fetchPosts: PropTypes.object,
+	deletePost: PropTypes.object,
+	posts: PropTypes.object,
+	pagination: PropTypes.object,
+	last_page: PropTypes.object,
+	current_page: PropTypes.object
 }
 
 Posts.contextTypes = {

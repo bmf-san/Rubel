@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import PropTypes from "prop-types"
 import {connect} from "react-redux"
 import {Link} from "react-router"
 import {fetchConfigs} from "../actions/index"
@@ -21,7 +22,7 @@ class App extends Component {
 	}
 
 	render() {
-		const {config} = this.props
+		const {config, location, children} = this.props
 
 		return (
 			<div>
@@ -40,32 +41,32 @@ class App extends Component {
 							<span></span>
 						</span>
 						<div className="nav-right nav-menu is-hidden-tablet">
-							<Link to="/dashboard" className={(this.props.location.pathname == "/dashboard" || this.props.location.pathname == "/dashboard/")
+							<Link to="/dashboard" className={(location.pathname == "/dashboard" || location.pathname == "/dashboard/")
 								? "nav-item is-tab active"
 								: "nav-item is-tab"}>
                 Dashboard
 							</Link>
-							<Link to="/dashboard/posts" className={(this.props.location.pathname == "/dashboard/posts")
+							<Link to="/dashboard/posts" className={(location.pathname == "/dashboard/posts")
 								? "nav-item is-tab active"
 								: "nav-item is-tab"}>
                 Posts
 							</Link>
-							<Link to="/dashboard/new-post" className={(this.props.location.pathname == "/dashboard/new-post/")
+							<Link to="/dashboard/new-post" className={(location.pathname == "/dashboard/new-post/")
 								? "nav-item is-tab active"
 								: "nav-item is-tab"}>
                 NewPost
 							</Link>
-							<Link to="/dashboard/categories" className={(this.props.location.pathname == "/dashboard/categories/")
+							<Link to="/dashboard/categories" className={(location.pathname == "/dashboard/categories/")
 								? "nav-item is-tab active"
 								: "nav-item is-tab"}>
                 Categories
 							</Link>
-							<Link to="/dashboard/tags" className={(this.props.location.pathname == "/dashboard/tags/")
+							<Link to="/dashboard/tags" className={(location.pathname == "/dashboard/tags/")
 								? "nav-item is-tab active"
 								: "nav-item is-tab"}>
                 Tags
 							</Link>
-							<Link to="/dashboard/config" className={(this.props.location.pathname == "/dashboard/config/")
+							<Link to="/dashboard/config" className={(location.pathname == "/dashboard/config/")
 								? "nav-item is-tab active"
 								: "nav-item is-tab"}>
                 Config
@@ -78,7 +79,7 @@ class App extends Component {
 						<div>
 							<div className="main">
 								<div className="title">Main</div>
-								<Link to="/dashboard" className={(this.props.location.pathname == "/dashboard" || this.props.location.pathname == "/dashboard/")
+								<Link to="/dashboard" className={(location.pathname == "/dashboard" || location.pathname == "/dashboard/")
 									? "item active"
 									: "item"}>
 									<span className="icon">
@@ -86,7 +87,7 @@ class App extends Component {
 									</span>
 									<span className="name">Dashboard</span>
 								</Link>
-								<Link to="/dashboard/posts" className={(this.props.location.pathname == "/dashboard/posts")
+								<Link to="/dashboard/posts" className={(location.pathname == "/dashboard/posts")
 									? "item active"
 									: "item"}>
 									<span className="icon">
@@ -94,7 +95,7 @@ class App extends Component {
 									</span>
 									<span className="name">Posts</span>
 								</Link>
-								<Link to="/dashboard/new-post" className={(this.props.location.pathname == "/dashboard/new-post")
+								<Link to="/dashboard/new-post" className={(location.pathname == "/dashboard/new-post")
 									? "item active"
 									: "item"}>
 									<span className="icon">
@@ -102,7 +103,7 @@ class App extends Component {
 									</span>
 									<span className="name">NewPost</span>
 								</Link>
-								<Link to="/dashboard/categories" className={(this.props.location.pathname == "/dashboard/categories")
+								<Link to="/dashboard/categories" className={(location.pathname == "/dashboard/categories")
 									? "item active"
 									: "item"}>
 									<span className="icon">
@@ -110,7 +111,7 @@ class App extends Component {
 									</span>
 									<span className="name">Categories</span>
 								</Link>
-								<Link to="/dashboard/tags" className={(this.props.location.pathname == "/dashboard/tags")
+								<Link to="/dashboard/tags" className={(location.pathname == "/dashboard/tags")
 									? "item active"
 									: "item"}>
 									<span className="icon">
@@ -118,7 +119,7 @@ class App extends Component {
 									</span>
 									<span className="name">Tags</span>
 								</Link>
-								<Link to="/dashboard/config" className={(this.props.location.pathname == "/dashboard/config")
+								<Link to="/dashboard/config" className={(location.pathname == "/dashboard/config")
 									? "item active"
 									: "item"}>
 									<span className="icon">
@@ -130,7 +131,7 @@ class App extends Component {
 						</div>
 					</aside>
 					<div className="content column is-10">
-						{this.props.children}
+						{children}
 					</div>
 				</div>
 				<footer className="footer">
@@ -155,6 +156,13 @@ class App extends Component {
 			</div>
 		)
 	}
+}
+
+App.propTypes = {
+	fetchConfigs: PropTypes.object,
+	location: PropTypes.object,
+	config: PropTypes.object,
+	children: PropTypes.object
 }
 
 function mapStateToProps(state) {
