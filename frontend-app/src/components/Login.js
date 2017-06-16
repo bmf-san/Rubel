@@ -1,55 +1,103 @@
 import React, {Component, PropTypes} from "react"
 import {Link} from "react-router"
+import {reduxForm, Field, SubmissionError} from "redux-form"
+import {connect} from "react-redux"
+import {loginUser} from "../actions/index"
+import {Link} from "react-router"
+import {Loader} from "../utils/Loader"
 
 class Login extends Component {
-	render() {
-		return (
-			<section className="hero is-fullheight is-dark is-bold">
-				<div className="hero-body">
-					<div className="container">
-						<div className="columns is-vcentered">
-							<div className="column is-4 is-offset-4">
-								<h1 className="title">
-                  Register an Account
-								</h1>
-								<div className="box">
-									<label className="label">Name</label>
-									<p className="control">
-										<input className="input" type="text" placeholder="John Smith"/>
-									</p>
-									<label className="label">Username</label>
-									<p className="control">
-										<input className="input" type="text" placeholder="jsmith"/>
-									</p>
-									<label className="label">Email</label>
-									<p className="control">
-										<input className="input" type="text" placeholder="jsmith@example.org"/>
-									</p>
-									<hr/>
-									<label className="label">Password</label>
-									<p className="control">
-										<input className="input" type="password" placeholder="●●●●●●●"/>
-									</p>
-									<label className="label">Confirm Password</label>
-									<p className="control">
-										<input className="input" type="password" placeholder="●●●●●●●"/>
-									</p>
-									<hr/>
-									<p className="control">
-										<button className="button is-primary">Register</button>
-										<button className="button is-default">Cancel</button>
-									</p>
-								</div>
-								<p className="has-text-centered">
-									<a href="login.html">Login</a>
-                  |
-									<a href="#">Need help?</a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		)
-	}
+  onSubmit(props) {
+    const {loginUser} = this.props
+
+    return loginUser(props).then((res) => {
+      if (res.error) {
+        const validation_msg = res.payload.response.data.messages
+
+        throw new SubmissionError({
+          name: [validation_msg.name],
+          password: [validation_msg.password]
+        })
+      } else {
+        reset()
+      }
+    })
+  }
+
+  renderNameField({
+    input,
+    label,
+    type,
+    meta: {
+      touched,
+      error
+    }
+  }) {
+    return (
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="control">
+          <input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger is-resizeless")) || "input is-resizeless"}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
+        </div>
+      </div>
+    )
+  }
+
+  renderPasswordField({
+    input,
+    label,
+    type,
+    meta: {
+      touched,
+      error
+    }
+  }) {
+    return (
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="control">
+          <input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger is-resizeless")) || "input is-resizeless"}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
+        </div>
+      </div>
+    )
+  }
+
+  render() {
+    const {handleSubmit} = this.props
+
+    return (
+      <div className="columns">
+        <div className="column is-offset-one-third is-one-third">
+          <h1 className="title has-text-centered">Login</h1>
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column">
+            <Field label="Name" name="name" type="text" component={this.renderNameField} placeholder="Name"/>
+            <Field label="Password" name="password" type="password" component={this.renderPasswordField} placeholder="Name"/>
+            <div className="field is-grouped is-pulled-right">
+              <div className="control">
+                <button className="button is-primary">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    )
+  }
 }
+
+const validate = props => {
+  const errors = {}
+
+  if (!props.name) {
+    errors.name = "Requires"
+  } else if (!props.password) {
+    errors.password = "Requires"
+  }
+}
+
+const form = reduxForm({form: "LoginForm", validate})(Login)
+
+function mapStateToProps(state) {
+  return {login: state.login}
+}
+
+export default connect(mapStateToProps, {loginUser})(form)

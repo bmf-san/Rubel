@@ -1,6 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import axios from "axios"
 
+=======
+import axios from "axios"
+
+export const LOGIN_USER = "LOGIN_USER"
+>>>>>>> [update]
 export const CREATE_POST = "CREATE_POST"
 export const DELETE_POST = "DELETE_POST"
 export const UPDATE_MARKDOWN = "UPDATE_MARKDOWN"
@@ -23,6 +29,7 @@ export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS"
 export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS"
 export const EDIT_CONFIG = "EDIT_CONFIG"
 export const FETCH_CONFIGS = "FETCH_CONFIGS"
+<<<<<<< HEAD
 =======
 import axios from 'axios';
 
@@ -50,6 +57,8 @@ export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
 export const EDIT_CONFIG = "EDIT_CONFIG";
 export const FETCH_CONFIGS = "FETCH_CONFIGS";
 >>>>>>> [update] login view
+=======
+>>>>>>> [update]
 
 const apiDomain = process.env.API_DOMAIN
 
@@ -66,10 +75,10 @@ const api = axios.create({
 })
 
 export function loginUser(props) {
-  // TODO fix api endpoint
-  const request = api.post(`/`, props);
+	// TODO fix api endpoint
+	const request = api.post("/", props)
 
-  return {type: LOGIN_USER, payload: request};
+	return {type: LOGIN_USER, payload: request}
 }
 
 export function createPost(props) {

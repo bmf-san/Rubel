@@ -9,7 +9,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'admins',
+        'guard' => 'admin',
         'passwords' => 'admins',
     ],
 
@@ -30,7 +30,7 @@ return [
             'provider' => 'admins'
         ],
 
-        'admins' => [
+        'admin' => [
             'driver' => 'session',
             'provider' => 'admins'
         ]
