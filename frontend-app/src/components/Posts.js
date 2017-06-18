@@ -43,6 +43,14 @@ class Posts extends Component {
 				this.context.router.push(`/dashboard/edit-post/${id}`)
 			}
 
+			const isStatus = (status) => {
+				if (status == "draft") {
+					return <span className="tag is-warning">{status}</span>
+				} else if (status == "public") {
+					return <span className="tag is-info">{status}</span>
+				}
+			}
+
 			return (
 				<tr key={post.id} onClick={() => {
 					handleLink(post.id)
@@ -50,7 +58,9 @@ class Posts extends Component {
 					<th>{post.id}</th>
 					<td>{post.title}</td>
 					<td>{post.category.name}</td>
-					<td>{post.publication_status}</td>
+					<td>
+						{isStatus(post.publication_status)}
+					</td>
 					<td>
 						<span className="icon" onClick={(e) => {
 							e.stopPropagation()
