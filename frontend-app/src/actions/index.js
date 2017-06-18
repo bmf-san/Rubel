@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import axios from "axios"
-
-=======
-import axios from "axios"
-
 export const LOGIN_USER = "LOGIN_USER"
->>>>>>> [update]
 export const CREATE_POST = "CREATE_POST"
 export const DELETE_POST = "DELETE_POST"
 export const UPDATE_MARKDOWN = "UPDATE_MARKDOWN"
@@ -29,36 +22,6 @@ export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS"
 export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS"
 export const EDIT_CONFIG = "EDIT_CONFIG"
 export const FETCH_CONFIGS = "FETCH_CONFIGS"
-<<<<<<< HEAD
-=======
-import axios from 'axios';
-
-export const LOGIN_USER = "LOGIN_USER";
-export const CREATE_POST = "CREATE_POST";
-export const DELETE_POST = "DELETE_POST";
-export const UPDATE_MARKDOWN = "UPDATE_MARKDOWN";
-export const INIT_MARKDOWN = "INIT_MARKDOWN";
-export const EDIT_POST = "EDIT_POST";
-export const FETCH_POSTS = "FETCH_POSTS";
-export const FETCH_POST = "FETCH_POST";
-export const FETCH_INIT_POST = "FETCH_INIT_POST";
-export const CREATE_CATEGORY = "CREATE_CATEGORY";
-export const EDIT_CATEGORY = "EDIT_CATEGORY";
-export const DELETE_CATEGORY = "DELETE_CATEGORY";
-export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
-export const CREATE_TAG = "CREATE_TAG";
-export const EDIT_TAG = "EDIT_TAG";
-export const DELETE_TAG = "DELETE_TAG";
-export const FETCH_TAGS = "FETCH_TAGS";
-export const FETCH_COMPLETE_TAGS = "FETCH_COMPLETE_TAGS";
-export const INIT_COMPLETE_TAGS = "INIT_COMPLETE_TAGS";
-export const DELETE_COMPLETE_TAGS = "DELETE_COMPLETE_TAGS";
-export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS";
-export const EDIT_CONFIG = "EDIT_CONFIG";
-export const FETCH_CONFIGS = "FETCH_CONFIGS";
->>>>>>> [update] login view
-=======
->>>>>>> [update]
 
 const apiDomain = process.env.API_DOMAIN
 
