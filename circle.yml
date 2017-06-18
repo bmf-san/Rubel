@@ -16,4 +16,4 @@ dependencies:
 test:
   override:
     - "true"
-    - ./frontend-app/.eslintrc.js --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml .
+    - sudo ./frontend-app/.eslintrc.js --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml
