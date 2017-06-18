@@ -154,8 +154,8 @@ class Posts extends Component {
 
 Posts.propTypes = {
 	location: PropTypes.object,
-	fetchPosts: PropTypes.object,
-	deletePost: PropTypes.object,
+	fetchPosts: PropTypes.func,
+	deletePost: PropTypes.func,
 	posts: PropTypes.object,
 	pagination: PropTypes.object,
 	last_page: PropTypes.object,

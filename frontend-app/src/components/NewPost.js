@@ -212,21 +212,21 @@ class NewPost extends Component {
 }
 
 NewPost.propTypes = {
-	fetchTags: PropTypes.object,
-	fetchCategories: PropTypes.object,
-	initCompleteTags: PropTypes.object,
-	initMarkdown: PropTypes.object,
+	fetchTags: PropTypes.func,
+	fetchCategories: PropTypes.func,
+	initCompleteTags: PropTypes.func,
+	initMarkdown: PropTypes.func,
 	categories: PropTypes.object,
 	tags: PropTypes.object,
 	posts: PropTypes.object,
-	createPost: PropTypes.object,
-	reset: PropTypes.object,
+	createPost: PropTypes.func,
+	reset: PropTypes.func,
 	data: PropTypes.object,
-	deleteCompleteTags: PropTypes.object,
-	addCompleteTags: PropTypes.object,
-	updateMarkdown: PropTypes.object,
-	handleSubmit: PropTypes.object,
-	submitting: PropTypes.object
+	deleteCompleteTags: PropTypes.func,
+	addCompleteTags: PropTypes.func,
+	updateMarkdown: PropTypes.func,
+	handleSubmit: PropTypes.func,
+	submitting: PropTypes.bool
 }
 
 NewPost.contextTypes = {

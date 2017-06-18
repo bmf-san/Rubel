@@ -143,13 +143,13 @@ class Categories extends Component {
 }
 
 Categories.propTypes = {
-	fetchCategories: PropTypes.object,
-	createCategory: PropTypes.object,
-	reset: PropTypes.object,
-	deleteCategory: PropTypes.object,
+	fetchCategories: PropTypes.func,
+	createCategory: PropTypes.func,
+	reset: PropTypes.func,
+	deleteCategory: PropTypes.func,
 	categories: PropTypes.object,
-	handleSubmit: PropTypes.object,
-	submitting: PropTypes.object
+	handleSubmit: PropTypes.func,
+	submitting: PropTypes.bool
 }
 
 const validate = props => {

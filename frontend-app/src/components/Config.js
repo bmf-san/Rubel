@@ -72,12 +72,12 @@ class Configs extends Component {
 }
 
 Configs.propTypes = {
-	fetchConfigs: PropTypes.object,
-	editConfig: PropTypes.object,
-	reset: PropTypes.object,
-	handleSubmit: PropTypes.object,
+	fetchConfigs: PropTypes.func,
+	editConfig: PropTypes.func,
+	reset: PropTypes.func,
+	handleSubmit: PropTypes.func,
 	configs: PropTypes.object,
-	submitting: PropTypes.object
+	submitting: PropTypes.bool
 }
 
 Configs.contextTypes = {

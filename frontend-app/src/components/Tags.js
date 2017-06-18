@@ -133,15 +133,14 @@ class Tags extends Component {
 }
 
 Tags.propTypes = {
-	fetchTags: PropTypes.object,
-	createTag: PropTypes.object,
-	reset: PropTypes.object,
-	fetchTags: PropTypes.object,
-	deleteTag: PropTypes.object,
+	fetchTags: PropTypes.func,
+	createTag: PropTypes.func,
+	reset: PropTypes.func,
+	fetchTags: PropTypes.func,
+	deleteTag: PropTypes.func,
 	tags: PropTypes.object,
-	deleteTag: PropTypes.object,
-	handleSubmit: PropTypes.object,
-	submitting: PropTypes.object
+	handleSubmit: PropTypes.func,
+	submitting: PropTypes.bool
 }
 
 const validate = props => {

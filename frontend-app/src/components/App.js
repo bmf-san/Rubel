@@ -159,7 +159,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-	fetchConfigs: PropTypes.object,
+	fetchConfigs: PropTypes.func,
 	location: PropTypes.object,
 	config: PropTypes.object,
 	children: PropTypes.object
