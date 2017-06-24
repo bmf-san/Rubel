@@ -66,7 +66,7 @@ class Login extends Component {
 		const {handleSubmit} = this.props
 
 		return (
-			<div className="columns">
+			<div className="columns login-column">
 				<div className="column is-offset-one-third is-one-third">
 					<h1 className="title has-text-centered">Login</h1>
 					<form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column">
