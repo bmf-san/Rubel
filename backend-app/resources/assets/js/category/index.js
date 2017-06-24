@@ -1,1 +1,1 @@
-require('../../scss/category/index.scss');
+require("../../scss/category/index.scss")

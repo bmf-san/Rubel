@@ -1,0 +1,116 @@
+{
+  "_from": "npm-check-updates",
+  "_id": "npm-check-updates@2.12.0",
+  "_inBundle": false,
+  "_integrity": "sha1-9zJrhl9pFgWIIujQUEXYi4QQrrk=",
+  "_location": "/npm-check-updates",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "npm-check-updates",
+    "name": "npm-check-updates",
+    "escapedName": "npm-check-updates",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-2.12.0.tgz",
+  "_shasum": "f7326b865f6916058822e8d05045d88b8410aeb9",
+  "_spec": "npm-check-updates",
+  "_where": "/Users/takeuchikenta/localdev/project/Rubel/frontend-app",
+  "author": {
+    "name": "Tomas Junnonen",
+    "email": "tomas1@gmail.com"
+  },
+  "bin": {
+    "npm-check-updates": "./bin/npm-check-updates",
+    "ncu": "./bin/ncu"
+  },
+  "bugs": {
+    "url": "https://github.com/tjunnone/npm-check-updates/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Raine Revere",
+      "url": "https://github.com/raineorshine"
+    }
+  ],
+  "dependencies": {
+    "bluebird": "^3.4.3",
+    "chalk": "^1.1.3",
+    "cint": "^8.2.1",
+    "cli-table": "^0.3.1",
+    "commander": "^2.9.0",
+    "fast-diff": "^1.0.1",
+    "find-up": "1.1.2",
+    "get-stdin": "^5.0.1",
+    "json-parse-helpfulerror": "^1.0.3",
+    "lodash": "^4.15.0",
+    "node-alias": "^1.0.4",
+    "npm": "^3.10.6",
+    "npmi": "^2.0.1",
+    "require-dir": "^0.3.2",
+    "semver": "^5.3.0",
+    "semver-utils": "^1.1.1",
+    "snyk": "^1.25.1",
+    "spawn-please": "^0.3.0",
+    "update-notifier": "^2.2.0"
+  },
+  "deprecated": false,
+  "description": "Find newer versions of dependencies than what your package.json or bower.json allows",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chai-string": "^1.2.0",
+    "chokidar-cli": "^1.2.0",
+    "eslint": "^4.0.0",
+    "mocha": "^3.0.2",
+    "should": "^11.1.0",
+    "tmp": "0.0.31"
+  },
+  "dynamicDependencies": {
+    "bower": "^1.6.5"
+  },
+  "engines": {
+    "node": ">=0.12"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "homepage": "https://github.com/tjunnone/npm-check-updates",
+  "keywords": [
+    "npm",
+    "bower",
+    "check",
+    "find",
+    "discover",
+    "updates",
+    "upgrades",
+    "dependencies",
+    "package.json",
+    "bower.json",
+    "updater",
+    "version",
+    "management"
+  ],
+  "license": "Apache-2.0",
+  "main": "./lib/npm-check-updates",
+  "name": "npm-check-updates",
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjunnone/npm-check-updates.git"
+  },
+  "scripts": {
+    "lint": "eslint bin lib test",
+    "test": "npm run lint ; mocha && mocha test/individual",
+    "watch": "chokidar \"lib/**/*.js\" -c \"npm run test\""
+  },
+  "version": "2.12.0"
+}

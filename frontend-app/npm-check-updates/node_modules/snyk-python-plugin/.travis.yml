@@ -1,0 +1,30 @@
+dist: trusty
+sudo: false
+notifications:
+  email: false
+language: node_js
+node_js:
+  - "8"
+  - "6"
+  - "4"
+  - "0.12"
+cache:
+  directories:
+    - node_modules
+before_script:
+  - export PATH=$HOME/.local/bin:$PATH
+  - pip install virtualenv --user `whoami`
+  - virtualenv ./env
+  - source ./env/bin/activate
+script: npm test
+jobs:
+  include:
+    - stage: npm release
+      node_js: "8" # This *has* to be the "build leader"
+      script: skip
+      before_script: # Don't need virtualenv for release, so skip it
+      after_success:
+        - TRAVIS_JOB_NUMBER=WORKAROUND.1 npm run semantic-release
+branches:
+  only:
+    - master

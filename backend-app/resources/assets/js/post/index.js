@@ -1,1 +1,1 @@
-require('../../scss/post/index.scss')
+require("../../scss/post/index.scss")

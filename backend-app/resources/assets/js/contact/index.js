@@ -1,1 +1,1 @@
-require('../../scss/contact/index.scss');
+require("../../scss/contact/index.scss")

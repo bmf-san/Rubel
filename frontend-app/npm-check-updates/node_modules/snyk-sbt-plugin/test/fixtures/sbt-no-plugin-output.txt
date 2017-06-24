@@ -1,0 +1,8 @@
+[info] Loading global plugins from /Users/dror/.sbt/0.13/plugins/project
+[info] Loading global plugins from /Users/dror/.sbt/0.13/plugins
+[info] Loading project definition from /Users/dror/work/snyk/snyk-sbt-plugin/test/fixtures/testproj-noplugin/project
+[info] Set current project to Hello (in build file:/Users/dror/work/snyk/snyk-sbt-plugin/test/fixtures/testproj-noplugin/)
+[error] Not a valid command: dependency-tree
+[error] Not a valid key: dependency-tree (similar: dependency-overrides, dependencyOverrides, dependency-classpath)
+[error] dependency-tree
+[error]                ^

@@ -15,8 +15,16 @@ module.exports = [
       filename: '[name].bundle.js'
     },
     module: {
-      loaders: [
+      rules: [
         {
+          test: /\.(js|jsx)$/,
+          loader: "eslint-loader",
+          exclude: /(node_modules)/,
+          options: {
+            fix: true,
+            failOnError: true
+          }
+        }, {
           test: /\.html$/,
           loader: 'html-loader'
         }, {
