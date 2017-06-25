@@ -1,3 +1,0 @@
-@remy/npm-tree
-├── ansicolors
-└── archy
