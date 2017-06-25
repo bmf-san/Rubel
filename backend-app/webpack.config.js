@@ -1,6 +1,7 @@
 module.exports = [
   {
     "entry": {
+      "app": ["./resources/assets/js/app.js"],
       "home": ["./resources/assets/js/home/index.js"],
       "post": [
         "./resources/assets/js/post/index.js", "./resources/assets/js/post/show.js"

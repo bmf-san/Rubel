@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -647,27 +647,31 @@ module.exports = function (css) {
 /* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(21);
+module.exports = __webpack_require__(25);
 
 
 /***/ }),
-/* 21 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(22)
+__webpack_require__(26)
 
 
 /***/ }),
-/* 22 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(23);
+var content = __webpack_require__(27);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -692,7 +696,7 @@ if(false) {
 }
 
 /***/ }),
-/* 23 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
