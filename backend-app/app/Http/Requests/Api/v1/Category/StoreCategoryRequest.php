@@ -38,8 +38,8 @@ class StoreCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'A name is required',
-            'name.unique' => 'A name has been existed',
+            'name.required' => 'A :attribute is required',
+            'name.unique' => 'A :attribute has been existed',
         ];
     }
 

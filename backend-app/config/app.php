@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'name' => 'Rubel',
+    'name' => env('APP_NAME', 'Rubel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'timezone' => 'Asia/Tokyo',
+    'timezone' => env('APP_TIMEZONE', 'Asia/Tokyo'),
 
     /*
     |--------------------------------------------------------------------------
@@ -48,7 +48,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'locale' => 'ja',
+    'locale' => env('APP_LOCALE', 'ja'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'fallback_locale' => 'ja',
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'ja'),
 
     /*
     |--------------------------------------------------------------------------
@@ -129,6 +129,8 @@ return [
         App\Providers\HelperServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
     ],
 
     /*
@@ -171,6 +173,8 @@ return [
         // 'URL' => Illuminate\Support\Facades\URL::class,
         // 'Validator' => Illuminate\Support\Facades\Validator::class,
         // 'View' => Illuminate\Support\Facades\View::class,
+        // 'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        // 'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
 ];

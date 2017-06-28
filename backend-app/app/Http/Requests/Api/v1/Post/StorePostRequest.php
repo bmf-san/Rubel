@@ -43,8 +43,8 @@ class StorePostRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'A title is required',
-            'md_content.required' => 'A content is required',
+            'title.required' => 'A :attribute is required',
+            'md_content.required' => 'A :attribute is required',
         ];
     }
 

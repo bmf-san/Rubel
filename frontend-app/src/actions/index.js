@@ -23,6 +23,7 @@ export const ADD_COMPLETE_TAGS = "ADD_COMPLETE_TAGS"
 export const EDIT_CONFIG = "EDIT_CONFIG"
 export const FETCH_CONFIGS = "FETCH_CONFIGS"
 
+const jwtKey = process.env.JWT_KEY
 const apiDomain = process.env.API_DOMAIN
 
 const protocol = (process.env.APP_ENV === "production")
@@ -38,8 +39,13 @@ const api = axios.create({
 })
 
 export function loginUser(props) {
-	// TODO fix api endpoint
-	const request = api.post("/", props)
+	const request = api.post("/authenticate", props)
+
+	request.then((res) => {
+		const jwt = res.data.token
+
+		localStorage.setItem(`${jwtKey}`, jwt)
+	})
 
 	return {type: LOGIN_USER, payload: request}
 }

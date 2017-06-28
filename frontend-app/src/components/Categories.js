@@ -97,12 +97,11 @@ class Categories extends Component {
 	render() {
 		const {handleSubmit, submitting} = this.props
 
-		if (submitting) {
-			return (<Loader/>)
-		}
-
 		return (
 			<div>
+				{submitting
+					? <Loader/>
+					: null}
 				<div className="title is-2">Categories</div>
 				<div className="columns">
 					<form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column is-half">

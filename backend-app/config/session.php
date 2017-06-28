@@ -122,7 +122,7 @@ return [
     |
     */
 
-    'cookie' => 'rubel_session',
+    'cookie' => env('SESSION_COOKIE', 'rubel_session'),
 
     /*
     |--------------------------------------------------------------------------

@@ -8,10 +8,8 @@ machine:
 dependencies:
  pre:
   - cd backend-app; composer install --prefer-dist
-  - cd backend-app; npm install --no-optional
-  - cd backend-app; npm run build
-  - cd frontend-app; npm install --no-optional
-  - cd frontend-app; npm run build
+  - cd backend-app; npm run refresh
+  - cd frontend-app; npm run refresh
 
 test:
   override:

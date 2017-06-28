@@ -50,9 +50,9 @@ Please change these environment variables as necessary.
 
 ```console
 /* Setting for Rubel */
-ADMIN_INFO_NAME=admin
-ADMIN_INFO_EMAIL=admin@admin.com
-ADMIN_INFO_PASSWORD=admin
+ADMIN_NAME=admin
+ADMIN_EMAIL=admin@admin.com
+ADMIN_PASSWORD=admin
 
 DOMAIN=rubel
 ADMIN_DOMAIN=admin.rubel

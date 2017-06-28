@@ -187,12 +187,11 @@ class NewPost extends Component {
 			return {id: tag.id, name: tag.name}
 		})
 
-		if (submitting) {
-			return (<Loader/>)
-		}
-
 		return (
 			<div>
+				{submitting
+					? <Loader/>
+					: null}
 				<div className="title is-2">New Post</div>
 				<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 					<Field label="Title" name="title" type="text" component={this.renderTitleField} placeholder="Title"/>

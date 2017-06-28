@@ -69,11 +69,7 @@ class Tags extends Component {
 	}
 
 	renderTags() {
-		const {tags, submitting} = this.props
-
-		if (submitting) {
-			return (<Loader/>)
-		}
+		const {tags} = this.props
 
 		return tags.all.map((tag) => {
 			return (
@@ -89,10 +85,13 @@ class Tags extends Component {
 	}
 
 	render() {
-		const {handleSubmit} = this.props
+		const {handleSubmit, submitting} = this.props
 
 		return (
 			<div>
+				{submitting
+					? <Loader/>
+					: null}
 				<div className="title is-2">Tags</div>
 				<div className="columns">
 					<form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column is-half">

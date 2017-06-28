@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\v1\Tag;
+namespace App\Http\Requests\Api\v1\Authenticate;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTagRequest extends FormRequest
+class AuthenticateRequest extends FormRequest
 {
     const NOT_FOUND_CODE = 400;
 
@@ -26,7 +26,8 @@ class StoreTagRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:tags,name',
+            'email' => 'required|email',
+            'password' => 'required'
         ];
     }
 
@@ -38,8 +39,9 @@ class StoreTagRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'A :attribute is required',
-            'name.unique' => 'A :attribute has been existed',
+            'email.required' => 'A :attribute is required',
+            'email.email' => 'The :attribute must be a valid email address.',
+            'password.required' => 'A :attribute has been existed'
         ];
     }
 

@@ -4,7 +4,7 @@ import {reduxForm, Field, SubmissionError} from "redux-form"
 import {connect} from "react-redux"
 import {loginUser} from "../actions/index"
 import {Link} from "react-router"
-import {Loader} from "../utils/Loader"
+import Loader from "../utils/Loader"
 
 class Login extends Component {
 	onSubmit(props) {
@@ -15,16 +15,16 @@ class Login extends Component {
 				const validation_msg = res.payload.response.data.messages
 
 				throw new SubmissionError({
-					name: [validation_msg.name],
+					email: [validation_msg.email],
 					password: [validation_msg.password]
 				})
 			} else {
-				reset()
+				this.context.router.push("/dashboard")
 			}
 		})
 	}
 
-	renderNameField({
+	renderEmailField({
 		input,
 		label,
 		type,
@@ -63,15 +63,18 @@ class Login extends Component {
 	}
 
 	render() {
-		const {handleSubmit} = this.props
+		const {handleSubmit, submitting} = this.props
 
 		return (
 			<div className="columns login-column">
+				{submitting
+					? <Loader/>
+					: null}
 				<div className="column is-offset-one-third is-one-third">
 					<h1 className="title has-text-centered">Login</h1>
 					<form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="column">
-						<Field label="Name" name="name" type="text" component={this.renderNameField} placeholder="Name"/>
-						<Field label="Password" name="password" type="password" component={this.renderPasswordField} placeholder="Name"/>
+						<Field label="Email" name="email" type="email" component={this.renderEmailField} placeholder="Email"/>
+						<Field label="Password" name="password" type="password" component={this.renderPasswordField} placeholder="Password"/>
 						<div className="field is-grouped is-pulled-right">
 							<div className="control">
 								<button className="button is-primary">Login</button>
@@ -86,14 +89,19 @@ class Login extends Component {
 
 Login.propTypes = {
 	loginUser: PropTypes.func,
-	handleSubmit: PropTypes.func
+	handleSubmit: PropTypes.func,
+	submitting: PropTypes.bool
+}
+
+Login.contextTypes = {
+	router: PropTypes.object
 }
 
 const validate = props => {
 	const errors = {}
 
-	if (!props.name) {
-		errors.name = "Requires"
+	if (!props.email) {
+		errors.email = "Requires"
 	} else if (!props.password) {
 		errors.password = "Requires"
 	}
