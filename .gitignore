@@ -4,6 +4,7 @@ Vagrantfile
 /doc
 /ansible/host
 /ansible/group_vars/vagrant.yml
+/ansible/site.retry
 
 # backend-app
 /backend-app/node_modules
