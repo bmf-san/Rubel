@@ -50,6 +50,9 @@
       "php artisan ide-helper:generate",
       "php artisan ide-helper:meta",
       "php artisan optimize"
+    ],
+    "test": [
+      "./vendor/phpunit/phpunit/phpunit"
     ]
   },
   "config": {

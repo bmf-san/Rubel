@@ -15,4 +15,4 @@ dependencies:
 
 test:
   override:
-    - "true"
+    - cd backend-app; cp .env.example; ./vendor/bin/phpunit
