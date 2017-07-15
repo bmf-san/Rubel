@@ -20,40 +20,7 @@ class RelatedPostTablesSeeder extends Seeder
         $this->db->table('tags')->truncate();
         $this->db->table('tag_post')->truncate();
 
-        $this->db->table('categories')->insert([
-            'name' => 'Uncategorized',
-            'created_at' => Carbon::now(),
-        ]);
-
-        $this->db->table('posts')->insert([
-            'admin_id' => 1,
-            'category_id' => 1,
-            'title' => 'Title-1',
-            'md_content' => 'This is 1 content.',
-            'html_content' => "<h1>This is 1 content.</h1>",
-            'publication_status' => 'public',
-            'created_at' => Carbon::now(),
-            'publication_date' => Carbon::now()
-        ]);
-
-        $this->db->table('comments')->insert([
-            'post_id' => 1,
-            'comment' => 'This is 1 comment.',
-            'created_at' => Carbon::now(),
-        ]);
-
-        $this->db->table('tags')->insert([
-            'name' => 'tag-1',
-            'created_at' => Carbon::now(),
-        ]);
-
-        $this->db->table('tag_post')->insert([
-            'tag_id' => 1,
-            'post_id' => 1,
-            'created_at' => Carbon::now(),
-        ]);
-
-        for ($i = 2; $i < 11; ++$i) {
+        for ($i = 1; $i < 11; ++$i) {
             $this->db->table('categories')->insert([
                 'name' => "category-{$i}",
                 'created_at' => Carbon::now(),
@@ -65,7 +32,7 @@ class RelatedPostTablesSeeder extends Seeder
                 'title' => "Title-{$i}",
                 'md_content' => "This is {$i} content.",
                 'html_content' => "<h2>This is {$i} content.</h2>",
-                'publication_status' => 'public',
+                'publication_status' => ($i % 2 == 0) ? 'public' : 'private',
                 'created_at' => Carbon::now(),
                 'publication_date' => Carbon::now()
             ]);

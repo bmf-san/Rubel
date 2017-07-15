@@ -10,7 +10,7 @@
 /**
  * Post.
  */
-$router->get('posts', 'PostController@index');
+$router->get('posts', 'PostController@index')->name('posts');
 $router->get('posts/{id}', 'PostController@show')->where('id', '[0-9]+');
 
 /*
