@@ -1,5 +1,6 @@
 import axios from "axios"
 export const LOGIN_USER = "LOGIN_USER"
+export const IS_LOGIN_USER = "IS_LOGIN_USER"
 export const LOGOUT_USER = "LOGOUT_USER"
 export const CREATE_POST = "CREATE_POST"
 export const DELETE_POST = "DELETE_POST"
@@ -49,6 +50,14 @@ export function loginUser(props) {
 	})
 
 	return {type: LOGIN_USER, payload: request}
+}
+
+export function isLoginUser() {
+	if (localStorage.getItem(`${jwtKey}`)) {
+		return {type: IS_LOGIN_USER, payload: true}
+	}
+
+	return {type: IS_LOGIN_USER, payload: false}
 }
 
 export function logoutUser() {

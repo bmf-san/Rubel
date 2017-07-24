@@ -4,13 +4,19 @@ import {connect} from "react-redux"
 import {Link} from "react-router"
 import {fetchConfigs} from "../actions/index"
 import {logoutUser} from "../actions/index"
+import {isLoginUser} from "../actions/index"
 
 class App extends Component {
 	componentWillMount() {
-		const {fetchConfigs} = this.props
+		const {fetchConfigs, isLoginUser} = this.props
+
+		if (!isLoginUser().payload) {
+			this.context.router.push("/login")
+		}
 
 		fetchConfigs()
 	}
+
 	componentDidMount() {
 		// Toggle menu
 		const burger = document.querySelector(".nav-toggle")
@@ -177,7 +183,12 @@ App.propTypes = {
 	location: PropTypes.object,
 	config: PropTypes.object,
 	children: PropTypes.object,
-	logoutUser: PropTypes.func
+	logoutUser: PropTypes.func,
+	isLoginUser: PropTypes.func
+}
+
+App.contextTypes = {
+	router: PropTypes.object
 }
 
 function mapStateToProps(state) {
@@ -190,4 +201,4 @@ function mapStateToProps(state) {
 	return {configs: state.configs, config: obj}
 }
 
-export default connect(mapStateToProps, {fetchConfigs, logoutUser})(App)
+export default connect(mapStateToProps, {fetchConfigs, logoutUser, isLoginUser})(App)
