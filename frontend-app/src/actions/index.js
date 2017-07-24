@@ -1,5 +1,6 @@
 import axios from "axios"
 export const LOGIN_USER = "LOGIN_USER"
+export const LOGOUT_USER = "LOGOUT_USER"
 export const CREATE_POST = "CREATE_POST"
 export const DELETE_POST = "DELETE_POST"
 export const UPDATE_MARKDOWN = "UPDATE_MARKDOWN"
@@ -48,6 +49,12 @@ export function loginUser(props) {
 	})
 
 	return {type: LOGIN_USER, payload: request}
+}
+
+export function logoutUser() {
+	localStorage.removeItem(`${jwtKey}`)
+
+	return {type: LOGOUT_USER, payload: "logout"}
 }
 
 export function createPost(props) {

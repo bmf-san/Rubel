@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import {connect} from "react-redux"
 import {Link} from "react-router"
 import {fetchConfigs} from "../actions/index"
+import {logoutUser} from "../actions/index"
 
 class App extends Component {
 	componentWillMount() {
@@ -22,7 +23,7 @@ class App extends Component {
 	}
 
 	render() {
-		const {config, location, children} = this.props
+		const {config, location, children, logoutUser} = this.props
 
 		return (
 			<div>
@@ -70,6 +71,11 @@ class App extends Component {
 								? "nav-item is-tab active"
 								: "nav-item is-tab"}>
                 Config
+							</Link>
+							<Link to="/login" onClick={logoutUser} className={(location.pathname == "/login")
+								? "nav-item is-tab active"
+								: "nav-item is-tab"}>
+                Logout
 							</Link>
 						</div>
 					</div>
@@ -127,6 +133,14 @@ class App extends Component {
 									</span>
 									<span className="name">Config</span>
 								</Link>
+								<Link to="/login" onClick={logoutUser} className={(location.pathname == "/login")
+									? "item active"
+									: "item"}>
+									<span className="icon">
+										<i className="fa fa-sign-out"></i>
+									</span>
+									<span className="name">Logout</span>
+								</Link>
 							</div>
 						</div>
 					</aside>
@@ -162,7 +176,8 @@ App.propTypes = {
 	fetchConfigs: PropTypes.func,
 	location: PropTypes.object,
 	config: PropTypes.object,
-	children: PropTypes.object
+	children: PropTypes.object,
+	logoutUser: PropTypes.func
 }
 
 function mapStateToProps(state) {
@@ -175,4 +190,4 @@ function mapStateToProps(state) {
 	return {configs: state.configs, config: obj}
 }
 
-export default connect(mapStateToProps, {fetchConfigs})(App)
+export default connect(mapStateToProps, {fetchConfigs, logoutUser})(App)

@@ -110,7 +110,7 @@ const validate = props => {
 const form = reduxForm({form: "LoginForm", validate})(Login)
 
 function mapStateToProps(state) {
-	return {login: state.login}
+	return {}
 }
 
 export default connect(mapStateToProps, {loginUser})(form)
