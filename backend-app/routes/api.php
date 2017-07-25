@@ -41,28 +41,30 @@ $router->get('configs', 'ConfigController@index');
 |--------------------------------------------------------------------------
 */
 
-/*
- * Post
- */
-$router->post('posts', 'PostController@store');
-$router->patch('posts/{id}', 'PostController@update')->where('id', '[0-9]+');
-$router->delete('posts/{id}', 'PostController@destroy')->where('id', '[0-9]+');
+$router->group(['middleware' => 'jwt-auth'], function () use ($router) {
+    /*
+     * Post
+     */
+    $router->post('posts', 'PostController@store');
+    $router->patch('posts/{id}', 'PostController@update')->where('id', '[0-9]+');
+    $router->delete('posts/{id}', 'PostController@destroy')->where('id', '[0-9]+');
 
-/*
-* Category
-*/
-$router->post('categories', 'CategoryController@store');
-$router->patch('categories/{id}', 'CategoryController@update')->where('id', '[0-9]+');
-$router->delete('categories/{id}', 'CategoryController@destroy')->where('id', '[0-9]+');
+    /*
+    * Category
+    */
+    $router->post('categories', 'CategoryController@store');
+    $router->patch('categories/{id}', 'CategoryController@update')->where('id', '[0-9]+');
+    $router->delete('categories/{id}', 'CategoryController@destroy')->where('id', '[0-9]+');
 
-/*
- * Tag
- */
-$router->post('tags', 'TagController@store');
-$router->patch('tags/{id}', 'TagController@update')->where('id', '[0-9]+');
-$router->delete('tags/{id}', 'TagController@destroy')->where('id', '[0-9]+');
+    /*
+     * Tag
+     */
+    $router->post('tags', 'TagController@store');
+    $router->patch('tags/{id}', 'TagController@update')->where('id', '[0-9]+');
+    $router->delete('tags/{id}', 'TagController@destroy')->where('id', '[0-9]+');
 
-/**
- * Config
- */
-$router->patch('configs', 'ConfigController@update');
+    /**
+     * Config
+     */
+    $router->patch('configs', 'ConfigController@update');
+});

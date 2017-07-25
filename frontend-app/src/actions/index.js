@@ -40,6 +40,15 @@ const api = axios.create({
 	}
 })
 
+const apiAuth = axios.create({
+	baseURL: `${protocol}://${apiDomain}/v1`,
+	timeout: 10000,
+	headers: {
+		"X-Requested-With": "XMLHttpRequest",
+		"Authorization": localStorage.getItem(`${jwtKey}`)
+	}
+})
+
 export function loginUser(props) {
 	const request = api.post("/authenticate", props)
 
@@ -49,7 +58,7 @@ export function loginUser(props) {
 		localStorage.setItem(`${jwtKey}`, jwt)
 	})
 
-	return {type: LOGIN_USER, payload: request}
+	return {type: LOGOUT_USER, payload: "logout"}
 }
 
 export function isLoginUser() {
@@ -67,13 +76,13 @@ export function logoutUser() {
 }
 
 export function createPost(props) {
-	const request = api.post("/posts", props)
+	const request = apiAuth.post("/posts", props)
 
 	return {type: CREATE_POST, payload: request}
 }
 
 export function deletePost(id) {
-	const request = api.delete(`/posts/${id}`)
+	const request = apiAuth.delete(`/posts/${id}`)
 
 	return {type: DELETE_POST, payload: request}
 }
@@ -88,7 +97,7 @@ export function initMarkdown() {
 
 export function editPost(props) {
 	const id = props.id
-	const request = api.patch(`/posts/${id}`, props)
+	const request = apiAuth.patch(`/posts/${id}`, props)
 
 	return {type: EDIT_POST, payload: request}
 }
@@ -112,20 +121,20 @@ export function fetchInitPost(id) {
 }
 
 export function createCategory(props) {
-	const request = api.post("/categories", props)
+	const request = apiAuth.post("/categories", props)
 
 	return {type: CREATE_CATEGORY, payload: request}
 }
 
 export function editCategory(props) {
-	const request = api.patch(`/categories/${id}`, props)
+	const request = apiAuth.patch(`/categories/${id}`, props)
 
 	return {type: EDIT_CATEGORY, payload: request}
 }
 
 export function deleteCategory(props) {
 	const post_id = props
-	const request = api.delete(`/categories/${post_id}`, props)
+	const request = apiAuth.delete(`/categories/${post_id}`, props)
 
 	return {type: DELETE_CATEGORY, payload: request}
 }
@@ -137,20 +146,20 @@ export function fetchCategories() {
 }
 
 export function createTag(props) {
-	const request = api.post("/tags", props)
+	const request = apiAuth.post("/tags", props)
 
 	return {type: CREATE_TAG, payload: request}
 }
 
 export function editTag(props) {
-	const request = api.patch(`/tags/${id}`, props)
+	const request = apiAuth.patch(`/tags/${id}`, props)
 
 	return {type: EDIT_TAG, payload: request}
 }
 
 export function deleteTag(props) {
 	const post_id = props
-	const request = api.delete(`/tags/${post_id}`, props)
+	const request = apiAuth.delete(`/tags/${post_id}`, props)
 
 	return {type: DELETE_TAG, payload: request}
 }
@@ -180,7 +189,7 @@ export function addCompleteTags(props) {
 }
 
 export function editConfig(props) {
-	const request = api.patch("/configs", props)
+	const request = apiAuth.patch("/configs", props)
 
 	return {type: EDIT_CONFIG, payload: request}
 }
