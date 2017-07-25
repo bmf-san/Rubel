@@ -13,11 +13,16 @@ class Login extends Component {
 		return loginUser(props).then((res) => {
 			if (res.error) {
 				const validation_msg = res.payload.response.data.messages
+				const exception_msg = res.payload.response.data.error
 
-				throw new SubmissionError({
-					email: [validation_msg.email],
-					password: [validation_msg.password]
-				})
+				if (exception_msg) {
+					throw new SubmissionError({email: [exception_msg], password: [exception_msg]})
+				} else {
+					throw new SubmissionError({
+						email: [validation_msg.email],
+						password: [validation_msg.password]
+					})
+				}
 			} else {
 				this.context.router.push("/dashboard")
 			}

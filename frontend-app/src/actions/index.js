@@ -58,7 +58,7 @@ export function loginUser(props) {
 		localStorage.setItem(`${jwtKey}`, jwt)
 	})
 
-	return {type: LOGOUT_USER, payload: "logout"}
+	return {type: LOGIN_USER, payload: request}
 }
 
 export function isLoginUser() {
