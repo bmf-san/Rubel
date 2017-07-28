@@ -45,7 +45,7 @@ const apiAuth = axios.create({
 	timeout: 10000,
 	headers: {
 		"X-Requested-With": "XMLHttpRequest",
-		"Authorization": `Bearer ${localStorage.getItem('jwtKey')}`
+		"Authorization": `Bearer ${localStorage.getItem("jwtKey")}`
 	}
 })
 
