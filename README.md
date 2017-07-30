@@ -1,16 +1,11 @@
-**Under Development**
-
 [![CircleCI](https://circleci.com/gh/bmf-san/Rubel.svg?style=svg)](https://circleci.com/gh/bmf-san/Rubel)
 
 # Rubel
 
 Rubel - An Open Source CMS built with Laravel, React, and Bulma.
 
-[Rubel Demo](https://rubel.bmf-tech.com/)
-![rubel.png](https://raw.githubusercontent.com/wiki/bmf-san/Rubel/img/rubel.png)
-
-[Rubel Admin Demo](https://rubel-admin.bmf-tech.com/login)
-![rubel_spa.png](https://raw.githubusercontent.com/wiki/bmf-san/Rubel/img/rubel_spa.png)
+- [Rubel Demo](https://rubel.bmf-tech.com/)
+- [Rubel Admin Demo](https://rubel-admin.bmf-tech.com/login)
 
 ## Features
 
