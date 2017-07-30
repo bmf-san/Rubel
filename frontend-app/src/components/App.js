@@ -1,10 +1,8 @@
 import React, {Component} from "react"
 import PropTypes from "prop-types"
 import {connect} from "react-redux"
+import {fetchConfigs, logoutUser, isLoginUser} from "../actions/index"
 import {Link} from "react-router"
-import {fetchConfigs} from "../actions/index"
-import {logoutUser} from "../actions/index"
-import {isLoginUser} from "../actions/index"
 
 class App extends Component {
 	componentWillMount() {

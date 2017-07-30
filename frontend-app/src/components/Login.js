@@ -2,11 +2,19 @@ import React, {Component} from "react"
 import PropTypes from "prop-types"
 import {reduxForm, Field, SubmissionError} from "redux-form"
 import {connect} from "react-redux"
-import {loginUser} from "../actions/index"
+import {loginUser, isLoginUser} from "../actions/index"
 import {Link} from "react-router"
 import Loader from "../utils/Loader"
 
 class Login extends Component {
+	componentWillMount() {
+		const {isLoginUser} = this.props
+
+		if (isLoginUser().payload) {
+			this.context.router.push("/dashboard")
+		}
+	}
+
 	onSubmit(props) {
 		const {loginUser} = this.props
 
@@ -94,6 +102,7 @@ class Login extends Component {
 
 Login.propTypes = {
 	loginUser: PropTypes.func,
+	isLoginUser: PropTypes.func,
 	handleSubmit: PropTypes.func,
 	submitting: PropTypes.bool
 }
@@ -118,4 +127,4 @@ function mapStateToProps(state) {
 	return {}
 }
 
-export default connect(mapStateToProps, {loginUser})(form)
+export default connect(mapStateToProps, {loginUser, isLoginUser})(form)
