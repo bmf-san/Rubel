@@ -6,13 +6,11 @@
 
 Rubel - An Open Source CMS built with Laravel, React, and Bulma.
 
-- [github - bmf-san/Rubel](https://github.com/bmf-san/Rubel)
+[Rubel Demo](https://rubel.bmf-tech.com/)
+![rubel.png](https://raw.githubusercontent.com/wiki/bmf-san/Rubel/img/rubel.png)
 
-## Description
-
-Rubel is the cms working with Laravel and React.
-
-**_DEMO_** Coming soon...
+[Rubel Admin Demo](https://rubel-admin.bmf-tech.com/login)
+![rubel_spa.png](https://raw.githubusercontent.com/wiki/bmf-san/Rubel/img/rubel_spa.png)
 
 ## Features
 
