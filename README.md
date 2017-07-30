@@ -6,7 +6,7 @@ Rubel - An Open Source CMS built with Laravel, React, and Bulma.
 
 - [Rubel Demo](https://rubel.bmf-tech.com/)
 - [Rubel Admin Demo](https://rubel-admin.bmf-tech.com/login)
-    - EMAIL: rubel@example.com / PASSWORD: rubel
+    - `EMAIL: rubel@example.com / PASSWORD: rubel`
 
 ## Features
 
