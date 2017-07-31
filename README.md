@@ -106,7 +106,7 @@ Now you can start Rubel!
 
 ## Contributing
 
-We welcome your isuue or pull request from everyone. Please check [these steps](https://github.com/bmf-san/Rubel/issues) to contribute.
+We welcome your isuue or pull request from everyone. Please check `ISSUE_TEMPLATE.md` and `PULL_REQUEST_TEMPLATE.md` to contribute.
 
 ## License
 
