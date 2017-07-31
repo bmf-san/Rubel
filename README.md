@@ -10,9 +10,11 @@ Rubel - An Open Source CMS built with Laravel, React, and Bulma.
 
 ## Features
 
-- Easy to use
-- Developer friendly
-- Beatiful UI
+**This section is under construction.**
+
+- [ ]
+- [ ]
+- [ ]
 
 ## Requirements
 
