@@ -3,8 +3,7 @@
     "watch": "webpack --watch --progress",
     "build": "webpack --config webpack.config.js --progress",
     "refresh": "rm -rf node_modules/; npm install; npm run build",
-    "lint": "eslint ./src/**/*.js ./src/*.js ./*.js",
-    "auto_fix": "eslint --fix ./src/**/*.js ./*.js"
+    "fix": "eslint --fix ./src/**/*.js ./*.js"
   },
   "dependencies": {
     "axios": "^0.16.2",

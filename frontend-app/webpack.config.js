@@ -49,13 +49,6 @@ module.exports = [
         }, {
           test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
           loader: "url-loader?mimetype=application/font-woff"
-        }, {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: "eslint-loader",
-          options: {
-            configFile: './.eslintrc.js'
-          }
         }
       ]
     },
