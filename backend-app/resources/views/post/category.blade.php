@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Posts')
+@section('title', 'Post - Category')
 
 @section('content')
   <div>
@@ -31,7 +31,7 @@
                 <span>{{ $post->publication_date }}</span>
               </p>
               <h1 class="title">
-                <a href='/post/{{ $post->id }}'>
+                <a href="{{ 'web.post', $post->title }}">
                   {{ mb_str_limit($post->title, 20, '...') }}
                 </a>
               </h1>
@@ -39,13 +39,13 @@
                 {{ mb_str_limit(strip_tags($post->html_content), 300, '...') }}
               </h2>
               <p class="has-text-right has-text-muted">
-                <a href="/post/category/{{ $post->category->id }}/{{ $post->category->name }}">
+                <a href="{{ route('web.posts.category', $post->category->name) }}">
                   {{ $post->category->name }}
                 </a>
               </p>
               <p class="has-text-right">
                 @forelse ($post->tags as $tag)
-                  <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
+                  <a href="{{ 'web.posts.tag', $tag->name }}">
                     <span class="tag is-primary">
                       {{ $tag->name }}
                     </span>
@@ -54,7 +54,6 @@
                   No Tags.
                 @endforelse
               </p>
-              <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
             @endforeach
           </div>
           <div class="column is-3">

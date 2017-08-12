@@ -1,4 +1,4 @@
-require("../scss/app.scss");
+import "../scss/app.scss";
 
 // Toggle menu
 (() => {

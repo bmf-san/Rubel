@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Profile')
+@section('title', 'Category')
 
 @section('content')
   <div>
@@ -19,7 +19,7 @@
         <div class="column is-8 is-offset-2">
           @forelse($categories as $category)
             <p class="title is-4">
-              <a href="/post/category/{{ $category->id }}/{{ $category->name }}">
+              <a href="{{ 'web.post.category', $category->name }}">
                 {{ $category->name }}
               </a>
             </p>

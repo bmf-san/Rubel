@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use \Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
@@ -9,32 +10,60 @@ use App\Models\Tag;
 
 class PostController extends Controller
 {
-    const POST_PAGINATE_NUM = 10;
+    /**
+     * Pagination limit
+     *
+     * @var integer
+     */
+    const PAGINATION_LIMIT = 10;
 
-    private $post_model;
-    private $category_model;
-    private $tag_model;
+    /**
+     * Post
+     *
+     * @var Post
+     */
+    private $postModel;
 
-    public function __construct(Post $post_model, Category $category_model, Tag $tag_model)
+    /**
+     * Category
+     *
+     * @var Category
+     */
+    private $categoryModel;
+
+    /**
+     * Tag
+     *
+     * @var Tag
+     */
+    private $tagModel;
+
+    /**
+     * PostController constructor
+     *
+     * @param Post     $postModel
+     * @param Category $categoryModel
+     * @param Tag      $tagModel
+     */
+    public function __construct(Post $postModel, Category $categoryModel, Tag $tagModel)
     {
-        $this->post_model = $post_model;
-        $this->category_model = $category_model;
-        $this->tag_model = $tag_model;
+        $this->postModel = $postModel;
+        $this->categoryModel = $categoryModel;
+        $this->tagModel = $tagModel;
     }
 
     /**
      * Display a listing of the resource.
      *
      * @param string $id
-     *
-     * @return view
+     * @return \Illuminate\Contracts\View\View;
      */
-    public function index()
+    public function index(): View
     {
-        $posts = $this->post_model->where('publication_status', 'public')->orderBy('created_at', 'desc')->paginate(self::POST_PAGINATE_NUM);
+        $posts = $this->postModel->where('publication_status', 'public')->orderBy('created_at', 'desc')->paginate(self::PAGINATION_LIMIT);
 
-        $categories = $this->category_model->all();
-        $tags = $this->tag_model->all();
+        $categories = $this->categoryModel->all();
+        $tags = $this->tagModel->all();
 
         return view('post.index', ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
@@ -42,20 +71,19 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $id
-     *
-     * @return view
+     * @param  Post $post
+     * @return \Illuminate\Contracts\View\View;
      */
-    public function show(int $id)
+    public function show(Post $post): View
     {
-        $post = $this->post_model->where('publication_status', 'public')->findOrFail($id);
+        $post = $post->where('publication_status', 'public')->findOrFail($post->id);
 
-        $previous_post = $this->post_model->where('id', '<', $id)->where('publication_status', 'public')->orderBy('id', 'desc')->first();
-        $next_post = $this->post_model->where('id', '>', $id)->where('publication_status', 'public')->first();
+        $previousPost = $post->where('id', '<', $post->id)->where('publication_status', 'public')->orderBy('id', 'desc')->first();
+        $nextPost = $post->where('id', '>', $post->id)->where('publication_status', 'public')->first();
 
-        $categories = $this->category_model->all();
-        $tags = $this->tag_model->all();
+        $categories = $this->categoryModel->all();
+        $tags = $this->tagModel->all();
 
-        return view('post.show', ['post' => $post, 'previous_post' => $previous_post, 'next_post' => $next_post, 'categories' => $categories, 'tags' => $tags]);
+        return view('post.show', ['post' => $post, 'previousPost' => $previousPost, 'nextPost' => $nextPost, 'categories' => $categories, 'tags' => $tags]);
     }
 }

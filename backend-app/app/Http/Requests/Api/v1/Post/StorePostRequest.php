@@ -6,7 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StorePostRequest extends FormRequest
 {
-    const NOT_FOUND_CODE = 400;
+    /**
+     * Status code not found
+     *
+     * @var integer
+     */
+    const STATUS_CODE_NOT_FOUND = 400;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -59,6 +64,6 @@ class StorePostRequest extends FormRequest
     {
         $response['messages'] = $errors;
 
-        return response()->json($response, (int) self::NOT_FOUND_CODE);
+        return response()->json($response, (int) self::STATUS_CODE_NOT_FOUND);
     }
 }

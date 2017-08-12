@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
@@ -9,30 +10,61 @@ use App\Models\Tag;
 
 class HomeController extends Controller
 {
-    private $post_model;
-    private $category_model;
-    private $tag_model;
+    /**
+     * Pagination limit
+     *
+     * @var integer
+     */
+    const PAGINATION_LIMIT = 10;
 
-    public function __construct(Post $post_model, Category $category_model, Tag $tag_model)
+    /**
+     * Post
+     *
+     * @var Post
+     */
+    private $postModel;
+
+    /**
+     * Category
+     *
+     * @var Category
+     */
+    private $categoryModel;
+
+    /**
+     * Tag
+     *
+     * @var Tag
+     */
+    private $tagModel;
+
+    /**
+     * HomeController constructor
+     *
+     * @param Post     $postModel
+     * @param Category $categoryModel
+     * @param Tag      $tagModel
+     */
+    public function __construct(Post $postModel, Category $categoryModel, Tag $tagModel)
     {
-        $this->post_model = $post_model;
-        $this->category_model = $category_model;
-        $this->tag_model = $tag_model;
+        $this->postModel = $postModel;
+        $this->categoryModel = $categoryModel;
+        $this->tagModel = $tagModel;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return view
+     * @return \Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(): View
     {
-        $recent_posts = $this->post_model->where('publication_status', 'public')->take(10)->orderBy('created_at', 'desc')->get();
-        $popular_posts = $this->post_model->where('publication_status', 'public')->take(10)->orderBy('views', 'desc')->get();
+        $recentPosts = $this->postModel->where('publication_status', 'public')->take(self::PAGINATION_LIMIT)->orderBy('created_at', 'desc')->get();
+        $randomPosts = $this->postModel->where('publication_status', 'public')->inRandomOrder()->take(self::PAGINATION_LIMIT)->orderBy('created_at', 'desc')->get();
 
-        $categories = $this->category_model->all();
-        $tags = $this->tag_model->all();
+        $categories = $this->categoryModel->all();
+        $tags = $this->tagModel->all();
 
-        return view('home.index', ['recent_posts' => $recent_posts, 'popular_posts' => $popular_posts, 'categories' => $categories, 'tags' => $tags]);
+        return view('home.index', ['recentPosts' => $recentPosts, 'randomPosts' => $randomPosts, 'categories' => $categories, 'tags' => $tags]);
     }
 }

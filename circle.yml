@@ -7,10 +7,11 @@ machine:
 
 dependencies:
  pre:
-  - cd backend-app; composer install --prefer-dist
+  - cd backend-app; cp .env.example .env
+  - cd backend-app; composer install --prefer-dist; php artisan key:generate
   - cd backend-app; npm run refresh
   - cd frontend-app; npm run refresh
 
 test:
   override:
-    - cd backend-app; cp .env.example; ./vendor/bin/phpunit
+    - cd backend-app; ./vendor/bin/phpunit

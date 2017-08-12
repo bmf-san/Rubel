@@ -2,29 +2,55 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Authenticate\AuthenticateRequest;
-use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\JWTAuth;
 
 class AuthenticateController extends Controller
 {
-    public function __construct(JWTAuth $jwt_auth)
+    /**
+     * Status code unauthorized
+     *
+     * @var integer
+     */
+    const STATUS_CODE_UNAUTHORIZED = 400;
+
+    /**
+     * Status code internal server error
+     *
+     * @var integer
+     */
+    const STATUS_CODE_INTERNAL_SERVER_ERROR = 400;
+
+    /**
+     * AuthenticateController constructor
+     *
+     * @param JWTAuth $jwtAuth
+     */
+    public function __construct(JWTAuth $jwtAuth)
     {
-        $this->jwt_auth = $jwt_auth;
+        $this->jwtAuth = $jwtAuth;
     }
 
-    public function authenticate(AuthenticateRequest $request)
+    /**
+     * Authenticate
+     *
+     * @param  AuthenticateRequest $request
+     * @return \Illuminate\Http\JsonResponse;
+     */
+    public function authenticate(AuthenticateRequest $request): JsonResponse
     {
         $credentials = $request->only('email', 'password');
 
         try {
-            if (! $token = $this->jwt_auth->attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+            if (! $token = $this->jwtAuth->attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], (int) self::STATUS_CODE_UNAUTHORIZED);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json(['error' => 'could_not_create_token'], (int) self::STATUS_CODE_INTERNAL_SERVER_ERROR);
         }
 
         return response()->json(compact('token'));

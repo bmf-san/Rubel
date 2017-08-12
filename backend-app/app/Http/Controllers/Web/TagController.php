@@ -2,45 +2,69 @@
 
 namespace App\Http\Controllers\Web;
 
+use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use App\Models\Category;
 
 class TagController extends Controller
 {
-    const POST_PAGINATE_NUM = 10;
+    /**
+     * Pagination limit
+     *
+     * @var integer
+     */
+    const PAGINATION_LIMIT = 10;
 
-    private $tag_model;
-    private $category_model;
+    /**
+     * Tag
+     *
+     * @var Tag
+     */
+    private $tagModel;
 
-    public function __construct(Tag $tag_model, Category $category_model)
+    /**
+     * Category
+     *
+     * @var Category
+     */
+    private $categoryModel;
+
+    /**
+     * TagController constructor
+     *
+     * @param Tag      $tagModel
+     * @param Category $categoryModel
+     */
+    public function __construct(Tag $tagModel, Category $categoryModel)
     {
-        $this->tag_model = $tag_model;
-        $this->category_model = $category_model;
+        $this->tagModel = $tagModel;
+        $this->categoryModel = $categoryModel;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return view
+     * @return \Illuminate\Contracts\View\View;
      */
-    public function index()
+    public function index(): View
     {
-        $tags = $this->tag_model->all();
+        $tags = $this->tagModel->all();
 
         return view('tag.index', ['tags' => $tags]);
     }
     /**
      * Display a listing of the resource.
      *
-     * @return view
+     * @param  Tag $tag
+     * @return \Illuminate\Contracts\View\View;
      */
-    public function getPosts(int $id)
+    public function getPosts(Tag $tag): View
     {
-        $posts = $this->tag_model->find($id)->posts()->where('publication_status', 'public')->paginate(self::POST_PAGINATE_NUM);
+        $posts = $tag->posts()->where('publication_status', 'public')->paginate(self::PAGINATION_LIMIT);
 
-        $categories = $this->category_model->all();
-        $tags = $this->tag_model->all();
+        $categories = $this->categoryModel->all();
+        $tags = $this->tagModel->all();
 
         return view('post.tag', ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }

@@ -648,36 +648,40 @@ module.exports = __webpack_require__(14);
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(15);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_home_index_scss__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_home_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__scss_home_index_scss__);
+
 
 // Tabs
 (() => {
 	const recentBtn = document.querySelector("#recent-btn")
-	const popularBtn = document.querySelector("#popular-btn")
+	const randomBtn = document.querySelector("#random-btn")
 
 	const recentTab = document.querySelector("#recent-tab")
-	const popularTab = document.querySelector("#popular-tab")
+	const randomTab = document.querySelector("#random-tab")
 
 	// Init
 	recentBtn.classList.add("is-active")
-	popularTab.style.display = "none"
+	randomTab.style.display = "none"
 
 	recentBtn.addEventListener("click", () => {
 		if (!recentBtn.classList.contains("is-active")) {
 			recentBtn.classList.toggle("is-active")
-			popularBtn.classList.toggle("is-active")
+			randomBtn.classList.toggle("is-active")
 			recentTab.style.display = "block"
-			popularTab.style.display = "none"
+			randomTab.style.display = "none"
 		}
 	})
 
-	popularBtn.addEventListener("click", () => {
-		if (!popularBtn.classList.contains("is-active")) {
-			popularBtn.classList.toggle("is-active")
+	randomBtn.addEventListener("click", () => {
+		if (!randomBtn.classList.contains("is-active")) {
+			randomBtn.classList.toggle("is-active")
 			recentBtn.classList.toggle("is-active")
-			popularTab.style.display = "block"
+			randomTab.style.display = "block"
 			recentTab.style.display = "none"
 		}
 	})

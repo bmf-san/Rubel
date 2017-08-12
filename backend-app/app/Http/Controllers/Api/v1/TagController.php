@@ -2,54 +2,68 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\Api\TagRepository;
 use App\Http\Requests\Api\v1\Tag\StoreTagRequest;
 
 class TagController extends Controller
 {
+    /**
+     * STATUS_CODE_OK
+     *
+     * @var integer
+     */
     const STATUS_CODE_OK = 200;
 
-    private $tag_repository;
+    /**
+     * TagRepository
+     *
+     * @var $tagRepository
+     */
+    private $tagRepository;
 
-    public function __construct(TagRepository $tag_repository)
+    /**
+     * TagRepository constructor
+     *
+     * @param TagRepository $tagRepository
+     */
+    public function __construct(TagRepository $tagRepository)
     {
-        $this->tag_repository = $tag_repository;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json($this->tag_repository->index(), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->index(), (int) self::STATUS_CODE_OK);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StoreTagRequest $request)
+    public function store(StoreTagRequest $request): JsonResponse
     {
-        return response()->json($this->tag_repository->store($request), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->store($request), (int) self::STATUS_CODE_OK);
     }
 
     /**
      * Display the specified resource.
      *
      * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(int $id)
+    public function show(int $id): JsonResponse
     {
-        return response()->json($this->tag_repository->show($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->show($id), (int) self::STATUS_CODE_OK);
     }
 
     /**
@@ -57,23 +71,21 @@ class TagController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): JsonResponse
     {
-        return response()->json($this->tag_repository->update($request, $id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->update($request, $id), (int) self::STATUS_CODE_OK);
     }
 
     /**
      * Remove the specified resouce from storage.
      *
      * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): JsonResponse
     {
-        return response()->json($this->tag_repository->destroy($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->destroy($id), (int) self::STATUS_CODE_OK);
     }
 }

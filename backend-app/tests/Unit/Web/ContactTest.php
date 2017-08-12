@@ -4,17 +4,14 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class PostTest extends TestCase
+class ContactTest extends TestCase
 {
     use DatabaseMigrations;
 
     public function testIndex()
     {
-        // TODO write test code exactly
-        // factory(App\Models\Post::class)->create();
-        //
-        // $response = $this->json('GET', route('posts'));
-        //
-        // $response->assertStatus(200);
+        $response = $this->get(route('web.home'));
+
+        $response->assertStatus(200);
     }
 }

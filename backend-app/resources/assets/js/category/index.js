@@ -1,1 +1,1 @@
-require("../../scss/category/index.scss")
+import "../../scss/category/index.scss"

@@ -1,1 +1,1 @@
-require("../../scss/tag/index.scss")
+import "../../scss/tag/index.scss"

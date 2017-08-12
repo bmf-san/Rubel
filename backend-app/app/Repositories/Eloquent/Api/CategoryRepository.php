@@ -88,12 +88,12 @@ class CategoryRepository implements CategoryRepositoryContract
         if ($posts->count() > 0) {
             foreach ($posts as $post) {
                 $post->update([
-                    'category_id' => (int) self::CATEGORY_ID_OF_UNCATEGORIZED,
+                    'category_id' => self::CATEGORY_ID_OF_UNCATEGORIZED,
                 ]);
             }
         }
 
-        if ($id !== (int) self::CATEGORY_ID_OF_UNCATEGORIZED) {
+        if ($id !== self::CATEGORY_ID_OF_UNCATEGORIZED) {
             $category = $category->delete();
         }
 

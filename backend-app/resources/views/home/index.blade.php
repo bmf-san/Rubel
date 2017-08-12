@@ -21,14 +21,14 @@
     <div class="tabs is-centered">
       <ul>
         <li id="recent-btn"><a>Recent</a></li>
-        <li id="popular-btn"><a>Popular</a></li>
+        <li id="random-btn"><a>Random</a></li>
       </ul>
     </div>
     <section class="section">
       <div class="container">
         <div class="columns">
           <div id="recent-tab" class="column is-7 is-offset-2 posts-column">
-            @forelse($recent_posts as $post)
+            @forelse($recentPosts as $post)
               @if(is_date_within_a_week($post->publication_date))
                 <p>
                   <span class="tag is-danger">New!</span>
@@ -38,7 +38,7 @@
                 <span>{{ $post->publication_date }}</span>
               </p>
               <h1 class="title">
-                <a href='/post/{{ $post->id }}'>
+                <a href="{{ route('web.post', $post->title) }}">
                   {{ mb_str_limit($post->title, 40, '...') }}
                 </a>
               </h1>
@@ -46,13 +46,13 @@
                 {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
               </h2>
               <p class="has-text-right has-text-muted">
-                <a href="/post/category/{{ $post->category->id }}/{{ $post->category->name }}">
+                <a href="{{ route('web.posts.category', $post->category->name) }}">
                   {{ $post->category->name }}
                 </a>
               </p>
               <p class="has-text-right">
                 @forelse ($post->tags as $tag)
-                  <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
+                  <a href="{{ route('web.posts.tag', $tag->name) }}">
                     <span class="tag is-primary">
                       {{ $tag->name }}
                     </span>
@@ -61,13 +61,12 @@
                   No Tags.
                 @endforelse
               </p>
-              <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
             @empty
               <p class="has-text-centered">Nothing Found.</p>
             @endforelse
           </div>
-          <div id="popular-tab" class="column is-7 is-offset-2 posts-column">
-            @forelse($popular_posts as $post)
+          <div id="random-tab" class="column is-7 is-offset-2 posts-column">
+            @forelse($randomPosts as $post)
               @if(is_date_within_a_week($post->publication_date))
                 <p>
                   <span class="tag is-danger">New!</span>
@@ -77,7 +76,7 @@
                 <span>{{ $post->publication_date }}</span>
               </p>
               <h1 class="title">
-                <a href='/post/{{ $post->id }}'>
+                <a href="{{ route('web.post', $post->title) }}">
                   {{ mb_str_limit($post->title, 40, '...') }}
                 </a>
               </h1>
@@ -85,13 +84,13 @@
                 {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
               </h2>
               <p class="has-text-right has-text-muted">
-                <a href="/post/category/{{ $post->category->id }}/{{ $post->category->name }}">
+                <a href="{{ route('web.posts.category', $post->category->name) }}"></a>
                   {{ $post->category->name }}
                 </a>
               </p>
               <p class="has-text-right">
                 @forelse ($post->tags as $tag)
-                  <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
+                  <a href={{ route('web.posts.tag',$tag->name) }}>
                     <span class="tag is-primary">
                       {{ $tag->name }}
                     </span>
@@ -100,7 +99,6 @@
                   No Tags.
                 @endforelse
               </p>
-              <p class="has-text-right">{{ $post->views }}&nbsp;views</p>
             @empty
               <p class="has-text-centered">Nothing Found.</p>
             @endforelse
@@ -113,7 +111,7 @@
       <div class="container">
         <div class="tabs is-centered">
           <ul>
-            <li><a href={{ url('/post') }}>View more posts</a></li>
+            <li><a href={{ route('web.posts') }}>View more posts</a></li>
           </ul>
         </div>
       </div>

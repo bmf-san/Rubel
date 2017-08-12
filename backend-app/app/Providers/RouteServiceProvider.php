@@ -54,6 +54,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::group([
             'middleware' => 'web',
             'namespace' => $this->namespace . '\Web',
+            'as' => 'web.',
             'domain' => config('rubel.domain')
         ], function ($router) {
             require base_path('routes/web.php');
@@ -72,6 +73,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::group([
             'middleware' => 'api',
             'namespace' => $this->namespace . '\Api\v1',
+            'as' => 'api.',
             'prefix' => 'v1',
             'domain' => config('rubel.api_domain')
         ], function ($router) {

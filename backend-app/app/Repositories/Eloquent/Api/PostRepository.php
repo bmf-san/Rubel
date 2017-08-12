@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class PostRepository implements PostRepositoryContract
 {
-    const POST_PAGINATE_NUM = 10;
+    const PAGINATION_LIMIT = 10;
 
     private $post_model;
     private $tag_model;
@@ -27,7 +27,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function index()
     {
-        $posts = $this->post_model->with('admin', 'category', 'comments', 'tags')->paginate(self::POST_PAGINATE_NUM);
+        $posts = $this->post_model->with('admin', 'category', 'comments', 'tags')->paginate(self::PAGINATION_LIMIT);
 
         return $posts;
     }

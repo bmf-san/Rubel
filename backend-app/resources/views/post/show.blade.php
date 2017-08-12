@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Post')
+@section('title', $post->title)
 
 @section('content')
   <div>
@@ -21,13 +21,13 @@
             <div class="content">
               <h2 class="title is-3">{{ $post->title }}</h2>
               <p class="has-text-right has-text-muted">
-                <a href="/post/category/{{ $post->category->id }}/{{ $post->category->name }}">
+                <a href="{{ route('web.posts.category', $post->category->name) }}">
                   {{ $post->category->name }}
                 </a>
               </p>
               <p class="has-text-right">
                 @foreach ($post->tags as $tag)
-                  <a href="/post/tag/{{ $tag->id }}/{{ $tag->name}}">
+                  <a href="{{ route('web.posts.tag', $tag->name) }}">
                     <span class="tag is-primary">
                       {{ $tag->name }}
                     </span>
@@ -81,13 +81,13 @@
             </div>
             <div class="mt-one-and-a-half">
               <nav class="pagination is-centered">
-                @if($previous_post)
-                  <a class="pagination-previous" href="/post/{{ $previous_post->id }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;{{ mb_str_limit($previous_post->title, 15, '...')}}</a>
+                @if($previousPost)
+                  <a class="pagination-previous" href="{{ route('web.post', $previousPost->title) }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;{{ mb_str_limit($previousPost->title, 15, '...')}}</a>
                 @else
                   <span></span>
                 @endif
-                @if($next_post)
-                  <a class="pagination-next" href="/post/{{ $next_post->id }}">{{ mb_str_limit($next_post->title, 15, '...') }}&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                @if($nextPost)
+                  <a class="pagination-next" href="{{ route('web.post', $nextPost->title) }}">{{ mb_str_limit($nextPost->title, 15, '...') }}&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                 @endif
               </nav>
             </div>

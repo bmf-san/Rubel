@@ -52,7 +52,6 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
             'title' => $faker->title,
             'md_content' => $faker->realText(),
             'html_content' => '<p>' . "$faker->realText()" . "<p>",
-            'views' => $faker->randomNumber(),
             'publication_status' => 'public',
             'publication_date' => $faker->date('Y-m-d')
         ];
@@ -63,7 +62,6 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
             'title' => $faker->title,
             'md_content' => $faker->realText(),
             'html_content' => '<p>' . "$faker->realText()" . "<p>",
-            'views' => $faker->randomNumber(),
             'publication_status' => 'draft',
             'publication_date' => $faker->date('Y-m-d')
         ];

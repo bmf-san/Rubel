@@ -2,31 +2,54 @@
 
 namespace App\Http\Controllers\Web;
 
+use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Tag;
 
 class CategoryController extends Controller
 {
-    const POST_PAGINATE_NUM = 10;
+    /**
+     * Pagination limit
+     *
+     * @var integer
+     */
+    const PAGINATION_LIMIT = 10;
 
-    private $category_model;
-    private $tag_model;
+    /**
+     * Category
+     *
+     * @var Category
+     */
+    private $categoryModel;
 
-    public function __construct(Category $category_model, Tag $tag_model)
+    /**
+     * Tag
+     *
+     * @var Tag
+     */
+    private $tagModel;
+
+    /**
+     * CategoryController constructor
+     *
+     * @param Category $categoryModel
+     * @param Tag      $tagModel
+     */
+    public function __construct(Category $categoryModel, Tag $tagModel)
     {
-        $this->category_model = $category_model;
-        $this->tag_model = $tag_model;
+        $this->categoryModel = $categoryModel;
+        $this->tagModel = $tagModel;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return view
+     * @return \Illuminate\Contracts\View\View;
      */
-    public function index()
+    public function index(): View
     {
-        $categories = $this->category_model->all();
+        $categories = $this->categoryModel->all();
 
         return view('category.index', ['categories' => $categories]);
     }
@@ -34,14 +57,15 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return view
+     * @param  Category $category
+     * @return \Illuminate\Contracts\View\View;
      */
-    public function getPosts(int $id)
+    public function getPosts(Category $category): View
     {
-        $posts = $this->category_model->find($id)->posts()->where('publication_status', 'public')->paginate(self::POST_PAGINATE_NUM);
+        $posts = $category->posts()->where('publication_status', 'public')->paginate(self::PAGINATION_LIMIT);
 
-        $categories = $this->category_model->all();
-        $tags = $this->tag_model->all();
+        $categories = $this->categoryModel->all();
+        $tags = $this->tagModel->all();
 
         return view('post.category', ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }

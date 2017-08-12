@@ -53,6 +53,12 @@
     ],
     "test": [
       "./vendor/phpunit/phpunit/phpunit"
+    ],
+    "test-api": [
+      "./vendor/phpunit/phpunit/phpunit tests/Unit/Api"
+    ],
+    "test-web": [
+      "./vendor/phpunit/phpunit/phpunit tests/Unit/Web"
     ]
   },
   "config": {

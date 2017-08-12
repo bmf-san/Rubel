@@ -1,1 +1,1 @@
-require("../../scss/profile/index.scss")
+import "../../scss/profile/index.scss"

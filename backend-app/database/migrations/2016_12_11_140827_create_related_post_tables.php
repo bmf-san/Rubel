@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 class CreateRelatedPostTables extends Migration
 {
     const DEFAULT_CATEGORY_ID = 1;
-    const DEFAULT_VIEW_NUM = 0;
 
     /**
      * Run the migrations.
@@ -27,7 +26,6 @@ class CreateRelatedPostTables extends Migration
             $table->string('title')->nullable();
             $table->text('md_content')->nullable();
             $table->text('html_content')->nullable();
-            $table->integer('views')->unsigned()->default((int) self::DEFAULT_VIEW_NUM);
             $table->string('publication_status')->default('draft');
             $table->datetime('publication_date')->nullable();
             $table->timestamps();

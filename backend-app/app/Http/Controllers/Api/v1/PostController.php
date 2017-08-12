@@ -2,55 +2,64 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\Api\PostRepository;
 use App\Http\Requests\Api\v1\Post\StorePostRequest;
 use App\Http\Requests\Api\v1\Post\UpdatePostRequest;
 
 class PostController extends Controller
 {
+    /**
+     * STATUS_CODE_OK
+     *
+     * @var integer
+     */
     const STATUS_CODE_OK = 200;
 
-    private $post_repository;
+    /**
+     * PostRepository
+     *
+     * @var $postRepository
+     */
+    private $postRepository;
 
-    public function __construct(PostRepository $post_repository)
+    public function __construct(PostRepository $postRepository)
     {
-        $this->post_repository = $post_repository;
+        $this->postRepository = $postRepository;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json($this->post_repository->index(), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->index(), (int) self::STATUS_CODE_OK);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StorePostRequest $request)
+    public function store(StorePostRequest $request): JsonResponse
     {
-        return response()->json($this->post_repository->store($request), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->store($request), (int) self::STATUS_CODE_OK);
     }
 
     /**
      * Display the specified resource.
      *
      * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Int $id)
+    public function show(Int $id): JsonResponse
     {
-        return response()->json($this->post_repository->show($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->show($id), (int) self::STATUS_CODE_OK);
     }
 
     /**
@@ -58,23 +67,21 @@ class PostController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdatePostRequest $request, int $id)
+    public function update(UpdatePostRequest $request, int $id): JsonResponse
     {
-        return response()->json($this->post_repository->update($request, $id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->update($request, $id), (int) self::STATUS_CODE_OK);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): JsonResponse
     {
-        return response()->json($this->post_repository->destroy($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->destroy($id), (int) self::STATUS_CODE_OK);
     }
 }
