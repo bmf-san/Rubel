@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent\Api;
 
+use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Contracts\Api\PostRepositoryContract;
 use App\Models\Post;
 use App\Models\Tag;
@@ -9,25 +10,47 @@ use Carbon\Carbon;
 
 class PostRepository implements PostRepositoryContract
 {
+    /**
+     * Pagination limit
+     *
+     * @var integer
+     */
     const PAGINATION_LIMIT = 10;
 
-    private $post_model;
-    private $tag_model;
+    /**
+     * Post
+     *
+     * @var Post
+     */
+    private $postModel;
 
-    public function __construct(Post $post_model, Tag $tag_model)
+    /**
+     * Tag
+     *
+     * @var Tag
+     */
+    private $tagModel;
+
+    /**
+     * PostRepository constructor
+     *
+     * @param Post $postModel
+     * @param Tag  $tagModel
+     */
+    public function __construct(Post $postModel, Tag $tagModel)
     {
-        $this->post_model = $post_model;
-        $this->tag_model = $tag_model;
+        $this->postModel = $postModel;
+        $this->tagModel = $tagModel;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return array $posts
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function index()
+    public function index(): Collection
     {
-        $posts = $this->post_model->with('admin', 'category', 'comments', 'tags')->paginate(self::PAGINATION_LIMIT);
+        $posts = $this->postModel->with('admin', 'category', 'comments', 'tags')->paginate(self::PAGINATION_LIMIT);
 
         return $posts;
     }
@@ -35,16 +58,15 @@ class PostRepository implements PostRepositoryContract
     /**
      * Store a newly created resource in storage.
      *
-     * @param object $request
-     *
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function store($request)
+    public function store($request): array
     {
-        $post = $this->post_model;
+        $post = $this->postModel;
         $post = $this->savePost($post, $request);
 
-        $tag = $this->tag_model;
+        $tag = $this->tagModel;
         $this->syncTags($post, $tag, $request->tags);
 
         return ['id' => $post->id];
@@ -54,12 +76,11 @@ class PostRepository implements PostRepositoryContract
      * Display the specified resource.
      *
      * @param int $id
-     *
-     * @return array $post
+     * @return Post
      */
-    public function show(int $id)
+    public function show(int $id): Post
     {
-        $post = $this->post_model->with('admin', 'category', 'comments', 'tags')->find($id);
+        $post = $this->postModel->with('admin', 'category', 'comments', 'tags')->find($id);
 
         return $post;
     }
@@ -74,12 +95,12 @@ class PostRepository implements PostRepositoryContract
      */
     public function update($request, Int $id)
     {
-        $post = $this->post_model->findOrFail($id);
+        $post = $this->postModel->findOrFail($id);
 
         $this->updatePost($post, $request);
 
         if ($request->tags) {
-            $tag = $this->tag_model;
+            $tag = $this->tagModel;
             $this->syncTags($post, $tag, $request->tags);
         }
 
@@ -93,7 +114,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function destroy(Int $id)
     {
-        $post = $this->post_model->find($id);
+        $post = $this->postModel->find($id);
 
         $post->delete();
 

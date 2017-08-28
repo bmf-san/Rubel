@@ -2,12 +2,14 @@
 
 namespace App\Repositories\Contracts\Api;
 
+use Illuminate\Database\Eloquent\Collection;
+
 interface PostRepositoryContract
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function index();
 
@@ -15,8 +17,7 @@ interface PostRepositoryContract
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function store($request);
 
@@ -24,27 +25,24 @@ interface PostRepositoryContract
      * Display the specified resource.
      *
      * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return Post
      */
     public function show(int $id);
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resouce in storage.
      *
-     * @param int                      $id
-     * @param \Illuminate\Http\Request $request
+     * @param int    $id
+     * @param object $request
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function update($request, int $id);
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resouce from storage.
      *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function destroy(int $id);
 }

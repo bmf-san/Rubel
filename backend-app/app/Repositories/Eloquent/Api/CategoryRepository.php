@@ -2,28 +2,44 @@
 
 namespace App\Repositories\Eloquent\Api;
 
+use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Contracts\Api\CategoryRepositoryContract;
 use App\Models\Category;
 
 class CategoryRepository implements CategoryRepositoryContract
 {
+    /**
+     * Category id of uncategorized
+     *
+     * @var integer
+     */
     const CATEGORY_ID_OF_UNCATEGORIZED = 1;
 
-    private $category_model;
+    /**
+     * Category
+     *
+     * @var Category
+     */
+    private $categoryModel;
 
-    public function __construct(Category $category_model)
+    /**
+     * CategoryRepository constructor
+     *
+     * @param Category $categoryModel
+     */
+    public function __construct(Category $categoryModel)
     {
-        $this->category_model = $category_model;
+        $this->categoryModel = $categoryModel;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return array $categories
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function index()
+    public function index(): Collection
     {
-        $categories = $this->category_model->get();
+        $categories = $this->categoryModel->get();
 
         return $categories;
     }
@@ -31,13 +47,12 @@ class CategoryRepository implements CategoryRepositoryContract
     /**
      * Store a newly created resource in storage.
      *
-     * @param object $request
-     *
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function store($request)
+    public function store($request): array
     {
-        $category = $this->category_model;
+        $category = $this->categoryModel;
         $category = $this->saveCategory($category, $request);
 
         return ['id' => $category->id];
@@ -47,12 +62,11 @@ class CategoryRepository implements CategoryRepositoryContract
      * Display the specified resource.
      *
      * @param int $id
-     *
-     * @return array $category
+     * @return Category
      */
-    public function show(int $id)
+    public function show(int $id): Category
     {
-        $category = $this->category_model->with('posts')->find($id);
+        $category = $this->categoryModel->with('posts')->find($id);
 
         return $category;
     }
@@ -60,29 +74,27 @@ class CategoryRepository implements CategoryRepositoryContract
     /**
      * Update the specified resouce in storage.
      *
-     * @param int    $id
-     * @param object $request
-     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int    $id
      * @return array
      */
-    public function update($request, int $id)
+    public function update($request, int $id): array
     {
-        $category = $this->category_model->findOrFail($id);
+        $category = $this->categoryModel->findOrFail($id);
         $category->update($request->all());
 
         return ['id' => $category->id];
     }
 
     /**
-     * Remove the specified resouce from storage.
+     * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param  int   $id
      * @return array
      */
-    public function destroy(int $id)
+    public function destroy(int $id): array
     {
-        $category = $this->category_model->findOrFail($id);
+        $category = $this->categoryModel->findOrFail($id);
         $posts = $category->posts;
 
         if ($posts->count() > 0) {
@@ -104,11 +116,10 @@ class CategoryRepository implements CategoryRepositoryContract
      * Save category
      *
      * @param  Category $category
-     * @param  Object   $request
-     *
-     * @return int $category
+     * @param  \Illuminate\Http\Request $request
+     * @return Category
      */
-    private function saveCategory(Category $category, $request)
+    private function saveCategory(Category $category, $request): Category
     {
         $category = $category->create([
             'name' => $request->name,

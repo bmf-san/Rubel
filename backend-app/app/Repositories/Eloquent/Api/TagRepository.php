@@ -2,26 +2,37 @@
 
 namespace App\Repositories\Eloquent\Api;
 
+use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Contracts\Api\TagRepositoryContract;
 use App\Models\Tag;
 
 class TagRepository implements TagRepositoryContract
 {
-    private $tag_model;
+    /**
+     * Tag
+     *
+     * @var Tag
+     */
+    private $tagModel;
 
-    public function __construct(Tag $tag_model)
+    /**
+     * TagRepository constructor
+     *
+     * @param Tag $tagModel
+     */
+    public function __construct(Tag $tagModel)
     {
-        $this->tag_model = $tag_model;
+        $this->tagModel = $tagModel;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return object
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function index()
+    public function index(): Collection
     {
-        $tags = $this->tag_model->get();
+        $tags = $this->tagModel->get();
 
         return $tags;
     }
@@ -29,13 +40,12 @@ class TagRepository implements TagRepositoryContract
     /**
      * Store a newly created resource in storage.
      *
-     * @param object $request
-     *
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function store($request)
+    public function store($request): array
     {
-        $tag = $this->tag_model;
+        $tag = $this->tagModel;
         $tag = $this->saveTag($tag, $request);
 
         return ['id' => $tag->id];
@@ -45,12 +55,11 @@ class TagRepository implements TagRepositoryContract
      * Display the specified resource.
      *
      * @param int $id
-     *
-     * @return array $tag
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function show(int $id)
+    public function show(int $id): Collection
     {
-        $tag = $this->tag_model->with('posts')->find($id);
+        $tag = $this->tagModel->with('posts')->find($id);
 
         return $tag;
     }
@@ -58,14 +67,13 @@ class TagRepository implements TagRepositoryContract
     /**
      * Update the specified resouce in storage.
      *
-     * @param int    $id
-     * @param object $request
-     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  Int    $id
      * @return array
      */
-    public function update($request, Int $id)
+    public function update($request, Int $id): array
     {
-        $tag = $this->tag_model->find($id);
+        $tag = $this->tagModel->find($id);
 
         $tag->update($request->all());
 
@@ -73,26 +81,25 @@ class TagRepository implements TagRepositoryContract
     }
 
     /**
-     * Remove the specified resouce from storage.
+     * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param  int   $id
      * @return array
      */
-    public function destroy(Int $id)
+    public function destroy(Int $id): array
     {
-        $tag = $this->tag_model->find($id)->delete();
+        $tag = $this->tagModel->find($id)->delete();
 
         return [];
     }
 
     /**
-     * Save tag
+     * Save Tag
      * @param  Tag    $tag
      * @param  \Illuminate\Http\Request $request
-     * @return int    $tga
+     * @return Tag
      */
-    private function saveTag(Tag $tag, $request)
+    private function saveTag(Tag $tag, $request): Tag
     {
         $tag = $tag->create([
             'name' => $request->name,

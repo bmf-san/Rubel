@@ -2,49 +2,48 @@
 
 namespace App\Repositories\Contracts\Api;
 
+use Illuminate\Database\Eloquent\Collection;
+use App\Models\Category;
+
 interface CategoryRepositoryContract
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function index();
+    public function index(): Collection;
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function store($request);
+    public function store($request): array;
 
     /**
      * Display the specified resource.
      *
      * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return Category
      */
-    public function show(int $id);
+    public function show(int $id): Category;
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resouce in storage.
      *
-     * @param int                      $id
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  int    $id
+     * @return array
      */
-    public function update($request, int $id);
+    public function update($request, int $id): array;
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param  int   $id
+     * @return array
      */
-    public function destroy(int $id);
+    public function destroy(int $id): array;
 }

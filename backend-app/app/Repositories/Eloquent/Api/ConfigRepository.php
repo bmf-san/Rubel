@@ -2,26 +2,37 @@
 
 namespace App\Repositories\Eloquent\Api;
 
+use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Contracts\Api\ConfigRepositoryContract;
 use App\Models\Config;
 
 class ConfigRepository implements ConfigRepositoryContract
 {
-    private $config_model;
+    /**
+     * Config
+     *
+     * @var Config
+     */
+    private $configModel;
 
-    public function __construct(Config $config_model)
+    /**
+     * ConfigRepository constructor
+     *
+     * @param Config $configModel
+     */
+    public function __construct(Config $configModel)
     {
-        $this->config_model = $config_model;
+        $this->configModel = $configModel;
     }
 
     /**
      * Display a listing of the resource
      *
-     * @return array $configs
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function index()
+    public function index(): Collection
     {
-        $configs = $this->config_model->all();
+        $configs = $this->configModel->all();
 
         return $configs;
     }
@@ -29,11 +40,10 @@ class ConfigRepository implements ConfigRepositoryContract
     /**
      * Update the specified resouce in storage.
      *
-     * @param object $request
-     *
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
-    public function update($request)
+    public function update($request): array
     {
         $this->updateConfig($request);
 
@@ -44,13 +54,14 @@ class ConfigRepository implements ConfigRepositoryContract
      * Update config
      *
      * @param \Illuminate\Http\Request $request
+     * @return void
      */
     public function updateConfig($request)
     {
         $configs = $request->all();
 
         foreach ($configs as $key => $value) {
-            $config = $this->config_model->where('name', $key)->firstOrFail();
+            $config = $this->configModel->where('name', $key)->firstOrFail();
 
             $config->update([
                 'value' => $value
