@@ -11,7 +11,7 @@ class CategoryRepository implements CategoryRepositoryContract
     /**
      * Category id of uncategorized
      *
-     * @var integer
+     * @var int
      */
     const CATEGORY_ID_OF_UNCATEGORIZED = 1;
 

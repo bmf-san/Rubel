@@ -9,7 +9,7 @@ class StoreTagRequest extends FormRequest
     /**
      * Status code not found
      *
-     * @var integer
+     * @var int
      */
     const STATUS_CODE_NOT_FOUND = 400;
 

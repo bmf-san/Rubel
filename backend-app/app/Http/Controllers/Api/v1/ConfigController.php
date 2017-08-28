@@ -12,7 +12,7 @@ class ConfigController extends Controller
     /**
      * STATUS_CODE_OK
      *
-     * @var integer
+     * @var int
      */
     const STATUS_CODE_OK = 200;
 

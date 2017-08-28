@@ -13,7 +13,7 @@ class PostRepository implements PostRepositoryContract
     /**
      * Pagination limit
      *
-     * @var integer
+     * @var int
      */
     const PAGINATION_LIMIT = 10;
 

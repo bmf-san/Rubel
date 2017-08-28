@@ -13,7 +13,7 @@ class PostController extends Controller
     /**
      * Pagination limit
      *
-     * @var integer
+     * @var int
      */
     const PAGINATION_LIMIT = 10;
 

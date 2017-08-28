@@ -14,14 +14,14 @@ class AuthenticateController extends Controller
     /**
      * Status code unauthorized
      *
-     * @var integer
+     * @var int
      */
     const STATUS_CODE_UNAUTHORIZED = 400;
 
     /**
      * Status code internal server error
      *
-     * @var integer
+     * @var int
      */
     const STATUS_CODE_INTERNAL_SERVER_ERROR = 400;
 
