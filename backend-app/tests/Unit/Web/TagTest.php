@@ -1,8 +1,11 @@
 <?php
+namespace Tests\Unit\Web;
 
+use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Models\Tag;
 
 class TagTest extends TestCase
 {
@@ -17,7 +20,7 @@ class TagTest extends TestCase
 
     public function testGetPosts()
     {
-        $tag = \App\Models\Tag::first();
+        $tag = Tag::first();
 
         $response = $this->get(route('web.posts.tag', $tag->name));
 

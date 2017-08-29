@@ -1,8 +1,11 @@
 <?php
+namespace Tests\Unit\Web;
 
+use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Models\Post;
 
 class PostTest extends TestCase
 {
@@ -17,7 +20,7 @@ class PostTest extends TestCase
 
     public function testShow()
     {
-        $post = factory(App\Models\Post::class)->create(
+        $post = factory(Post::class)->create(
             [
                 'publication_status' => 'public'
             ]

@@ -1,5 +1,7 @@
 <?php
+namespace Tests\Unit\Web;
 
+use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

@@ -1,8 +1,11 @@
 <?php
+namespace Tests\Unit\Web;
 
+use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Models\Category;
 
 class CategoryTest extends TestCase
 {
@@ -17,7 +20,7 @@ class CategoryTest extends TestCase
 
     public function testGetPosts()
     {
-        $category = \App\Models\Category::first();
+        $category = Category::first();
 
         $response = $this->get(route('web.posts.category', $category->name));
 
