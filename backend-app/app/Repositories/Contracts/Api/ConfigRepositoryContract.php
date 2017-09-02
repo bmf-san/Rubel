@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Contracts\Api;
 
+use Illuminate\Database\Eloquent\Collection;
+
 interface ConfigRepositoryContract
 {
     /**
@@ -9,7 +11,7 @@ interface ConfigRepositoryContract
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function index();
+    public function index(): Collection;
 
     /**
      * Update the specified resouce in storage.
@@ -17,5 +19,5 @@ interface ConfigRepositoryContract
      * @param  \Illuminate\Http\Request $request
      * @return array
      */
-    public function update($request);
+    public function update($request): array;
 }

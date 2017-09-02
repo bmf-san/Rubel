@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Eloquent\Api;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repositories\Contracts\Api\PostRepositoryContract;
 use App\Models\Post;
 use App\Models\Tag;
@@ -46,9 +46,9 @@ class PostRepository implements PostRepositoryContract
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function index(): Collection
+    public function index(): LengthAwarePaginator
     {
         $posts = $this->postModel->with('admin', 'category', 'comments', 'tags')->paginate(self::PAGINATION_LIMIT);
 
@@ -90,10 +90,9 @@ class PostRepository implements PostRepositoryContract
      *
      * @param int    $id
      * @param object $request
-     *
      * @return array
      */
-    public function update($request, Int $id)
+    public function update($request, Int $id): array
     {
         $post = $this->postModel->findOrFail($id);
 
@@ -112,7 +111,7 @@ class PostRepository implements PostRepositoryContract
      *
      * @return array
      */
-    public function destroy(Int $id)
+    public function destroy(Int $id): array
     {
         $post = $this->postModel->find($id);
 

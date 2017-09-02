@@ -2,16 +2,17 @@
 
 namespace App\Repositories\Contracts\Api;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Post;
 
 interface PostRepositoryContract
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function index();
+    public function index(): LengthAwarePaginator;
 
     /**
      * Store a newly created resource in storage.
@@ -19,7 +20,7 @@ interface PostRepositoryContract
      * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function store($request);
+    public function store($request): array;
 
     /**
      * Display the specified resource.
@@ -27,22 +28,21 @@ interface PostRepositoryContract
      * @param int $id
      * @return Post
      */
-    public function show(int $id);
+    public function show(int $id): Post;
 
     /**
      * Update the specified resouce in storage.
      *
      * @param int    $id
      * @param object $request
-     *
      * @return array
      */
-    public function update($request, int $id);
+    public function update($request, int $id): array;
 
     /**
      * Remove the specified resouce from storage.
      *
      * @return array
      */
-    public function destroy(int $id);
+    public function destroy(int $id): array;
 }
