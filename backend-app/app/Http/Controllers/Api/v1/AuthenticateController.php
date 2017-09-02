@@ -16,14 +16,14 @@ class AuthenticateController extends Controller
      *
      * @var int
      */
-    const STATUS_CODE_UNAUTHORIZED = 400;
+    const STATUS_CODE_UNAUTHORIZED = 401;
 
     /**
      * Status code internal server error
      *
      * @var int
      */
-    const STATUS_CODE_INTERNAL_SERVER_ERROR = 400;
+    const STATUS_CODE_INTERNAL_SERVER_ERROR = 500;
 
     /**
      * AuthenticateController constructor
