@@ -35,9 +35,36 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         Artisan::call('db:seed');
     }
 
+    /**
+     * Tear down the application
+     *
+     * @return void
+     */
     public function tearDown()
     {
         Artisan::call('migrate:reset');
         parent::tearDown();
+    }
+
+    /**
+     * Get headers with a jwt token for Api authentication
+     *
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        $response = $this->json('POST', route('api.authenticate'), [
+            "email" => env('ADMIN_EMAIL'),
+            "password" => env('ADMIN_PASSWORD')
+        ]);
+
+        $jwtTokens = json_decode($response->getContent(), true)['token'];
+
+        $headers = [
+            "X-Requested-With" => "XMLHttpRequest",
+            "Authorization" => $jwtTokens
+        ];
+
+        return $headers;
     }
 }

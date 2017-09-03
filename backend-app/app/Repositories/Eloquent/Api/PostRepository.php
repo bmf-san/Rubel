@@ -166,12 +166,12 @@ class PostRepository implements PostRepositoryContract
         }
 
         $post->update([
-            'admin_id' => (int) 1, // FIXME set authenticated admin id
-            'category_id' => (int) $request->category_id,
-            'title' => (string) $request->title,
-            'md_content' => (string) $request->md_content,
-            'html_content' => (string) $request->html_content,
-            'publication_status' => (string) $request->publication_status,
+            'admin_id' => 1, // FIXME set authenticated admin id
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'md_content' => $request->md_content,
+            'html_content' => $request->html_content,
+            'publication_status' => $request->publication_status,
             'publication_date' => $publication_date
         ]);
     }

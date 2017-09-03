@@ -46,8 +46,8 @@ $router->group(['middleware' => 'jwt-auth'], function () use ($router) {
      * Post
      */
     $router->post('posts', 'PostController@store')->name('post.store');
-    $router->patch('posts/{id}', 'PostController@update')->where('id', '[0-9]+')->name('post.patch');
-    $router->delete('posts/{id}', 'PostController@destroy')->where('id', '[0-9]+')->name('post.delete');
+    $router->patch('posts/{id}', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
+    $router->delete('posts/{id}', 'PostController@destroy')->where('id', '[0-9]+')->name('post.destroy');
 
     /*
     * Category
