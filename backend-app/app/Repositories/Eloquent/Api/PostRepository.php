@@ -125,25 +125,24 @@ class PostRepository implements PostRepositoryContract
      *
      * @param Post   $post
      * @param \Illuminate\Http\Request $request
-     *
-     * @return int $post
+     * @return Post
      */
-    private function savePost(Post $post, $request)
+    private function savePost(Post $post, $request): Post
     {
-        $publication_date = null;
+        $publicationDate = null;
 
         if ($request->publication_status == 'public') {
-            $publication_date = Carbon::now();
+            $publicationDate = Carbon::now();
         }
 
         $post = $post->create([
-            'admin_id' => (int) 1, // FIXME set authenticated admin id
-            'category_id' => (int) $request->category_id,
-            'title' => (string) $request->title,
-            'md_content' => (string) $request->md_content,
-            'html_content' => (string) $request->html_content,
-            'publication_status' => (string) $request->publication_status,
-            'publication_date' => $publication_date
+            'admin_id' => 1, // FIXME set authenticated admin id
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'md_content' => $request->md_content,
+            'html_content' => $request->html_content,
+            'publication_status' => $request->publication_status,
+            'publication_date' => $publicationDate
         ]);
 
         return $post;
@@ -154,14 +153,15 @@ class PostRepository implements PostRepositoryContract
      *
      * @param Post   $post
      * @param \Illuminate\Http\Request $request
+     * @return void
      */
-    public function updatePost(Post $post, $request)
+    private function updatePost(Post $post, $request)
     {
-        $publication_date = $post->publication_date;
+        $publicationDate = $post->publication_date;
 
         if ($request->publication_status == 'public') {
-            if (is_null($publication_date)) {
-                $publication_date = Carbon::now();
+            if (is_null($publicationDate)) {
+                $publicationDate = Carbon::now();
             }
         }
 
@@ -172,7 +172,7 @@ class PostRepository implements PostRepositoryContract
             'md_content' => $request->md_content,
             'html_content' => $request->html_content,
             'publication_status' => $request->publication_status,
-            'publication_date' => $publication_date
+            'publication_date' => $publicationDate
         ]);
     }
 
@@ -182,42 +182,43 @@ class PostRepository implements PostRepositoryContract
      * @param Post  $post
      * @param Tag   $tag
      * @param Array $tags
+     * @return void
      */
     private function syncTags(Post $post, Tag $tag, $tags)
     {
         // HACK
         if ($tags) {
-            $request_tag_array = [];
+            $requestTagArray = [];
 
-            foreach ($tags as $request_tag) {
-                $request_tag_array[] = $request_tag['name'];
+            foreach ($tags as $requestTag) {
+                $requestTagArray[] = $requestTag['name'];
             }
 
-            $exist_tag_collection = $tag->whereIn('name', $request_tag_array)->get();
+            $existTagCollection = $tag->whereIn('name', $requestTagArray)->get();
 
-            $exist_tag_name_array = $exist_tag_collection->pluck('name')->toArray();
-            $exist_tag_id_array = $exist_tag_collection->pluck('id')->toArray();
+            $existTagNameArray = $existTagCollection->pluck('name')->toArray();
+            $existTagIdArray = $existTagCollection->pluck('id')->toArray();
 
-            $new_tag_name_array = array_diff($request_tag_array, $exist_tag_name_array);
+            $newTagNameArray = array_diff($requestTagArray, $existTagNameArray);
 
-            $tag_id_array = [];
+            $tagIdArray = [];
 
-            if ($new_tag_name_array) {
+            if ($newTagNameArray) {
                 // Create new tags if there are new tags which has not been registerd.
-                foreach ($new_tag_name_array as $new_tag_name) {
+                foreach ($newTagNameArray as $newTagName) {
                     $tag->create([
-                        'name' => $new_tag_name,
+                        'name' => $newTagName,
                     ]);
                 }
 
-                $new_tag_id_array = $tag->whereIn('name', $new_tag_name_array)->get()->pluck('id')->toArray();
+                $newTagIdArray = $tag->whereIn('name', $newTagNameArray)->get()->pluck('id')->toArray();
 
-                $tag_id_array = array_merge($exist_tag_id_array, $new_tag_id_array);
+                $tagIdArray = array_merge($existTagIdArray, $newTagIdArray);
             } else {
-                $tag_id_array = $exist_tag_id_array;
+                $tagIdArray = $existTagIdArray;
             }
 
-            $post->tags()->sync($tag_id_array);
+            $post->tags()->sync($tagIdArray);
         } else {
             $post->tags()->sync($tags);
         }
