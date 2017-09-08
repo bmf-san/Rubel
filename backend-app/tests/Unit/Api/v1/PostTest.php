@@ -56,7 +56,8 @@ class PostTest extends TestCase
             'html_content' => 'HereIsHtmlContent',
             'publication_status' => 'public',
             'publication_date' => Carbon::now(),
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+            'tags' => [] // TODO
         ];
 
         $response = $this->json('PATCH', route('api.post.update', Post::first()->id), $data, $this->getHeaders());
