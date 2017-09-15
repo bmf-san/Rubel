@@ -40,7 +40,7 @@ class ConfigController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->configRepository->index(), (int) self::STATUS_CODE_OK);
+        return response()->json($this->configRepository->index(), self::STATUS_CODE_OK);
     }
 
     /**
@@ -51,6 +51,6 @@ class ConfigController extends Controller
      */
     public function update(Request $request): JsonResponse
     {
-        return response()->json($this->configRepository->update($request), (int) self::STATUS_CODE_OK);
+        return response()->json($this->configRepository->update($request), self::STATUS_CODE_OK);
     }
 }

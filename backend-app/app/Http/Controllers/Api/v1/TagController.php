@@ -41,7 +41,7 @@ class TagController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->tagRepository->index(), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->index(), self::STATUS_CODE_OK);
     }
 
     /**
@@ -52,7 +52,7 @@ class TagController extends Controller
      */
     public function store(StoreTagRequest $request): JsonResponse
     {
-        return response()->json($this->tagRepository->store($request), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->store($request), self::STATUS_CODE_OK);
     }
 
     /**
@@ -63,7 +63,7 @@ class TagController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        return response()->json($this->tagRepository->show($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->show($id), self::STATUS_CODE_OK);
     }
 
     /**
@@ -75,7 +75,7 @@ class TagController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
-        return response()->json($this->tagRepository->update($request, $id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->update($request, $id), self::STATUS_CODE_OK);
     }
 
     /**
@@ -86,6 +86,6 @@ class TagController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
-        return response()->json($this->tagRepository->destroy($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->destroy($id), self::STATUS_CODE_OK);
     }
 }

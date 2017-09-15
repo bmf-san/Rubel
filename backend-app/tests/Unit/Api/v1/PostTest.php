@@ -12,13 +12,18 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
+    /**
+     * STATUS_CODE_OK
+     *
+     * @var int
+     */
+    const STATUS_CODE_OK = 200;
+
     public function testIndex()
     {
-        factory(Post::class)->create();
+        $response = $this->json('GET', route('api.posts.index'));
 
-        $response = $this->json('GET', route('api.posts'));
-
-        $response->assertStatus(200);
+        $response->assertStatus(self::STATUS_CODE_OK);
     }
 
     public function testStore()
@@ -39,16 +44,16 @@ class PostTest extends TestCase
             ]
         ];
 
-        $response = $this->json('POST', route('api.posts'), $data, $this->getHeaders());
+        $response = $this->json('POST', route('api.posts.store'), $data, $this->getHeaders());
 
-        $response->assertStatus(200);
+        $response->assertStatus(self::STATUS_CODE_OK);
     }
 
     public function testShow()
     {
-        $response = $this->json('GET', route('api.post', 1));
+        $response = $this->json('GET', route('api.posts.show', 1));
 
-        $response->assertStatus(200);
+        $response->assertStatus(self::STATUS_CODE_OK);
     }
 
     public function testUpdate()
@@ -69,15 +74,15 @@ class PostTest extends TestCase
             ]
         ];
 
-        $response = $this->json('PATCH', route('api.post.update', Post::first()->id), $data, $this->getHeaders());
+        $response = $this->json('PATCH', route('api.posts.update', Post::first()->id), $data, $this->getHeaders());
 
-        $response->assertStatus(200);
+        $response->assertStatus(self::STATUS_CODE_OK);
     }
 
     public function testDestroy()
     {
-        $response = $this->json('DELETE', route('api.post.destroy', Post::first()->id), [], $this->getHeaders());
+        $response = $this->json('DELETE', route('api.posts.destroy', Post::first()->id), [], $this->getHeaders());
 
-        $response->assertStatus(200);
+        $response->assertStatus(self::STATUS_CODE_OK);
     }
 }

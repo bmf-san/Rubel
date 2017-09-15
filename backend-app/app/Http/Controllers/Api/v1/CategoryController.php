@@ -41,7 +41,7 @@ class CategoryController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->CategoryRepository->index(), (int) self::STATUS_CODE_OK);
+        return response()->json($this->CategoryRepository->index(), self::STATUS_CODE_OK);
     }
 
     /**
@@ -52,7 +52,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request): JsonResponse
     {
-        return response()->json($this->CategoryRepository->store($request), (int) self::STATUS_CODE_OK);
+        return response()->json($this->CategoryRepository->store($request), self::STATUS_CODE_OK);
     }
 
     /**
@@ -63,7 +63,7 @@ class CategoryController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        return response()->json($this->CategoryRepository->show($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->CategoryRepository->show($id), self::STATUS_CODE_OK);
     }
 
     /**
@@ -74,7 +74,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
-        return response()->json($this->CategoryRepository->update($request, $id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->CategoryRepository->update($request, $id), self::STATUS_CODE_OK);
     }
 
     /**
@@ -85,6 +85,6 @@ class CategoryController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
-        return response()->json($this->CategoryRepository->destroy($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->CategoryRepository->destroy($id), self::STATUS_CODE_OK);
     }
 }

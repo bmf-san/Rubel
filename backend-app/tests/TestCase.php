@@ -53,7 +53,7 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
      */
     public function getHeaders(): array
     {
-        $response = $this->json('POST', route('api.authenticate'), [
+        $response = $this->json('POST', route('api.authenticate.authenticate'), [
             "email" => env('ADMIN_EMAIL'),
             "password" => env('ADMIN_PASSWORD')
         ]);

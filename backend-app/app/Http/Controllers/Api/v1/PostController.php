@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->postRepository->index(), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->index(), self::STATUS_CODE_OK);
     }
 
     /**
@@ -48,7 +48,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request): JsonResponse
     {
-        return response()->json($this->postRepository->store($request), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->store($request), self::STATUS_CODE_OK);
     }
 
     /**
@@ -59,7 +59,7 @@ class PostController extends Controller
      */
     public function show(Int $id): JsonResponse
     {
-        return response()->json($this->postRepository->show($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->show($id), self::STATUS_CODE_OK);
     }
 
     /**
@@ -71,7 +71,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, int $id): JsonResponse
     {
-        return response()->json($this->postRepository->update($request, $id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->update($request, $id), self::STATUS_CODE_OK);
     }
 
     /**
@@ -82,6 +82,6 @@ class PostController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
-        return response()->json($this->postRepository->destroy($id), (int) self::STATUS_CODE_OK);
+        return response()->json($this->postRepository->destroy($id), self::STATUS_CODE_OK);
     }
 }

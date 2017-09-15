@@ -10,30 +10,30 @@
 /**
  * Authenticate
  */
-$router->post('authenticate', 'AuthenticateController@authenticate')->name('authenticate');
+$router->post('authenticate', 'AuthenticateController@authenticate')->name('authenticate.authenticate');
 
 /**
  * Post.
  */
-$router->get('posts', 'PostController@index')->name('posts');
-$router->get('posts/{id}', 'PostController@show')->where('id', '[0-9]+')->name('post');
+$router->get('posts', 'PostController@index')->name('posts.index');
+$router->get('posts/{id}', 'PostController@show')->where('id', '[0-9]+')->name('posts.show');
 
 /*
  * Category
  */
-$router->get('categories', 'CategoryController@index')->name('categories');
-$router->get('categories/{id}', 'CategoryController@show')->where('id', '[0-9]+')->name('category');
+$router->get('categories', 'CategoryController@index')->name('categories.index');
+$router->get('categories/{id}', 'CategoryController@show')->where('id', '[0-9]+')->name('categories.show');
 
 /*
 * Tag
 */
-$router->get('tags', 'TagController@index')->name('tags');
-$router->get('tags/{id}', 'TagController@show')->where('id', '[0-9]+')->name('tag');
+$router->get('tags', 'TagController@index')->name('tags.index');
+$router->get('tags/{id}', 'TagController@show')->where('id', '[0-9]+')->name('tags.show');
 
 /**
  * Config
  */
-$router->get('configs', 'ConfigController@index')->name('configs');
+$router->get('configs', 'ConfigController@index')->name('configs.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -45,26 +45,26 @@ $router->group(['middleware' => 'jwt-auth'], function () use ($router) {
     /*
      * Post
      */
-    $router->post('posts', 'PostController@store')->name('post.store');
-    $router->patch('posts/{id}', 'PostController@update')->where('id', '[0-9]+')->name('post.update');
-    $router->delete('posts/{id}', 'PostController@destroy')->where('id', '[0-9]+')->name('post.destroy');
+    $router->post('posts', 'PostController@store')->name('posts.store');
+    $router->patch('posts/{id}', 'PostController@update')->where('id', '[0-9]+')->name('posts.update');
+    $router->delete('posts/{id}', 'PostController@destroy')->where('id', '[0-9]+')->name('posts.destroy');
 
     /*
     * Category
     */
-    $router->post('categories', 'CategoryController@store')->name('category.store');
-    $router->patch('categories/{id}', 'CategoryController@update')->where('id', '[0-9]+')->name('category.update');
-    $router->delete('categories/{id}', 'CategoryController@destroy')->where('id', '[0-9]+')->name('category.destroy');
+    $router->post('categories', 'CategoryController@store')->name('categories.store');
+    $router->patch('categories/{id}', 'CategoryController@update')->where('id', '[0-9]+')->name('categories.update');
+    $router->delete('categories/{id}', 'CategoryController@destroy')->where('id', '[0-9]+')->name('categories.destroy');
 
     /*
      * Tag
      */
-    $router->post('tags', 'TagController@store')->name('tag.store');
-    $router->patch('tags/{id}', 'TagController@update')->where('id', '[0-9]+')->name('tag.update');
-    $router->delete('tags/{id}', 'TagController@destroy')->where('id', '[0-9]+')->name('tag.destroy');
+    $router->post('tags', 'TagController@store')->name('tags.store');
+    $router->patch('tags/{id}', 'TagController@update')->where('id', '[0-9]+')->name('tags.update');
+    $router->delete('tags/{id}', 'TagController@destroy')->where('id', '[0-9]+')->name('tags.destroy');
 
     /**
      * Config
      */
-    $router->patch('configs', 'ConfigController@update');
+    $router->patch('configs', 'ConfigController@update')->name('configs.update');
 });

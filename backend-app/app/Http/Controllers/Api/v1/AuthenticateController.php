@@ -47,10 +47,10 @@ class AuthenticateController extends Controller
 
         try {
             if (! $token = $this->jwtAuth->attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], (int) self::STATUS_CODE_UNAUTHORIZED);
+                return response()->json(['error' => 'invalid_credentials'], self::STATUS_CODE_UNAUTHORIZED);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], (int) self::STATUS_CODE_INTERNAL_SERVER_ERROR);
+            return response()->json(['error' => 'could_not_create_token'], self::STATUS_CODE_INTERNAL_SERVER_ERROR);
         }
 
         return response()->json(compact('token'));
