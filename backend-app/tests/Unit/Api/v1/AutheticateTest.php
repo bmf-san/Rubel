@@ -10,13 +10,22 @@ class AuthenticateTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testIndex()
+    /**
+     * STATUS_CODE_OK
+     *
+     * @var int
+     */
+    const STATUS_CODE_OK = 200;
+
+    public function testAuthenticate()
     {
-        // TODO write test code exactly
-        // factory(App\Models\Post::class)->create();
-        //
-        // $response = $this->json('GET', route('posts'));
-        //
-        // $response->assertStatus(200);
+        $data = [
+            'email' => config('rubel.admin.email'),
+            'password' => config('rubel.admin.password')
+        ];
+
+        $response = $this->json('POST', route('api.authenticate.authenticate'), $data);
+
+        $response->assertStatus(self::STATUS_CODE_OK);
     }
 }

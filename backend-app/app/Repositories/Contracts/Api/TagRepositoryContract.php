@@ -3,6 +3,7 @@
 namespace App\Repositories\Contracts\Api;
 
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Tag;
 
 interface TagRepositoryContract
 {
@@ -25,9 +26,9 @@ interface TagRepositoryContract
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Tag
      */
-    public function show(int $id): Collection;
+    public function show(int $id): Tag;
 
     /**
      * Update the specified resource in storage.

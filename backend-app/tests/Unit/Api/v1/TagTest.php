@@ -38,8 +38,6 @@ class TagTest extends TestCase
 
     public function testShow()
     {
-        // TODO  ここから！
-
         $response = $this->json('GET', route('api.tags.show', 1));
 
         $response->assertStatus(self::STATUS_CODE_OK);
@@ -52,6 +50,13 @@ class TagTest extends TestCase
         ];
 
         $response = $this->json('PATCH', route('api.tags.update', Tag::first()->id), $data, $this->getHeaders());
+
+        $response->assertStatus(self::STATUS_CODE_OK);
+    }
+
+    public function testDestroy()
+    {
+        $response = $this->json('DELETE', route('api.tags.destroy', Tag::first()->id), [], $this->getHeaders());
 
         $response->assertStatus(self::STATUS_CODE_OK);
     }
