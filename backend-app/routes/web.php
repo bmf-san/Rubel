@@ -9,34 +9,34 @@
 /**
  * Home.
  */
-$router->get('/', 'HomeController@index')->name('home');
+$router->get('/', 'HomeController@index')->name('root.index');
 
 /*
  * Post
  */
 $router->group(['prefix' => 'posts'], function () use ($router) {
-    $router->get('/', 'PostController@index')->name('posts');
-    $router->get('/category/{category}', 'CategoryController@getPosts')->name('posts.category');
-    $router->get('/tag/{tag}', 'TagController@getPosts')->name('posts.tag');
+    $router->get('/', 'PostController@index')->name('posts.index');
+    $router->get('/{post}', 'PostController@show')->name('posts.show');
+    $router->get('/categories/{category}', 'CategoryController@getPosts')->name('posts.categories.getPosts');
+    $router->get('/tags/{tag}', 'TagController@getPosts')->name('posts.tags.getPosts');
 });
-$router->get('/post/{post}', 'PostController@show')->name('post');
 
 /**
 * Tag
 */
-$router->get('/tag', 'TagController@index')->name('tags');
+$router->get('/tags', 'TagController@index')->name('tags.index');
 
 /**
  * Category
  */
-$router->get('/category', 'CategoryController@index')->name('categories');
+$router->get('/categories', 'CategoryController@index')->name('categories.index');
 
 /**
  * Profile
  */
-$router->get('profile', 'ProfileController@index')->name('profile');
+$router->get('profiles', 'ProfileController@index')->name('profiles.index');
 
 /**
  * Contact
  */
-$router->get('contact', 'ContactController@index')->name('contact');
+$router->get('contacts', 'ContactController@index')->name('contacts.index');

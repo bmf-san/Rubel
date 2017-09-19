@@ -38,7 +38,7 @@
                 <span>{{ $post->publication_date }}</span>
               </p>
               <h1 class="title">
-                <a href="{{ route('web.post', $post->title) }}">
+                <a href="{{ route('web.posts.show', $post->title) }}">
                   {{ mb_str_limit($post->title, 40, '...') }}
                 </a>
               </h1>
@@ -46,13 +46,13 @@
                 {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
               </h2>
               <p class="has-text-right has-text-muted">
-                <a href="{{ route('web.posts.category', $post->category->name) }}">
+                <a href="{{ route('web.posts.categories.getPosts', $post->category->name) }}">
                   {{ $post->category->name }}
                 </a>
               </p>
               <p class="has-text-right">
                 @forelse ($post->tags as $tag)
-                  <a href="{{ route('web.posts.tag', $tag->name) }}">
+                  <a href="{{ route('web.posts.tags.getPosts', $tag->name) }}">
                     <span class="tag is-primary">
                       {{ $tag->name }}
                     </span>
@@ -76,7 +76,7 @@
                 <span>{{ $post->publication_date }}</span>
               </p>
               <h1 class="title">
-                <a href="{{ route('web.post', $post->title) }}">
+                <a href="{{ route('web.posts.show', $post->title) }}">
                   {{ mb_str_limit($post->title, 40, '...') }}
                 </a>
               </h1>
@@ -84,13 +84,13 @@
                 {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
               </h2>
               <p class="has-text-right has-text-muted">
-                <a href="{{ route('web.posts.category', $post->category->name) }}"></a>
+                <a href="{{ route('web.posts.categories.getPosts', $post->category->name) }}"></a>
                   {{ $post->category->name }}
                 </a>
               </p>
               <p class="has-text-right">
                 @forelse ($post->tags as $tag)
-                  <a href={{ route('web.posts.tag',$tag->name) }}>
+                  <a href={{ route('web.posts.tags.getPosts',$tag->name) }}>
                     <span class="tag is-primary">
                       {{ $tag->name }}
                     </span>
@@ -111,7 +111,7 @@
       <div class="container">
         <div class="tabs is-centered">
           <ul>
-            <li><a href={{ route('web.posts') }}>View more posts</a></li>
+            <li><a href={{ route('web.posts.index') }}>View more posts</a></li>
           </ul>
         </div>
       </div>

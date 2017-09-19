@@ -1,12 +1,12 @@
 <aside class="menu">
   <p class="menu-label">
-    <a href="{{ route('web.categories') }}">Categories</a>
+    <a href="{{ route('web.categories.index') }}">Categories</a>
   </p>
   <ul class="menu-list">
     <li>
       <ul>
         @forelse ($categories as $category)
-          <li><a href="{{ route('web.posts.category', $category->name) }}">{{ $category->name }}</a></li>
+          <li><a href="{{ route('web.posts.categories.getPosts', $category->name) }}">{{ $category->name }}</a></li>
         @empty
           No Categories.
         @endforelse
@@ -16,13 +16,13 @@
 </aside>
 <aside class="menu">
   <p class="menu-label">
-    <a href="{{ route('web.tags') }}">Tags</a>
+    <a href="{{ route('web.tags.index') }}">Tags</a>
   </p>
   <ul class="menu-list">
     <li>
       <ul class="tag-list">
         @forelse ($tags as $tag)
-          <a href="{{ route('web.posts.tag', $tag->name) }}">
+          <a href="{{ route('web.posts.tags.getPosts', $tag->name) }}">
             <span class="tag is-primary">
               {{ $tag->name }}
             </span>

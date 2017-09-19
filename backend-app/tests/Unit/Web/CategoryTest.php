@@ -13,7 +13,7 @@ class CategoryTest extends TestCase
 
     public function testIndex()
     {
-        $response = $this->get(route('web.categories'));
+        $response = $this->get(route('web.categories.index'));
 
         $response->assertStatus(200);
     }
@@ -22,7 +22,7 @@ class CategoryTest extends TestCase
     {
         $category = Category::first();
 
-        $response = $this->get(route('web.posts.category', $category->name));
+        $response = $this->get(route('web.posts.categories.getPosts', $category->name));
 
         $response->assertStatus(200);
     }

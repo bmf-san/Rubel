@@ -13,7 +13,7 @@ class TagTest extends TestCase
 
     public function testIndex()
     {
-        $response = $this->get(route('web.tags'));
+        $response = $this->get(route('web.tags.index'));
 
         $response->assertStatus(200);
     }
@@ -22,7 +22,7 @@ class TagTest extends TestCase
     {
         $tag = Tag::first();
 
-        $response = $this->get(route('web.posts.tag', $tag->name));
+        $response = $this->get(route('web.posts.tags.getPosts', $tag->name));
 
         $response->assertStatus(200);
     }

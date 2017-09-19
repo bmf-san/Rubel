@@ -13,7 +13,7 @@ class PostTest extends TestCase
 
     public function testIndex()
     {
-        $response = $this->get(route('web.posts'));
+        $response = $this->get(route('web.posts.index'));
 
         $response->assertStatus(200);
     }
@@ -26,7 +26,7 @@ class PostTest extends TestCase
             ]
         );
 
-        $response = $this->get(route('web.post', $post->title));
+        $response = $this->get(route('web.posts.show', $post->title));
 
         $response->assertStatus(200);
     }

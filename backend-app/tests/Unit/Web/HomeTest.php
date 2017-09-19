@@ -10,7 +10,7 @@ class HomeTest extends TestCase
 {
     public function testIndex()
     {
-        $response = $this->get(route('web.home'));
+        $response = $this->get(route('web.root.index'));
 
         $response->assertStatus(200);
     }

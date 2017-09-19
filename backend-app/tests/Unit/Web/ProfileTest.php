@@ -12,7 +12,7 @@ class ProfileTest extends TestCase
 
     public function testIndex()
     {
-        $response = $this->get(route('web.profile'));
+        $response = $this->get(route('web.profiles.index'));
 
         $response->assertStatus(200);
     }
