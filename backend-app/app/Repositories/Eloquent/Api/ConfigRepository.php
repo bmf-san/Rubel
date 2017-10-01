@@ -32,7 +32,8 @@ class ConfigRepository implements ConfigRepositoryContract
      */
     public function index(): Collection
     {
-        $configs = $this->configModel->all();
+        // TODO Remove a orderBy method after implementation of search api.
+        $configs = $this->configModel->orderBy('created_at', 'desc')->get();
 
         return $configs;
     }

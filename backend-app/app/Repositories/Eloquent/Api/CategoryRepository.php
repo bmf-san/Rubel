@@ -39,7 +39,8 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function index(): Collection
     {
-        $categories = $this->categoryModel->get();
+        // TODO Remove a orderBy method after implementation of search api.
+        $categories = $this->categoryModel->orderBy('created_at', 'desc')->get();
 
         return $categories;
     }

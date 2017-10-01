@@ -32,7 +32,8 @@ class TagRepository implements TagRepositoryContract
      */
     public function index(): Collection
     {
-        $tags = $this->tagModel->get();
+        // TODO Remove a orderBy method after implementation of search api.
+        $tags = $this->tagModel->orderBy('created_at', 'desc')->get();
 
         return $tags;
     }
