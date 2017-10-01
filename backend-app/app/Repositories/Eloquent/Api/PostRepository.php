@@ -50,7 +50,8 @@ class PostRepository implements PostRepositoryContract
      */
     public function index(): LengthAwarePaginator
     {
-        $posts = $this->postModel->with('admin', 'category', 'comments', 'tags')->paginate(self::PAGINATION_LIMIT);
+        // TODO Remove a orderBy method after implementation of search api.
+        $posts = $this->postModel->with('admin', 'category', 'comments', 'tags')->orderBy('created_at', 'desc')->paginate(self::PAGINATION_LIMIT);
 
         return $posts;
     }
