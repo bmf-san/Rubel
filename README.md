@@ -2,7 +2,7 @@
 
 # Rubel
 
-Rubel - An Open Source CMS built with Laravel, React, and Bulma.
+Rubel - An Open Source CMS built with Laravel, React.
 
 - [Rubel Demo](https://rubel.bmf-tech.com/)
 - [Rubel Admin Demo](https://rubel-admin.bmf-tech.com/login)
