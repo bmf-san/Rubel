@@ -1,5 +1,3 @@
-import "../../scss/post/show.scss"
-
 // Table of contents
 if (document.getElementById("post-toc")) {
 	(() => {

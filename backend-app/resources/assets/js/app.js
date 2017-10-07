@@ -1,5 +1,3 @@
-import "../scss/app.scss";
-
 // Toggle menu
 (() => {
 	const burger = document.querySelector(".nav-toggle")

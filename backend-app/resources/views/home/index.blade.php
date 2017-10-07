@@ -2,6 +2,10 @@
 
 @section('title', 'home')
 
+@section('additional-stylesheet')
+  <link rel="stylesheet" href="{{ asset('/dist/css/home.min.css') }}">
+@endsection
+
 @section('content')
   <section class="hero is-primary is-medium header-image">
       <div class="hero-head">
@@ -29,40 +33,44 @@
         <div class="columns">
           <div id="recent-tab" class="column is-7 is-offset-2 posts-column">
             @forelse($recentPosts as $post)
-              @if(is_date_within_a_week($post->publication_date))
+              <div class="column">
+                @if(is_date_within_a_week($post->publication_date))
+                  <p>
+                    <span class="tag is-danger">New!</span>
+                  </p>
+                @endif
                 <p>
-                  <span class="tag is-danger">New!</span>
+                  <span>{{ $post->publication_date }}</span>
                 </p>
-              @endif
-              <p>
-                <span>{{ $post->publication_date }}</span>
-              </p>
-              <h1 class="title">
-                <a href="{{ route('web.posts.show', $post->title) }}">
-                  {{ mb_str_limit($post->title, 40, '...') }}
-                </a>
-              </h1>
-              <h2 class="blog-summary">
-                {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
-              </h2>
-              <p class="has-text-right has-text-muted">
-                <a href="{{ route('web.posts.categories.getPosts', $post->category->name) }}">
-                  {{ $post->category->name }}
-                </a>
-              </p>
-              <p class="has-text-right">
-                @forelse ($post->tags as $tag)
-                  <a href="{{ route('web.posts.tags.getPosts', $tag->name) }}">
-                    <span class="tag is-primary">
-                      {{ $tag->name }}
-                    </span>
+                <h1 class="title">
+                  <a href="{{ route('web.posts.show', $post->title) }}">
+                    {{ mb_str_limit($post->title, 40, '...') }}
                   </a>
-                @empty
-                  No Tags.
-                @endforelse
-              </p>
+                </h1>
+                <h2 class="blog-summary">
+                  {{ mb_str_limit(strip_tags($post->html_content), 80, '...') }}
+                </h2>
+                <p class="has-text-right has-text-muted">
+                  <a href="{{ route('web.posts.categories.getPosts', $post->category->name) }}">
+                    {{ $post->category->name }}
+                  </a>
+                </p>
+                <p class="has-text-right">
+                  @forelse ($post->tags as $tag)
+                    <a href="{{ route('web.posts.tags.getPosts', $tag->name) }}">
+                      <span class="tag is-primary">
+                        {{ $tag->name }}
+                      </span>
+                    </a>
+                  @empty
+                    No Tags.
+                  @endforelse
+                </p>
+              </div>
             @empty
-              <p class="has-text-centered">Nothing Found.</p>
+              <div class="column">
+                <p class="has-text-centered">Nothing Found.</p>
+              </div>
             @endforelse
           </div>
           <div id="random-tab" class="column is-7 is-offset-2 posts-column">
@@ -120,5 +128,5 @@
 @endsection
 
 @section('additional-script')
-  <script type="text/javascript" src={{ asset('/dist/home.bundle.js') }}></script>
+  <script type="text/javascript" src={{ asset('/dist/js/home.bundle.js') }}></script>
 @endsection

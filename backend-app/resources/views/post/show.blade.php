@@ -2,6 +2,10 @@
 
 @section('title', $post->title)
 
+@section('additional-stylesheet')
+  <link rel="stylesheet" href="{{ asset('/dist/css/post.min.css') }}">
+@endsection
+
 @section('content')
   <div>
     @include('partials.nav')
@@ -100,5 +104,5 @@
 @endsection
 
 @section('additional-script')
-  <script type="text/javascript" src={{ asset('/dist/post.bundle.js') }}></script>
+  <script type="text/javascript" src={{ asset('/dist/js/post.bundle.js') }}></script>
 @endsection

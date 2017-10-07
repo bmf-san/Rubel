@@ -2,6 +2,10 @@
 
 @section('title', 'Contact')
 
+@section('additional-stylesheet')
+  <link rel="stylesheet" href="{{ asset('/dist/css/contact.min.css') }}">
+@endsection
+
 @section('content')
   <div>
     @include('partials.nav')
@@ -23,8 +27,4 @@
     </section>
   </div>
   @include('partials.footer')
-@endsection
-
-@section('additional-script')
-  <script type="text/javascript" src={{ asset('/dist/contact.bundle.js') }}></script>
 @endsection

@@ -1,5 +1,3 @@
-import "../../scss/home/index.scss";
-
 // Tabs
 (() => {
 	const recentBtn = document.querySelector("#recent-btn")
