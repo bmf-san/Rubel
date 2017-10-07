@@ -1,6 +1,5 @@
-$fa-font-path: "~font-awesome/fonts";
+@import "./variables.scss";
 @import "node_modules/font-awesome/scss/font-awesome";
-$turquoise: hsl(171, 100%, 41%);
 @import "node_modules/bulma/bulma";
 @import "node_modules/highlight.js/styles/atom-one-dark";
 
