@@ -76,7 +76,7 @@
               </div>
               <footer class="card-footer">
                 <a href="javascript:void(0);" onclick="window.open('https://twitter.com/share?url={{ url()->current() }}&text={{ $post->title }}&hashtags=bmf-tech&related=bmf_san', 'mywindow4', 'width=400, height=300, menubar=no, toolbar=no, scrollbars=yes');" class="card-footer-item">Share on Twitter</a>
-                <a href="javascript:void(0);" onclick="window.open('http://b.hatena.ne.jp/add?url={{ url()->current() }}', 'mywindow4', 'width=400, height=300, menubar=no, toolbar=no, scrollbars=yes');" class="card-footer-item">Share on Hatena</a>
+                <a href="javascript:void(0);" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ url()->current()}}')" class="card-footer-item">Share on Facebook</a>
               </footer>
             </div>
             <div class="mt-one-and-a-half">
@@ -101,7 +101,4 @@
 
 @section('additional-script')
   <script type="text/javascript" src={{ asset('/dist/post.bundle.js') }}></script>
-  <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async">
-    {lang: "ja"}
-  </script>
 @endsection
