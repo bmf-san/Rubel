@@ -43,6 +43,9 @@
             <div id="post-content" class="content">
               {!! $post->html_content !!}
             </div>
+            <div class="column is-paddingless">
+              {!! get_the_google_adsense_ad_code(config('google.adsense.ad_name'), config('google.adsense.data_ad_client'), config('google.adsense.data_ad_slot')) !!}
+            </div>
           </div>
           <div class="column is-3">
             @include('partials.toc')

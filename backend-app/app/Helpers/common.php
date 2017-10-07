@@ -1,17 +1,68 @@
 <?php
 
 /**
- * Get a blog info
+ * Get the blog info
  *
  * @param  string $info
  * @return string
  */
-if (!function_exists('get_blog_info')) {
-    function get_blog_info(String $info)
+if (!function_exists('get_the_blog_info')) {
+    function get_the_blog_info(String $info)
     {
         $config = App\Models\Config::where('name', $info)->firstOrFail();
 
         return $config->value;
+    }
+}
+
+/**
+ * Get the google adsense ad code.
+ *
+ * @param string $googleAdName
+ * @param string $googleDataAdClient
+ * @param string $googleDataAdSlot
+ * @return string
+ */
+if (!function_exists('get_the_google_adsense_ad_code')) {
+    function get_the_google_adsense_ad_code($googleAdName, $googleDataAdClient, $googleDataAdSlot)
+    {
+        return <<<EOT
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- {$googleAdName} -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client={$googleDataAdClient}
+             data-ad-slot={$googleDataAdSlot}
+             data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+EOT;
+    }
+}
+
+/**
+ * Get the google analytics code.
+ *
+ * @param string $googleAdName
+ * @param string $googleDataAdClient
+ * @param string $googleDataAdSlot
+ * @return string
+ */
+if (!function_exists('get_the_google_analytics_code')) {
+    function get_the_google_analytics_code($trackingId)
+    {
+        return <<<EOT
+        <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={$trackingId}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '{$trackingId}');
+        </script>
+EOT;
     }
 }
 
