@@ -8,14 +8,6 @@ Rubel - An Open Source CMS built with Laravel, React.
 - [Rubel Admin Demo](https://rubel-admin.bmf-tech.com/login)
     - `EMAIL: rubel@example.com / PASSWORD: rubel`
 
-## Features
-
-**This section is under construction.**
-
-- [ ]
-- [ ]
-- [ ]
-
 ## Requirements
 
 - PHP7
