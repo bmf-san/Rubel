@@ -6,7 +6,8 @@ Rubel - An Open Source CMS built with Laravel, React.
 
 - [Rubel Demo](https://rubel.bmf-tech.com/)
 - [Rubel Admin Demo](https://rubel-admin.bmf-tech.com/login)
-    - `EMAIL: rubel@example.com / PASSWORD: rubel`
+
+  - `EMAIL: rubel@example.com / PASSWORD: rubel`
 
 ## Requirements
 
@@ -98,7 +99,9 @@ Now you can start Rubel!
 
 ## Contributing
 
-We welcome your isuue or pull request from everyone. Please check `ISSUE_TEMPLATE.md` and `PULL_REQUEST_TEMPLATE.md` to contribute.
+We welcome your issue or pull request from everyone. Please check `ISSUE_TEMPLATE.md` and `PULL_REQUEST_TEMPLATE.md` to contribute.
+
+If you want to find something to contibute, please check the [project](https://github.com/bmf-san/Rubel/projects/1).
 
 ## License
 
