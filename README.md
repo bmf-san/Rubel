@@ -91,7 +91,7 @@ php artisan migration
 php artisan db:seed
 ```
 
-Now you can start Rubel!
+Now you can start the Rubel!
 
 ## Anything Else
 
