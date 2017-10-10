@@ -19,9 +19,9 @@ Rubel - An Open Source CMS built with Laravel, React.
 
 ### Installation
 
-Latest `git clone git@github.com:bmf-san/Rubel.git rubel`
+[Latest] `git clone git@github.com:bmf-san/Rubel.git rubel`
 
-Specified version `git clone -branch 1.0.0 git@github.com:bmf-san/Rubel.git rubel`
+[Specified version] `git clone -branch 1.0.0 git@github.com:bmf-san/Rubel.git rubel`
 
 ### Setting for backend-app
 
