@@ -1,7 +1,7 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
-import {reduxForm, Field, SubmissionError} from "redux-form"
-import {connect} from "react-redux"
+import { reduxForm, Field, SubmissionError } from "redux-form"
+import { connect } from "react-redux"
 import ReactTags from "react-tag-autocomplete"
 import {
 	editPost,
@@ -17,7 +17,7 @@ import {
 	fetchCategories,
 	updateMarkdown
 } from "../actions/index"
-import {Link} from "react-router"
+import { Link } from "react-router"
 import Loader from "../utils/Loader"
 
 class EditPost extends Component {
@@ -92,7 +92,7 @@ class EditPost extends Component {
 	}
 
 	handleDeletePost(e) {
-		const {params, deletePost, fetchPosts} = this.props
+		const { params, deletePost, fetchPosts } = this.props
 
 		e.preventDefault()
 
@@ -152,7 +152,7 @@ class EditPost extends Component {
 	}
 
 	renderMarkdownField() {
-		const {posts} = this.props
+		const { posts } = this.props
 
 		return (
 			<div className="content markdown-area" dangerouslySetInnerHTML={{
@@ -187,7 +187,7 @@ class EditPost extends Component {
 		)
 	}
 
-	renderSubmitBtnField({input, handleDeletePost}) {
+	renderSubmitBtnField({ input, handleDeletePost }) {
 		return (
 			<div className="field">
 				<div className="field is-grouped is-pulled-left">
@@ -213,28 +213,28 @@ class EditPost extends Component {
 	}
 
 	handleDelete(index) {
-		const {deleteCompleteTags} = this.props
+		const { deleteCompleteTags } = this.props
 
 		deleteCompleteTags(index)
 	}
 
 	handleAddition(props) {
-		const {addCompleteTags} = this.props
+		const { addCompleteTags } = this.props
 
 		addCompleteTags(props)
 	}
 
 	handleUpdateMarkdown(e) {
-		const {updateMarkdown} = this.props
+		const { updateMarkdown } = this.props
 
 		updateMarkdown(e.target.value)
 	}
 
 	render() {
-		const {tags, handleSubmit, submitting} = this.props
+		const { tags, handleSubmit, submitting } = this.props
 
 		const suggestions = tags.all.map((tag) => {
-			return {id: tag.id, name: tag.name}
+			return { id: tag.id, name: tag.name }
 		})
 
 		return (
@@ -297,10 +297,10 @@ const validate = props => {
 	return errors
 }
 
-const form = reduxForm({form: "NewPostForm", enableReinitialize: true, validate})(EditPost)
+const form = reduxForm({ form: "NewPostForm", enableReinitialize: true, validate })(EditPost)
 
 function mapStateToProps(state) {
-	return {posts: state.posts, tags: state.tags, categories: state.categories, initialValues: state.posts.init_post}
+	return { posts: state.posts, tags: state.tags, categories: state.categories, initialValues: state.posts.init_post }
 }
 
 export default connect(mapStateToProps, {

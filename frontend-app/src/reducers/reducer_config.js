@@ -1,4 +1,4 @@
-import {FETCH_CONFIGS} from "../actions/index"
+import { FETCH_CONFIGS } from "../actions/index"
 
 const INITIAL_STATE = {
 	all: []

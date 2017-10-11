@@ -1,20 +1,20 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
-import {reduxForm, Field, SubmissionError} from "redux-form"
-import {connect} from "react-redux"
-import {editConfig, fetchConfigs} from "../actions/index"
-import {Link} from "react-router"
+import { reduxForm, Field, SubmissionError } from "redux-form"
+import { connect } from "react-redux"
+import { editConfig, fetchConfigs } from "../actions/index"
+import { Link } from "react-router"
 import Loader from "../utils/Loader"
 
 class Configs extends Component {
 	componentWillMount() {
-		const {fetchConfigs} = this.props
+		const { fetchConfigs } = this.props
 
 		fetchConfigs()
 	}
 
 	onSubmit(props) {
-		const {editConfig, fetchConfigs, reset} = this.props
+		const { editConfig, fetchConfigs, reset } = this.props
 
 		return editConfig(props).then((res) => {
 			if (res.error) {
@@ -47,7 +47,7 @@ class Configs extends Component {
 	}
 
 	render() {
-		const {handleSubmit, configs, submitting} = this.props
+		const { handleSubmit, configs, submitting } = this.props
 
 		return (
 			<div>
@@ -83,7 +83,7 @@ Configs.contextTypes = {
 	router: PropTypes.object
 }
 
-const form = reduxForm({form: "ConfigForm", enableReinitialize: true})(Configs)
+const form = reduxForm({ form: "ConfigForm", enableReinitialize: true })(Configs)
 
 function mapStateToProps(state) {
 	const obj = {}
@@ -92,7 +92,7 @@ function mapStateToProps(state) {
 		obj[config.name] = config.value
 	})
 
-	return {configs: state.configs, initialValues: obj}
+	return { configs: state.configs, initialValues: obj }
 }
 
-export default connect(mapStateToProps, {editConfig, fetchConfigs})(form)
+export default connect(mapStateToProps, { editConfig, fetchConfigs })(form)

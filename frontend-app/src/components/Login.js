@@ -1,14 +1,14 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
-import {reduxForm, Field, SubmissionError} from "redux-form"
-import {connect} from "react-redux"
-import {loginUser, isLoginUser} from "../actions/index"
-import {Link} from "react-router"
+import { reduxForm, Field, SubmissionError } from "redux-form"
+import { connect } from "react-redux"
+import { loginUser, isLoginUser } from "../actions/index"
+import { Link } from "react-router"
 import Loader from "../utils/Loader"
 
 class Login extends Component {
 	componentWillMount() {
-		const {isLoginUser} = this.props
+		const { isLoginUser } = this.props
 
 		if (isLoginUser().payload) {
 			this.context.router.push("/dashboard")
@@ -16,7 +16,7 @@ class Login extends Component {
 	}
 
 	onSubmit(props) {
-		const {loginUser} = this.props
+		const { loginUser } = this.props
 
 		return loginUser(props).then((res) => {
 			if (res.error) {
@@ -24,7 +24,7 @@ class Login extends Component {
 				const exception_msg = res.payload.response.data.error
 
 				if (exception_msg) {
-					throw new SubmissionError({email: [exception_msg], password: [exception_msg]})
+					throw new SubmissionError({ email: [exception_msg], password: [exception_msg] })
 				} else {
 					throw new SubmissionError({
 						email: [validation_msg.email],
@@ -76,7 +76,7 @@ class Login extends Component {
 	}
 
 	render() {
-		const {handleSubmit, submitting} = this.props
+		const { handleSubmit, submitting } = this.props
 
 		return (
 			<div className="columns login-column">
@@ -121,10 +121,10 @@ const validate = props => {
 	}
 }
 
-const form = reduxForm({form: "LoginForm", validate})(Login)
+const form = reduxForm({ form: "LoginForm", validate })(Login)
 
 function mapStateToProps(state) {
 	return {}
 }
 
-export default connect(mapStateToProps, {loginUser, isLoginUser})(form)
+export default connect(mapStateToProps, { loginUser, isLoginUser })(form)

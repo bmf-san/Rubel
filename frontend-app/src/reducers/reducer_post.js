@@ -1,7 +1,7 @@
 import marked from "marked"
 import hljs from "highlight.js"
 
-import {FETCH_POSTS, FETCH_POST, FETCH_INIT_POST, UPDATE_MARKDOWN, INIT_MARKDOWN} from "../actions/index"
+import { FETCH_POSTS, FETCH_POST, FETCH_INIT_POST, UPDATE_MARKDOWN, INIT_MARKDOWN } from "../actions/index"
 
 const INITIAL_STATE = {
 	records: [],

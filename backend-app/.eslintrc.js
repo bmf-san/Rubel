@@ -3,9 +3,7 @@ module.exports = {
     "browser": true,
     "es6": true
   },
-  'extends': [
-    'plugin:react/recommended'
-  ],
+  'extends': ['plugin:react/recommended'],
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
@@ -13,25 +11,20 @@ module.exports = {
     },
     "sourceType": "module"
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
+    "object-curly-spacing": [
+      "error", "always"
+    ],
     "indent": [
-      "error",
-      "tab"
+      "error", "tab"
     ],
     "linebreak-style": [
-      "error",
-      "unix"
+      "error", "unix"
     ],
     "quotes": [
-      "error",
-      "double"
+      "error", "double"
     ],
-    "semi": [
-      "error",
-      "never"
-    ]
+    "semi": ["error", "never"]
   }
 };

@@ -1,12 +1,12 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
-import {connect} from "react-redux"
-import {fetchConfigs, logoutUser, isLoginUser} from "../actions/index"
-import {Link} from "react-router"
+import { connect } from "react-redux"
+import { fetchConfigs, logoutUser, isLoginUser } from "../actions/index"
+import { Link } from "react-router"
 
 class App extends Component {
   componentWillMount() {
-    const {fetchConfigs, isLoginUser} = this.props
+    const { fetchConfigs, isLoginUser } = this.props
 
     if (!isLoginUser().payload) {
       this.context.router.push("/login")
@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   render() {
-    const {config, location, children, logoutUser} = this.props
+    const { config, location, children, logoutUser } = this.props
 
     return (
       <div>
@@ -196,7 +196,7 @@ function mapStateToProps(state) {
     obj[config.name] = config.value
   })
 
-  return {configs: state.configs, config: obj}
+  return { configs: state.configs, config: obj }
 }
 
-export default connect(mapStateToProps, {fetchConfigs, logoutUser, isLoginUser})(App)
+export default connect(mapStateToProps, { fetchConfigs, logoutUser, isLoginUser })(App)

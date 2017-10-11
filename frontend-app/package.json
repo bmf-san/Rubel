@@ -2,8 +2,7 @@
   "scripts": {
     "watch": "webpack --watch --progress",
     "build": "webpack --config webpack.config.js --progress",
-    "refresh": "rm -rf node_modules/; npm install; npm run build",
-    "fix": "eslint --fix ./src/**/*.js ./*.js"
+    "refresh": "rm -rf node_modules/; npm install; npm run build"
   },
   "dependencies": {
     "axios": "^0.16.2",

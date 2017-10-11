@@ -1,20 +1,20 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
-import {reduxForm, Field, SubmissionError} from "redux-form"
-import {connect} from "react-redux"
-import {createTag, editTag, deleteTag, fetchTags} from "../actions/index"
-import {Link} from "react-router"
+import { reduxForm, Field, SubmissionError } from "redux-form"
+import { connect } from "react-redux"
+import { createTag, editTag, deleteTag, fetchTags } from "../actions/index"
+import { Link } from "react-router"
 import Loader from "../utils/Loader"
 
 class Tags extends Component {
 	componentWillMount() {
-		const {fetchTags} = this.props
+		const { fetchTags } = this.props
 
 		fetchTags()
 	}
 
 	onSubmit(props) {
-		const {createTag, fetchTags, reset} = this.props
+		const { createTag, fetchTags, reset } = this.props
 
 		return createTag(props).then((res) => {
 			if (res.error) {
@@ -31,7 +31,7 @@ class Tags extends Component {
 	}
 
 	handleTagDelete(props) {
-		const {deleteTag, fetchTags} = this.props
+		const { deleteTag, fetchTags } = this.props
 
 		if (window.confirm("Are you sure you want to delete this tag?")) {
 			// HACK add a error handling
@@ -69,7 +69,7 @@ class Tags extends Component {
 	}
 
 	renderTags() {
-		const {tags} = this.props
+		const { tags } = this.props
 
 		return tags.all.map((tag) => {
 			return (
@@ -85,7 +85,7 @@ class Tags extends Component {
 	}
 
 	render() {
-		const {handleSubmit, submitting} = this.props
+		const { handleSubmit, submitting } = this.props
 
 		return (
 			<div>
@@ -152,10 +152,10 @@ const validate = props => {
 	return errors
 }
 
-const form = reduxForm({form: "TagForm", validate})(Tags)
+const form = reduxForm({ form: "TagForm", validate })(Tags)
 
 function mapStateToProps(state) {
-	return {tags: state.tags}
+	return { tags: state.tags }
 }
 
-export default connect(mapStateToProps, {createTag, editTag, deleteTag, fetchTags})(form)
+export default connect(mapStateToProps, { createTag, editTag, deleteTag, fetchTags })(form)

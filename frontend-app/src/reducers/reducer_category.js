@@ -1,4 +1,4 @@
-import {FETCH_CATEGORIES} from "../actions/index"
+import { FETCH_CATEGORIES } from "../actions/index"
 
 const INITIAL_STATE = {
 	all: []

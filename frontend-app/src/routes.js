@@ -1,5 +1,5 @@
 import React from "react"
-import {BrowserRouter as Router, Route, IndexRoute} from "react-router"
+import { BrowserRouter as Router, Route, IndexRoute } from "react-router"
 
 import App from "./components/App"
 import Dashboard from "./containers/Dashboard"

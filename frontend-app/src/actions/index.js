@@ -58,144 +58,144 @@ export function loginUser(props) {
 		localStorage.setItem(`${jwtKey}`, jwt)
 	})
 
-	return {type: LOGIN_USER, payload: request}
+	return { type: LOGIN_USER, payload: request }
 }
 
 export function isLoginUser() {
 	if (localStorage.getItem(`${jwtKey}`)) {
-		return {type: IS_LOGIN_USER, payload: true}
+		return { type: IS_LOGIN_USER, payload: true }
 	}
 
-	return {type: IS_LOGIN_USER, payload: false}
+	return { type: IS_LOGIN_USER, payload: false }
 }
 
 export function logoutUser() {
 	localStorage.removeItem(`${jwtKey}`)
 
-	return {type: LOGOUT_USER, payload: "logout"}
+	return { type: LOGOUT_USER, payload: "logout" }
 }
 
 export function createPost(props) {
 	const request = apiAuth.post("/posts", props)
 
-	return {type: CREATE_POST, payload: request}
+	return { type: CREATE_POST, payload: request }
 }
 
 export function deletePost(id) {
 	const request = apiAuth.delete(`/posts/${id}`)
 
-	return {type: DELETE_POST, payload: request}
+	return { type: DELETE_POST, payload: request }
 }
 
 export function updateMarkdown(props) {
-	return {type: UPDATE_MARKDOWN, payload: props}
+	return { type: UPDATE_MARKDOWN, payload: props }
 }
 
 export function initMarkdown() {
-	return {type: INIT_MARKDOWN, payload: null}
+	return { type: INIT_MARKDOWN, payload: null }
 }
 
 export function editPost(props) {
 	const id = props.id
 	const request = apiAuth.patch(`/posts/${id}`, props)
 
-	return {type: EDIT_POST, payload: request}
+	return { type: EDIT_POST, payload: request }
 }
 
 export function fetchPosts(page) {
 	const request = api.get(`/posts?page=${page}`)
 
-	return {type: FETCH_POSTS, payload: request}
+	return { type: FETCH_POSTS, payload: request }
 }
 
 export function fetchPost(id) {
 	const request = api.get(`/posts/${id}`)
 
-	return {type: FETCH_POST, payload: request}
+	return { type: FETCH_POST, payload: request }
 }
 
 export function fetchInitPost(id) {
 	const request = api.get(`/posts/${id}`)
 
-	return {type: FETCH_INIT_POST, payload: request}
+	return { type: FETCH_INIT_POST, payload: request }
 }
 
 export function createCategory(props) {
 	const request = apiAuth.post("/categories", props)
 
-	return {type: CREATE_CATEGORY, payload: request}
+	return { type: CREATE_CATEGORY, payload: request }
 }
 
 export function editCategory(props) {
 	const request = apiAuth.patch(`/categories/${id}`, props)
 
-	return {type: EDIT_CATEGORY, payload: request}
+	return { type: EDIT_CATEGORY, payload: request }
 }
 
 export function deleteCategory(props) {
 	const post_id = props
 	const request = apiAuth.delete(`/categories/${post_id}`, props)
 
-	return {type: DELETE_CATEGORY, payload: request}
+	return { type: DELETE_CATEGORY, payload: request }
 }
 
 export function fetchCategories() {
 	const request = api.get("/categories")
 
-	return {type: FETCH_CATEGORIES, payload: request}
+	return { type: FETCH_CATEGORIES, payload: request }
 }
 
 export function createTag(props) {
 	const request = apiAuth.post("/tags", props)
 
-	return {type: CREATE_TAG, payload: request}
+	return { type: CREATE_TAG, payload: request }
 }
 
 export function editTag(props) {
 	const request = apiAuth.patch(`/tags/${id}`, props)
 
-	return {type: EDIT_TAG, payload: request}
+	return { type: EDIT_TAG, payload: request }
 }
 
 export function deleteTag(props) {
 	const post_id = props
 	const request = apiAuth.delete(`/tags/${post_id}`, props)
 
-	return {type: DELETE_TAG, payload: request}
+	return { type: DELETE_TAG, payload: request }
 }
 
 export function fetchTags() {
 	const request = api.get("/tags")
 
-	return {type: FETCH_TAGS, payload: request}
+	return { type: FETCH_TAGS, payload: request }
 }
 
 export function fetchCompleteTags(id) {
 	const request = api.get(`/posts/${id}`)
 
-	return {type: FETCH_COMPLETE_TAGS, payload: request}
+	return { type: FETCH_COMPLETE_TAGS, payload: request }
 }
 
 export function initCompleteTags() {
-	return {type: INIT_COMPLETE_TAGS, payload: []}
+	return { type: INIT_COMPLETE_TAGS, payload: [] }
 }
 
 export function deleteCompleteTags(props) {
-	return {type: DELETE_COMPLETE_TAGS, payload: props}
+	return { type: DELETE_COMPLETE_TAGS, payload: props }
 }
 
 export function addCompleteTags(props) {
-	return {type: ADD_COMPLETE_TAGS, payload: props}
+	return { type: ADD_COMPLETE_TAGS, payload: props }
 }
 
 export function editConfig(props) {
 	const request = apiAuth.patch("/configs", props)
 
-	return {type: EDIT_CONFIG, payload: request}
+	return { type: EDIT_CONFIG, payload: request }
 }
 
 export function fetchConfigs(props) {
 	const request = api.get("/configs")
 
-	return {type: FETCH_CONFIGS, payload: request}
+	return { type: FETCH_CONFIGS, payload: request }
 }

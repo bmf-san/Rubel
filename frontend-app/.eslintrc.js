@@ -13,6 +13,9 @@ module.exports = {
   },
   "plugins": ["react"],
   "rules": {
+    "object-curly-spacing": [
+      "error", "always"
+    ],
     "linebreak-style": [
       "error", "unix"
     ],

@@ -1,19 +1,19 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
-import {connect} from "react-redux"
-import {bindActionCreators} from "redux"
-import {fetchPosts, deletePost} from "../actions/index"
-import {Link} from "react-router"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { fetchPosts, deletePost } from "../actions/index"
+import { Link } from "react-router"
 
 class Posts extends Component {
 	componentWillMount() {
-		const {location, fetchPosts} = this.props
+		const { location, fetchPosts } = this.props
 
 		fetchPosts(location.query.page)
 	}
 
 	componentDidUpdate(prevProps) {
-		const {location, fetchPosts} = this.props
+		const { location, fetchPosts } = this.props
 
 		if (prevProps.location.query.page === location.query.page) {
 			return false
@@ -23,7 +23,7 @@ class Posts extends Component {
 	}
 
 	handleDeletePost(id) {
-		const {location, deletePost, fetchPosts} = this.props
+		const { location, deletePost, fetchPosts } = this.props
 
 		if (window.confirm("Are you sure you want to delete?")) {
 			return deletePost(id).then((res) => {
@@ -75,7 +75,7 @@ class Posts extends Component {
 	}
 
 	renderPagination() {
-		const {posts} = this.props
+		const { posts } = this.props
 
 		const pagination = posts.pagination
 		const last_page = pagination.last_page
@@ -176,7 +176,7 @@ Posts.contextTypes = {
 }
 
 function mapStateToProps(state) {
-	return {posts: state.posts}
+	return { posts: state.posts }
 }
 
-export default connect(mapStateToProps, {fetchPosts, deletePost})(Posts)
+export default connect(mapStateToProps, { fetchPosts, deletePost })(Posts)

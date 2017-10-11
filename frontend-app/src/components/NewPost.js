@@ -1,7 +1,7 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
-import {reduxForm, Field, SubmissionError} from "redux-form"
-import {connect} from "react-redux"
+import { reduxForm, Field, SubmissionError } from "redux-form"
+import { connect } from "react-redux"
 import ReactTags from "react-tag-autocomplete"
 import {
 	createPost,
@@ -14,12 +14,12 @@ import {
 	initMarkdown,
 	initCompleteTags
 } from "../actions/index"
-import {Link} from "react-router"
+import { Link } from "react-router"
 import Loader from "../utils/Loader"
 
 class NewPost extends Component {
 	componentWillMount() {
-		const {fetchTags, fetchCategories, initCompleteTags, initMarkdown} = this.props
+		const { fetchTags, fetchCategories, initCompleteTags, initMarkdown } = this.props
 
 		fetchTags()
 		fetchCategories()
@@ -28,7 +28,7 @@ class NewPost extends Component {
 	}
 
 	onSubmit(props) {
-		const {tags, posts, createPost, deleteCompleteTags, reset} = this.props
+		const { tags, posts, createPost, deleteCompleteTags, reset } = this.props
 
 		const data = {
 			"title": props.title,
@@ -109,7 +109,7 @@ class NewPost extends Component {
 	}
 
 	renderMarkdownField() {
-		const {posts} = this.props
+		const { posts } = this.props
 
 		return (
 			<div className="content markdown-area" dangerouslySetInnerHTML={{
@@ -144,7 +144,7 @@ class NewPost extends Component {
 		)
 	}
 
-	renderSubmitBtnField({input}) {
+	renderSubmitBtnField({ input }) {
 		return (
 			<div className="field is-grouped is-pulled-right">
 				<div className="control">
@@ -163,28 +163,28 @@ class NewPost extends Component {
 	}
 
 	handleDelete(index) {
-		const {deleteCompleteTags} = this.props
+		const { deleteCompleteTags } = this.props
 
 		deleteCompleteTags(index)
 	}
 
 	handleAddition(props) {
-		const {addCompleteTags} = this.props
+		const { addCompleteTags } = this.props
 
 		addCompleteTags(props)
 	}
 
 	handleUpdateMarkdown(e) {
-		const {updateMarkdown} = this.props
+		const { updateMarkdown } = this.props
 
 		updateMarkdown(e.target.value)
 	}
 
 	render() {
-		const {tags, handleSubmit, submitting} = this.props
+		const { tags, handleSubmit, submitting } = this.props
 
 		const suggestions = tags.all.map((tag) => {
-			return {id: tag.id, name: tag.name}
+			return { id: tag.id, name: tag.name }
 		})
 
 		return (
@@ -238,7 +238,7 @@ const validate = props => {
 	return errors
 }
 
-const form = reduxForm({form: "NewPostForm", validate})(NewPost)
+const form = reduxForm({ form: "NewPostForm", validate })(NewPost)
 
 function mapStateToProps(state) {
 	return {

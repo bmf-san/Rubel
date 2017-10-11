@@ -1,22 +1,22 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
-import {reduxForm, Field, SubmissionError} from "redux-form"
-import {connect} from "react-redux"
-import {createCategory, deleteCategory, fetchCategories} from "../actions/index"
-import {Link} from "react-router"
+import { reduxForm, Field, SubmissionError } from "redux-form"
+import { connect } from "react-redux"
+import { createCategory, deleteCategory, fetchCategories } from "../actions/index"
+import { Link } from "react-router"
 import Loader from "../utils/Loader"
 
 const category_id_of_uncategorized = 1
 
 class Categories extends Component {
 	componentWillMount() {
-		const {fetchCategories} = this.props
+		const { fetchCategories } = this.props
 
 		fetchCategories()
 	}
 
 	onSubmit(props) {
-		const {createCategory, fetchCategories, reset} = this.props
+		const { createCategory, fetchCategories, reset } = this.props
 
 		return createCategory(props).then((res) => {
 			if (res.error) {
@@ -33,7 +33,7 @@ class Categories extends Component {
 	}
 
 	handleCategoryDelete(props) {
-		const {deleteCategory, fetchCategories} = this.props
+		const { deleteCategory, fetchCategories } = this.props
 
 		if (window.confirm("Are you sure you want to delete this category?")) {
 			// HACK add a error handling
@@ -75,7 +75,7 @@ class Categories extends Component {
 	}
 
 	renderCategories() {
-		const {categories} = this.props
+		const { categories } = this.props
 
 		return categories.all.map((category) => {
 			return (
@@ -95,7 +95,7 @@ class Categories extends Component {
 	}
 
 	render() {
-		const {handleSubmit, submitting} = this.props
+		const { handleSubmit, submitting } = this.props
 
 		return (
 			<div>
@@ -161,10 +161,10 @@ const validate = props => {
 	return errors
 }
 
-const form = reduxForm({form: "CategoryForm", validate})(Categories)
+const form = reduxForm({ form: "CategoryForm", validate })(Categories)
 
 function mapStateToProps(state) {
-	return {categories: state.categories}
+	return { categories: state.categories }
 }
 
-export default connect(mapStateToProps, {createCategory, deleteCategory, fetchCategories})(form)
+export default connect(mapStateToProps, { createCategory, deleteCategory, fetchCategories })(form)
