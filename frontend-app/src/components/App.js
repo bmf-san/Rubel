@@ -1,33 +1,33 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { fetchConfigs, logoutUser, isLoginUser } from "../actions/index"
-import { Link } from "react-router"
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {fetchConfigs, logoutUser, isLoginUser} from "../actions/index";
+import {Link} from "react-router";
 
 class App extends Component {
   componentWillMount() {
-    const { fetchConfigs, isLoginUser } = this.props
+    const {fetchConfigs, isLoginUser} = this.props;
 
     if (!isLoginUser().payload) {
-      this.context.router.push("/login")
+      this.context.router.push("/login");
     }
 
-    fetchConfigs()
+    fetchConfigs();
   }
 
   componentDidMount() {
     // Toggle menu
-    const burger = document.querySelector(".nav-toggle")
-    const menu = document.querySelector(".nav-menu")
+    const burger = document.querySelector(".nav-toggle");
+    const menu = document.querySelector(".nav-menu");
 
     burger.addEventListener("click", () => {
-      burger.classList.toggle("is-active")
-      menu.classList.toggle("is-active")
-    })
+      burger.classList.toggle("is-active");
+      menu.classList.toggle("is-active");
+    });
   }
 
   render() {
-    const { config, location, children, logoutUser } = this.props
+    const {config, location, children, logoutUser} = this.props;
 
     return (
       <div>
@@ -172,7 +172,7 @@ class App extends Component {
           </div>
         </footer>
       </div>
-    )
+    );
   }
 }
 
@@ -183,20 +183,20 @@ App.propTypes = {
   children: PropTypes.object,
   logoutUser: PropTypes.func,
   isLoginUser: PropTypes.func
-}
+};
 
 App.contextTypes = {
   router: PropTypes.object
-}
+};
 
 function mapStateToProps(state) {
-  const obj = {}
+  const obj = {};
 
   state.configs.all.map((config) => {
-    obj[config.name] = config.value
-  })
+    obj[config.name] = config.value;
+  });
 
-  return { configs: state.configs, config: obj }
+  return {configs: state.configs, config: obj};
 }
 
-export default connect(mapStateToProps, { fetchConfigs, logoutUser, isLoginUser })(App)
+export default connect(mapStateToProps, {fetchConfigs, logoutUser, isLoginUser})(App);

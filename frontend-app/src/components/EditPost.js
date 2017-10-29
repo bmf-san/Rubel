@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { reduxForm, Field, SubmissionError } from "redux-form"
-import { connect } from "react-redux"
-import ReactTags from "react-tag-autocomplete"
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {reduxForm, Field, SubmissionError} from "redux-form";
+import {connect} from "react-redux";
+import ReactTags from "react-tag-autocomplete";
 import {
 	editPost,
 	deletePost,
@@ -16,9 +16,9 @@ import {
 	addCompleteTags,
 	fetchCategories,
 	updateMarkdown
-} from "../actions/index"
-import { Link } from "react-router"
-import Loader from "../utils/Loader"
+} from "../actions/index";
+import {Link} from "react-router";
+import Loader from "../utils/Loader";
 
 class EditPost extends Component {
 	componentWillMount() {
@@ -33,17 +33,17 @@ class EditPost extends Component {
 			fetchTags,
 			fetchCompleteTags,
 			fetchCategories
-		} = this.props
+		} = this.props;
 
-		formValues === undefined && initialize(filtersDefaults)
+		formValues === undefined && initialize(filtersDefaults);
 
 		fetchPost(params.id).then((res) => {
-			updateMarkdown(res.payload.data.md_content)
-		})
-		fetchInitPost(params.id)
-		fetchTags()
-		fetchCompleteTags(params.id)
-		fetchCategories()
+			updateMarkdown(res.payload.data.md_content);
+		});
+		fetchInitPost(params.id);
+		fetchTags();
+		fetchCompleteTags(params.id);
+		fetchCategories();
 	}
 
 	onSubmit(props) {
@@ -54,7 +54,7 @@ class EditPost extends Component {
 			editPost,
 			deleteCompleteTags,
 			reset
-		} = this.props
+		} = this.props;
 
 		const data = {
 			"id": params.id,
@@ -64,47 +64,47 @@ class EditPost extends Component {
 			"md_content": props.md_content,
 			"html_content": posts.markdown,
 			"publication_status": props.publication_status
-		}
+		};
 
 		return editPost(data).then((res) => {
 			if (res.error) {
-				const validation_msg = res.payload.response.data.messages
+				const validation_msg = res.payload.response.data.messages;
 
 				if (validation_msg.title && !validation_msg.md_content) {
 					throw new SubmissionError({
 						title: [validation_msg.title]
-					})
+					});
 				} else if (validation_msg.md_content && !validation_msg.title) {
 					throw new SubmissionError({
 						md_content: [validation_msg.md_content]
-					})
+					});
 				} else if (validation_msg.title && validation_msg.md_content) {
 					throw new SubmissionError({
 						title: [validation_msg.title],
 						md_content: [validation_msg.md_content]
-					})
+					});
 				}
 			} else {
-				const id = res.payload.data.id
-				this.context.router.push(`/dashboard/edit-post/${id}`)
+				const id = res.payload.data.id;
+				this.context.router.push(`/dashboard/edit-post/${id}`);
 			}
-		})
+		});
 	}
 
 	handleDeletePost(e) {
-		const { params, deletePost, fetchPosts } = this.props
+		const {params, deletePost, fetchPosts} = this.props;
 
-		e.preventDefault()
+		e.preventDefault();
 
 		if (window.confirm("Are you sure you want to delete?")) {
 			return deletePost(params.id).then((res) => {
 				if (res.error) {
-					console.log("Error!")
+					console.log("Error!");
 				} else {
-					fetchPosts()
-					this.context.router.push("/dashboard/posts")
+					fetchPosts();
+					this.context.router.push("/dashboard/posts");
 				}
-			})
+			});
 		}
 	}
 
@@ -124,7 +124,7 @@ class EditPost extends Component {
 					<input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger")) || "input"}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
 				</div>
 			</div>
-		)
+		);
 	}
 
 	renderCategoryField({
@@ -142,23 +142,23 @@ class EditPost extends Component {
 					<span className="select">
 						<select {...input}>
 							{this.props.categories.all.map((category) => {
-								return <option key={category.id} value={category.id}>{category.name}</option>
+								return <option key={category.id} value={category.id}>{category.name}</option>;
 							})}
 						</select>
 					</span>
 				</div>
 			</div>
-		)
+		);
 	}
 
 	renderMarkdownField() {
-		const { posts } = this.props
+		const {posts} = this.props;
 
 		return (
 			<div className="content markdown-area" dangerouslySetInnerHTML={{
 				__html: posts.markdown
 			}}></div>
-		)
+		);
 	}
 
 	renderContentField({
@@ -184,10 +184,10 @@ class EditPost extends Component {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 
-	renderSubmitBtnField({ input, handleDeletePost }) {
+	renderSubmitBtnField({input, handleDeletePost}) {
 		return (
 			<div className="field">
 				<div className="field is-grouped is-pulled-left">
@@ -209,33 +209,33 @@ class EditPost extends Component {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 
 	handleDelete(index) {
-		const { deleteCompleteTags } = this.props
+		const {deleteCompleteTags} = this.props;
 
-		deleteCompleteTags(index)
+		deleteCompleteTags(index);
 	}
 
 	handleAddition(props) {
-		const { addCompleteTags } = this.props
+		const {addCompleteTags} = this.props;
 
-		addCompleteTags(props)
+		addCompleteTags(props);
 	}
 
 	handleUpdateMarkdown(e) {
-		const { updateMarkdown } = this.props
+		const {updateMarkdown} = this.props;
 
-		updateMarkdown(e.target.value)
+		updateMarkdown(e.target.value);
 	}
 
 	render() {
-		const { tags, handleSubmit, submitting } = this.props
+		const {tags, handleSubmit, submitting} = this.props;
 
 		const suggestions = tags.all.map((tag) => {
-			return { id: tag.id, name: tag.name }
-		})
+			return {id: tag.id, name: tag.name};
+		});
 
 		return (
 			<div>
@@ -256,7 +256,7 @@ class EditPost extends Component {
 					<Field name="publication_status" component={this.renderSubmitBtnField} handleDeletePost={this.handleDeletePost.bind(this)}/>
 				</form>
 			</div>
-		)
+		);
 	}
 }
 
@@ -285,22 +285,22 @@ EditPost.propTypes = {
 	updateMarkdown: PropTypes.func,
 	handleSubmit: PropTypes.func,
 	submitting: PropTypes.bool
-}
+};
 
 EditPost.contextTypes = {
 	router: PropTypes.object
-}
+};
 
 const validate = props => {
-	const errors = {}
+	const errors = {};
 
-	return errors
-}
+	return errors;
+};
 
-const form = reduxForm({ form: "NewPostForm", enableReinitialize: true, validate })(EditPost)
+const form = reduxForm({form: "NewPostForm", enableReinitialize: true, validate})(EditPost);
 
 function mapStateToProps(state) {
-	return { posts: state.posts, tags: state.tags, categories: state.categories, initialValues: state.posts.init_post }
+	return {posts: state.posts, tags: state.tags, categories: state.categories, initialValues: state.posts.init_post};
 }
 
 export default connect(mapStateToProps, {
@@ -315,4 +315,4 @@ export default connect(mapStateToProps, {
 	addCompleteTags,
 	fetchCategories,
 	updateMarkdown
-})(form)
+})(form);

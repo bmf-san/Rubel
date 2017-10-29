@@ -14,7 +14,7 @@ module.exports = {
   "plugins": ["react"],
   "rules": {
     "object-curly-spacing": [
-      "error", "always"
+      "error", "never"
     ],
     "linebreak-style": [
       "error", "unix"
@@ -22,6 +22,6 @@ module.exports = {
     "quotes": [
       "error", "double"
     ],
-    "semi": ["error", "never"]
+    "semi": ["error", "always"]
   }
 };

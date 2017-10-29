@@ -1,30 +1,30 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { reduxForm, Field, SubmissionError } from "redux-form"
-import { connect } from "react-redux"
-import { editConfig, fetchConfigs } from "../actions/index"
-import { Link } from "react-router"
-import Loader from "../utils/Loader"
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {reduxForm, Field, SubmissionError} from "redux-form";
+import {connect} from "react-redux";
+import {editConfig, fetchConfigs} from "../actions/index";
+import {Link} from "react-router";
+import Loader from "../utils/Loader";
 
 class Configs extends Component {
 	componentWillMount() {
-		const { fetchConfigs } = this.props
+		const {fetchConfigs} = this.props;
 
-		fetchConfigs()
+		fetchConfigs();
 	}
 
 	onSubmit(props) {
-		const { editConfig, fetchConfigs, reset } = this.props
+		const {editConfig, fetchConfigs, reset} = this.props;
 
 		return editConfig(props).then((res) => {
 			if (res.error) {
-				console.log(res.error)
+				console.log(res.error);
 			} else {
-				reset()
-				fetchConfigs()
-				this.context.router.push("/dashboard/config")
+				reset();
+				fetchConfigs();
+				this.context.router.push("/dashboard/config");
 			}
-		})
+		});
 	}
 
 	renderConfigField({
@@ -43,11 +43,11 @@ class Configs extends Component {
 					<input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger is-resizeless")) || "input is-resizeless"}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
 				</div>
 			</div>
-		)
+		);
 	}
 
 	render() {
-		const { handleSubmit, configs, submitting } = this.props
+		const {handleSubmit, configs, submitting} = this.props;
 
 		return (
 			<div>
@@ -66,7 +66,7 @@ class Configs extends Component {
 					</form>
 				</div>
 			</div>
-		)
+		);
 	}
 }
 
@@ -77,22 +77,22 @@ Configs.propTypes = {
 	handleSubmit: PropTypes.func,
 	configs: PropTypes.object,
 	submitting: PropTypes.bool
-}
+};
 
 Configs.contextTypes = {
 	router: PropTypes.object
-}
+};
 
-const form = reduxForm({ form: "ConfigForm", enableReinitialize: true })(Configs)
+const form = reduxForm({form: "ConfigForm", enableReinitialize: true})(Configs);
 
 function mapStateToProps(state) {
-	const obj = {}
+	const obj = {};
 
 	state.configs.all.map((config) => {
-		obj[config.name] = config.value
-	})
+		obj[config.name] = config.value;
+	});
 
-	return { configs: state.configs, initialValues: obj }
+	return {configs: state.configs, initialValues: obj};
 }
 
-export default connect(mapStateToProps, { editConfig, fetchConfigs })(form)
+export default connect(mapStateToProps, {editConfig, fetchConfigs})(form);

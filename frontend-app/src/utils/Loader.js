@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, {Component} from "react";
 
 export default class Loader extends Component {
 	render() {
@@ -6,6 +6,6 @@ export default class Loader extends Component {
 			<div className="loader-overray">
 				<span className="loader"></span>
 			</div>
-		)
+		);
 	}
 }
