@@ -8,9 +8,21 @@ use Tymon\JWTAuth\JWTAuth;
 
 class RedirectIfAuthenticatedByJwt
 {
-    public function __construct(JWTAuth $jwt_auth)
+    /**
+     * JWTAuth
+     *
+     * @var JWTAuth
+     */
+    private $jwtAuth;
+
+    /**
+     * RedirectIfAuthenticatedByJwt constructor
+     *
+     * @param JWTAuth $jwtAuth
+     */
+    public function __construct(JWTAuth $jwtAuth)
     {
-        $this->jwt_auth = $jwt_auth;
+        $this->jwtAuth = $jwtAuth;
     }
 
     /**
@@ -23,7 +35,7 @@ class RedirectIfAuthenticatedByJwt
     public function handle($request, Closure $next)
     {
         try {
-            $user = $this->jwt_auth->toUser($request->header('Authorization'));
+            $user = $this->jwtAuth->toUser($request->header('Authorization'));
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
                 return response()->json(['error'=>'Token is Invalid']);
