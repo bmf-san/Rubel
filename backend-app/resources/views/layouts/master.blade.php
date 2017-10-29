@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ get_the_blog_info('title') }} - @yield('title', 'title')</title>
+    <link rel="canonical" href=@yield('canonical', url()->current())>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
     <link rel="stylesheet" href="{{ asset('/dist/css/app.min.css') }}">
+    <title>{{ get_the_blog_info('title') }} - @yield('title', 'title')</title>
 
     {{-- Additional stylesheet --}}
     @yield('additional-stylesheet')

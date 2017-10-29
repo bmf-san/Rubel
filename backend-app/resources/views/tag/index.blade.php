@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('canonical', url()->current())
+
 @section('title', 'Tag')
 
 @section('additional-stylesheet')
