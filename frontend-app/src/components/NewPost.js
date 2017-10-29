@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { reduxForm, Field, SubmissionError } from "redux-form"
-import { connect } from "react-redux"
-import ReactTags from "react-tag-autocomplete"
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {reduxForm, Field, SubmissionError} from "redux-form";
+import {connect} from "react-redux";
+import ReactTags from "react-tag-autocomplete";
 import {
 	createPost,
 	fetchTags,
@@ -13,22 +13,22 @@ import {
 	updateMarkdown,
 	initMarkdown,
 	initCompleteTags
-} from "../actions/index"
-import { Link } from "react-router"
-import Loader from "../utils/Loader"
+} from "../actions/index";
+import {Link} from "react-router";
+import Loader from "../utils/Loader";
 
 class NewPost extends Component {
 	componentWillMount() {
-		const { fetchTags, fetchCategories, initCompleteTags, initMarkdown } = this.props
+		const {fetchTags, fetchCategories, initCompleteTags, initMarkdown} = this.props;
 
-		fetchTags()
-		fetchCategories()
-		initCompleteTags()
-		initMarkdown()
+		fetchTags();
+		fetchCategories();
+		initCompleteTags();
+		initMarkdown();
 	}
 
 	onSubmit(props) {
-		const { tags, posts, createPost, deleteCompleteTags, reset } = this.props
+		const {tags, posts, createPost, deleteCompleteTags, reset} = this.props;
 
 		const data = {
 			"title": props.title,
@@ -37,32 +37,32 @@ class NewPost extends Component {
 			"md_content": props.md_content,
 			"html_content": posts.markdown,
 			"publication_status": props.publication_status
-		}
+		};
 
 		return createPost(data).then((res) => {
 			if (res.error) {
-				const validation_msg = res.payload.response.data.messages
+				const validation_msg = res.payload.response.data.messages;
 
 				if (validation_msg.title && !validation_msg.md_content) {
 					throw new SubmissionError({
 						title: [validation_msg.title]
-					})
+					});
 				} else if (validation_msg.md_content && !validation_msg.title) {
 					throw new SubmissionError({
 						md_content: [validation_msg.md_content]
-					})
+					});
 				} else if (validation_msg.title && validation_msg.md_content) {
 					throw new SubmissionError({
 						title: [validation_msg.title],
 						md_content: [validation_msg.md_content]
-					})
+					});
 				}
 			} else {
-				const id = res.payload.data.id
+				const id = res.payload.data.id;
 
-				this.context.router.push(`/dashboard/edit-post/${id}`)
+				this.context.router.push(`/dashboard/edit-post/${id}`);
 			}
-		})
+		});
 	}
 
 	renderTitleField({
@@ -81,7 +81,7 @@ class NewPost extends Component {
 					<input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger")) || "input"}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
 				</div>
 			</div>
-		)
+		);
 	}
 
 	renderCategoryField({
@@ -99,23 +99,23 @@ class NewPost extends Component {
 					<span className="select">
 						<select {...input}>
 							{this.props.categories.all.map((category) => {
-								return <option key={category.id} value={category.id}>{category.name}</option>
+								return <option key={category.id} value={category.id}>{category.name}</option>;
 							})}
 						</select>
 					</span>
 				</div>
 			</div>
-		)
+		);
 	}
 
 	renderMarkdownField() {
-		const { posts } = this.props
+		const {posts} = this.props;
 
 		return (
 			<div className="content markdown-area" dangerouslySetInnerHTML={{
 				__html: posts.markdown
 			}}></div>
-		)
+		);
 	}
 
 	renderContentField({
@@ -141,10 +141,10 @@ class NewPost extends Component {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 
-	renderSubmitBtnField({ input }) {
+	renderSubmitBtnField({input}) {
 		return (
 			<div className="field is-grouped is-pulled-right">
 				<div className="control">
@@ -159,33 +159,33 @@ class NewPost extends Component {
 					<button className="button is-primary">Submit</button>
 				</div>
 			</div>
-		)
+		);
 	}
 
 	handleDelete(index) {
-		const { deleteCompleteTags } = this.props
+		const {deleteCompleteTags} = this.props;
 
-		deleteCompleteTags(index)
+		deleteCompleteTags(index);
 	}
 
 	handleAddition(props) {
-		const { addCompleteTags } = this.props
+		const {addCompleteTags} = this.props;
 
-		addCompleteTags(props)
+		addCompleteTags(props);
 	}
 
 	handleUpdateMarkdown(e) {
-		const { updateMarkdown } = this.props
+		const {updateMarkdown} = this.props;
 
-		updateMarkdown(e.target.value)
+		updateMarkdown(e.target.value);
 	}
 
 	render() {
-		const { tags, handleSubmit, submitting } = this.props
+		const {tags, handleSubmit, submitting} = this.props;
 
 		const suggestions = tags.all.map((tag) => {
-			return { id: tag.id, name: tag.name }
-		})
+			return {id: tag.id, name: tag.name};
+		});
 
 		return (
 			<div>
@@ -206,7 +206,7 @@ class NewPost extends Component {
 					<Field name="publication_status" component={this.renderSubmitBtnField}/>
 				</form>
 			</div>
-		)
+		);
 	}
 }
 
@@ -226,19 +226,19 @@ NewPost.propTypes = {
 	updateMarkdown: PropTypes.func,
 	handleSubmit: PropTypes.func,
 	submitting: PropTypes.bool
-}
+};
 
 NewPost.contextTypes = {
 	router: PropTypes.object
-}
+};
 
 const validate = props => {
-	const errors = {}
+	const errors = {};
 
-	return errors
-}
+	return errors;
+};
 
-const form = reduxForm({ form: "NewPostForm", validate })(NewPost)
+const form = reduxForm({form: "NewPostForm", validate})(NewPost);
 
 function mapStateToProps(state) {
 	return {
@@ -249,7 +249,7 @@ function mapStateToProps(state) {
 			category_id: 1,
 			publication_status: "draft"
 		}
-	}
+	};
 }
 
 export default connect(mapStateToProps, {
@@ -261,4 +261,4 @@ export default connect(mapStateToProps, {
 	updateMarkdown,
 	initMarkdown,
 	initCompleteTags
-})(form)
+})(form);

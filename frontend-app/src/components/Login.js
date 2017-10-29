@@ -1,40 +1,40 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { reduxForm, Field, SubmissionError } from "redux-form"
-import { connect } from "react-redux"
-import { loginUser, isLoginUser } from "../actions/index"
-import { Link } from "react-router"
-import Loader from "../utils/Loader"
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {reduxForm, Field, SubmissionError} from "redux-form";
+import {connect} from "react-redux";
+import {loginUser, isLoginUser} from "../actions/index";
+import {Link} from "react-router";
+import Loader from "../utils/Loader";
 
 class Login extends Component {
 	componentWillMount() {
-		const { isLoginUser } = this.props
+		const {isLoginUser} = this.props;
 
 		if (isLoginUser().payload) {
-			this.context.router.push("/dashboard")
+			this.context.router.push("/dashboard");
 		}
 	}
 
 	onSubmit(props) {
-		const { loginUser } = this.props
+		const {loginUser} = this.props;
 
 		return loginUser(props).then((res) => {
 			if (res.error) {
-				const validation_msg = res.payload.response.data.messages
-				const exception_msg = res.payload.response.data.error
+				const validation_msg = res.payload.response.data.messages;
+				const exception_msg = res.payload.response.data.error;
 
 				if (exception_msg) {
-					throw new SubmissionError({ email: [exception_msg], password: [exception_msg] })
+					throw new SubmissionError({email: [exception_msg], password: [exception_msg]});
 				} else {
 					throw new SubmissionError({
 						email: [validation_msg.email],
 						password: [validation_msg.password]
-					})
+					});
 				}
 			} else {
-				this.context.router.push("/dashboard")
+				this.context.router.push("/dashboard");
 			}
-		})
+		});
 	}
 
 	renderEmailField({
@@ -53,7 +53,7 @@ class Login extends Component {
 					<input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger is-resizeless")) || "input is-resizeless"}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
 				</div>
 			</div>
-		)
+		);
 	}
 
 	renderPasswordField({
@@ -72,11 +72,11 @@ class Login extends Component {
 					<input {...input} placeholder={label} type={type} className={touched && ((error && "input is-danger is-resizeless")) || "input is-resizeless"}/>{touched && ((error && <span className="help is-danger">{error}</span>))}
 				</div>
 			</div>
-		)
+		);
 	}
 
 	render() {
-		const { handleSubmit, submitting } = this.props
+		const {handleSubmit, submitting} = this.props;
 
 		return (
 			<div className="columns login-column">
@@ -96,7 +96,7 @@ class Login extends Component {
 					</form>
 				</div>
 			</div>
-		)
+		);
 	}
 }
 
@@ -105,26 +105,26 @@ Login.propTypes = {
 	isLoginUser: PropTypes.func,
 	handleSubmit: PropTypes.func,
 	submitting: PropTypes.bool
-}
+};
 
 Login.contextTypes = {
 	router: PropTypes.object
-}
+};
 
 const validate = props => {
-	const errors = {}
+	const errors = {};
 
 	if (!props.email) {
-		errors.email = "Requires"
+		errors.email = "Requires";
 	} else if (!props.password) {
-		errors.password = "Requires"
+		errors.password = "Requires";
 	}
-}
+};
 
-const form = reduxForm({ form: "LoginForm", validate })(Login)
+const form = reduxForm({form: "LoginForm", validate})(Login);
 
 function mapStateToProps(state) {
-	return {}
+	return {};
 }
 
-export default connect(mapStateToProps, { loginUser, isLoginUser })(form)
+export default connect(mapStateToProps, {loginUser, isLoginUser})(form);

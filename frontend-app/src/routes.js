@@ -1,15 +1,15 @@
-import React from "react"
-import { BrowserRouter as Router, Route, IndexRoute } from "react-router"
+import React from "react";
+import {BrowserRouter as Router, Route, IndexRoute} from "react-router";
 
-import App from "./components/App"
-import Dashboard from "./containers/Dashboard"
-import Login from "./components/Login"
-import Posts from "./components/Posts"
-import NewPost from "./components/NewPost"
-import EditPost from "./components/EditPost"
-import Categories from "./components/Categories"
-import Tags from "./components/Tags"
-import Config from "./components/Config"
+import App from "./components/App";
+import Dashboard from "./containers/Dashboard";
+import Login from "./components/Login";
+import Posts from "./components/Posts";
+import NewPost from "./components/NewPost";
+import EditPost from "./components/EditPost";
+import Categories from "./components/Categories";
+import Tags from "./components/Tags";
+import Config from "./components/Config";
 
 export default(
 	<div>
@@ -24,4 +24,4 @@ export default(
 			<Route path="/dashboard/config" component={Config}/>
 		</Route>
 	</div>
-)
+);

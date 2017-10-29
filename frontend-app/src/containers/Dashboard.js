@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 export default class Dashboard extends React.Component {
 	render() {
@@ -6,6 +6,6 @@ export default class Dashboard extends React.Component {
 			<div>
 				<div className="title is-2">Dashboard</div>
 			</div>
-		)
+		);
 	}
 }
