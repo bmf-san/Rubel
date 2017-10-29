@@ -35,7 +35,7 @@ class RedirectIfAuthenticatedByJwt
     public function handle($request, Closure $next)
     {
         try {
-            $user = $this->jwtAuth->toUser($request->header('Authorization'));
+            $this->jwtAuth->refresh($request->header('Authorization'));
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
                 return response()->json(['error'=>'Token is Invalid']);
