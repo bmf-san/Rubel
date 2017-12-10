@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Web;
+namespace Tests\Integration\Web;
 
 use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;

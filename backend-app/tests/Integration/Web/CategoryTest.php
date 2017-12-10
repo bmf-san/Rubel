@@ -1,28 +1,28 @@
 <?php
-namespace Tests\Unit\Web;
+namespace Tests\Integration\Web;
 
 use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Models\Tag;
+use App\Models\Category;
 
-class TagTest extends TestCase
+class CategoryTest extends TestCase
 {
     use DatabaseMigrations;
 
     public function testIndex()
     {
-        $response = $this->get(route('web.tags.index'));
+        $response = $this->get(route('web.categories.index'));
 
         $response->assertStatus(200);
     }
 
     public function testGetPosts()
     {
-        $tag = Tag::first();
+        $category = Category::first();
 
-        $response = $this->get(route('web.posts.tags.getPosts', $tag->name));
+        $response = $this->get(route('web.posts.categories.getPosts', $category->name));
 
         $response->assertStatus(200);
     }

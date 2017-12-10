@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Api\v1;
+namespace Tests\Integration\Api\v1;
 
 use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
