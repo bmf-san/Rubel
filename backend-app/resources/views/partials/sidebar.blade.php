@@ -6,7 +6,9 @@
     <li>
       <ul>
         @forelse ($categories as $category)
-          <li><a href="{{ route('web.posts.categories.getPosts', $category->name) }}">{{ $category->name }}</a></li>
+          <li>
+            <a href="{{ route('web.posts.categories.getPosts', $category->name) }}">{{ $category->name }}</a>
+          </li>
         @empty
           No Categories.
         @endforelse
