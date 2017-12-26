@@ -18,7 +18,7 @@
             Post
           </h1>
           <h2 class="subtitle is-5">
-            {{ request()->segment(count(request()->segments())) }}
+            {{ request()->route()->tag->name }}
           </h2>
         </div>
       </div>
