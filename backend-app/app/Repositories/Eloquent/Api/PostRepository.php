@@ -11,6 +11,13 @@ use Carbon\Carbon;
 class PostRepository implements PostRepositoryContract
 {
     /**
+     * PUBLICATION_STATUS_PUBLIC
+     *
+     * @var string
+     */
+    const PUBLICATION_STATUS_PUBLIC = 'public';
+
+    /**
      * Pagination limit
      *
      * @var int
@@ -64,11 +71,9 @@ class PostRepository implements PostRepositoryContract
      */
     public function store($request): array
     {
-        $post = $this->postModel;
-        $post = $this->savePost($post, $request);
+        $post = $this->savePost($request);
 
-        $tag = $this->tagModel;
-        $this->syncTags($post, $tag, $request->tags);
+        $this->syncTags($post, $request->tags);
 
         return ['id' => $post->id];
     }
@@ -81,7 +86,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function show(int $id): Post
     {
-        $post = $this->postModel->with('admin', 'category', 'comments', 'tags')->find($id);
+        $post = $this->postModel->with('admin', 'category', 'comments', 'tags')->findOrFail($id);
 
         return $post;
     }
@@ -100,8 +105,7 @@ class PostRepository implements PostRepositoryContract
         $this->updatePost($post, $request);
 
         if ($request->tags) {
-            $tag = $this->tagModel;
-            $this->syncTags($post, $tag, $request->tags);
+            $this->syncTags($post, $request->tags);
         }
 
         return ['id' => $post->id];
@@ -114,9 +118,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function destroy(Int $id): array
     {
-        $post = $this->postModel->find($id);
-
-        $post->delete();
+        $this->postModel->findOrFail($id)->delete();
 
         return [];
     }
@@ -124,26 +126,21 @@ class PostRepository implements PostRepositoryContract
     /**
      * Save post.
      *
-     * @param Post   $post
      * @param \Illuminate\Http\Request $request
      * @return Post
      */
-    private function savePost(Post $post, $request): Post
+    private function savePost($request): Post
     {
-        $publicationDate = null;
+        $publicationStatus = $request->publication_status;
 
-        if ($request->publication_status == 'public') {
-            $publicationDate = Carbon::now();
-        }
-
-        $post = $post->create([
+        $post = $this->postModel->create([
             'admin_id' => 1, // FIXME set authenticated admin id
             'category_id' => $request->category_id,
             'title' => $request->title,
             'md_content' => $request->md_content,
             'html_content' => $request->html_content,
-            'publication_status' => $request->publication_status,
-            'publication_date' => $publicationDate
+            'publication_status' => $publicationStatus,
+            'publication_date' => $this->getPublicationDate($publicationStatus),
         ]);
 
         return $post;
@@ -158,13 +155,8 @@ class PostRepository implements PostRepositoryContract
      */
     private function updatePost(Post $post, $request)
     {
+        $publicationStatus = $request->publication_status;
         $publicationDate = $post->publication_date;
-
-        if ($request->publication_status == 'public') {
-            if (is_null($publicationDate)) {
-                $publicationDate = Carbon::now();
-            }
-        }
 
         $post->update([
             'admin_id' => 1, // FIXME set authenticated admin id
@@ -172,20 +164,37 @@ class PostRepository implements PostRepositoryContract
             'title' => $request->title,
             'md_content' => $request->md_content,
             'html_content' => $request->html_content,
-            'publication_status' => $request->publication_status,
-            'publication_date' => $publicationDate
+            'publication_status' => $publicationStatus,
+            'publication_date' => $this->getPublicationDate($publicationStatus, $publicationDate)
         ]);
+    }
+
+    /**
+     * Get publication date
+     *
+     * @param  string  $publicationStatus
+     * @param  string  $publicationDate
+     * @return string
+     */
+    private function getPublicationDate($publicationStatus, $publicationDate = null)
+    {
+        if ($publicationStatus == self::PUBLICATION_STATUS_PUBLIC) {
+            if (is_null($publicationDate)) {
+                return Carbon::now();
+            }
+        }
+
+        return $publicationDate;
     }
 
     /**
      * Sync tags.
      *
      * @param Post  $post
-     * @param Tag   $tag
      * @param Array $tags
      * @return void
      */
-    private function syncTags(Post $post, Tag $tag, $tags)
+    private function syncTags(Post $post, $tags)
     {
         // HACK
         if ($tags) {
@@ -195,7 +204,7 @@ class PostRepository implements PostRepositoryContract
                 $requestTagArray[] = $requestTag['name'];
             }
 
-            $existTagCollection = $tag->whereIn('name', $requestTagArray)->get();
+            $existTagCollection = $this->tagModel->whereIn('name', $requestTagArray)->get();
 
             $existTagNameArray = $existTagCollection->pluck('name')->toArray();
             $existTagIdArray = $existTagCollection->pluck('id')->toArray();
@@ -207,12 +216,12 @@ class PostRepository implements PostRepositoryContract
             if ($newTagNameArray) {
                 // Create new tags if there are new tags which has not been registerd.
                 foreach ($newTagNameArray as $newTagName) {
-                    $tag->create([
+                    $this->tagModel->create([
                         'name' => $newTagName,
                     ]);
                 }
 
-                $newTagIdArray = $tag->whereIn('name', $newTagNameArray)->get()->pluck('id')->toArray();
+                $newTagIdArray = $this->tagModel->whereIn('name', $newTagNameArray)->get()->pluck('id')->toArray();
 
                 $tagIdArray = array_merge($existTagIdArray, $newTagIdArray);
             } else {
