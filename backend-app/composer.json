@@ -6,12 +6,13 @@
   "type": "project",
   "require": {
     "php": ">=5.6.4",
-    "laravel/framework": "5.4.*",
+    "laravel/framework": "5.5.*",
     "erusev/parsedown": "^1.6",
     "barryvdh/laravel-cors": "^0.9.2",
     "doctrine/dbal": "^2.3",
     "tymon/jwt-auth": "^0.5.12",
-    "laravel/tinker": "^1.0"
+    "laravel/tinker": "^1.0",
+    "fideloper/proxy": "~3.3"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
@@ -19,7 +20,8 @@
     "phpunit/phpunit": "6.*",
     "symfony/css-selector": "3.1.*",
     "symfony/dom-crawler": "3.1.*",
-    "barryvdh/laravel-ide-helper": "^2.3"
+    "barryvdh/laravel-ide-helper": "^2.3",
+    "filp/whoops": "~2.0"
   },
   "autoload": {
     "classmap": [
@@ -38,6 +40,10 @@
     }
   },
   "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover"
+    ],
     "post-root-package-install": [
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ],
@@ -66,5 +72,10 @@
   },
   "config": {
     "preferred-install": "dist"
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
+    }
   }
 }
