@@ -40,3 +40,8 @@ $router->get('profiles', 'ProfileController@index')->name('profiles.index');
  * Contact
  */
 $router->get('contacts', 'ContactController@index')->name('contacts.index');
+
+/**
+ * Sitemap
+ */
+$router->get('sitemap', 'SitemapController@index')->name('sitemap');
