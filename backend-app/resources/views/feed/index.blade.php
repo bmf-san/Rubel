@@ -3,13 +3,13 @@
   <title type="text">{{ $title }}</title>
   <subtitle type="html">{{ $subTitle }}</subtitle>
   <updated>{{ $updatedAt }}</updated>
-  <id>{{ route('web.root.index') }}</id>
+  <id>{{ strtolower(route('web.root.index')) }}</id>
   <rights>Copyright (c) {{ $currentDate->format('Y') }}, {{ config('rubel.admin.name') }}</rights>
   @foreach ($posts as $post)
     <entry>
         <title><![CDATA[{{ $post->title }}]]></title>
-        <link rel="alternate" href="{{ route('web.posts.show', $post) }}" />
-        <id>{{ route('web.posts.show', $post) }}</id>
+        <link rel="alternate" href="{{ strtolower(route('web.posts.show', $post)) }}" />
+        <id>{{ strtolower(route('web.posts.show', $post)) }}</id>
         <updated>{{ $post->updated_at->toAtomString() }}</updated>
         <published>{{ $post->publication_date->toAtomString() }}</published>
         <author>
