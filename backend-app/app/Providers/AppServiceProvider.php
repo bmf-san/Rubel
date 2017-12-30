@@ -31,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerConfigRepository()
     {
+        // foreach (glob(app_path().'/Helpers/*.php') as $filename) {
+        //     require_once($filename);
+        // }
         return $this->app->bind(\Rubel\Repositories\Contracts\Config\ConfigRepositoryInterface::class, \Rubel\Repositories\Eloquent\Config\CategoryRepository::class);
     }
 
