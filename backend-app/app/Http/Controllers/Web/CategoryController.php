@@ -45,7 +45,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\View;
+     * @return View
      */
     public function index(): View
     {
@@ -58,7 +58,7 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      *
      * @param  Category $category
-     * @return \Illuminate\Contracts\View\View;
+     * @return View
      */
     public function getPosts(Category $category): View
     {

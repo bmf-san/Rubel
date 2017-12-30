@@ -45,7 +45,7 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\View;
+     * @return View
      */
     public function index(): View
     {
@@ -57,7 +57,7 @@ class TagController extends Controller
      * Display a listing of the resource.
      *
      * @param  Tag $tag
-     * @return \Illuminate\Contracts\View\View;
+     * @return View
      */
     public function getPosts(Tag $tag): View
     {

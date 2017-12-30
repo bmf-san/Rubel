@@ -56,7 +56,7 @@ class PostController extends Controller
      * Display a listing of the resource.
      *
      * @param string $id
-     * @return \Illuminate\Contracts\View\View;
+     * @return View
      */
     public function index(): View
     {
@@ -72,7 +72,7 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  Post $post
-     * @return \Illuminate\Contracts\View\View;
+     * @return View
      */
     public function show(Post $post): View
     {

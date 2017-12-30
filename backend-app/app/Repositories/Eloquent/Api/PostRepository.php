@@ -198,8 +198,6 @@ class PostRepository implements PostRepositoryContract
     {
         // HACK
         if ($tags) {
-            $requestTagArray = [];
-
             foreach ($tags as $requestTag) {
                 $requestTagArray[] = $requestTag['name'];
             }
@@ -210,8 +208,6 @@ class PostRepository implements PostRepositoryContract
             $existTagIdArray = $existTagCollection->pluck('id')->toArray();
 
             $newTagNameArray = array_diff($requestTagArray, $existTagNameArray);
-
-            $tagIdArray = [];
 
             if ($newTagNameArray) {
                 // Create new tags if there are new tags which has not been registerd.
