@@ -89,7 +89,7 @@ class SitemapController extends Controller
     {
         $sitemap = $this->getSitemap();
 
-        return response()->view('sitemap.index', ['sitemap' => $sitemap])->header('Content-Type', 'text/xml');
+        return response()->view('sitemap.index', ['sitemap' => $sitemap])->header('Content-Type', 'application/xml');
     }
 
     /**

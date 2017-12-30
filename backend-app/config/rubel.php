@@ -11,8 +11,4 @@ return [
         'email' => env('ADMIN_EMAIL', 'admin@admin.com'),
         'password' => env('ADMIN_PASSWORD', 'admin'),
     ],
-    'config' => [
-        'title' => 'Rubel',
-        'sub_title' => 'A Simple CMS worked by Laravel, React, and Bulma.',
-    ]
 ];

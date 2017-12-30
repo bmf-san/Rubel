@@ -21,7 +21,10 @@ class ConfigsTableSeeder extends Seeder
     {
         $this->db->table('configs')->truncate();
 
-        $configs = config('rubel.config');
+        $configs = [
+            'title' => 'Rubel',
+            'sub_title' => 'A Simple CMS worked by Laravel, React, and Bulma.',
+        ];
 
         foreach ($configs as $key => $value) {
             $this->db->table('configs')->insert([
