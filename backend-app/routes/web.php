@@ -45,3 +45,8 @@ $router->get('contacts', 'ContactController@index')->name('contacts.index');
  * Sitemap
  */
 $router->get('sitemap', 'SitemapController@index')->name('sitemap.index');
+
+/**
+ * Feed
+ */
+$router->get('feed', 'FeedController@index')->name('feed.index');

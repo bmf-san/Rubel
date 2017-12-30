@@ -12,6 +12,9 @@
         <a class="icon" href="https://github.com/bmf-san">
           <i class="fa fa-github"></i>
         </a>
+        <a class="icon" href="{{ route('web.feed.index') }}">
+          <i class="fa fa-feed"></i>
+        </a>
       </p>
     </div>
   </div>
