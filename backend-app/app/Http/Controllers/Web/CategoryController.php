@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace Rubel\Http\Controllers\Web;
 
 use Illuminate\Contracts\View\View;
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Tag;
+use Rubel\Http\Controllers\Controller;
+use Rubel\Models\Category;
+use Rubel\Models\Tag;
 
 class CategoryController extends Controller
 {

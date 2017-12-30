@@ -5,7 +5,7 @@ use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Models\Tag;
+use Rubel\Models\Tag;
 
 class TagTest extends TestCase
 {

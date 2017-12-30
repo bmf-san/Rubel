@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Eloquent\Api;
+namespace Rubel\Repositories\Eloquent\Api;
 
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Repositories\Contracts\Api\PostRepositoryContract;
-use App\Models\Post;
-use App\Models\Tag;
+use Rubel\Repositories\Contracts\Api\PostRepositoryContract;
+use Rubel\Models\Post;
+use Rubel\Models\Tag;
 use Carbon\Carbon;
 
 class PostRepository implements PostRepositoryContract

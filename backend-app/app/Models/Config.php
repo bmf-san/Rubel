@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace Rubel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Models\Config
+ * Rubel\Models\Config
  *
  * @property int $id
  * @property string $name
@@ -16,17 +16,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Config onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Config onlyTrashed()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Config whereAliasName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Config whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Config whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Config whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Config whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Config whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Config whereValue($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Config withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Config withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereAliasName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereValue($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Config withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Config withoutTrashed()
  * @mixin \Eloquent
  */
 class Config extends Model

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace Rubel\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Models\Admin
+ * Rubel\Models\Admin
  *
  * @property int $id
  * @property string $name
@@ -18,20 +18,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Rubel\Models\Post[] $posts
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Admin onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Admin onlyTrashed()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Admin withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Admin withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Admin whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Admin whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Admin whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Admin whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Admin whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Admin wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Admin whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Admin whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Admin withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Admin withoutTrashed()
  * @mixin \Eloquent
  */
 class Admin extends Authenticatable

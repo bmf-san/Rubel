@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories\Eloquent\Api;
+namespace Rubel\Repositories\Eloquent\Api;
 
 use Illuminate\Database\Eloquent\Collection;
-use App\Repositories\Contracts\Api\CategoryRepositoryContract;
-use App\Models\Category;
+use Rubel\Repositories\Contracts\Api\CategoryRepositoryContract;
+use Rubel\Models\Category;
 
 class CategoryRepository implements CategoryRepositoryContract
 {

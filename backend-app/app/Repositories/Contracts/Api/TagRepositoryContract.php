@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories\Contracts\Api;
+namespace Rubel\Repositories\Contracts\Api;
 
 use Illuminate\Database\Eloquent\Collection;
-use App\Models\Tag;
+use Rubel\Models\Tag;
 
 interface TagRepositoryContract
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories\Eloquent\Api;
+namespace Rubel\Repositories\Eloquent\Api;
 
 use Illuminate\Database\Eloquent\Collection;
-use App\Repositories\Contracts\Api\TagRepositoryContract;
-use App\Models\Tag;
+use Rubel\Repositories\Contracts\Api\TagRepositoryContract;
+use Rubel\Models\Tag;
 
 class TagRepository implements TagRepositoryContract
 {

@@ -121,12 +121,12 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
+        Rubel\Providers\AppServiceProvider::class,
+        Rubel\Providers\AuthServiceProvider::class,
+        // Rubel\Providers\BroadcastServiceProvider::class,
+        Rubel\Providers\EventServiceProvider::class,
+        Rubel\Providers\RouteServiceProvider::class,
+        Rubel\Providers\HelperServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,

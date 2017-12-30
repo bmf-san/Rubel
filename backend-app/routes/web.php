@@ -44,4 +44,4 @@ $router->get('contacts', 'ContactController@index')->name('contacts.index');
 /**
  * Sitemap
  */
-$router->get('sitemap', 'SitemapController@index')->name('sitemap');
+$router->get('sitemap', 'SitemapController@index')->name('sitemap.index');
