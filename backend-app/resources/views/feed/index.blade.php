@@ -8,7 +8,7 @@
   @foreach ($posts as $post)
     <entry>
         <title><![CDATA[{{ $post->title }}]]></title>
-        <link>{{ route('web.posts.show', $post) }}</link>
+        <link rel="alternate" href="{{ route('web.posts.show', $post) }}" />
         <id>{{ route('web.posts.show', $post) }}</id>
         <updated>{{ $post->updated_at->toAtomString() }}</updated>
         <published>{{ $post->publication_date->toAtomString() }}</published>
