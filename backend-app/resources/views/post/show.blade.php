@@ -50,8 +50,15 @@
             </div>
           </div>
           <div class="column is-3">
-            @include('partials.toc')
-            @include('partials.sidebar')
+            @if (isMobile())
+              @include('partials.toc')
+              @include('partials.sidebar')
+            @else
+              <div class="sticky">
+                @include('partials.toc')
+                @include('partials.sidebar')
+              </div>
+            @endif
           </div>
         </div>
         <div class="columns">
