@@ -5,7 +5,7 @@ use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Models\Post;
+use Rubel\Models\Post;
 use Carbon\Carbon;
 
 class PostTest extends TestCase

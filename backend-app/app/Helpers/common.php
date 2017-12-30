@@ -9,7 +9,7 @@
 if (!function_exists('get_the_blog_info')) {
     function get_the_blog_info(String $info)
     {
-        $config = App\Models\Config::where('name', $info)->firstOrFail();
+        $config = Rubel\Models\Config::where('name', $info)->firstOrFail();
 
         return $config->value;
     }

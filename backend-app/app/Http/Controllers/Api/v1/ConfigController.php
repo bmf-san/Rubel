@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1;
+namespace Rubel\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
-use App\Repositories\Eloquent\Api\ConfigRepository;
+use Rubel\Http\Controllers\Controller;
+use Rubel\Repositories\Eloquent\Api\ConfigRepository;
 
 class ConfigController extends Controller
 {

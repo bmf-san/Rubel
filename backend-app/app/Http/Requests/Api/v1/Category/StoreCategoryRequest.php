@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\v1\Category;
+namespace Rubel\Http\Requests\Api\v1\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 

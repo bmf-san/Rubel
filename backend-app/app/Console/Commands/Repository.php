@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Rubel\Console\Commands;
 
 use Illuminate\Console\Command;
 
@@ -58,11 +58,11 @@ class Repository extends Command
     public function createFiles($modelName, $contractFileName, $eloquentFileName)
     {
         if(! file_exists($contractFileName) && ! file_exists($eloquentFileName)) {
-            $contractFileContent = "<?php\n\nnamespace App\\Repositories\\Contracts;\n\ninterface " . $modelName . "RepositoryContract\n{\n}";
+            $contractFileContent = "<?php\n\nnamespace Rubel\\Repositories\\Contracts;\n\ninterface " . $modelName . "RepositoryContract\n{\n}";
 
             file_put_contents($contractFileName, $contractFileContent);
 
-            $eloquentFileContent = "<?php\n\nnamespace App\\Repositories\\Eloquent;\n\nuse App\\Repositories\\Contracts\\".$modelName."RepositoryContract;\n\nclass " . $modelName . "Repository implements " . $modelName . "RepositoryContract\n{\n}";
+            $eloquentFileContent = "<?php\n\nnamespace Rubel\\Repositories\\Eloquent;\n\nuse Rubel\\Repositories\\Contracts\\".$modelName."RepositoryContract;\n\nclass " . $modelName . "Repository implements " . $modelName . "RepositoryContract\n{\n}";
 
             file_put_contents($eloquentFileName, $eloquentFileContent);
 

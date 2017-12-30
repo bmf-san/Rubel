@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace Rubel\Http\Controllers\Web;
 
 use \Illuminate\Contracts\View\View;
-use App\Http\Controllers\Controller;
+use Rubel\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Rubel\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -31,20 +31,20 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerConfigRepository()
     {
-        return $this->app->bind(\App\Repositories\Contracts\Config\ConfigRepositoryInterface::class, \App\Repositories\Eloquent\Config\CategoryRepository::class);
+        return $this->app->bind(\Rubel\Repositories\Contracts\Config\ConfigRepositoryInterface::class, \Rubel\Repositories\Eloquent\Config\CategoryRepository::class);
     }
 
     public function registerCategoryRepository()
     {
-        return $this->app->bind(\App\Repositories\Contracts\Category\CategoryRepositoryInterface::class, \App\Repositories\Eloquent\Category\CategoryRepository::class);
+        return $this->app->bind(\Rubel\Repositories\Contracts\Category\CategoryRepositoryInterface::class, \Rubel\Repositories\Eloquent\Category\CategoryRepository::class);
     }
     public function registerPostRepository()
     {
-        return $this->app->bind(\App\Repositories\Contracts\Post\PostRepositoryInterface::class, \App\Repositories\Eloquent\Post\PostRepository::class);
+        return $this->app->bind(\Rubel\Repositories\Contracts\Post\PostRepositoryInterface::class, \Rubel\Repositories\Eloquent\Post\PostRepository::class);
     }
 
     public function registerTagRepository()
     {
-        return $this->app->bind(\App\Repositories\Contracts\Tag\TagRepositoryInterface::class, \App\Repositories\Eloquent\Tag\TagRepository::class);
+        return $this->app->bind(\Rubel\Repositories\Contracts\Tag\TagRepositoryInterface::class, \Rubel\Repositories\Eloquent\Tag\TagRepository::class);
     }
 }

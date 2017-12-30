@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\v1\Authenticate;
+namespace Rubel\Http\Requests\Api\v1\Authenticate;
 
 use Illuminate\Foundation\Http\FormRequest;
 

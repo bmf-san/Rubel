@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace Rubel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Comment
+ * Rubel\Models\Comment
  *
  * @property int $id
  * @property int|null $post_id
@@ -13,13 +13,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property-read \App\Models\Post|null $post
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereComment($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment wherePostId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUpdatedAt($value)
+ * @property-read \Rubel\Models\Post|null $post
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Comment whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Comment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Comment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Comment wherePostId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Comment whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Comment extends Model

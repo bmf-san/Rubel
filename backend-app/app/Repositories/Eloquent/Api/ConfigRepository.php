@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories\Eloquent\Api;
+namespace Rubel\Repositories\Eloquent\Api;
 
 use Illuminate\Database\Eloquent\Collection;
-use App\Repositories\Contracts\Api\ConfigRepositoryContract;
-use App\Models\Config;
+use Rubel\Repositories\Contracts\Api\ConfigRepositoryContract;
+use Rubel\Models\Config;
 
 class ConfigRepository implements ConfigRepositoryContract
 {

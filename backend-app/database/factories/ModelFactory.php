@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Models\Admin::class, function (Faker\Generator $faker) {
+$factory->define(Rubel\Models\Admin::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -23,32 +23,32 @@ $factory->define(App\Models\Admin::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
+$factory->define(Rubel\Models\Category::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->city,
     ];
 });
 
-$factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
+$factory->define(Rubel\Models\Comment::class, function (Faker\Generator $faker) {
     return [
-        'post_id' => factory(App\Models\Post::class)->create()->id,
+        'post_id' => factory(Rubel\Models\Post::class)->create()->id,
         'comment' => $faker->realText()
     ];
 });
 
-$factory->define(App\Models\Config::class, function (Faker\Generator $faker) {
+$factory->define(Rubel\Models\Config::class, function (Faker\Generator $faker) {
     return [
-        'name' => facotry(App\Models\Post::class)->create()->id,
+        'name' => facotry(Rubel\Models\Post::class)->create()->id,
         'comment' => $faker->realText()
     ];
 });
 
-$factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
+$factory->define(Rubel\Models\Post::class, function (Faker\Generator $faker) {
     // HACK
     if ($faker->randomElement(['public', 'draft']) == 'public') {
         return [
-            'admin_id' => factory(App\Models\Admin::class)->create()->id,
-            'category_id' => factory(App\Models\Category::class)->create()->id,
+            'admin_id' => factory(Rubel\Models\Admin::class)->create()->id,
+            'category_id' => factory(Rubel\Models\Category::class)->create()->id,
             'title' => $faker->title,
             'md_content' => $faker->realText(),
             'html_content' => '<p>' . "$faker->realText()" . "<p>",
@@ -57,8 +57,8 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
         ];
     } else {
         return [
-            'admin_id' => factory(App\Models\Admin::class)->create()->id,
-            'category_id' => factory(App\Models\Category::class)->create()->id,
+            'admin_id' => factory(Rubel\Models\Admin::class)->create()->id,
+            'category_id' => factory(Rubel\Models\Category::class)->create()->id,
             'title' => $faker->title,
             'md_content' => $faker->realText(),
             'html_content' => '<p>' . "$faker->realText()" . "<p>",

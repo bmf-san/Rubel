@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories\Contracts\Api;
+namespace Rubel\Repositories\Contracts\Api;
 
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Models\Post;
+use Rubel\Models\Post;
 
 interface PostRepositoryContract
 {

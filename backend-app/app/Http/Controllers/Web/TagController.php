@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace Rubel\Http\Controllers\Web;
 
 use Illuminate\Contracts\View\View;
-use App\Http\Controllers\Controller;
-use App\Models\Tag;
-use App\Models\Category;
+use Rubel\Http\Controllers\Controller;
+use Rubel\Models\Tag;
+use Rubel\Models\Category;
 
 class TagController extends Controller
 {

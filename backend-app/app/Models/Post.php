@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace Rubel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Models\Post
+ * Rubel\Models\Post
  *
  * @property int $id
  * @property int|null $admin_id
@@ -19,26 +19,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property-read \App\Models\Admin|null $admin
- * @property-read \App\Models\Category $category
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @property-read \Rubel\Models\Admin|null $admin
+ * @property-read \Rubel\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Rubel\Models\Comment[] $comments
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Rubel\Models\Tag[] $tags
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Post onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Post onlyTrashed()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereAdminId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereHtmlContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereMdContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post wherePublicationDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post wherePublicationStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Post withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Post withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post whereAdminId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post whereHtmlContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post whereMdContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post wherePublicationDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post wherePublicationStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Post withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Post withoutTrashed()
  * @mixin \Eloquent
  */
 class Post extends Model

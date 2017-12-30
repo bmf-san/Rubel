@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace Rubel\Http\Controllers\Web;
 
 use Illuminate\Contracts\View\View;
-use App\Http\Controllers\Controller;
-use App\Models\Post;
-use App\Models\Category;
-use App\Models\Tag;
+use Rubel\Http\Controllers\Controller;
+use Rubel\Models\Post;
+use Rubel\Models\Category;
+use Rubel\Models\Tag;
 
 class HomeController extends Controller
 {
