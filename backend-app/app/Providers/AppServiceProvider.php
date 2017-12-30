@@ -7,6 +7,18 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
+     * Repository array
+     *
+     * @var array
+     */
+    private $repositories = [
+        '\Rubel\Repositories\Contracts\Config\ConfigRepositoryInterface::class' => '\Rubel\Repositories\Eloquent\Config\CategoryRepository::class',
+        '\Rubel\Repositories\Contracts\Category\CategoryRepositoryInterface::class' => '\Rubel\Repositories\Eloquent\Category\CategoryRepository::class',
+        '\Rubel\Repositories\Contracts\Post\PostRepositoryInterface::class' => '\Rubel\Repositories\Eloquent\Post\PostRepository::class',
+        '\Rubel\Repositories\Contracts\Tag\TagRepositoryInterface::class' => '\Rubel\Repositories\Eloquent\Tag\TagRepository::class',
+    ];
+
+    /**
      * Bootstrap any application services.
      *
      * @return void
@@ -23,28 +35,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerCategoryRepository();
-        $this->registerConfigRepository();
-        $this->registerPostRepository();
-        $this->registerTagRepository();
+        $this->registerRepositories();
     }
 
-    public function registerConfigRepository()
+    /**
+     * Register repositories
+     *
+     * @return void
+     */
+    public function registerRepositories()
     {
-        return $this->app->bind(\Rubel\Repositories\Contracts\Config\ConfigRepositoryInterface::class, \Rubel\Repositories\Eloquent\Config\CategoryRepository::class);
-    }
-
-    public function registerCategoryRepository()
-    {
-        return $this->app->bind(\Rubel\Repositories\Contracts\Category\CategoryRepositoryInterface::class, \Rubel\Repositories\Eloquent\Category\CategoryRepository::class);
-    }
-    public function registerPostRepository()
-    {
-        return $this->app->bind(\Rubel\Repositories\Contracts\Post\PostRepositoryInterface::class, \Rubel\Repositories\Eloquent\Post\PostRepository::class);
-    }
-
-    public function registerTagRepository()
-    {
-        return $this->app->bind(\Rubel\Repositories\Contracts\Tag\TagRepositoryInterface::class, \Rubel\Repositories\Eloquent\Tag\TagRepository::class);
+        foreach ($this->repositories as $key => $value) {
+            return $this->app->bind($key, $value);
+        }
     }
 }

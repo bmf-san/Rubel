@@ -5,7 +5,7 @@
 @section('title', 'Post')
 
 @section('additional-stylesheet')
-  <link rel="stylesheet" href="{{ asset('/dist/css/home.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/dist/css/post.min.css') }}">
 @endsection
 
 @section('content')

@@ -1,4 +1,6 @@
 <?php
+use Carbon\Carbon;
+use Rubel\Models\Config;
 
 /**
  * Get the blog info
@@ -9,7 +11,7 @@
 if (!function_exists('get_the_blog_info')) {
     function get_the_blog_info(String $info)
     {
-        $config = Rubel\Models\Config::where('name', $info)->firstOrFail();
+        $config = Config::where('name', $info)->firstOrFail();
 
         return $config->value;
     }
@@ -75,9 +77,9 @@ EOT;
 if (!function_exists('is_date_within_a_week')) {
     function is_date_within_a_week(String $date)
     {
-        $carbon_post_date = new \Carbon\Carbon($date);
+        $carbon_post_date = new Carbon($date);
 
-        return $carbon_post_date->gt(\Carbon\Carbon::now()->subWeek());
+        return $carbon_post_date->gt(Carbon::now()->subWeek());
     }
 }
 
@@ -116,5 +118,24 @@ if (!function_exists('mb_ucfirst')) {
         $then = mb_substr($string, 1, $strlen - 1, $encoding);
 
         return mb_strtoupper($firstChar, $encoding) . $then;
+    }
+}
+
+/**
+ * Whether request from mobile
+ *
+ * @var boolean
+ */
+if (!function_exists('isMobile')) {
+    function isMobile()
+    {
+        $ua = request()->server('HTTP_USER_AGENT');
+        $uaList = ['iPhone','iPad','iPod','Android'];
+        foreach ($uaList as $uaSmt) {
+            if (strpos($ua, $uaSmt) !== false) {
+                return true;
+            }
+        }
+        return false;
     }
 }
