@@ -21,4 +21,11 @@ class SitemapTest extends TestCase
 
         $response->assertStatus(self::STATUS_CODE_OK);
     }
+
+    public function testResponse()
+    {
+        $response = $this->get(route('web.sitemap.index'));
+
+        $response->assertViewHas('sitemap');
+    }
 }
