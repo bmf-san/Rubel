@@ -53,7 +53,7 @@ $factory->define(Rubel\Models\Post::class, function (Faker\Generator $faker) {
             'md_content' => $faker->realText(),
             'html_content' => '<p>' . "$faker->realText()" . "<p>",
             'publication_status' => 'public',
-            'publication_date' => $faker->date('Y-m-d')
+            'published_at' => $faker->date('Y-m-d')
         ];
     } else {
         return [
@@ -63,7 +63,7 @@ $factory->define(Rubel\Models\Post::class, function (Faker\Generator $faker) {
             'md_content' => $faker->realText(),
             'html_content' => '<p>' . "$faker->realText()" . "<p>",
             'publication_status' => 'draft',
-            'publication_date' => $faker->date('Y-m-d')
+            'published_at' => $faker->date('Y-m-d')
         ];
     }
 });

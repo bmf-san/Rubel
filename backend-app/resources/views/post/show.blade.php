@@ -40,7 +40,7 @@
                   </a>
                 @endforeach
               </p>
-              <p class="has-text-right has-text-muted">{{ $post->publication_date }}</p>
+              <p class="has-text-right has-text-muted">{{ $post->published_at }}</p>
             </div>
             <div id="post-content" class="content">
               {!! $post->html_content !!}

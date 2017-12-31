@@ -27,7 +27,7 @@ class CreateRelatedPostTables extends Migration
             $table->text('md_content')->nullable();
             $table->text('html_content')->nullable();
             $table->string('publication_status')->default('draft');
-            $table->datetime('publication_date')->nullable();
+            $table->datetime('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -140,7 +140,7 @@ class PostRepository implements PostRepositoryContract
             'md_content' => $request->md_content,
             'html_content' => $request->html_content,
             'publication_status' => $publicationStatus,
-            'publication_date' => $this->getPublicationDate($publicationStatus),
+            'published_at' => $this->getPublicationDate($publicationStatus),
         ]);
 
         return $post;
@@ -156,7 +156,7 @@ class PostRepository implements PostRepositoryContract
     private function updatePost(Post $post, $request)
     {
         $publicationStatus = $request->publication_status;
-        $publicationDate = $post->publication_date;
+        $publicationDate = $post->published_at;
 
         $post->update([
             'admin_id' => 1, // FIXME set authenticated admin id
@@ -165,7 +165,7 @@ class PostRepository implements PostRepositoryContract
             'md_content' => $request->md_content,
             'html_content' => $request->html_content,
             'publication_status' => $publicationStatus,
-            'publication_date' => $this->getPublicationDate($publicationStatus, $publicationDate)
+            'published_at' => $this->getPublicationDate($publicationStatus, $publicationDate)
         ]);
     }
 

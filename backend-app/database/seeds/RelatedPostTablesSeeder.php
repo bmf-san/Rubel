@@ -36,7 +36,7 @@ class RelatedPostTablesSeeder extends Seeder
                 'publication_status' => ($i % 2 == 0) ? 'public' : 'private',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'publication_date' => Carbon::now()
+                'published_at' => Carbon::now()
             ]);
 
             $this->db->table('comments')->insert([

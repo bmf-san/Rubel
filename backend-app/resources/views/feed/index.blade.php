@@ -11,7 +11,7 @@
         <link rel="alternate" type="text/html" href="{{ strtolower(route('web.posts.show', $post)) }}" />
         <id>{{ strtolower(route('web.posts.show', $post)) }}</id>
         <updated>{{ $post->updated_at->toAtomString() }}</updated>
-        <published>{{ $post->publication_date->toAtomString() }}</published>
+        <published>{{ $post->published_at->toAtomString() }}</published>
         <author>
           <name><![CDATA[{{ $post->admin->name }}]]></name>
         </author>

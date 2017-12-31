@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $md_content
  * @property string|null $html_content
  * @property string $publication_status
- * @property \Carbon\Carbon|null $publication_date
+ * @property \Carbon\Carbon|null $published_at
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
@@ -52,7 +52,7 @@ class Post extends Model
      * @return $this
      */
     protected $fillable = [
-        'admin_id', 'category_id', 'title', 'md_content', 'html_content', 'publication_status', 'publication_date'
+        'admin_id', 'category_id', 'title', 'md_content', 'html_content', 'publication_status', 'published_at'
     ];
 
     /**
@@ -70,7 +70,7 @@ class Post extends Model
      * @var array
      */
     protected $dates = [
-        'publication_date', 'created_at', 'updated_at', 'deleted_at',
+        'published_at', 'created_at', 'updated_at', 'deleted_at',
     ];
 
     /**

@@ -35,7 +35,7 @@ class PostTest extends TestCase
             'md_content' => 'HereIsMdContent',
             'html_content' => 'HereIsHtmlContent',
             'publication_status' => 'public',
-            'publication_date' => Carbon::now(),
+            'published_at' => Carbon::now(),
             'created_at' => Carbon::now(),
             'tags' => [
                 [
@@ -65,7 +65,7 @@ class PostTest extends TestCase
             'md_content' => 'HereIsMdContent',
             'html_content' => 'HereIsHtmlContent',
             'publication_status' => 'public',
-            'publication_date' => Carbon::now(),
+            'published_at' => Carbon::now(),
             'created_at' => Carbon::now(),
             'tags' => [
                 [

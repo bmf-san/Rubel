@@ -26,13 +26,13 @@
           <div class="column is-7 is-offset-2 posts-column">
             @forelse ($posts as $post)
               <div class="column">
-                @if(is_date_within_a_week($post->publication_date))
+                @if(is_date_within_a_week($post->published_at))
                   <p>
                     <span class="tag is-danger">New!</span>
                   </p>
                 @endif
                 <p>
-                  <span>{{ $post->publication_date }}</span>
+                  <span>{{ $post->published_at }}</span>
                 </p>
                 <h1 class="title">
                   <a href="{{ route('web.posts.show', $post->title) }}">
