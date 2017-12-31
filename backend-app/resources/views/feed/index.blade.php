@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title type="text">{{ $title }}</title>
+  {{-- <title type="text">{{ $title }}</title>
   <subtitle type="html">{{ $subTitle }}</subtitle>
-  <updated>{{ $updatedAt }}</updated>
+  <updated>{{ $updatedAt }}</updated> --}}
   <id>{{ strtolower(route('web.root.index')) }}</id>
   <rights>Copyright (c) {{ $currentDate->format('Y') }}, {{ config('rubel.admin.name') }}</rights>
   {{-- @foreach ($posts as $post)
