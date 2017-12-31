@@ -4,7 +4,7 @@
   <subtitle type="html">{{ $subTitle }}</subtitle>
   <updated>{{ $updatedAt }}</updated>
   <id>{{ strtolower(route('web.root.index')) }}</id>
-  <rights>Copyright (c) {{ $currentDate->format('Y') }}, {{ config('rubel.admin.name') }}</rights>
+  {{-- <rights>Copyright (c) {{ $currentDate->format('Y') }}, {{ config('rubel.admin.name') }}</rights> --}}
   @foreach ($posts as $post)
     <entry>
         <title><![CDATA[{{ $post->title }}]]></title>
