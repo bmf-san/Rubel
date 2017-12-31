@@ -10,10 +10,17 @@ class ProfileTest extends TestCase
 {
     use DatabaseMigrations;
 
+    /**
+     * STATUS_CODE_OK
+     *
+     * @var int
+     */
+    const STATUS_CODE_OK = 200;
+
     public function testIndex()
     {
         $response = $this->get(route('web.profiles.index'));
 
-        $response->assertStatus(200);
+        $response->assertStatus(self::STATUS_CODE_OK);
     }
 }
