@@ -11,11 +11,18 @@ class CategoryTest extends TestCase
 {
     use DatabaseMigrations;
 
+    /**
+     * STATUS_CODE_OK
+     *
+     * @var int
+     */
+    const STATUS_CODE_OK = 200;
+
     public function testIndex()
     {
         $response = $this->get(route('web.categories.index'));
 
-        $response->assertStatus(200);
+        $response->assertStatus(self::STATUS_CODE_OK);
     }
 
     public function testGetPosts()
@@ -24,6 +31,6 @@ class CategoryTest extends TestCase
 
         $response = $this->get(route('web.posts.categories.getPosts', $category->name));
 
-        $response->assertStatus(200);
+        $response->assertStatus(self::STATUS_CODE_OK);
     }
 }
