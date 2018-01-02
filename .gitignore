@@ -14,6 +14,8 @@ Vagrantfile
 /backend-app/storage/*.key
 /backend-app/vendor
 /backend-app/.env
+/backend-app/.phpstorm.meta.php
+/backend-app/_ide_helper.php
 /backend-app/.idea
 /backend-app/Homestead.json
 /backend-app/Homestead.yaml
