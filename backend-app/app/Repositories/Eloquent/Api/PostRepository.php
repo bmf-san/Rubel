@@ -198,6 +198,8 @@ class PostRepository implements PostRepositoryContract
     {
         // HACK
         if ($tags) {
+            $requestTagArray = [];
+
             foreach ($tags as $requestTag) {
                 $requestTagArray[] = $requestTag['name'];
             }

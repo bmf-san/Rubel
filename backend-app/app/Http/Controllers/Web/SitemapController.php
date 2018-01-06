@@ -112,6 +112,8 @@ class SitemapController extends Controller
      */
     private function getStaticSitemap(): array
     {
+        $staticSitemap = [];
+
         foreach ($this->staticNameRoutes as $routes) {
             $staticSitemap[] = (object) [
                 'url' => route($routes),
@@ -129,6 +131,8 @@ class SitemapController extends Controller
      */
     private function getDynamicSitemap(): array
     {
+        $dynamicSitemap = [];
+
         foreach ($this->post->all() as $post) {
             $dynamicSitemap[] = (object) [
                 'url' => route(self::WEB_POSTS_SHOW, $post->title),
