@@ -5,13 +5,28 @@ use Carbon\Carbon;
 
 class AdminsTableSeeder extends Seeder
 {
+    /**
+     * DatabaseManager
+     *
+     * @var $db
+     */
     protected $db;
 
+    /**
+     * DatabaseSeeder __constructor
+     *
+     * @param DatabaseManager $db
+     */
     public function __construct(Illuminate\Database\DatabaseManager $db)
     {
         $this->db = $db;
     }
 
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
         $this->db->table('admins')->truncate();

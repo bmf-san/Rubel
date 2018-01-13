@@ -31,7 +31,7 @@ class Comment extends Model
      * @return $this
      */
     protected $fillable = [
-        'post_id', 'comment'
+        'post_id', 'comment',
     ];
 
     /**
@@ -40,7 +40,7 @@ class Comment extends Model
      * @var array
      */
     protected $dates = [
-        'created_at', 'updated_at', 'deleted_at'
+        'created_at', 'updated_at', 'deleted_at',
     ];
 
     /**

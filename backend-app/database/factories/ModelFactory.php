@@ -1,4 +1,11 @@
 <?php
+use Rubel\Models\Admin;
+use Rubel\Models\Category;
+use Rubel\Models\Comment;
+use Rubel\Models\Config;
+use Rubel\Models\Post;
+use Rubel\Models\Tag;
+use Rubel\Models\TagPost;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,8 +18,12 @@
 |
 */
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Rubel\Models\Admin::class, function (Faker\Generator $faker) {
+/**
+ * Admin
+ *
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
+$factory->define(Admin::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -23,47 +34,78 @@ $factory->define(Rubel\Models\Admin::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(Rubel\Models\Category::class, function (Faker\Generator $faker) {
+/**
+ * Category
+ *
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
+$factory->define(Category::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->city,
     ];
 });
 
-$factory->define(Rubel\Models\Comment::class, function (Faker\Generator $faker) {
+/**
+ * Tag
+ *
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
+$factory->define(Tag::class, function (Faker\Generator $faker) {
     return [
-        'post_id' => factory(Rubel\Models\Post::class)->create()->id,
-        'comment' => $faker->realText()
+        'name' => $faker->city,
     ];
 });
 
-$factory->define(Rubel\Models\Config::class, function (Faker\Generator $faker) {
+/**
+ * Comment
+ *
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
+$factory->define(Comment::class, function (Faker\Generator $faker) {
     return [
-        'name' => facotry(Rubel\Models\Post::class)->create()->id,
-        'comment' => $faker->realText()
+        'post_id' => $faker->randomElement(Post::pluck('id')->toArray()),
+        'comment' => $faker->realText(),
     ];
 });
 
-$factory->define(Rubel\Models\Post::class, function (Faker\Generator $faker) {
-    // HACK
-    if ($faker->randomElement(['public', 'draft']) == 'public') {
-        return [
-            'admin_id' => factory(Rubel\Models\Admin::class)->create()->id,
-            'category_id' => factory(Rubel\Models\Category::class)->create()->id,
-            'title' => $faker->title,
-            'md_content' => $faker->realText(),
-            'html_content' => '<p>' . "$faker->realText()" . "<p>",
-            'publication_status' => 'public',
-            'published_at' => $faker->date('Y-m-d')
-        ];
-    } else {
-        return [
-            'admin_id' => factory(Rubel\Models\Admin::class)->create()->id,
-            'category_id' => factory(Rubel\Models\Category::class)->create()->id,
-            'title' => $faker->title,
-            'md_content' => $faker->realText(),
-            'html_content' => '<p>' . "$faker->realText()" . "<p>",
-            'publication_status' => 'draft',
-            'published_at' => $faker->date('Y-m-d')
-        ];
-    }
+/**
+ * Config
+ *
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
+$factory->define(Config::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->realText(),
+        'alias_name' => $faker->realText(),
+        'value' => $faker->realText(),
+    ];
+});
+
+/**
+ * Post
+ *
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
+$factory->define(Post::class, function (Faker\Generator $faker) {
+    return [
+        'admin_id' => $faker->randomElement(Admin::pluck('id')->toArray()),
+        'category_id' => $faker->randomElement(Category::pluck('id')->toArray()),
+        'title' => $faker->title,
+        'md_content' => $faker->realText,
+        'html_content' => '<p>' . $faker->realText . "<p>",
+        'publication_status' => $faker->randomElement(['public', 'draft']),
+        'published_at' => $faker->date('Y-m-d'),
+    ];
+});
+
+/**
+ * TagPost
+ *
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
+$factory->define(TagPost::class, function (Faker\Generator $faker) {
+    return [
+        'tag_id' => $faker->randomElement(Tag::pluck('id')->toArray()),
+        'post_id' => $faker->randomElement(Post::pluck('id')->toArray()),
+    ];
 });

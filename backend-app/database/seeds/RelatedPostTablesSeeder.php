@@ -5,21 +5,55 @@ use Carbon\Carbon;
 
 class RelatedPostTablesSeeder extends Seeder
 {
+    /**
+     * DatabaseManager
+     *
+     * @var $db
+     */
     protected $db;
 
+    /**
+     * DatabaseSeeder __constructor
+     *
+     * @param DatabaseManager $db
+     */
     public function __construct(Illuminate\Database\DatabaseManager $db)
     {
         $this->db = $db;
     }
 
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
+    {
+        $this->runTruncate();
+        $this->runInsert();
+    }
+
+    /**
+     * Run truncate methods.
+     *
+     * @return void
+     */
+    private function runTruncate()
     {
         $this->db->table('categories')->truncate();
         $this->db->table('posts')->truncate();
         $this->db->table('comments')->truncate();
         $this->db->table('tags')->truncate();
         $this->db->table('tag_post')->truncate();
+    }
 
+    /**
+     * Run insert methods.
+     *
+     * @return void
+     */
+    private function runInsert()
+    {
         for ($i = 1; $i < 11; ++$i) {
             $this->db->table('categories')->insert([
                 'name' => "category-{$i}",

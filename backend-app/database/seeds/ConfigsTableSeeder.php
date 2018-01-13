@@ -5,8 +5,18 @@ use Carbon\Carbon;
 
 class ConfigsTableSeeder extends Seeder
 {
+    /**
+     * DatabaseManager
+     *
+     * @var $db
+     */
     protected $db;
 
+    /**
+     * DatabaseSeeder __constructor
+     *
+     * @param DatabaseManager $db
+     */
     public function __construct(Illuminate\Database\DatabaseManager $db)
     {
         $this->db = $db;
