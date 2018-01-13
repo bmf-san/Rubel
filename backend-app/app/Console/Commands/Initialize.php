@@ -70,8 +70,7 @@ class Initialize extends Command
         $this->runCategory();
         $this->runTag();
         $this->runConfig();
-        $this->runDraftPost();
-        $this->runPublicPost();
+        $this->runPost();
         $this->runComment();
         $this->runTagPost();
 
@@ -157,33 +156,24 @@ class Initialize extends Command
     }
 
     /**
-     * Run the draft post factory
+     * Run the post factory
      *
      * @return void
      */
-    private function runDraftPost()
+    private function runPost()
     {
-        $num = (int) $this->ask('How many records do you want to create for the draft posts table?');
-        factory(Post::class, $num)->create(
-            [
-                'publication_status' => 'draft',
-            ]
-        );
-    }
+        $numDraftPost = (int) $this->ask('How many records do you want to create for the draft posts table?');
+        $numPublicPost = (int) $this->ask('How many records do you want to create for the draft posts table?');
 
-    /**
-     * Run the public post factory
-     *
-     * @return void
-     */
-    private function runPublicPost()
-    {
-        $num = (int) $this->ask('How many records do you want to create for the public posts table?');
-        factory(Post::class, $num)->create(
-            [
-                'publication_status' => 'public',
-            ]
-        );
+        $sum = (int) ($numDraftPost + $numPublicPost);
+
+        for ($i = 0; $i < $sum; $i++) {
+            factory(Post::class)->create(
+                [
+                    'publication_status' => ($i < $numDraftPost) ? 'draft' : 'public',
+                ]
+            );
+        }
     }
 
     /**
