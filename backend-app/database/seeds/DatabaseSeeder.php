@@ -1,25 +1,25 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\DatabaseManager;
+use Database\ForeignKeyManager;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * DatabaseManager
+     * ForeignKeyManager
      *
-     * @var $db
+     * @var $fkManager
      */
-    protected $db;
+    protected $fkManager;
 
     /**
      * DatabaseSeeder __constructor
      *
-     * @param DatabaseManager $db
+     * @param ForeignKeyManager $fkManager
      */
-    public function __construct(DatabaseManager $db)
+    public function __construct(ForeignKeyManager $fkManager)
     {
-        $this->db = $db;
+        $this->fkManager = $fkManager;
     }
 
     /**
@@ -29,46 +29,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->setFKCheckOff();
+        $this->fkManager->setFKCheckOff();
 
         $this->call(AdminsTableSeeder::class);
         $this->call(RelatedPostTablesSeeder::class);
         $this->call(ConfigsTableSeeder::class);
 
-        $this->setFKCheckOn();
-    }
-
-    /**
-     * Set foreign key check off
-     *
-     * @return void
-     */
-    private function setFKCheckOff()
-    {
-        switch ($this->db->getDriverName()) {
-            case 'mysql':
-                $this->db->statement('SET FOREIGN_KEY_CHECKS=0');
-                break;
-            case 'sqlite':
-                $this->db->statement('PRAGMA foreign_keys = OFF');
-                break;
-        }
-    }
-
-    /**
-     * Set foreign key check on
-     *
-     * @return void
-     */
-    private function setFKCheckOn()
-    {
-        switch ($this->db->getDriverName()) {
-            case 'mysql':
-                $this->db->statement('SET FOREIGN_KEY_CHECKS=1');
-                break;
-            case 'sqlite':
-                $this->db->statement('PRAGMA foreign_keys = ON');
-                break;
-        }
+        $this->fkManager->setFKCheckOn();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\DatabaseManager;
 use Carbon\Carbon;
 
 class RelatedPostTablesSeeder extends Seeder
@@ -17,7 +18,7 @@ class RelatedPostTablesSeeder extends Seeder
      *
      * @param DatabaseManager $db
      */
-    public function __construct(Illuminate\Database\DatabaseManager $db)
+    public function __construct(DatabaseManager $db)
     {
         $this->db = $db;
     }
@@ -40,10 +41,12 @@ class RelatedPostTablesSeeder extends Seeder
      */
     private function runTruncate()
     {
+        $this->db->table('admins')->truncate();
         $this->db->table('categories')->truncate();
-        $this->db->table('posts')->truncate();
-        $this->db->table('comments')->truncate();
         $this->db->table('tags')->truncate();
+        $this->db->table('comments')->truncate();
+        $this->db->table('configs')->truncate();
+        $this->db->table('posts')->truncate();
         $this->db->table('tag_post')->truncate();
     }
 

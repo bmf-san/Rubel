@@ -3,6 +3,8 @@
 namespace Rubel\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\DatabaseManager;
+use Database\ForeignKeyManager;
 use Rubel\Models\Admin;
 use Rubel\Models\Category;
 use Rubel\Models\Comment;
@@ -13,6 +15,20 @@ use Rubel\Models\TagPost;
 
 class Initialize extends Command
 {
+    /**
+     * DatabaseManager
+     *
+     * @var $db
+     */
+    protected $db;
+
+    /**
+     * ForeignKeyManager
+     *
+     * @var $fkManager
+     */
+    protected $fkManager;
+
     /**
      * The name and signature of the console command.
      *
@@ -30,11 +46,15 @@ class Initialize extends Command
     /**
      * Create a new command instance.
      *
+     * @param DatabaseManager $db
+     * @param ForeignKeyManager $fkManager
      * @return void
      */
-    public function __construct()
+    public function __construct(DatabaseManager $db, ForeignKeyManager $fkManager)
     {
         parent::__construct();
+        $this->db = $db;
+        $this->fkManager = $fkManager;
     }
 
     /**
@@ -44,15 +64,38 @@ class Initialize extends Command
      */
     public function handle()
     {
+        $this->runTruncate();
+
         $this->runAdmin();
         $this->runCategory();
         $this->runTag();
         $this->runComment();
+        $this->runConfig();
         $this->runDraftPost();
         $this->runPublicPost();
         $this->runTagPost();
 
         $this->info('Done!');
+    }
+
+    /**
+     * Run truncate methods
+     *
+     * @return void
+     */
+    private function runTruncate()
+    {
+        $this->fkManager->setFKCheckOff();
+
+        $this->db->table('admins')->truncate();
+        $this->db->table('categories')->truncate();
+        $this->db->table('tags')->truncate();
+        $this->db->table('comments')->truncate();
+        $this->db->table('configs')->truncate();
+        $this->db->table('posts')->truncate();
+        $this->db->table('tag_post')->truncate();
+
+        $this->fkManager->setFKCheckOn();
     }
 
     /**
@@ -62,8 +105,8 @@ class Initialize extends Command
      */
     private function runAdmin()
     {
-        $numAdmin = (int) $this->ask('How many records do you want to create for the admins table?');
-        factory(Admin::class, $numAdmin)->create();
+        $num = (int) $this->ask('How many records do you want to create for the admins table?');
+        factory(Admin::class, $num)->create();
     }
 
     /**
@@ -73,8 +116,8 @@ class Initialize extends Command
      */
     private function runCategory()
     {
-        $numCategory = (int) $this->ask('How many records do you want to create for the categories table?');
-        factory(Category::class, $numCategory)->create();
+        $num = (int) $this->ask('How many records do you want to create for the categories table?');
+        factory(Category::class, $num)->create();
     }
 
     /**
@@ -84,8 +127,8 @@ class Initialize extends Command
      */
     private function runTag()
     {
-        $numTag = (int) $this->ask('How many records do you want to create for the tags table?');
-        factory(Tag::class, $numTag)->create();
+        $num = (int) $this->ask('How many records do you want to create for the tags table?');
+        factory(Tag::class, $num)->create();
     }
 
     /**
@@ -95,8 +138,8 @@ class Initialize extends Command
      */
     private function runComment()
     {
-        $numComment = (int) $this->ask('How many records do you want to create for the comments table?');
-        factory(Comment::class, $numComment)->create();
+        $num = (int) $this->ask('How many records do you want to create for the comments table?');
+        factory(Comment::class, $num)->create();
     }
 
     /**
@@ -131,8 +174,8 @@ class Initialize extends Command
      */
     private function runDraftPost()
     {
-        $numDraftPost = (int) $this->ask('How many records do you want to create for the posts table?');
-        factory(Post::class, $numDraftPost)->create(
+        $num = (int) $this->ask('How many records do you want to create for the posts table?');
+        factory(Post::class, $num)->create(
             [
                 'publication_status' => 'draft',
             ]
@@ -146,8 +189,8 @@ class Initialize extends Command
      */
     private function runPublicPost()
     {
-        $numPrivatePost = (int) $this->ask('How many records do you want to create for the posts table?');
-        factory(Post::class, $numPrivatePost)->create(
+        $num = (int) $this->ask('How many records do you want to create for the posts table?');
+        factory(Post::class, $num)->create(
             [
                 'publication_status' => 'public',
             ]
