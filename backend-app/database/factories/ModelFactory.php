@@ -90,7 +90,7 @@ $factory->define(Post::class, function (Faker\Generator $faker) {
     return [
         'admin_id' => $faker->randomElement(Admin::pluck('id')->toArray()),
         'category_id' => $faker->randomElement(Category::pluck('id')->toArray()),
-        'title' => $faker->title,
+        'title' => $faker->word,
         'md_content' => $faker->realText,
         'html_content' => '<p>' . $faker->realText . "<p>",
         'publication_status' => $faker->randomElement(['public', 'draft']),

@@ -69,10 +69,10 @@ class Initialize extends Command
         $this->runAdmin();
         $this->runCategory();
         $this->runTag();
-        $this->runComment();
         $this->runConfig();
         $this->runDraftPost();
         $this->runPublicPost();
+        $this->runComment();
         $this->runTagPost();
 
         $this->info('Done!');
@@ -90,9 +90,9 @@ class Initialize extends Command
         $this->db->table('admins')->truncate();
         $this->db->table('categories')->truncate();
         $this->db->table('tags')->truncate();
-        $this->db->table('comments')->truncate();
         $this->db->table('configs')->truncate();
         $this->db->table('posts')->truncate();
+        $this->db->table('comments')->truncate();
         $this->db->table('tag_post')->truncate();
 
         $this->fkManager->setFKCheckOn();
@@ -132,17 +132,6 @@ class Initialize extends Command
     }
 
     /**
-     * Run the comment factory
-     *
-     * @return void
-     */
-    private function runComment()
-    {
-        $num = (int) $this->ask('How many records do you want to create for the comments table?');
-        factory(Comment::class, $num)->create();
-    }
-
-    /**
      * Run the config factory
      *
      * @return void
@@ -174,7 +163,7 @@ class Initialize extends Command
      */
     private function runDraftPost()
     {
-        $num = (int) $this->ask('How many records do you want to create for the posts table?');
+        $num = (int) $this->ask('How many records do you want to create for the draft posts table?');
         factory(Post::class, $num)->create(
             [
                 'publication_status' => 'draft',
@@ -189,12 +178,23 @@ class Initialize extends Command
      */
     private function runPublicPost()
     {
-        $num = (int) $this->ask('How many records do you want to create for the posts table?');
+        $num = (int) $this->ask('How many records do you want to create for the public posts table?');
         factory(Post::class, $num)->create(
             [
                 'publication_status' => 'public',
             ]
         );
+    }
+
+    /**
+     * Run the comment factory
+     *
+     * @return void
+     */
+    private function runComment()
+    {
+        $num = (int) $this->ask('How many records do you want to create for the comments table?');
+        factory(Comment::class, $num)->create();
     }
 
     /**
