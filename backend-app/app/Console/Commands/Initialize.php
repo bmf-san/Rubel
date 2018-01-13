@@ -204,7 +204,7 @@ class Initialize extends Command
      */
     private function runTagPost()
     {
-        $numTagPost = (int) $this->ask('How many records do you want to create for the tag_post table?');
-        factory(TagPost::class, $numTagPost)->create();
+        $num = (int) $this->ask('How many records do you want to create for the tag_post table?');
+        factory(TagPost::class, $num)->create();
     }
 }
