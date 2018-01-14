@@ -21,13 +21,8 @@ class PostTest extends TestCase
 
     public function testShow()
     {
-        $post = factory(Post::class)->create(
-            [
-                'publication_status' => 'public'
-            ]
-        );
-
-        $response = $this->get(route('web.posts.show', $post->title));
+        $targetTitle = Post::first()->title;
+        $response = $this->get(route('web.posts.show', $targetTitle));
 
         $response->assertStatus(Response::HTTP_OK);
     }

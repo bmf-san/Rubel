@@ -28,7 +28,7 @@ $factory->define(Admin::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'email' => $faker->safeEmail,
         'password' => bcrypt(config('rubel.admin.password')),
         'remember_token' => str_random(10),
     ];
@@ -90,7 +90,7 @@ $factory->define(Post::class, function (Faker\Generator $faker) {
     return [
         'admin_id' => $faker->randomElement(Admin::pluck('id')->toArray()),
         'category_id' => $faker->randomElement(Category::pluck('id')->toArray()),
-        'title' => $faker->word,
+        'title' => $faker->word . uniqid(),
         'md_content' => $faker->realText,
         'html_content' => '<p>' . $faker->realText . "<p>",
         'publication_status' => $faker->randomElement(['public', 'draft']),

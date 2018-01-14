@@ -46,7 +46,24 @@ abstract class TestCase extends BaseTestCase
         factory(Admin::class)->create();
         factory(Category::class)->create();
         factory(Tag::class)->create();
-        factory(Config::class)->create();
+
+        $configs = [
+            [
+                'name' => 'sub_title',
+                'alias_name' => 'SubTitle',
+                'value' => 'SubTitle',
+            ],
+            [
+                'name' => 'title',
+                'alias_name' => 'Title',
+                'value' => 'Title',
+            ],
+        ];
+
+        foreach ($configs as $config) {
+            factory(Config::class)->create($config);
+        }
+
         factory(Post::class)->create();
         factory(Comment::class)->create();
         factory(TagPost::class)->create();

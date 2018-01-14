@@ -186,7 +186,7 @@ class Initialize extends Command
     private function runPost()
     {
         $numDraftPost = (int) $this->ask('How many records do you want to create for the draft posts table?');
-        $numPublicPost = (int) $this->ask('How many records do you want to create for the draft posts table?');
+        $numPublicPost = (int) $this->ask('How many records do you want to create for the public posts table?');
 
         $sum = (int) ($numDraftPost + $numPublicPost);
 

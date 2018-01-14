@@ -21,9 +21,9 @@ class TagTest extends TestCase
 
     public function testGetPosts()
     {
-        $tag = Tag::first();
+        $targetName = Tag::first()->name;
 
-        $response = $this->get(route('web.posts.tags.getPosts', $tag->name));
+        $response = $this->get(route('web.posts.tags.getPosts', $targetName));
 
         $response->assertStatus(Response::HTTP_OK);
     }

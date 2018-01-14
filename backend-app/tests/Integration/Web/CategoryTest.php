@@ -21,9 +21,9 @@ class CategoryTest extends TestCase
 
     public function testGetPosts()
     {
-        $category = Category::first();
+        $targetName = Category::first()->name;
 
-        $response = $this->get(route('web.posts.categories.getPosts', $category->name));
+        $response = $this->get(route('web.posts.categories.getPosts', $targetName));
 
         $response->assertStatus(Response::HTTP_OK);
     }
