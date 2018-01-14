@@ -5,32 +5,26 @@ use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Symfony\Component\HttpFoundation\Response;
 use Rubel\Models\Category;
 
 class CategoryTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * STATUS_CODE_OK
-     *
-     * @var int
-     */
-    const STATUS_CODE_OK = 200;
-
     public function testIndex()
     {
         $response = $this->get(route('web.categories.index'));
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testGetPosts()
     {
-        $category = Category::first();
+        $targetName = Category::first()->name;
 
-        $response = $this->get(route('web.posts.categories.getPosts', $category->name));
+        $response = $this->get(route('web.posts.categories.getPosts', $targetName));
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 }

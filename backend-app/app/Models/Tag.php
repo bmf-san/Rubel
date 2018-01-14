@@ -31,6 +31,13 @@ class Tag extends Model
     use SoftDeletes;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+    */
+    protected $table = 'tags';
+
+    /**
      * Set the fillable attributes for the model.
      *
      * @param  array  $fillable

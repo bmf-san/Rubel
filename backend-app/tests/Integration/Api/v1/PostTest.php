@@ -5,6 +5,7 @@ use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Symfony\Component\HttpFoundation\Response;
 use Rubel\Models\Post;
 use Carbon\Carbon;
 
@@ -12,77 +13,116 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * STATUS_CODE_OK
-     *
-     * @var int
-     */
-    const STATUS_CODE_OK = 200;
-
     public function testIndex()
     {
         $response = $this->json('GET', route('api.posts.index'));
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testStore()
     {
+        $this->runDefaultAdmin();
+
         $data = [
             'admin_id' => 1,
             'category_id' => 1,
-            'title' => 'HereIsTitle',
-            'md_content' => 'HereIsMdContent',
-            'html_content' => 'HereIsHtmlContent',
+            'title' => 'post_title',
+            'md_content' => 'post_md_content',
+            'html_content' => 'post_html_content',
             'publication_status' => 'public',
             'published_at' => Carbon::now(),
             'created_at' => Carbon::now(),
             'tags' => [
                 [
-                    'name' => 'HereIsTag'
-                ]
+                    'name' => 'tag_name'
+                ],
+                [
+                    'name' => 'second_tag_name',
+                ],
             ]
         ];
 
-        $response = $this->json('POST', route('api.posts.store'), $data, $this->getHeaders());
+        $response = $this->json('POST', route('api.posts.store'), $data, $this->getDefaultHeaders());
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testShow()
     {
-        $response = $this->json('GET', route('api.posts.show', 1));
+        $targetId = Post::first()->id;
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response = $this->json('GET', route('api.posts.show', $targetId));
+
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testUpdate()
     {
+        $this->runDefaultAdmin();
+
         $data = [
-            // 'admin_id' => 1,  FIXME set authenticated admin id  )cf. App\Repositories\Eloquent\Api\PostRepository.php
+            'admin_id' => 1,
             'category_id' => 1,
-            'title' => 'HereIsTitle',
-            'md_content' => 'HereIsMdContent',
-            'html_content' => 'HereIsHtmlContent',
+            'title' => 'post_title',
+            'md_content' => 'post_md_content',
+            'html_content' => 'post_html_content',
             'publication_status' => 'public',
             'published_at' => Carbon::now(),
             'created_at' => Carbon::now(),
             'tags' => [
                 [
-                    'name' => 'HereIsTag'
-                ]
+                    'name' => 'tag_name'
+                ],
+                [
+                    'name' => 'second_tag_name',
+                ],
             ]
         ];
 
-        $response = $this->json('PATCH', route('api.posts.update', Post::first()->id), $data, $this->getHeaders());
+        $targetId = Post::first()->id;
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response = $this->json('PATCH', route('api.posts.update', $targetId), $data, $this->getDefaultHeaders());
+
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testDestroy()
     {
-        $response = $this->json('DELETE', route('api.posts.destroy', Post::first()->id), [], $this->getHeaders());
+        $this->runDefaultAdmin();
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $targetId = Post::first()->id;
+
+        $response = $this->json('DELETE', route('api.posts.destroy', $targetId), [], $this->getDefaultHeaders());
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
+    public function testSyncTagsWhenTagsAreNotExistsInDatabase()
+    {
+        $this->runDefaultAdmin();
+
+        $data = [
+            'admin_id' => 1,
+            'category_id' => 1,
+            'title' => 'post_title',
+            'md_content' => 'post_md_content',
+            'html_content' => 'post_html_content',
+            'publication_status' => 'public',
+            'published_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'tags' => [
+                [
+                    'name' => 'tag_name'
+                ],
+                [
+                    'name' => 'second_tag_name',
+                ],
+            ]
+        ];
+
+        $response = $this->json('POST', route('api.posts.store'), $data, $this->getDefaultHeaders());
+
+        $this->assertDatabaseHas('tags', ['name' => 'tag_name', 'name' => 'second_tag_name']);
     }
 }

@@ -5,59 +5,65 @@ use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Symfony\Component\HttpFoundation\Response;
 use Rubel\Models\Tag;
 
 class TagTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * STATUS_CODE_OK
-     *
-     * @var int
-     */
-    const STATUS_CODE_OK = 200;
-
     public function testIndex()
     {
         $response = $this->json('GET', route('api.tags.index'));
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testStore()
     {
+        $this->runDefaultAdmin();
+
         $data = [
-            'name' => 'HereIsTag'
+            'name' => 'tag_name',
         ];
 
-        $response = $this->json('POST', route('api.tags.store'), $data, $this->getHeaders());
+        $response = $this->json('POST', route('api.tags.store'), $data, $this->getDefaultHeaders());
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testShow()
     {
-        $response = $this->json('GET', route('api.tags.show', 1));
+        $targetId = Tag::first()->id;
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response = $this->json('GET', route('api.tags.show', $targetId));
+
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testUpdate()
     {
+        $this->runDefaultAdmin();
+
         $data = [
-            'name' => 'HereIsTag'
+            'name' => 'tag_name',
         ];
 
-        $response = $this->json('PATCH', route('api.tags.update', Tag::first()->id), $data, $this->getHeaders());
+        $targetId = Tag::first()->id;
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response = $this->json('PATCH', route('api.tags.update', $targetId), $data, $this->getDefaultHeaders());
+
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testDestroy()
     {
-        $response = $this->json('DELETE', route('api.tags.destroy', Tag::first()->id), [], $this->getHeaders());
+        $this->runDefaultAdmin();
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $targetId = Tag::first()->id;
+
+        $response = $this->json('DELETE', route('api.tags.destroy', $targetId), [], $this->getDefaultHeaders());
+
+        $response->assertStatus(Response::HTTP_OK);
     }
 }

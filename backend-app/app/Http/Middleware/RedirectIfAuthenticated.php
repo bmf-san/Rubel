@@ -2,13 +2,19 @@
 
 namespace Rubel\Http\Middleware;
 
+use Illuminate\Contracts\Auth\Factory;
 use Closure;
 
 class RedirectIfAuthenticated
 {
+    /**
+     * Factory
+     *
+     * @var Factory
+     */
     protected $auth;
 
-    public function __construct(\Illuminate\Contracts\Auth\Factory $auth)
+    public function __construct(Factory $auth)
     {
         $this->auth = $auth;
     }

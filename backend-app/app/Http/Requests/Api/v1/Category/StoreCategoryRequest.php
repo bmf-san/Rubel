@@ -3,22 +3,16 @@
 namespace Rubel\Http\Requests\Api\v1\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class StoreCategoryRequest extends FormRequest
 {
-    /**
-     * Status code not found
-     *
-     * @var int
-     */
-    const STATUS_CODE_NOT_FOUND = 400;
-
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -28,7 +22,7 @@ class StoreCategoryRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|unique:categories,name',
@@ -40,7 +34,7 @@ class StoreCategoryRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.required' => 'A :attribute is required',
@@ -53,12 +47,12 @@ class StoreCategoryRequest extends FormRequest
      *
      * @param array $errors
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function response(array $errors)
+    public function response(array $errors): Response
     {
         $response['messages'] = $errors;
 
-        return response()->json($response, (int) self::STATUS_CODE_NOT_FOUND);
+        return response()->json($response, Response::HTTP_BAD_REQUEST);
     }
 }

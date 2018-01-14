@@ -46,6 +46,13 @@ class Post extends Model
     use SoftDeletes;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+    */
+    protected $table = 'posts';
+
+    /**
      * Set the fillable attributes for the model.
      *
      * @param  array  $fillable

@@ -91,6 +91,8 @@ php artisan migration
 php artisan db:seed
 ```
 
+If you want to create data interactively, you can use `php artisan app:init` instead of using `php artisan db:seed`.
+
 Now you can start the Rubel!
 
 ## Anything Else

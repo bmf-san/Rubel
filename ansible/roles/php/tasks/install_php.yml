@@ -1,6 +1,6 @@
 ---
-- name: Install php-fpm-70
-  yum: name={{ item }} state=latest enablerepo=remi,remi-php70
+- name: Install php-fpm-71
+  yum: name={{ item }} state=latest enablerepo=remi,remi-php71
   with_items:
    - php
    - php-devel

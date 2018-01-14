@@ -8,7 +8,7 @@ return [
     ],
     'admin' => [
         'name' => env('ADMIN_NAME', 'admin'),
-        'email' => env('ADMIN_EMAIL', 'admin@admin.com'),
-        'password' => env('ADMIN_PASSWORD', 'admin'),
+        'email' => env('ADMIN_EMAIL', 'admin@example.com'),
+        'password' => env('ADMIN_PASSWORD', 'password'),
     ],
 ];
