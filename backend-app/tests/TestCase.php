@@ -3,6 +3,13 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use Rubel\Models\Admin;
+use Rubel\Models\Category;
+use Rubel\Models\Tag;
+use Rubel\Models\Config;
+use Rubel\Models\Post;
+use Rubel\Models\Comment;
+use Rubel\Models\TagPost;
+use Carbon\Carbon;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -36,6 +43,13 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
         Artisan::call('migrate');
+        factory(Admin::class)->create();
+        factory(Category::class)->create();
+        factory(Tag::class)->create();
+        factory(Config::class)->create();
+        factory(Post::class)->create();
+        factory(Comment::class)->create();
+        factory(TagPost::class)->create();
     }
 
     /**
@@ -50,26 +64,37 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Run the admin factory
+     * Run the default admin factory
      *
-     * @param array $data
      * @return void
      */
-    public function runAdmin($data = []): void
+    public function runDefaultAdmin(): void
     {
+        $data = [
+            'name' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ];
+
         factory(Admin::class)->create($data);
     }
 
     /**
-     * Get headers with a jwt token for Api authentication
+     * Get default headers with a jwt token for Api authentication
      *
-     * @param array $credential
      * @return array
      */
-    public function getHeaders($credential = []): array
+    public function getDefaultHeaders(): array
     {
+        $credential = [
+            'email' => 'admin@example.com',
+            'password' => 'password',
+        ];
+
         $response = $this->json('POST', route('api.authenticate.authenticate'), $credential);
-        dd($response);
+
         $jwtTokens = json_decode($response->getContent(), true)['token'];
 
         $headers = [

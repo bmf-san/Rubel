@@ -27,7 +27,7 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null): mixed
+    public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->guard($guard)->check()) {
             switch ($guard) {

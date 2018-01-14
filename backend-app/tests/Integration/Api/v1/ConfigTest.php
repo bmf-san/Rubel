@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Symfony\Component\HttpFoundation\Response;
-use Carbon\Carbon;
+use Rubel\Models\Config;
 
 class ConfigTest extends TestCase
 {
@@ -21,27 +21,15 @@ class ConfigTest extends TestCase
 
     public function testUpdate()
     {
-        $admin = [
-            'name' => config('rubel.admin.name'),
-            'email' => config('rubel.admin.email'),
-            'password' => bcrypt(config('rubel.admin.password')),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ];
+        $this->runDefaultAdmin();
 
-        $this->runAdmin($admin);
+        $configName = Config::first()->name;
 
         $data = [
-            'title' => 'HereIsTitle',
-            'sub_title' => 'HereIsSubTItle'
+            $configName => 'config_value',
         ];
 
-        $credential = [
-            'email' => config('rubel.admin.email'),
-            'password' => bcrypt(config('rubel.admin.password')),
-        ];
-
-        $response = $this->json('PATCH', route('api.configs.update'), $data, $this->getHeaders($credential));
+        $response = $this->json('PATCH', route('api.configs.update'), $data, $this->getDefaultHeaders());
 
         $response->assertStatus(Response::HTTP_OK);
     }

@@ -14,19 +14,11 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticateSuccess()
     {
-        $admin = [
-            'name' => config('rubel.admin.name'),
-            'email' => config('rubel.admin.email'),
-            'password' => bcrypt(config('rubel.admin.password')),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ];
-
-        $this->runAdmin($admin);
+        $this->runDefaultAdmin();
 
         $credential = [
-            'email' => config('rubel.admin.email'),
-            'password' => config('rubel.admin.password'),
+            'email' => 'admin@example.com',
+            'password' => 'password',
         ];
 
         $response = $this->json('POST', route('api.authenticate.authenticate'), $credential);
@@ -36,19 +28,11 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticateFailed()
     {
-        $admin = [
-            'name' => config('rubel.admin.name'),
-            'email' => config('rubel.admin.email'),
-            'password' => bcrypt(config('rubel.admin.password')),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ];
-
-        $this->runAdmin($admin);
+        $this->runDefaultAdmin();
 
         $credential = [
-            'email' => 'fail_email@example.com',
-            'password' => bcrypt('FailedPassword'),
+            'email' => 'failed_admin@example.com',
+            'password' => 'failed_password',
         ];
 
         $response = $this->json('POST', route('api.authenticate.authenticate'), $credential);

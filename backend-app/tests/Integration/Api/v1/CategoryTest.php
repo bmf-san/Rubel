@@ -21,36 +21,48 @@ class CategoryTest extends TestCase
 
     public function testStore()
     {
+        $this->runDefaultAdmin();
+
         $data = [
-            'name' => 'HereIsTag'
+            'name' => 'category_name'
         ];
 
-        $response = $this->json('POST', route('api.categories.store'), $data, $this->getHeaders());
+        $response = $this->json('POST', route('api.categories.store'), $data, $this->getDefaultHeaders());
 
         $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testShow()
     {
-        $response = $this->json('GET', route('api.categories.show', 1));
+        $targetId = Category::first()->id;
+
+        $response = $this->json('GET', route('api.categories.show', $targetId));
 
         $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testUpdate()
     {
+        $this->runDefaultAdmin();
+
         $data = [
-            'name' => 'HereIsTag'
+            'name' => 'category_name',
         ];
 
-        $response = $this->json('PATCH', route('api.categories.update', Category::first()->id), $data, $this->getHeaders());
+        $targetId = Category::first()->id;
+
+        $response = $this->json('PATCH', route('api.categories.update', $targetId), $data, $this->getDefaultHeaders());
 
         $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testDestroy()
     {
-        $response = $this->json('DELETE', route('api.categories.destroy', Category::first()->id), [], $this->getHeaders());
+        $this->runDefaultAdmin();
+
+        $targetId = Category::first()->id;
+
+        $response = $this->json('DELETE', route('api.categories.destroy', $targetId), [], $this->getDefaultHeaders());
 
         $response->assertStatus(Response::HTTP_OK);
     }
