@@ -1,6 +1,10 @@
 <?php
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
+use Rubel\Models\Admin;
 
-abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
+abstract class TestCase extends BaseTestCase
 {
     /**
      * The base URL to use while testing the application.
@@ -12,13 +16,13 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     /**
      * Creates the application.
      *
-     * @return \Illuminate\Foundation\Application
+     * @return Application
      */
-    public function createApplication()
+    public function createApplication(): Application
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 
-        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+        $app->make(Kernel::class)->bootstrap();
 
         return $app;
     }
@@ -28,11 +32,10 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Artisan::call('migrate');
-        Artisan::call('db:seed');
     }
 
     /**
@@ -40,10 +43,21 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         Artisan::call('migrate:reset');
         parent::tearDown();
+    }
+
+    /**
+     * Run the admin factory
+     *
+     * @param array $data
+     * @return void
+     */
+    public function runAdmin($data = []): void
+    {
+        factory(Admin::class)->create($data);
     }
 
     /**

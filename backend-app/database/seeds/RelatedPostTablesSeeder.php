@@ -9,18 +9,18 @@ class RelatedPostTablesSeeder extends Seeder
     /**
      * DatabaseManager
      *
-     * @var $db
+     * @var $dbManager
      */
-    protected $db;
+    protected $dbManager;
 
     /**
      * DatabaseSeeder __constructor
      *
-     * @param DatabaseManager $db
+     * @param DatabaseManager $dbManager
      */
-    public function __construct(DatabaseManager $db)
+    public function __construct(DatabaseManager $dbManager)
     {
-        $this->db = $db;
+        $this->dbManager = $dbManager;
     }
 
     /**
@@ -28,7 +28,7 @@ class RelatedPostTablesSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $this->runTruncate();
         $this->runInsert();
@@ -39,15 +39,15 @@ class RelatedPostTablesSeeder extends Seeder
      *
      * @return void
      */
-    private function runTruncate()
+    private function runTruncate(): void
     {
-        $this->db->table('admins')->truncate();
-        $this->db->table('categories')->truncate();
-        $this->db->table('tags')->truncate();
-        $this->db->table('comments')->truncate();
-        $this->db->table('configs')->truncate();
-        $this->db->table('posts')->truncate();
-        $this->db->table('tag_post')->truncate();
+        $this->dbManager->table('admins')->truncate();
+        $this->dbManager->table('categories')->truncate();
+        $this->dbManager->table('tags')->truncate();
+        $this->dbManager->table('comments')->truncate();
+        $this->dbManager->table('configs')->truncate();
+        $this->dbManager->table('posts')->truncate();
+        $this->dbManager->table('tag_post')->truncate();
     }
 
     /**
@@ -55,16 +55,16 @@ class RelatedPostTablesSeeder extends Seeder
      *
      * @return void
      */
-    private function runInsert()
+    private function runInsert(): void
     {
         for ($i = 1; $i < 11; ++$i) {
-            $this->db->table('categories')->insert([
+            $this->dbManager->table('categories')->insert([
                 'name' => "category-{$i}",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
 
-            $this->db->table('posts')->insert([
+            $this->dbManager->table('posts')->insert([
                 'admin_id' => 1,
                 'category_id' => $i,
                 'title' => "Title-{$i}",
@@ -76,20 +76,20 @@ class RelatedPostTablesSeeder extends Seeder
                 'published_at' => Carbon::now()
             ]);
 
-            $this->db->table('comments')->insert([
+            $this->dbManager->table('comments')->insert([
                 'post_id' => $i,
                 'comment' => "This is {$i} comment.",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
 
-            $this->db->table('tags')->insert([
+            $this->dbManager->table('tags')->insert([
                 'name' => "tag-{$i}",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
 
-            $this->db->table('tag_post')->insert([
+            $this->dbManager->table('tag_post')->insert([
                 'tag_id' => $i,
                 'post_id' => $i,
                 'created_at' => Carbon::now(),

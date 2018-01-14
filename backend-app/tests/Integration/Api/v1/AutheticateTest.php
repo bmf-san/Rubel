@@ -5,20 +5,24 @@ use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthenticateTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * STATUS_CODE_OK
-     *
-     * @var int
-     */
-    const STATUS_CODE_OK = 200;
-
     public function testAuthenticate()
     {
+        $data = [
+            'name' => config('rubel.admin.name'),
+            'email' => config('rubel.admin.email'),
+            'password' => bcrypt(config('rubel.admin.password')),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ];
+
+        $this->runAdmin($data);
+
         $data = [
             'email' => config('rubel.admin.email'),
             'password' => config('rubel.admin.password')
@@ -26,6 +30,6 @@ class AuthenticateTest extends TestCase
 
         $response = $this->json('POST', route('api.authenticate.authenticate'), $data);
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 }

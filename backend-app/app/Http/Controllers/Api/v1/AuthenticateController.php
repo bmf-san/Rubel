@@ -4,27 +4,14 @@ namespace Rubel\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Rubel\Http\Controllers\Controller;
-use Rubel\Http\Requests\Api\v1\Authenticate\AuthenticateRequest;
+use Symfony\Component\HttpFoundation\Response;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\JWTAuth;
+use Rubel\Http\Controllers\Controller;
+use Rubel\Http\Requests\Api\v1\Authenticate\AuthenticateRequest;
 
 class AuthenticateController extends Controller
 {
-    /**
-     * Status code unauthorized
-     *
-     * @var int
-     */
-    const STATUS_CODE_UNAUTHORIZED = 401;
-
-    /**
-     * Status code internal server error
-     *
-     * @var int
-     */
-    const STATUS_CODE_INTERNAL_SERVER_ERROR = 500;
-
     /**
      * AuthenticateController constructor
      *
@@ -47,10 +34,10 @@ class AuthenticateController extends Controller
 
         try {
             if (! $token = $this->jwtAuth->attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], self::STATUS_CODE_UNAUTHORIZED);
+                return response()->json(['error' => 'invalid_credentials'], Response::HTTP_UNAUTHORIZED);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], self::STATUS_CODE_INTERNAL_SERVER_ERROR);
+            return response()->json(['error' => 'could_not_create_token'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         return response()->json(compact('token'));

@@ -2,13 +2,19 @@
 
 namespace Rubel\Http\Middleware;
 
+use Illuminate\Contracts\Auth\Factory;
 use Closure;
 
 class RedirectIfAuthenticated
 {
+    /**
+     * Factory
+     *
+     * @var Factory
+     */
     protected $auth;
 
-    public function __construct(\Illuminate\Contracts\Auth\Factory $auth)
+    public function __construct(Factory $auth)
     {
         $this->auth = $auth;
     }
@@ -21,7 +27,7 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $guard = null): mixed
     {
         if ($this->auth->guard($guard)->check()) {
             switch ($guard) {

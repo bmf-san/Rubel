@@ -5,6 +5,7 @@ use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Symfony\Component\HttpFoundation\Response;
 use Rubel\Models\Post;
 use Carbon\Carbon;
 
@@ -12,18 +13,11 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * STATUS_CODE_OK
-     *
-     * @var int
-     */
-    const STATUS_CODE_OK = 200;
-
     public function testIndex()
     {
         $response = $this->json('GET', route('api.posts.index'));
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testStore()
@@ -46,14 +40,14 @@ class PostTest extends TestCase
 
         $response = $this->json('POST', route('api.posts.store'), $data, $this->getHeaders());
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testShow()
     {
         $response = $this->json('GET', route('api.posts.show', 1));
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testUpdate()
@@ -76,13 +70,13 @@ class PostTest extends TestCase
 
         $response = $this->json('PATCH', route('api.posts.update', Post::first()->id), $data, $this->getHeaders());
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testDestroy()
     {
         $response = $this->json('DELETE', route('api.posts.destroy', Post::first()->id), [], $this->getHeaders());
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 }

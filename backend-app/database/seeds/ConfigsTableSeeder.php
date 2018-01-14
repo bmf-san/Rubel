@@ -8,18 +8,18 @@ class ConfigsTableSeeder extends Seeder
     /**
      * DatabaseManager
      *
-     * @var $db
+     * @var $dbManager
      */
-    protected $db;
+    protected $dbManager;
 
     /**
      * DatabaseSeeder __constructor
      *
-     * @param DatabaseManager $db
+     * @param DatabaseManager $dbManager
      */
-    public function __construct(Illuminate\Database\DatabaseManager $db)
+    public function __construct(Illuminate\Database\DatabaseManager $dbManager)
     {
-        $this->db = $db;
+        $this->dbManager = $dbManager;
     }
 
     /**
@@ -27,9 +27,9 @@ class ConfigsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $this->db->table('configs')->truncate();
+        $this->dbManager->table('configs')->truncate();
 
         $configs = [
             'title' => 'Rubel',
@@ -37,7 +37,7 @@ class ConfigsTableSeeder extends Seeder
         ];
 
         foreach ($configs as $key => $value) {
-            $this->db->table('configs')->insert([
+            $this->dbManager->table('configs')->insert([
                 'name' => $key,
                 'alias_name' => str_replace("_", " ", mb_ucfirst($key, mb_internal_encoding())),
                 'value' => $value,

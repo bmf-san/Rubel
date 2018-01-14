@@ -8,18 +8,18 @@ class ForeignKeyManager
     /**
      * DatabaseManager
      *
-     * @var $db
+     * @var $dbManager
      */
-    protected $db;
+    protected $dbManager;
 
     /**
      * ForeignKeyManager __constructor
      *
-     * @param DatabaseManager $db
+     * @param DatabaseManager $dbManager
      */
-    public function __construct(DatabaseManager $db)
+    public function __construct(DatabaseManager $dbManager)
     {
-        $this->db = $db;
+        $this->dbManager = $dbManager;
     }
 
     /**
@@ -27,14 +27,14 @@ class ForeignKeyManager
      *
      * @return void
      */
-    public function setFKCheckOff()
+    public function setFKCheckOff(): void
     {
-        switch ($this->db->getDriverName()) {
+        switch ($this->dbManager->getDriverName()) {
             case 'mysql':
-                $this->db->statement('SET FOREIGN_KEY_CHECKS=0');
+                $this->dbManager->statement('SET FOREIGN_KEY_CHECKS=0');
                 break;
             case 'sqlite':
-                $this->db->statement('PRAGMA foreign_keys = OFF');
+                $this->dbManager->statement('PRAGMA foreign_keys = OFF');
                 break;
         }
     }
@@ -44,14 +44,14 @@ class ForeignKeyManager
      *
      * @return void
      */
-    public function setFKCheckOn()
+    public function setFKCheckOn(): void
     {
-        switch ($this->db->getDriverName()) {
+        switch ($this->dbManager->getDriverName()) {
             case 'mysql':
-                $this->db->statement('SET FOREIGN_KEY_CHECKS=1');
+                $this->dbManager->statement('SET FOREIGN_KEY_CHECKS=1');
                 break;
             case 'sqlite':
-                $this->db->statement('PRAGMA foreign_keys = ON');
+                $this->dbManager->statement('PRAGMA foreign_keys = ON');
                 break;
         }
     }

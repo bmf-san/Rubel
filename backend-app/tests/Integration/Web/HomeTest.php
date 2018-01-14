@@ -5,20 +5,14 @@ use TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeTest extends TestCase
 {
-    /**
-     * STATUS_CODE_OK
-     *
-     * @var int
-     */
-    const STATUS_CODE_OK = 200;
-
     public function testIndex()
     {
         $response = $this->get(route('web.root.index'));
 
-        $response->assertStatus(self::STATUS_CODE_OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 }

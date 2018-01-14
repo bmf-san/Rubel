@@ -4,19 +4,13 @@ namespace Rubel\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Rubel\Http\Controllers\Controller;
 use Rubel\Repositories\Eloquent\Api\TagRepository;
 use Rubel\Http\Requests\Api\v1\Tag\StoreTagRequest;
 
 class TagController extends Controller
 {
-    /**
-     * STATUS_CODE_OK
-     *
-     * @var int
-     */
-    const STATUS_CODE_OK = 200;
-
     /**
      * TagRepository
      *
@@ -41,7 +35,7 @@ class TagController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->tagRepository->index(), self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->index(), Response::HTTP_OK);
     }
 
     /**
@@ -52,7 +46,7 @@ class TagController extends Controller
      */
     public function store(StoreTagRequest $request): JsonResponse
     {
-        return response()->json($this->tagRepository->store($request), self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->store($request), Response::HTTP_OK);
     }
 
     /**
@@ -63,7 +57,7 @@ class TagController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        return response()->json($this->tagRepository->show($id), self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->show($id), Response::HTTP_OK);
     }
 
     /**
@@ -75,7 +69,7 @@ class TagController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
-        return response()->json($this->tagRepository->update($request, $id), self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->update($request, $id), Response::HTTP_OK);
     }
 
     /**
@@ -86,6 +80,6 @@ class TagController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
-        return response()->json($this->tagRepository->destroy($id), self::STATUS_CODE_OK);
+        return response()->json($this->tagRepository->destroy($id), Response::HTTP_OK);
     }
 }

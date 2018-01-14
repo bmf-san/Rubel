@@ -18,9 +18,9 @@ class Initialize extends Command
     /**
      * DatabaseManager
      *
-     * @var $db
+     * @var $dbManager
      */
-    protected $db;
+    protected $dbManager;
 
     /**
      * ForeignKeyManager
@@ -46,14 +46,14 @@ class Initialize extends Command
     /**
      * Create a new command instance.
      *
-     * @param DatabaseManager $db
+     * @param DatabaseManager $dbManager
      * @param ForeignKeyManager $fkManager
      * @return void
      */
-    public function __construct(DatabaseManager $db, ForeignKeyManager $fkManager)
+    public function __construct(DatabaseManager $dbManager, ForeignKeyManager $fkManager)
     {
         parent::__construct();
-        $this->db = $db;
+        $this->dbManager = $dbManager;
         $this->fkManager = $fkManager;
     }
 
@@ -86,13 +86,13 @@ class Initialize extends Command
     {
         $this->fkManager->setFKCheckOff();
 
-        $this->db->table('admins')->truncate();
-        $this->db->table('categories')->truncate();
-        $this->db->table('tags')->truncate();
-        $this->db->table('configs')->truncate();
-        $this->db->table('posts')->truncate();
-        $this->db->table('comments')->truncate();
-        $this->db->table('tag_post')->truncate();
+        $this->dbManager->table('admins')->truncate();
+        $this->dbManager->table('categories')->truncate();
+        $this->dbManager->table('tags')->truncate();
+        $this->dbManager->table('configs')->truncate();
+        $this->dbManager->table('posts')->truncate();
+        $this->dbManager->table('comments')->truncate();
+        $this->dbManager->table('tag_post')->truncate();
 
         $this->fkManager->setFKCheckOn();
     }

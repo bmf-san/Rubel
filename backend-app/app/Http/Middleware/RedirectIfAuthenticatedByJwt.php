@@ -32,7 +32,7 @@ class RedirectIfAuthenticatedByJwt
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next): mixed
     {
         try {
             $this->jwtAuth->refresh($request->header('Authorization'));

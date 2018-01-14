@@ -4,18 +4,12 @@ namespace Rubel\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Rubel\Http\Controllers\Controller;
 use Rubel\Repositories\Eloquent\Api\ConfigRepository;
 
 class ConfigController extends Controller
 {
-    /**
-     * STATUS_CODE_OK
-     *
-     * @var int
-     */
-    const STATUS_CODE_OK = 200;
-
     /**
      * ConfigRepository
      *
@@ -40,7 +34,7 @@ class ConfigController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->configRepository->index(), self::STATUS_CODE_OK);
+        return response()->json($this->configRepository->index(), Response::HTTP_OK);
     }
 
     /**
@@ -51,6 +45,6 @@ class ConfigController extends Controller
      */
     public function update(Request $request): JsonResponse
     {
-        return response()->json($this->configRepository->update($request), self::STATUS_CODE_OK);
+        return response()->json($this->configRepository->update($request), Response::HTTP_OK);
     }
 }

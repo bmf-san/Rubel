@@ -8,18 +8,18 @@ class AdminsTableSeeder extends Seeder
     /**
      * DatabaseManager
      *
-     * @var $db
+     * @var $dbManager
      */
-    protected $db;
+    protected $dbManager;
 
     /**
      * DatabaseSeeder __constructor
      *
-     * @param DatabaseManager $db
+     * @param DatabaseManager $dbManager
      */
-    public function __construct(Illuminate\Database\DatabaseManager $db)
+    public function __construct(Illuminate\Database\DatabaseManager $dbManager)
     {
-        $this->db = $db;
+        $this->dbManager = $dbManager;
     }
 
     /**
@@ -27,11 +27,11 @@ class AdminsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $this->db->table('admins')->truncate();
+        $this->dbManager->table('admins')->truncate();
 
-        $this->db->table('admins')->insert([
+        $this->dbManager->table('admins')->insert([
            'name' => config('rubel.admin.name'),
            'email' => config('rubel.admin.email'),
            'password' => bcrypt(config('rubel.admin.password')),
