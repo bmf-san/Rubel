@@ -66,6 +66,8 @@ class Initialize extends Command
     {
         $this->runTruncate();
 
+        $this->setUpAdmin();
+
         $this->runAdmin();
         $this->runCategory();
         $this->runTag();
@@ -95,6 +97,27 @@ class Initialize extends Command
         $this->dbManager->table('tag_post')->truncate();
 
         $this->fkManager->setFKCheckOn();
+    }
+
+    /**
+     * Set up the admin
+     *
+     * @return void
+     */
+    private function setUpAdmin()
+    {
+        if ($this->confirm('Do you want to set up a admin?')) {
+            $name = (string) $this->ask('What is the name of a admin?');
+            $email = (string) $this->ask('What is the email address of a admin?');
+            $password = (string) $this->ask('What is the password of a admin?');
+            factory(Admin::class)->create(
+                [
+                    'name' => $name,
+                    'email' => $email,
+                    'password' => bcrypt($password),
+                ]
+            );
+        }
     }
 
     /**

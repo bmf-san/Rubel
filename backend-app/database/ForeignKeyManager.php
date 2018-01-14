@@ -32,10 +32,10 @@ class ForeignKeyManager
         switch ($this->dbManager->getDriverName()) {
             case 'mysql':
                 $this->dbManager->statement('SET FOREIGN_KEY_CHECKS=0');
-                break;
+                return;
             case 'sqlite':
                 $this->dbManager->statement('PRAGMA foreign_keys = OFF');
-                break;
+                return;
         }
     }
 
@@ -49,10 +49,10 @@ class ForeignKeyManager
         switch ($this->dbManager->getDriverName()) {
             case 'mysql':
                 $this->dbManager->statement('SET FOREIGN_KEY_CHECKS=1');
-                break;
+                return;
             case 'sqlite':
                 $this->dbManager->statement('PRAGMA foreign_keys = ON');
-                break;
+                return;
         }
     }
 }

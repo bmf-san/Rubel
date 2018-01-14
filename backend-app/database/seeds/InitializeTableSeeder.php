@@ -2,9 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\DatabaseManager;
+use Database\ForeignKeyManager;
 use Carbon\Carbon;
 
-class RelatedPostTablesSeeder extends Seeder
+class InitializeTableSeeder extends Seeder
 {
     /**
      * DatabaseManager
@@ -14,13 +15,21 @@ class RelatedPostTablesSeeder extends Seeder
     protected $dbManager;
 
     /**
+     * ForeignKeyManager
+     *
+     * @var $fkManager
+     */
+    protected $fkManager;
+
+    /**
      * DatabaseSeeder __constructor
      *
      * @param DatabaseManager $dbManager
      */
-    public function __construct(DatabaseManager $dbManager)
+    public function __construct(DatabaseManager $dbManager, ForeignKeyManager $fkManager)
     {
         $this->dbManager = $dbManager;
+        $this->fkManager = $fkManager;
     }
 
     /**
@@ -30,8 +39,15 @@ class RelatedPostTablesSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->fkManager->setFKCheckOff();
+
         $this->runTruncate();
-        $this->runInsert();
+
+        $this->runAdmin();
+        $this->runRelatedPost();
+        $this->runConfig();
+
+        $this->fkManager->setFKCheckOn();
     }
 
     /**
@@ -51,11 +67,25 @@ class RelatedPostTablesSeeder extends Seeder
     }
 
     /**
-     * Run insert methods.
+     * Run the admin
+     */
+    private function runAdmin(): void
+    {
+        $this->dbManager->table('admins')->insert([
+           'name' => config('rubel.admin.name'),
+           'email' => config('rubel.admin.email'),
+           'password' => bcrypt(config('rubel.admin.password')),
+           'created_at' => Carbon::now(),
+           'updated_at' => Carbon::now(),
+        ]);
+    }
+
+    /**
+     * Run the related post
      *
      * @return void
      */
-    private function runInsert(): void
+    private function runRelatedPost(): void
     {
         for ($i = 1; $i < 11; ++$i) {
             $this->dbManager->table('categories')->insert([
@@ -92,6 +122,31 @@ class RelatedPostTablesSeeder extends Seeder
             $this->dbManager->table('tag_post')->insert([
                 'tag_id' => $i,
                 'post_id' => $i,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+    }
+
+    /**
+     * Run the config.
+     *
+     * @return void
+     */
+    private function runConfig(): void
+    {
+        $this->dbManager->table('configs')->truncate();
+
+        $configs = [
+            'title' => 'Rubel',
+            'sub_title' => 'A Simple CMS worked by Laravel, React, and Bulma.',
+        ];
+
+        foreach ($configs as $key => $value) {
+            $this->dbManager->table('configs')->insert([
+                'name' => $key,
+                'alias_name' => str_replace("_", " ", mb_ucfirst($key, mb_internal_encoding())),
+                'value' => $value,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);

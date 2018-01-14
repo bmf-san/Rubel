@@ -63,15 +63,13 @@ abstract class TestCase extends BaseTestCase
     /**
      * Get headers with a jwt token for Api authentication
      *
+     * @param array $credential
      * @return array
      */
-    public function getHeaders(): array
+    public function getHeaders($credential = []): array
     {
-        $response = $this->json('POST', route('api.authenticate.authenticate'), [
-            "email" => env('ADMIN_EMAIL'),
-            "password" => env('ADMIN_PASSWORD')
-        ]);
-
+        $response = $this->json('POST', route('api.authenticate.authenticate'), $credential);
+        dd($response);
         $jwtTokens = json_decode($response->getContent(), true)['token'];
 
         $headers = [
