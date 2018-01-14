@@ -1,5 +1,9 @@
 [![CircleCI](https://circleci.com/gh/bmf-san/Rubel.svg?style=svg)](https://circleci.com/gh/bmf-san/Rubel)
 
+# Development Status
+- 2018/01/14
+ - Working hard to renewal the frontend-app by using original flux and router package instead of using Redux and React Router package.
+
 # Rubel
 
 Rubel - An Open Source CMS built with Laravel and React.
