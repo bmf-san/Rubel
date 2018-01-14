@@ -41,7 +41,7 @@ $factory->define(Admin::class, function (Faker\Generator $faker) {
  */
 $factory->define(Category::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->city,
+        'name' => $faker->word . uniqid(),
     ];
 });
 
@@ -52,7 +52,7 @@ $factory->define(Category::class, function (Faker\Generator $faker) {
  */
 $factory->define(Tag::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->city,
+        'name' => $faker->word . uniqid(),
     ];
 });
 

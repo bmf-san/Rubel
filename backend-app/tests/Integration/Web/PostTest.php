@@ -21,7 +21,8 @@ class PostTest extends TestCase
 
     public function testShow()
     {
-        $targetTitle = Post::first()->title;
+        $targetTitle = Post::where('publication_status', 'public')->first()->title;
+
         $response = $this->get(route('web.posts.show', $targetTitle));
 
         $response->assertStatus(Response::HTTP_OK);

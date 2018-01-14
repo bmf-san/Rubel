@@ -64,7 +64,12 @@ abstract class TestCase extends BaseTestCase
             factory(Config::class)->create($config);
         }
 
-        factory(Post::class)->create();
+        factory(Post::class)->create([
+            'publication_status' => 'public',
+        ]);
+        factory(Post::class)->create([
+            'publication_status' => 'draft',
+        ]);
         factory(Comment::class)->create();
         factory(TagPost::class)->create();
     }
