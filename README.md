@@ -2,7 +2,7 @@
 
 # Development Status
 - 2018/01/26
-  - router package has released. [rubel-router](https://github.com/bmf-san/rubel-router)
+  - Router package has released. [rubel-router](https://github.com/bmf-san/rubel-router)
   
 - 2018/01/14~
   - Working hard to renewal the frontend-app by using original flux and router package instead of using Redux and React Router package.
