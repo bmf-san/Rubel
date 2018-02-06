@@ -1,13 +1,12 @@
-<!-- You doesn't have to write all section completely. -->
+<!-- 　Demand -->
+# Overview
+# Purpose
+# Proposal
+# Task
 
-# Description
-
-# Expected Behavior
-
-# Current Behavior
-
-# Possible Solution
-
+<!-- Bugs -->
+# Overview
 # Steps to Reproduce
-
-# Possible Implementation
+# Problem
+# Cause
+# Amendment

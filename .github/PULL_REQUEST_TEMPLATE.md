@@ -1,11 +1,11 @@
-<!-- You doesn't have to write all section completely. -->
+# Overview
 
-# Description
+# Changes
+
+# Impact range
+
+# Operational Requirements
 
 # Related Issue
 
-# Motivation and Context
-
-# How Has This Been Tested?
-
-# Screenshots (if appropriate):
+# Supplement
