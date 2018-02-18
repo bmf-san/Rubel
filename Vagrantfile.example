@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 VAGRANTFILE_API_VERSION = "2"
-VM_BOX = 'centos7.3'
+VM_BOX = 'bento/centos-7.3'
 VM_SYNCED_FOLDER_HOST = './'
 VM_SYNCED_FOLDER_GUEST = '/var/www/html'
 VM_SYNCED_FOLDER_OWNER = 'nginx'

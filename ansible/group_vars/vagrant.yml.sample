@@ -1,5 +1,9 @@
 ---
 ip: 192.168.33.111
 mysql_root_password: Pass@Word123
+mysql_db_name: rubel
+mysql_db_password: Pass@Word123
+mysql_test_db_name: rubel_test
+mysql_test_db_password: Pass@Word123
 ruby_version: 2.4.0
 python_version: 3.6.1

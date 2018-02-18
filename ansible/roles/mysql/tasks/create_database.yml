@@ -1,0 +1,23 @@
+- name: Create a new database for rubel
+  mysql_db:
+    name: "{{ mysql_db_name }}"
+    state: present
+
+- name: Create a new user for database
+  mysql_user:
+    name: "{{ mysql_db_name }}"
+    password: "{{ mysql_db_password }}"
+    priv: "{{ mysql_db_name }}.rubel.*:ALL"
+    state: present
+
+- name: Create a new database for test database
+  mysql_db:
+    name: "{{ mysql_test_db_name }}"
+    state: present
+
+- name: Create a new user for rubel_test
+  mysql_user:
+   name: "{{ mysql_test_db_name }}"
+   password: "{{ mysql_test_db_password }}"
+   priv: "{{ mysql_test_db_name }}.rubel.*:ALL"
+   state: present

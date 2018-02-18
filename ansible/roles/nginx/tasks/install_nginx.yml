@@ -8,8 +8,8 @@
 - name: Copy nginx default configuration
   template: src={{item.src}} dest={{item.dest}}
   with_items:
-   - { src: '../templates/nginx.conf', dest: '/etc/nginx/nginx.conf' }
-   - { src: '../templates/rubel.conf', dest: '/etc/nginx/conf.d' }
+   - { src: '../templates/nginx.conf.j2', dest: '/etc/nginx/nginx.conf' }
+   - { src: '../templates/rubel.conf.j2', dest: '/etc/nginx/conf.d' }
 
 - name: Restart nginx
   command: systemctl restart nginx

@@ -3,7 +3,7 @@
 # Development Status
 - 2018/01/26
   - Router package has released. [rubel-router](https://github.com/bmf-san/rubel-router)
-  
+
 - 2018/01/14~
   - Working hard to renewal the frontend-app by using original flux and router package instead of using Redux and React Router package.
 
@@ -88,9 +88,6 @@ An Ansible playbook has been in a directory. Please customize it as necessary.
 
 ```console
 vagrant ssh
-mysql -uroot -p   # password has been written in path/to/ansible/group_vars/vagrant.yml
-create database rubel;
-exit;
 
 cd path/to/backend-app
 
@@ -99,6 +96,16 @@ php artisan db:seed
 ```
 
 If you want to create data interactively, you can use `php artisan app:init` instead of using `php artisan db:seed`.
+
+After you finished provisioning, you have two databases and three users on the mysql.
+
+User | Password | Database
+------------- | ------------- | -------------
+root | Pass@Word123 | all
+rubel | Pass@Word123 | rubel
+rubel_test | Pass@Word123 | rubel_test
+
+You can change the mysql settings by editting the vagrant.yml.
 
 Now you can start the Rubel!
 
