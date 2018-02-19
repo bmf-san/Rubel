@@ -2,7 +2,6 @@
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Rubel\Models\Admin;
@@ -16,7 +15,7 @@ use Carbon\Carbon;
 
 abstract class TestCase extends BaseTestCase
 {
-    use WithoutMiddleware, DatabaseMigrations, DatabaseTransactions;
+    use DatabaseMigrations, DatabaseTransactions;
 
     /**
      * The base URL to use while testing the application.
