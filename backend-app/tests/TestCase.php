@@ -2,6 +2,8 @@
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Rubel\Models\Admin;
 use Rubel\Models\Category;
 use Rubel\Models\Tag;
@@ -13,6 +15,8 @@ use Carbon\Carbon;
 
 abstract class TestCase extends BaseTestCase
 {
+    use DatabaseMigrations, DatabaseTransactions;
+
     /**
      * The base URL to use while testing the application.
      *
@@ -32,57 +36,6 @@ abstract class TestCase extends BaseTestCase
         $app->make(Kernel::class)->bootstrap();
 
         return $app;
-    }
-
-    /**
-     * Set up the application
-     *
-     * @return void
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-        Artisan::call('migrate');
-        factory(Admin::class)->create();
-        factory(Category::class)->create();
-        factory(Tag::class)->create();
-
-        $configs = [
-            [
-                'name' => 'sub_title',
-                'alias_name' => 'SubTitle',
-                'value' => 'SubTitle',
-            ],
-            [
-                'name' => 'title',
-                'alias_name' => 'Title',
-                'value' => 'Title',
-            ],
-        ];
-
-        foreach ($configs as $config) {
-            factory(Config::class)->create($config);
-        }
-
-        factory(Post::class)->create([
-            'publication_status' => 'public',
-        ]);
-        factory(Post::class)->create([
-            'publication_status' => 'draft',
-        ]);
-        factory(Comment::class)->create();
-        factory(TagPost::class)->create();
-    }
-
-    /**
-     * Tear down the application
-     *
-     * @return void
-     */
-    public function tearDown(): void
-    {
-        Artisan::call('migrate:reset');
-        parent::tearDown();
     }
 
     /**
