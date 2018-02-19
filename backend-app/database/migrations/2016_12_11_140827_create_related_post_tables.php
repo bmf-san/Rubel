@@ -69,10 +69,10 @@ class CreateRelatedPostTables extends Migration
      */
     public function down()
     {
+        Schema::drop('comments');
         Schema::drop('tag_post');
         Schema::drop('posts');
         Schema::drop('categories');
-        Schema::drop('comments');
         Schema::drop('tags');
     }
 }
