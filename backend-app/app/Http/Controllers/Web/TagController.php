@@ -66,6 +66,6 @@ class TagController extends Controller
         $categories = $this->categoryModel->all();
         $tags = $this->tagModel->all();
 
-        return view('post.tag', ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
+        return view('post.tag', ['tag' => $tag, 'posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
 }

@@ -3,7 +3,7 @@ namespace Tests\Integration\Web;
 
 use TestCase;
 use Symfony\Component\HttpFoundation\Response;
-use Rubel\Models\Tag;
+use Rubel\Models\Post;
 
 class TagTest extends TestCase
 {
@@ -16,7 +16,7 @@ class TagTest extends TestCase
 
     public function testGetPosts()
     {
-        $targetName = Tag::first()->name;
+        $targetName = Post::where('publication_status', 'public')->first()->tags->first()->name;
 
         $response = $this->get(route('web.posts.tags.getPosts', $targetName));
 
