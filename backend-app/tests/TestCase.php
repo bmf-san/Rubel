@@ -2,6 +2,7 @@
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Rubel\Models\Admin;
@@ -15,7 +16,7 @@ use Carbon\Carbon;
 
 abstract class TestCase extends BaseTestCase
 {
-    use DatabaseMigrations, DatabaseTransactions;
+    use WithoutMiddleware, DatabaseMigrations, DatabaseTransactions;
 
     /**
      * The base URL to use while testing the application.
@@ -23,6 +24,17 @@ abstract class TestCase extends BaseTestCase
      * @var string
      */
     protected $baseUrl = 'http://localhost';
+
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        Artisan::call('db:seed');
+    }
 
     /**
      * Creates the application.
