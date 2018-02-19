@@ -5,9 +5,9 @@
 
 - name: Create a new user for database
   mysql_user:
-    name: "{{ mysql_db_name }}"
+    name: "{{ mysql_db_user_name }}"
     password: "{{ mysql_db_password }}"
-    priv: "{{ mysql_db_name }}.rubel.*:ALL"
+    priv: "{{ mysql_db_name }}.*:ALL"
     state: present
 
 - name: Create a new database for test database
@@ -17,7 +17,7 @@
 
 - name: Create a new user for rubel_test
   mysql_user:
-   name: "{{ mysql_test_db_name }}"
+   name: "{{ mysql_test_db_user_name }}"
    password: "{{ mysql_test_db_password }}"
-   priv: "{{ mysql_test_db_name }}.rubel.*:ALL"
+   priv: "{{ mysql_test_db_name }}.*:ALL"
    state: present
