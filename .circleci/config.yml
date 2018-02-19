@@ -4,8 +4,17 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: circleci/php:7.1
+      - image: circleci/mysql:5.7
+
+    environment:
+      - TEST_DB_DATABASE: circle_test
+      - TEST_DB_USERNAME: root
+      - TEST_DB_PASSWORD: ''
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+
     steps:
       - checkout
+      - run: sudo docker-php-ext-install pdo_mysql
       - run: sudo apt-get install -y nodejs npm
       - run: sudo npm cache clean
       - run: sudo npm install n -g
