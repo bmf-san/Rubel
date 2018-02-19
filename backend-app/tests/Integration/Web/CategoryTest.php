@@ -3,7 +3,7 @@ namespace Tests\Integration\Web;
 
 use TestCase;
 use Symfony\Component\HttpFoundation\Response;
-use Rubel\Models\Category;
+use Rubel\Models\Post;
 
 class CategoryTest extends TestCase
 {
@@ -16,7 +16,7 @@ class CategoryTest extends TestCase
 
     public function testGetPosts()
     {
-        $targetName = Category::first()->name;
+        $targetName = Post::where('publication_status', 'public')->first()->category->name;
 
         $response = $this->get(route('web.posts.categories.getPosts', $targetName));
 
