@@ -31,7 +31,7 @@
    line='memory_limit = 256M'
 
 - name: Set php-fpm setting
-  copy: src=../templates/www.conf dest=/etc/php-fpm.d/www.conf
+  copy: src=../templates/www.conf.j2 dest=/etc/php-fpm.d/www.conf
 
 - name: Run php-fpm
   shell: |

@@ -1,2 +1,3 @@
 ---
 - include: install_mysql.yml
+- include: create_database.yml

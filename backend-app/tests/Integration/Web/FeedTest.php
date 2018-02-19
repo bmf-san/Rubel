@@ -2,9 +2,6 @@
 namespace Tests\Integration\Web;
 
 use TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Symfony\Component\HttpFoundation\Response;
 
 class FeedTest extends TestCase

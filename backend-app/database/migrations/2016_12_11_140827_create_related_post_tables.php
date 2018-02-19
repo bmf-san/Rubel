@@ -21,13 +21,13 @@ class CreateRelatedPostTables extends Migration
 
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('admin_id')->unsigned()->nullable();
+            $table->integer('admin_id')->unsigned();
             $table->integer('category_id')->unsigned()->default((int) self::DEFAULT_CATEGORY_ID);
-            $table->string('title')->nullable();
-            $table->text('md_content')->nullable();
-            $table->text('html_content')->nullable();
+            $table->string('title');
+            $table->text('md_content');
+            $table->text('html_content');
             $table->string('publication_status')->default('draft');
-            $table->datetime('published_at')->nullable();
+            $table->datetime('published_at');
             $table->timestamps();
             $table->softDeletes();
 
@@ -37,7 +37,7 @@ class CreateRelatedPostTables extends Migration
 
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id')->unsigned()->nullable();
+            $table->integer('post_id')->unsigned();
             $table->text('comment');
             $table->timestamps();
             $table->softDeletes();
@@ -69,10 +69,10 @@ class CreateRelatedPostTables extends Migration
      */
     public function down()
     {
+        Schema::drop('comments');
         Schema::drop('tag_post');
         Schema::drop('posts');
         Schema::drop('categories');
-        Schema::drop('comments');
         Schema::drop('tags');
     }
 }

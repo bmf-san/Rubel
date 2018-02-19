@@ -5,13 +5,20 @@
 - name: Install mysql
   yum: name=mysql-community-server
 
+- name: Install MySQL-python
+  yum: name=MySQL-python
+
 - name: Run mysql
   service: name=mysqld state=started enabled=yes
 
-- name: Find temporary password
-  shell: "echo `grep 'temporary.*root@localhost' /var/log/mysqld.log | sed 's/.*root@localhost: //'`"
-  register: mysql_root_password_temp
-  tags: register
+- name: Set the my.cnf
+  template:
+    src: ../templates/.my.cnf.j2
+    dest: "/root/.my.cnf"
+    mode: 0600
 
-- name: Set new password from temporary password
-  shell: 'mysql -e "SET PASSWORD = PASSWORD(''{{ mysql_root_password }}'');" --connect-expired-password -uroot -p"{{ mysql_root_password_temp.stdout }}"'
+- name: Set the password for root
+  mysql_user:
+    name: root
+    host: localhost
+    password: "{{ mysql_root_password }}"

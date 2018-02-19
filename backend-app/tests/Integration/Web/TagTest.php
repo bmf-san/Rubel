@@ -2,16 +2,11 @@
 namespace Tests\Integration\Web;
 
 use TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Symfony\Component\HttpFoundation\Response;
-use Rubel\Models\Tag;
+use Rubel\Models\Post;
 
 class TagTest extends TestCase
 {
-    use DatabaseMigrations;
-
     public function testIndex()
     {
         $response = $this->get(route('web.tags.index'));
@@ -21,7 +16,7 @@ class TagTest extends TestCase
 
     public function testGetPosts()
     {
-        $targetName = Tag::first()->name;
+        $targetName = Post::where('publication_status', 'public')->first()->tags->first()->name;
 
         $response = $this->get(route('web.posts.tags.getPosts', $targetName));
 
