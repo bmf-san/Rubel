@@ -42,7 +42,7 @@ class InitializeTableSeeder extends Seeder
     {
         $this->fkManager->setFKCheckOff();
 
-        $this->runTruncate();
+        $this->truncate();
 
         $this->runAdmin();
         $this->runRelatedPost();
@@ -56,7 +56,7 @@ class InitializeTableSeeder extends Seeder
      *
      * @return void
      */
-    private function runTruncate(): void
+    private function truncate(): void
     {
         $this->dbManager->table('admins')->truncate();
         $this->dbManager->table('categories')->truncate();
