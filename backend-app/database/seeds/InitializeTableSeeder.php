@@ -25,6 +25,7 @@ class InitializeTableSeeder extends Seeder
      * DatabaseSeeder __constructor
      *
      * @param DatabaseManager $dbManager
+     * @param ForeignKeyManager $fkManager
      */
     public function __construct(DatabaseManager $dbManager, ForeignKeyManager $fkManager)
     {
