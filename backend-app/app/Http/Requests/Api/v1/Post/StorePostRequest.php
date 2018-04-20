@@ -24,14 +24,10 @@ class StorePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->publication_status != 'draft') {
-            return [
-                'title' => 'required',
-                'md_content' => 'required'
-            ];
-        }
-
-        return [];
+        return [
+            'title' => 'required',
+            'md_content' => 'required'
+        ];
     }
 
     /**
