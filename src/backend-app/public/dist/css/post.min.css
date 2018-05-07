@@ -1,0 +1,13 @@
+.header-image {
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.7)), url("/img/header.jpg"); }
+.header-image {
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.7)), url("/img/header.jpg"); }
+
+.hero.is-primary a {
+  color: #00d1b2; }
+
+pre code {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem; }

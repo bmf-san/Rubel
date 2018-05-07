@@ -1,9 +1,0 @@
----
-- name: Install MailCatcher
-  shell: bash -lc "gem install mailcatcher"
-  become: no
-
-- name: Run mailcatcher
-  command: >
-   mailcatcher --ip={{ ip }}
-  become: no

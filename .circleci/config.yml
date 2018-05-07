@@ -15,8 +15,9 @@ jobs:
     steps:
       - checkout
       - run: sudo docker-php-ext-install pdo_mysql
+      - run: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
       - run: sudo apt-get install -y nodejs npm
-      - run: sudo npm cache clean
+      - run: sudo npm cache verify
       - run: sudo npm install n -g
       - run: sudo n stable
       - run: sudo ln -sf /usr/local/bin/node /usr/bin/node

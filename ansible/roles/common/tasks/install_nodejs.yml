@@ -1,7 +1,0 @@
----
-  - name: Install nodejs
-    shell: yum install -y nodejs npm --enablerepo=epel && npm install -g n && n stable
-  - name: Install yarn
-    shell: npm install -g yarn
-  - name: Install webpack
-    shell: npm install -g webpack
