@@ -54,6 +54,9 @@ class FeedController extends Controller
             'updatedAt' => $updatedAt,
             'currentDate' => Carbon::now(),
             'posts' => $posts,
-        ])->header('Content-Type', 'application/xml');
+        ])->withHeaders([
+            'Content-Type' => 'application/xml',
+            'charset' => 'utf-8',
+        ])
     }
 }
