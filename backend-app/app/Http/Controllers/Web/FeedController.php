@@ -57,6 +57,6 @@ class FeedController extends Controller
         ])->withHeaders([
             'Content-Type' => 'application/xml',
             'charset' => 'utf-8',
-        ])
+        ]);
     }
 }
