@@ -46,7 +46,7 @@ class FeedController extends Controller
         $title = $this->config->where('name', 'title')->first()->value;
         $subTitle = $this->config->where('name', 'sub_title')->first()->value;
         $updatedAt = $this->post->latest()->first()->updated_at->toAtomString();
-        $posts = $this->post->all();
+        $posts = $this->post->whereNotNull('published_at')->get();
 
         return response()->view('feed.index', [
             'title' => $title,
