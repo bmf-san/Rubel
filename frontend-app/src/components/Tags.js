@@ -7,7 +7,8 @@ import {Link} from "react-router";
 import Loader from "../utils/Loader";
 
 class Tags extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     const {fetchTags} = this.props;
 
     fetchTags();

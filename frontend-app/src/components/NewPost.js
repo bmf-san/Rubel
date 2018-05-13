@@ -18,7 +18,8 @@ import {Link} from "react-router";
 import Loader from "../utils/Loader";
 
 class NewPost extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     const {fetchTags, fetchCategories, initCompleteTags, initMarkdown} = this.props;
 
     fetchTags();

@@ -9,7 +9,8 @@ import Loader from "../utils/Loader";
 const category_id_of_uncategorized = 1;
 
 class Categories extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     const {fetchCategories} = this.props;
 
     fetchCategories();
