@@ -7,7 +7,8 @@ import {Link} from "react-router";
 import Loader from "../utils/Loader";
 
 class Login extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     const {isLoginUser} = this.props;
 
     if (isLoginUser().payload) {
