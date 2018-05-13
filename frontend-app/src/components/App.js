@@ -5,8 +5,7 @@ import {fetchConfigs, logoutUser, isLoginUser} from "../actions/index";
 import {Link} from "react-router";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     const {fetchConfigs, isLoginUser} = this.props;
 
     if (!isLoginUser().payload) {

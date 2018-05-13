@@ -21,7 +21,7 @@ import {Link} from "react-router";
 import Loader from "../utils/Loader";
 
 class EditPost extends Component {
-  constructor(props) {
+  componentDidMount() {
     const {
       params,
       initialize,

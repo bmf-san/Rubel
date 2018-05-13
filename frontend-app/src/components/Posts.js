@@ -6,8 +6,7 @@ import {fetchPosts, deletePost} from "../actions/index";
 import {Link} from "react-router";
 
 class Posts extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     const {location, fetchPosts} = this.props;
 
     fetchPosts(location.query.page);

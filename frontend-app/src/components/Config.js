@@ -7,8 +7,7 @@ import {Link} from "react-router";
 import Loader from "../utils/Loader";
 
 class Configs extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     const {fetchConfigs} = this.props;
 
     fetchConfigs();
