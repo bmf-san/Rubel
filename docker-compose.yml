@@ -17,18 +17,20 @@ services:
     container_name: "rubel_mysql"
     image: mysql:5.7
     volumes:
-      - aamdb:/var/lib/mysql
+      - rubel_mysql_db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=rubel
-  # mysql_test:
-  #   container_name: "rubel_mysql_test"
-  #   image: mysql:5.7
-  #   volumes:
-  #     - aamdb:/var/lib/mysql
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=password
-  #     - MYSQL_DATABASE=rubel_test
+  mysql_test:
+    container_name: "rubel_mysql_test"
+    image: mysql:5.7
+    volumes:
+      - rubel_mysql_test_db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=rubel_test
 volumes:
-  aamdb:
+  rubel_mysql_db:
+    driver: local
+  rubel_mysql_test_db:
     driver: local

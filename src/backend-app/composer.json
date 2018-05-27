@@ -62,7 +62,7 @@
       "php artisan optimize"
     ],
     "test": [
-      "./vendor/phpunit/phpunit/phpunit"
+      "./vendor/bin/phpunit"
     ],
     "test-api": [
       "./vendor/phpunit/phpunit/phpunit tests/Unit/Api"

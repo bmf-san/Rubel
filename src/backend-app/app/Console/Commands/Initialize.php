@@ -41,7 +41,7 @@ class Initialize extends Command
      *
      * @var string
      */
-    protected $description = 'Initialize the application';
+    protected $description = 'Interactively initialize the application.';
 
     /**
      * Create a new command instance.

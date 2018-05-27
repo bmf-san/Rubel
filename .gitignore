@@ -8,18 +8,18 @@ Vagrantfile
 /deploy
 
 # backend-app
-/backend-app/node_modules
-/backend-app/public/dist
-/backend-app/public/storage
-/backend-app/storage/*.key
-/backend-app/vendor
-/backend-app/.env
-/backend-app/.phpstorm.meta.php
-/backend-app/_ide_helper.php
-/backend-app/.idea
-/backend-app/Homestead.json
-/backend-app/Homestead.yaml
+/src/backend-app/node_modules
+/src/backend-app/public/dist
+/src/backend-app/public/storage
+/src/backend-app/storage/*.key
+/src/backend-app/vendor
+/src/backend-app/.env
+/src/backend-app/.phpstorm.meta.php
+/src/backend-app/_ide_helper.php
+/src/backend-app/.idea
+/src/backend-app/Homestead.json
+/src/backend-app/Homestead.yaml
 
 # frontend-app
-/frontend-app/node_modules
-/frontend-app/dist/
+/src/frontend-app/node_modules
+/src/frontend-app/dist/
