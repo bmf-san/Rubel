@@ -86,6 +86,10 @@ a.nav-item.is-tab.active {
     margin-top: 0.25rem;
 }
 
+.pagination-list li {
+  list-style: none;
+}
+
 .nav.menu {
     background-color: #fff;
     border-bottom: 1px solid #e1e1e1;
