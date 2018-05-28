@@ -14,6 +14,7 @@ Rubel - An Open Source CMS built with Laravel and React.
 - PHP7
 - npm
 - Node.js
+- Docker
 
 ## Get Started
 
