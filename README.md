@@ -25,33 +25,22 @@ Rubel - An Open Source CMS built with Laravel and React.
 
 [Specified version] `git clone -branch 1.0.0 git@github.com:bmf-san/Rubel.git rubel`
 
-## Setting for backend-app
-
-```console
+## Setting
+```
 cd path/to/backend-app
-
-composer install
-npm install
-npm run build
-
 cp .env.example .env
-```
 
-## Setting for frontend-app
-
-```console
-cd path/to/frontend-app
-
-npm install
-npm run build
-```
-
-## Setting for Docker
-```
 ./docker-compose build
 ./docker-compose up -d
-docker rubel_php php /var/html/www/backend-app/artisan migrate
-docker rubel_php php /var/html/www/backend-app/artisan db:seed
+docker exec -it rubel_php php /var/html/www/backend-app/artisan migrate
+docker exec -it rubel_php php /var/html/www/backend-app/artisan db:seed
+
+docker exec -it rubel_php /bin/sh
+cd /var/www/html/backend-app/
+composer install
+cd /var/www/html/frontend-app/
+npm install
+npm run build
 ```
 
 Add hosts settings to `/etc/hosts`.
