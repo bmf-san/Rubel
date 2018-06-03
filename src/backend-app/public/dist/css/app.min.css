@@ -1,0 +1,35 @@
+/**
+ * App
+ */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
+
+.posts-column p {
+  margin-bottom: 0.5rem; }
+
+.menu-list a {
+  word-wrap: break-word; }
+
+.tag-list .tag {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem; }
+
+.tag-list a {
+  display: inline;
+  padding: 0px; }
+  .tag-list a:hover {
+    background-color: initial; }
+
+/**
+  * Utils
+  */
+.mt-one-and-a-half {
+  margin-top: 1.5rem; }
+
+.mb-one-and-a-half {
+  margin-bottom: 1.5rem; }
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10px; }

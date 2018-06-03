@@ -1,3 +1,0 @@
----
-- name: Add repository 'remi-repo'
-  command: rpm -ih http://rpms.famillecollet.com/enterprise/remi-release-7.rpm creates=/etc/yum.repos.d/remi.repo

@@ -9,99 +9,69 @@ Rubel - An Open Source CMS built with Laravel and React.
 
   - `EMAIL: rubel@example.com / PASSWORD: rubel`
 
-## Requirements
+# Requirements
 
+- Docker
 - PHP7
+- composer
 - npm
 - Node.js
 - Docker
 
-## Get Started
+# Get Started
 
-### Installation
+## Installation
 
 [Latest] `git clone git@github.com:bmf-san/Rubel.git rubel`
 
 [Specified version] `git clone -branch 1.0.0 git@github.com:bmf-san/Rubel.git rubel`
 
-### Setting for backend-app
-
-```console
+## Setting
+```
 cd path/to/backend-app
-
-composer install
-npm install
-npm run build
-
 cp .env.example .env
-```
 
-Please change these environment variables as necessary.
+./docker-compose build
+./docker-compose up -d
+docker exec -it rubel_php php /var/html/www/backend-app/artisan migrate
+docker exec -it rubel_php php /var/html/www/backend-app/artisan db:seed
 
-```console
-/* Setting for Rubel */
-ADMIN_NAME=admin
-ADMIN_EMAIL=admin@admin.com
-ADMIN_PASSWORD=admin
-
-DOMAIN=rubel
-ADMIN_DOMAIN=admin.rubel
-API_DOMAIN=api.rubel
-```
-
-### Setting for frontend-app
-
-```console
-cd path/to/frontend-app
-
+docker exec -it rubel_php /bin/sh
+cd /var/www/html/backend-app/
+composer install
+cd /var/www/html/frontend-app/
 npm install
 npm run build
 ```
 
-### Provisioning
-
-```console
-cd Rubel
-
-vagrant init
-
-cd Rubel/ansible/group_vars/vagrant.yml.sample
-cp vagrant.yml.sample vagrant.yml
-
-cd Rubel/ansible
-cp host.sample host
-
-vagrant provision
+Add hosts settings to `/etc/hosts`.
+```
+127.0.0.1 rubel
+127.0.0.1 admin.rubel
+127.0.0.1 api.rubel
 ```
 
-If you have no vagrant box in your host machine, you need to prepare a vagrant box before `vagrant init`.
+If you want to use vagrant, you can be able to use [bmf-san/vagrant-for-rubel](https://github.com/bmf-san/vagrant-for-rubel).
 
-An Ansible playbook has been in a directory. Please customize it as necessary.
-
-### Setting a database
-
-```console
-vagrant ssh
-
-cd path/to/backend-app
-
-php artisan migration
-php artisan db:seed
+## Run tests
+```
+docker exec -it rubel_php /bin/sh
+cd backend-app/
+composer test
 ```
 
-If you want to create data interactively, you can use `php artisan app:init` instead of using `php artisan db:seed`.
+## URL
+App | URL
+------------- | -------------
+Front | http://rubel/
+API | http://api.rubel/
+Adimin | http://admin.rubel/
 
-After you finished provisioning, you have two databases and three users on the mysql.
-
-User | Password | Database
-------------- | ------------- | -------------
-root | Pass@Word123 | all
-rubel | Pass@Word123 | rubel
-rubel_test | Pass@Word123 | rubel_test
-
-You can change the mysql settings by editting the vagrant.yml.
-
-Now you can start the Rubel!
+## Artisan commands
+Command | Detail
+------------- | -------------
+`make:repository {modelName : The name of the model}` | Create repository files.
+`app:init` | Interactively initialize the application.
 
 ## Anything Else
 
