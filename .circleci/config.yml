@@ -3,6 +3,9 @@ jobs:
   build:
     machine: true
     environment:
+      - DB_DATABASE: rubel
+      - DB_USERNAME: root
+      - DB_PASSWORD: password
       - TEST_DB_DATABASE: circle_test
       - TEST_DB_USERNAME: root
       - TEST_DB_PASSWORD: ''
