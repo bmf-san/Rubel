@@ -16,6 +16,8 @@ services:
   mysql:
     container_name: "rubel_mysql"
     image: mysql:5.7
+    ports:
+      - "3306:3306"
     volumes:
       - rubel_mysql_db:/var/lib/mysql
     environment:
@@ -24,6 +26,8 @@ services:
   mysql_test:
     container_name: "rubel_mysql_test"
     image: mysql:5.7
+    ports:
+      - "3305:3306"
     volumes:
       - rubel_mysql_test_db:/var/lib/mysql
     environment:
