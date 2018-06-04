@@ -5,10 +5,8 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-         keys:
-          - docker- {{ .Branch }}--{{ checksum "./circleci/config.yml" }}--{{ checksum "docker-compose.yml" }}
-         paths:
-          - ~/caches/images.tar
+         keys: docker- {{ .Branch }}--{{ checksum "./circleci/config.yml" }}--{{ checksum "docker-compose.yml" }}
+         paths: ~/caches/images.tar
       - run:
          command: |
           if [ ! -f ~/caches/images.tar ]; then
@@ -18,10 +16,8 @@ jobs:
             docker save $(docker images | awk 'NR>=2 && ! /^<none>/{print $1}') -o ~/caches/images.tar
           fi
       - save_cache:
-         key:
-          - docker--{{ .Branch }}--{{ checksum ".circleci/config.yml" }}--{{ checksum "docker-compose.yml" }}
-         paths:
-          - ~/caches/images.tar
+         key: docker--{{ .Branch }}--{{ checksum ".circleci/config.yml" }}--{{ checksum "docker-compose.yml" }}
+         paths: ~/caches/images.tar
       - run:
          command: |
            if [[ -e ~/caches/images.tar ]];then
