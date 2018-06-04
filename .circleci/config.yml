@@ -6,8 +6,8 @@ jobs:
       - checkout
       - run: docker-compose build
       - run: docker-compose up -d
-      - run: cd ./src/backend-app && cp .env.example .env
-      - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install && php artisan key:generate && php artisan migrate && php arisan db:seed"
+      - run: docker exec -it rubel_php /bin/sh -c "cd ./src/backend-app && cp .env.example .env"
+      - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install && php artisan key:generate && php artisan migrate && php artisan db:seed"
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer test"
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run install"
       - run: docker exec -it rubel_php /bin/sh -c "cd frontend-app/ && npm cache verify && npm install && npm run install"
@@ -15,7 +15,6 @@ jobs:
           keys:
             - v1-composer-dependencies-{{ checksum "./src/backend-app/composer.lock" }}
             - v1-composer-dependencies-
-      - run: cd ./src/backend-app; composer install --prefer-dist; php artisan key:generate
       - save_cache:
           paths:
             - ./src/backend-app/vendor
