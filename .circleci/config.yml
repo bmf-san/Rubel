@@ -5,7 +5,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-         keys: docker- {{ .Branch }}--{{ checksum "./circleci/config.yml" }}--{{ checksum "docker-compose.yml" }}
+         keys: docker--{{ .Branch }}--{{ checksum "./circleci/config.yml" }}--{{ checksum "docker-compose.yml" }}
          paths: ~/caches/images.tar
       - run:
          command: |
