@@ -7,10 +7,10 @@ jobs:
       - checkout
       - run: docker-compose build
       - run: docker-compose up -d
-      - run: docker exec -it rubel_php -c "cd backend-app/ && composer install && php artisan migrate && php arisan db:seed"
-      - run: docker exec -it rubel_php -c "cd backend-app/ && composer test"
-      - run: docker exec -it rubel_php -c "cd backend-app/ && npm cache verify && npm install && npm run install"
-      - run: docker exec -it rubel_php -c "cd frontend-app/ && npm cache verify && npm install && npm run install"
+      - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install && php artisan migrate && php arisan db:seed"
+      - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer test"
+      - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run install"
+      - run: docker exec -it rubel_php /bin/sh -c "cd frontend-app/ && npm cache verify && npm install && npm run install"
       - restore_cache:
           keys:
             - v1-composer-dependencies-{{ checksum "./src/backend-app/composer.lock" }}

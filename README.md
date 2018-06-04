@@ -33,10 +33,10 @@ cp .env.example .env
 
 docker-compose build
 docker-compose up -d
-docker exec -it rubel_php -c "cd backend-app/ && composer install && php artisan migrate && php arisan db:seed"
-docker exec -it rubel_php -c "cd backend-app/ && composer test"
-docker exec -it rubel_php -c "cd backend-app/ && npm cache verify && npm install && npm run install"
-docker exec -it rubel_php -c "cd frontend-app/ && npm cache verify && npm install && npm run install"
+docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install && php artisan migrate && php arisan db:seed"
+docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer test"
+docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run install"
+docker exec -it rubel_php /bin/sh -c "cd frontend-app/ && npm cache verify && npm install && npm run install"
 ```
 
 Add hosts settings to `/etc/hosts`.
