@@ -2,18 +2,11 @@ version: 2
 jobs:
   build:
     machine: true
-    environment:
-      - DB_DATABASE: rubel
-      - DB_USERNAME: root
-      - DB_PASSWORD: password
-      - TEST_DB_DATABASE: circle_test
-      - TEST_DB_USERNAME: root
-      - TEST_DB_PASSWORD: ''
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
     steps:
       - checkout
       - run: docker-compose build
       - run: docker-compose up -d
+      - run: cd ./src/backend-app && cp .env.example .env && cat .env
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install && php artisan key:generate && php artisan migrate && php artisan db:seed"
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer test"
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run install"
