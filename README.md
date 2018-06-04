@@ -27,24 +27,31 @@ Rubel - An Open Source CMS built with Laravel and React.
 [Specified version] `git clone -branch 1.0.0 git@github.com:bmf-san/Rubel.git rubel`
 
 ## Setting
+### Create a env file
 ```
-cd path/to/backend-app
+cd src/backend-app/
 cp .env.example .env
-
-./docker-compose build
-./docker-compose up -d
-docker exec -it rubel_php php /var/html/www/backend-app/artisan migrate
-docker exec -it rubel_php php /var/html/www/backend-app/artisan db:seed
-
-docker exec -it rubel_php /bin/sh
-cd /var/www/html/backend-app/
-composer install
-cd /var/www/html/frontend-app/
-npm install
-npm run build
 ```
 
-Add hosts settings to `/etc/hosts`.
+### Setup the docker-compose
+```
+docker-compose build
+docker-compose up -d
+```
+
+### Setup the backend-app
+docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install"
+docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run build"
+docker exec -it rubel_php /bin/sh -c "cd backend-app/ && php artisan key:generate"
+docker exec -it rubel_php /bin/sh -c "cd backend-app/ && php artisan migrate && php artisan db:seed"
+docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer test"
+
+### Setup the frontend-app
+```
+docker exec -it rubel_php /bin/sh -c "cd frontend-app/ && npm cache verify && npm install && npm run build"
+```
+
+### Add hosts settings to `/etc/hosts`
 ```
 127.0.0.1 rubel
 127.0.0.1 admin.rubel
@@ -52,13 +59,6 @@ Add hosts settings to `/etc/hosts`.
 ```
 
 If you want to use vagrant, you can be able to use [bmf-san/vagrant-for-rubel](https://github.com/bmf-san/vagrant-for-rubel).
-
-## Run tests
-```
-docker exec -it rubel_php /bin/sh
-cd backend-app/
-composer test
-```
 
 ## URL
 App | URL
