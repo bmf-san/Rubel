@@ -28,20 +28,15 @@ Rubel - An Open Source CMS built with Laravel and React.
 
 ## Setting
 ```
-cd path/to/backend-app
+cd src/backend-app/
 cp .env.example .env
 
-./docker-compose build
-./docker-compose up -d
-docker exec -it rubel_php php /var/html/www/backend-app/artisan migrate
-docker exec -it rubel_php php /var/html/www/backend-app/artisan db:seed
-
-docker exec -it rubel_php /bin/sh
-cd /var/www/html/backend-app/
-composer install
-cd /var/www/html/frontend-app/
-npm install
-npm run build
+docker-compose build
+docker-compose up -d
+docker exec -it rubel_php -c "cd backend-app/ && composer install && php artisan migrate && php arisan db:seed"
+docker exec -it rubel_php -c "cd backend-app/ && composer test"
+docker exec -it rubel_php -c "cd backend-app/ && npm cache verify && npm install && npm run install"
+docker exec -it rubel_php -c "cd frontend-app/ && npm cache verify && npm install && npm run install"
 ```
 
 Add hosts settings to `/etc/hosts`.
@@ -52,13 +47,6 @@ Add hosts settings to `/etc/hosts`.
 ```
 
 If you want to use vagrant, you can be able to use [bmf-san/vagrant-for-rubel](https://github.com/bmf-san/vagrant-for-rubel).
-
-## Run tests
-```
-docker exec -it rubel_php /bin/sh
-cd backend-app/
-composer test
-```
 
 ## URL
 App | URL
