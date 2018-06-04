@@ -1,42 +1,35 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/php:latest
-      - image: circleci/mysql:5.7
-
-    environment:
-      - TEST_DB_DATABASE: circle_test
-      - TEST_DB_USERNAME: root
-      - TEST_DB_PASSWORD: ''
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+    machine: true
 
     steps:
       - checkout
-      - run: sudo docker-php-ext-install pdo_mysql
-      - run: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-      - run: sudo apt-get install -y nodejs npm
-      - run: sudo npm cache verify
-      - run: sudo npm install n -g
-      - run: sudo n stable
-      - run: sudo ln -sf /usr/local/bin/node /usr/bin/node
-      - run:
-          name: Print system information
-          command: |
-            echo "node $(node -v)"
-            echo "npm v$(npm --version)"
-            echo "php $(php -v)"
-      - run: cd ./src/backend-app; cp .env.example .env
-      - restore_cache:
-          keys:
-            - v1-composer-dependencies-{{ checksum "./src/backend-app/composer.lock" }}
-            - v1-composer-dependencies-
-      - run: cd ./src/backend-app; composer install --prefer-dist; php artisan key:generate
-      - save_cache:
-          paths:
-            - ./src/backend-app/vendor
-          key: v1-composer-dependencies-{{ checksum "./src/backend-app/composer.lock" }}
-      - run: cd ./src/backend-app; npm run refresh
-      - run: cd ./src/frontend-app; npm run refresh
-      - run: cd ./src/backend-app; composer test
+      - run: docker-compose build
+      - run: docker-compose up -d
+      # - run: sudo docker-php-ext-install pdo_mysql
+      # - run: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+      # - run: sudo apt-get install -y nodejs npm
+      # - run: sudo npm cache verify
+      # - run: sudo npm install n -g
+      # - run: sudo n stable
+      # - run: sudo ln -sf /usr/local/bin/node /usr/bin/node
+      # - run:
+      #     name: Print system information
+      #     command: |
+      #       echo "node $(node -v)"
+      #       echo "npm v$(npm --version)"
+      #       echo "php $(php -v)"
+      # - run: cd ./src/backend-app; cp .env.example .env
+      # - restore_cache:
+      #     keys:
+      #       - v1-composer-dependencies-{{ checksum "./src/backend-app/composer.lock" }}
+      #       - v1-composer-dependencies-
+      # - run: cd ./src/backend-app; composer install --prefer-dist; php artisan key:generate
+      # - save_cache:
+      #     paths:
+      #       - ./src/backend-app/vendor
+      #     key: v1-composer-dependencies-{{ checksum "./src/backend-app/composer.lock" }}
+      # - run: cd ./src/backend-app; npm run refresh
+      # - run: cd ./src/frontend-app; npm run refresh
+      # - run: cd ./src/backend-app; composer test
