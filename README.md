@@ -46,8 +46,7 @@ docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm
 
 ### Setup the frontend-app
 ```
-cache verify && npm install && npm run install"
-docker exec -it rubel_php /bin/sh -c "cd frontend-app/ && npm cache verify && npm install && npm run install"
+docker exec -it rubel_php /bin/sh -c "cd frontend-app/ && npm cache verify && npm install && npm run build"
 ```
 
 ### Add hosts settings to `/etc/hosts`

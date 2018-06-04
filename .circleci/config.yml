@@ -9,8 +9,8 @@ jobs:
       - run: docker-compose up -d
       - run: cd ./src/backend-app && cp .env.example .env
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install"
-      - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run install"
-      - run: docker exec -it rubel_php /bin/sh -c "cd frontend-app/ && npm cache verify && npm install && npm run install"
+      - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run build"
+      - run: docker exec -it rubel_php /bin/sh -c "cd frontend-app/ && npm cache verify && npm install && npm run build"
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && php artisan migrate && php artisan db:seed"
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer test"
       - restore_cache:
