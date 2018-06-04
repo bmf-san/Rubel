@@ -29,6 +29,10 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=rubel_test
+    extra_hosts:
+      - rubel:111.111.111.111
+      - api.rubel:222.222.222.222
+      - admin.rubel:333.333.333.333
 volumes:
   rubel_mysql_db:
     driver: local
