@@ -4,8 +4,31 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: docker-compose build
-      - run: docker-compose up -d
+      - restore_cache:
+         keys:
+          - docker- {{ .Branch }}--{{ checksum "./circleci/config.yml" }}--{{ checksum "docker-compose.yml" }}
+         paths:
+          - ~/caches/images.tar
+      - run:
+         command: |
+          if [ ! -f ~/caches/images.tar ]; then
+            docker-compose pull
+            docker-compose build
+            mkdir -p ~/caches
+            docker save $(docker images | awk 'NR>=2 && ! /^<none>/{print $1}') -o ~/caches/images.tar
+          fi
+      - save_cache:
+         key:
+          - docker--{{ .Branch }}--{{ checksum ".circleci/config.yml" }}--{{ checksum "docker-compose.yml" }}
+         paths:
+          - ~/caches/images.tar
+      - run:
+         command: |
+           if [[ -e ~/caches/images.tar ]];then
+            docker load -i ~/caches/images.tar
+           else
+            docker-compose up -d
+           fi
       - run: cd ./src/backend-app && cp .env.example .env
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install"
       - run: docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run build"
