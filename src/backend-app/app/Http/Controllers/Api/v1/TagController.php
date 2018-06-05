@@ -4,7 +4,7 @@ namespace Rubel\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
 use Rubel\Http\Controllers\Controller;
 use Rubel\Repositories\Eloquent\Api\TagRepository;
 use Rubel\Http\Requests\Api\v1\Tag\StoreTagRequest;
