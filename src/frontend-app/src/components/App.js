@@ -9,7 +9,7 @@ class App extends Component {
     const {fetchConfigs, isLoginUser} = this.props;
 
     if (!isLoginUser().payload) {
-      this.context.router.push("/login");
+      this.props.router.push("/login");
     }
 
     fetchConfigs();
@@ -194,7 +194,8 @@ App.propTypes = {
   config: PropTypes.object,
   children: PropTypes.object,
   logoutUser: PropTypes.func,
-  isLoginUser: PropTypes.func
+  isLoginUser: PropTypes.func,
+  router: PropTypes.object
 };
 
 App.contextTypes = {
