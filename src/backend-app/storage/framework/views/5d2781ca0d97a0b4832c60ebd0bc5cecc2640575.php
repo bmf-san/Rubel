@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text"><?php echo e($title); ?></title>
   <subtitle type="html"><?php echo e($subTitle); ?></subtitle>
@@ -11,7 +11,7 @@
         <link rel="alternate" type="text/html" href="<?php echo e(strtolower(route('web.posts.show', $post))); ?>" />
         <id><?php echo e(strtolower(route('web.posts.show', $post))); ?></id>
         <updated><?php echo e($post->updated_at->toAtomString()); ?></updated>
-        <published><?php echo e($post->publication_date->toAtomString()); ?></published>
+        <published><?php echo e($post->published_at->toAtomString()); ?></published>
         <author>
           <name><![CDATA[<?php echo e($post->admin->name); ?>]]></name>
         </author>

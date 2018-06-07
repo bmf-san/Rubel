@@ -2,7 +2,7 @@
 namespace Tests\Integration\Api\v1;
 
 use TestCase;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
 use Rubel\Models\Config;
 
 class ConfigTest extends TestCase

@@ -3,7 +3,7 @@
 namespace Rubel\Http\Requests\Api\v1\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
 
 class StoreCategoryRequest extends FormRequest
 {

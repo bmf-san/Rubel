@@ -12,7 +12,7 @@ class Login extends Component {
     const {isLoginUser} = this.props;
 
     if (isLoginUser().payload) {
-      this.context.router.push("/dashboard");
+      this.props.router.push("/dashboard");
     }
   }
 
@@ -95,7 +95,8 @@ Login.propTypes = {
   loginUser: PropTypes.func,
   isLoginUser: PropTypes.func,
   handleSubmit: PropTypes.func,
-  submitting: PropTypes.bool
+  submitting: PropTypes.bool,
+  router: PropTypes.object
 };
 
 Login.contextTypes = {

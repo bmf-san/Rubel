@@ -2,7 +2,7 @@
 namespace Tests\Integration\Web;
 
 use TestCase;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
 
 class ContactTest extends TestCase
 {

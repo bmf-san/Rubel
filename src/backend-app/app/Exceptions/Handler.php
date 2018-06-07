@@ -67,7 +67,7 @@ class Handler extends ExceptionHandler
      * Override default method - render the given HttpException.
      *
      * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Illuminate\Http\Response
      */
     protected function renderHttpException(\Symfony\Component\HttpKernel\Exception\HttpException $e)
     {
