@@ -17,6 +17,15 @@
           <h1 class="title is-2">
             {{ $post->title }}
           </h1>
+          <p class="has-text-centered">
+            @foreach ($post->tags as $tag)
+              <a href="{{ route('web.posts.tags.getPosts', $tag->name) }}">
+                <span class="tag is-primary">
+                  {{ $tag->name }}
+                </span>
+              </a>
+            @endforeach
+          </p>
         </div>
       </div>
     </section>
@@ -25,20 +34,10 @@
         <div class="columns">
           <div class="column is-7 is-offset-2">
             <div class="content">
-              <h2 class="title is-3">{{ $post->title }}</h2>
               <p class="has-text-right has-text-muted">
                 <a href="{{ route('web.posts.categories.getPosts', $post->category->name) }}">
                   {{ $post->category->name }}
                 </a>
-              </p>
-              <p class="has-text-right">
-                @foreach ($post->tags as $tag)
-                  <a href="{{ route('web.posts.tags.getPosts', $tag->name) }}">
-                    <span class="tag is-primary">
-                      {{ $tag->name }}
-                    </span>
-                  </a>
-                @endforeach
               </p>
               <p class="has-text-right has-text-muted">{{ $post->published_at }}</p>
             </div>

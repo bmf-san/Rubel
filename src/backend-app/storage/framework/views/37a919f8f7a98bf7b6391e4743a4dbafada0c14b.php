@@ -16,6 +16,16 @@
             <?php echo e($post->title); ?>
 
           </h1>
+          <p class="has-text-centered">
+            <?php $__currentLoopData = $post->tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+              <a href="<?php echo e(route('web.posts.tags.getPosts', $tag->name)); ?>">
+                <span class="tag is-primary">
+                  <?php echo e($tag->name); ?>
+
+                </span>
+              </a>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          </p>
         </div>
       </div>
     </section>
@@ -24,22 +34,11 @@
         <div class="columns">
           <div class="column is-7 is-offset-2">
             <div class="content">
-              <h2 class="title is-3"><?php echo e($post->title); ?></h2>
               <p class="has-text-right has-text-muted">
                 <a href="<?php echo e(route('web.posts.categories.getPosts', $post->category->name)); ?>">
                   <?php echo e($post->category->name); ?>
 
                 </a>
-              </p>
-              <p class="has-text-right">
-                <?php $__currentLoopData = $post->tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <a href="<?php echo e(route('web.posts.tags.getPosts', $tag->name)); ?>">
-                    <span class="tag is-primary">
-                      <?php echo e($tag->name); ?>
-
-                    </span>
-                  </a>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </p>
               <p class="has-text-right has-text-muted"><?php echo e($post->published_at); ?></p>
             </div>
