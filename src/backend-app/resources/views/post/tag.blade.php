@@ -39,7 +39,7 @@
                 </p>
                 <h1 class="title">
                   <a href="{{ route('web.posts.show', $post->title) }}">
-                    {{ mb_str_limit($post->title, 20, '...') }}
+                    {{ mb_str_limit($post->title, 50, '...') }}
                   </a>
                 </h1>
                 <h2 class="blog-summary">

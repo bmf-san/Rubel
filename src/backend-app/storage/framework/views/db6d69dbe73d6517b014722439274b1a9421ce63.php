@@ -34,7 +34,7 @@
                 </p>
                 <h1 class="title">
                   <a href="<?php echo e(route('web.posts.show', $post->title)); ?>">
-                    <?php echo e(mb_str_limit($post->title, 20, '...')); ?>
+                    <?php echo e(mb_str_limit($post->title, 50, '...')); ?>
 
                   </a>
                 </h1>
