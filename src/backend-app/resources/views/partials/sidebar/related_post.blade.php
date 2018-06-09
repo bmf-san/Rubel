@@ -4,9 +4,9 @@
   </p>
   <ul class="menu-list">
     <li>
-      <ul id="post-toc">
+      <ul>
         @forelse ($relatedPost as $post)
-          <a href="{{ route('web.posts.show', $post->id) }}">{{ $post->title }}</a>
+          <a href="{{ route('web.posts.show', $post->title) }}">{{ $post->title }}</a>
         @empty
           No Posts.
         @endforelse

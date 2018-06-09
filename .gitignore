@@ -10,8 +10,7 @@ Vagrantfile
 # backend-app
 /src/backend-app/node_modules
 /src/backend-app/public/dist
-/src/backend-app/public/storage
-/src/backend-app/storage/*.key
+/src/backend-app/storage
 /src/backend-app/vendor
 /src/backend-app/.env
 /src/backend-app/.phpstorm.meta.php

@@ -81,9 +81,11 @@ class PostController extends Controller
     public function show(Post $post): View
     {
         $post = $post->where('publication_status', 'public')->findOrFail($post->id);
-        $relatedPost = $this->postModel->whereHas('tags', function ($query) use ($post) {
-            return $query->whereIn('tags.id', $post->tags()->pluck('tags.id')->toArray());
-        })->take(self::RELATED_POST_LIMIT)->get();
+        $relatedPost = $this->postModel->where('posts.id', '!=', $post->id)
+                                        ->whereHas('tags', function ($query) use ($post) {
+                                            return $query->whereIn('tags.id', $post->tags()->pluck('tags.id')->toArray());
+                                        })->take(self::RELATED_POST_LIMIT)->get();
+
         $previousPost = $post->where('id', '<', $post->id)->where('publication_status', 'public')->orderBy('id', 'desc')->first();
         $nextPost = $post->where('id', '>', $post->id)->where('publication_status', 'public')->first();
 
