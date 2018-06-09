@@ -122,7 +122,9 @@
             <?php endif; ?>
           </div>
           <div class="column is-3">
-            <?php echo $__env->make('partials.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+              <?php echo $__env->make('partials.sidebar.categories', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('partials.sidebar.tags', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('partials.sidebar.ad', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
           </div>
         </div>
       </div>

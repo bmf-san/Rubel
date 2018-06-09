@@ -49,15 +49,10 @@
             </div>
           </div>
           <div class="column is-3">
-            @if (isMobile())
-              @include('partials.toc')
-              @include('partials.sidebar')
-            @else
-              <div class="sticky">
-                @include('partials.toc')
-                @include('partials.sidebar')
-              </div>
+            @if (!isMobile())
+              @include('partials.sidebar.toc')
             @endif
+            @include('partials.sidebar.related_post')
           </div>
         </div>
         <div class="columns">

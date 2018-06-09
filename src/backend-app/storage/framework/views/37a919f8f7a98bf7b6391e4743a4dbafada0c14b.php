@@ -52,15 +52,10 @@
             </div>
           </div>
           <div class="column is-3">
-            <?php if(isMobile()): ?>
-              <?php echo $__env->make('partials.toc', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-              <?php echo $__env->make('partials.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-            <?php else: ?>
-              <div class="sticky">
-                <?php echo $__env->make('partials.toc', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-                <?php echo $__env->make('partials.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-              </div>
+            <?php if(!isMobile()): ?>
+              <?php echo $__env->make('partials.sidebar.toc', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <?php endif; ?>
+            <?php echo $__env->make('partials.sidebar.related_post', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
           </div>
         </div>
         <div class="columns">

@@ -66,7 +66,9 @@
             @endforelse
           </div>
           <div class="column is-3">
-            @include('partials.sidebar')
+            @include('partials.sidebar.categories')
+            @include('partials.sidebar.tags')
+            @include('partials.sidebar.ad')
           </div>
         </div>
       </div>
