@@ -40,11 +40,13 @@ docker-compose up -d
 ```
 
 ### Setup the backend-app
+```
 docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install"
 docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run build"
 docker exec -it rubel_php /bin/sh -c "cd backend-app/ && php artisan key:generate"
 docker exec -it rubel_php /bin/sh -c "cd backend-app/ && php artisan migrate && php artisan db:seed"
 docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer test"
+```
 
 ### Setup the frontend-app
 ```

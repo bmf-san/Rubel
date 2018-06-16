@@ -1,8 +1,7 @@
 @extends('layouts.master')
 
-@section('canonical', url()->current())
-
 @section('title', 'home')
+@section('canonical', url()->current())
 
 @section('additional-stylesheet')
   <link rel="stylesheet" href="{{ asset('/dist/css/home.min.css') }}">

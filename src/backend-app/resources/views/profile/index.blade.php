@@ -1,8 +1,7 @@
 @extends('layouts.master')
 
-@section('canonical', url()->current())
-
 @section('title', 'Profile')
+@section('canonical', url()->current())
 
 @section('additional-stylesheet')
   <link rel="stylesheet" href="{{ asset('/dist/css/profile.min.css') }}">

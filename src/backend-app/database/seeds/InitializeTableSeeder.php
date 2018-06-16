@@ -141,6 +141,7 @@ class InitializeTableSeeder extends Seeder
         $configs = [
             'title' => 'Rubel',
             'sub_title' => 'A Simple CMS worked by Laravel, React, and Bulma.',
+            'desciption' => 'Rubel is a friendly CMS for developers.',
         ];
 
         foreach ($configs as $key => $value) {

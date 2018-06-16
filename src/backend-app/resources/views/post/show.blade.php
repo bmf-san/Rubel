@@ -1,8 +1,10 @@
 @extends('layouts.master')
 
-@section('canonical', url()->current())
-
 @section('title', $post->title)
+@section('canonical', url()->current())
+@section('description', mb_str_limit(strip_tags($post->html_content), 300))
+@section('og_title', $post->title)
+@section('og_description', mb_str_limit(strip_tags($post->html_content), 300))
 
 @section('additional-stylesheet')
   <link rel="stylesheet" href="{{ asset('/dist/css/post.min.css') }}">

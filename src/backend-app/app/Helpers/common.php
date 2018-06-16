@@ -93,12 +93,19 @@ if (!function_exists('is_date_within_a_week')) {
  * @return string
  */
 if (!function_exists('mb_str_limit')) {
-    function mb_str_limit(String $value, Int $limit, String $end)
+    function mb_str_limit(String $value, Int $limit, String $end = null)
     {
         if (mb_strlen($value, 'UTF-8') <= $limit) {
             return $value;
         }
-        return rtrim(mb_substr($value, 0, $limit, 'UTF-8')).$end;
+
+        $trimedValue = rtrim(mb_substr($value, 0, $limit, 'UTF-8'));
+
+        if ($end) {
+            return $trimedValue.$end;
+        }
+
+        return $trimedValue;
     }
 }
 
