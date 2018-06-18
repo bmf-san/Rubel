@@ -1,0 +1,24 @@
+# Root
+Vagrantfile
+.vagrant
+/doc
+/ansible/host
+/ansible/group_vars/vagrant.yml
+/ansible/site.retry
+/deploy
+
+# backend-app
+/src/backend-app/node_modules
+/src/backend-app/public/dist
+/src/backend-app/storage
+/src/backend-app/vendor
+/src/backend-app/.env
+/src/backend-app/.phpstorm.meta.php
+/src/backend-app/_ide_helper.php
+/src/backend-app/.idea
+/src/backend-app/Homestead.json
+/src/backend-app/Homestead.yaml
+
+# frontend-app
+/src/frontend-app/node_modules
+/src/frontend-app/dist/
