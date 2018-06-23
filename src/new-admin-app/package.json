@@ -11,8 +11,8 @@
     "marked": "^0.3.19",
     "path-to-regexp": "^2.2.1",
     "prop-types": "^15.6.1",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

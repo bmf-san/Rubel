@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   render() {
-    return (<React.Fragment>
+    return (<div>
       <p>Current URL: {this.state.url}</p>
       <p>Current Path: {this.state.path}</p>
       {/* Navigation */}
@@ -40,7 +40,7 @@ class App extends Component {
       </ul>
       {/* Router Component */}
       <Router routes={routes} info={this.state}/>
-    </React.Fragment>);
+    </div>);
   }
 }
 
