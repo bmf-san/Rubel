@@ -27,3 +27,7 @@ yarn-error.log
 # admin-app
 /src/admin-app/node_modules
 /src/admin-app/dist/
+
+# new-admin-app
+/src/new-admin-app/node_modules
+/src/new-admin-app/dist/
