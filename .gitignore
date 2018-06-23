@@ -1,6 +1,10 @@
 # Root
 Vagrantfile
 .vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
 /doc
 /ansible/host
 /ansible/group_vars/vagrant.yml
@@ -10,6 +14,7 @@ Vagrantfile
 # client-app
 /src/client-app/node_modules
 /src/client-app/public/dist
+/src/client-app/public/hot
 /src/client-app/public/storage
 /src/client-app/storage/*.key
 /src/client-app/vendor
@@ -17,8 +22,7 @@ Vagrantfile
 /src/client-app/.phpstorm.meta.php
 /src/client-app/_ide_helper.php
 /src/client-app/.idea
-/src/client-app/Homestead.json
-/src/client-app/Homestead.yaml
+/src/client-app/.vscode
 
 # admin-app
 /src/admin-app/node_modules
