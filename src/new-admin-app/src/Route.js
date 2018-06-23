@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
+
 const history = window.history;
 
 class Route extends Component {
@@ -32,9 +34,9 @@ class Route extends Component {
 }
 
 Route.propTypes = {
-  handleRoute: propTypes.func,
-  path: propTypes.object,
-  text: propTypes.object
+  handleRoute: PropTypes.func,
+  path: PropTypes.string,
+  text: PropTypes.string
 };
 
 export default Route;

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import toRegex from "path-to-regexp";
 
 class Router extends Component {
@@ -37,7 +38,7 @@ class Router extends Component {
 }
 
 Router.propTypes = {
-  routes: PropTypes.object,
+  routes: PropTypes.array,
   info: PropTypes.object
 };
 
