@@ -7,18 +7,18 @@ Vagrantfile
 /ansible/site.retry
 /deploy
 
-# backend-app
-/src/backend-app/node_modules
-/src/backend-app/public/dist
-/src/backend-app/storage
-/src/backend-app/vendor
-/src/backend-app/.env
-/src/backend-app/.phpstorm.meta.php
-/src/backend-app/_ide_helper.php
-/src/backend-app/.idea
-/src/backend-app/Homestead.json
-/src/backend-app/Homestead.yaml
+# client-app
+/src/client-app/node_modules
+/src/client-app/public/dist
+/src/client-app/storage
+/src/client-app/vendor
+/src/client-app/.env
+/src/client-app/.phpstorm.meta.php
+/src/client-app/_ide_helper.php
+/src/client-app/.idea
+/src/client-app/Homestead.json
+/src/client-app/Homestead.yaml
 
-# frontend-app
-/src/frontend-app/node_modules
-/src/frontend-app/dist/
+# admin-app
+/src/admin-app/node_modules
+/src/admin-app/dist/

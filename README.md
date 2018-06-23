@@ -29,7 +29,7 @@ Rubel - An Open Source CMS built with Laravel and React.
 ## Setting
 ### Create a env file
 ```
-cd src/backend-app/
+cd src/client-app/
 cp .env.example .env
 ```
 
@@ -39,18 +39,18 @@ docker-compose build
 docker-compose up -d
 ```
 
-### Setup the backend-app
+### Setup the client-app
 ```
-docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer install"
-docker exec -it rubel_php /bin/sh -c "cd backend-app/ && npm cache verify && npm install && npm run build"
-docker exec -it rubel_php /bin/sh -c "cd backend-app/ && php artisan key:generate"
-docker exec -it rubel_php /bin/sh -c "cd backend-app/ && php artisan migrate && php artisan db:seed"
-docker exec -it rubel_php /bin/sh -c "cd backend-app/ && composer test"
+docker exec -it rubel_php /bin/sh -c "cd client-app/ && composer install"
+docker exec -it rubel_php /bin/sh -c "cd client-app/ && npm cache verify && npm install && npm run build"
+docker exec -it rubel_php /bin/sh -c "cd client-app/ && php artisan key:generate"
+docker exec -it rubel_php /bin/sh -c "cd client-app/ && php artisan migrate && php artisan db:seed"
+docker exec -it rubel_php /bin/sh -c "cd client-app/ && composer test"
 ```
 
-### Setup the frontend-app
+### Setup the admin-app
 ```
-docker exec -it rubel_php /bin/sh -c "cd frontend-app/ && npm cache verify && npm install && npm run build"
+docker exec -it rubel_php /bin/sh -c "cd admin-app/ && npm cache verify && npm install && npm run build"
 ```
 
 ### Add hosts settings to `/etc/hosts`
