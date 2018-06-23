@@ -5,7 +5,7 @@ module.exports = [
   {
     entry: entries,
     output: {
-      path: __dirname + "/dist",
+      path: __dirname + "/public/dist",
       filename: "bundle.js"
     },
     module: {
