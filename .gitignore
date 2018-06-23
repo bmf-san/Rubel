@@ -10,7 +10,8 @@ Vagrantfile
 # client-app
 /src/client-app/node_modules
 /src/client-app/public/dist
-/src/client-app/storage
+/src/client-app/public/storage
+/src/client-app/storage/*.key
 /src/client-app/vendor
 /src/client-app/.env
 /src/client-app/.phpstorm.meta.php
