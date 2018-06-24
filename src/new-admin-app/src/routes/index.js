@@ -14,63 +14,63 @@ import CreateTag from "./views/tag/CreateTag";
 import EditTag from "./views/tag/EditTag";
 import ListTag from "./views/tag/ListTag";
 
-const CreateCategory = (params) => (<CreateCategory {...params}/>);
-const EditCategory = (params) => (<EditCategory {...params}/>);
-const ListCategory = (params) => (<ListCategory {...params}/>);
-const Dashboard = (params) => (<Dashboard {...params}/>);
-const Login = (params) => (<Login {...params}/>);
-const CreatePost = (params) => (<CreatePost {...params}/>);
-const EditPost = (params) => (<EditPost {...params}/>);
-const ListPost = (params) => (<ListPost {...params}/>);
-const CreateSetting = (params) => (<CreateSetting {...params}/>);
-const EditSetting = (params) => (<EditSetting {...params}/>);
-const ListSetting = (params) => (<ListSetting {...params}/>);
-const CreateTag = (params) => (<CreateTag {...params}/>);
-const EditTag = (params) => (<EditTag {...params}/>);
-const ListTag = (params) => (<ListTag {...params}/>);
+const CreateCategoryComponent = (params) => (<CreateCategoryComponent {...params}/>);
+const EditCategoryComponent = (params) => (<EditCategoryComponent {...params}/>);
+const ListCategoryComponent = (params) => (<ListCategoryComponent {...params}/>);
+const DashboardComponent = (params) => (<DashboardComponent {...params}/>);
+const LoginComponent = (params) => (<LoginComponent {...params}/>);
+const CreatePostComponent = (params) => (<CreatePostComponent {...params}/>);
+const EditPostComponent = (params) => (<EditPostComponent {...params}/>);
+const ListPostComponent = (params) => (<ListPostComponent {...params}/>);
+const CreateSettingComponent = (params) => (<CreateSettingComponent {...params}/>);
+const EditSettingComponent = (params) => (<EditSettingComponent {...params}/>);
+const ListSettingComponent = (params) => (<ListSettingComponent {...params}/>);
+const CreateTagComponent = (params) => (<CreateTagComponent {...params}/>);
+const EditTagComponent = (params) => (<EditTagComponent {...params}/>);
+const ListTagComponent = (params) => (<ListTagComponent {...params}/>);
 
 export const routes = [
   {
     path: "/login",
     component: Login
-  } {
+  }, {
     path: "/",
-    component: Dashboard
+    component: DashboardComponent
   }, {
     path: "/posts",
-    component: ListPost
+    component: ListPostComponent
   }, {
     path: "/posts/create",
-    component: CreatePost
+    component: CreatePostComponent
   }, {
     path: "/posts/:id/edit",
-    component: EditPost
+    component: EditPostComponent
   }, {
     path: "/categories",
-    component: ListCategory
+    component: ListCategoryComponent
   }, {
     path: "/categories/create",
-    component: CreateCategory
+    component: CreateCategoryComponent
   }, {
     path: "/categories/edit",
-    component: EditCategory
+    component: EditCategoryComponent
   }, {
     path: "/tags",
-    component: ListTag
+    component: ListTagComponent
   }, {
     path: "/tags/create",
-    component: CreateTag
+    component: CreateTagComponent
   }, {
     path: "/tags/:id/edit",
-    component: EditTag
+    component: EditTagComponent
   }, {
     path: "/settings",
-    component: ListSetting
+    component: ListSettingComponent
   }, {
     path: "/settings/create",
-    component: CreateSetting
+    component: CreateSettingComponent
   }, {
     path: "/settings/:id/edit",
-    component: EditSetting
+    component: EditSettingComponent
   }
 ];
