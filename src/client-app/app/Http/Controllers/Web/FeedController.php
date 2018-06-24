@@ -5,7 +5,7 @@ namespace Rubel\Http\Controllers\Web;
 use Illuminate\Http\Response;
 use Rubel\Http\Controllers\Controller;
 use Rubel\Models\Post;
-use Rubel\Models\Config;
+use Rubel\Models\Setting;
 use Carbon\Carbon;
 
 class FeedController extends Controller
@@ -18,22 +18,22 @@ class FeedController extends Controller
     private $post;
 
     /**
-     * Config
+     * Setting
      *
-     * @var Config
+     * @var Setting
      */
-    private $config;
+    private $setting;
 
     /**
      * FeedController constructor
      *
      * @param Post $post
-     * @param Config $config
+     * @param Setting $setting
      */
-    public function __construct(Post $post, Config $config)
+    public function __construct(Post $post, Setting $setting)
     {
         $this->post = $post;
-        $this->config = $config;
+        $this->setting = $setting;
     }
 
     /**
@@ -43,8 +43,8 @@ class FeedController extends Controller
      */
     public function index(): Response
     {
-        $title = $this->config->where('name', 'title')->first()->value;
-        $subTitle = $this->config->where('name', 'sub_title')->first()->value;
+        $title = $this->setting->where('name', 'title')->first()->value;
+        $subTitle = $this->setting->where('name', 'sub_title')->first()->value;
         $updatedAt = $this->post->latest()->first()->updated_at->toAtomString();
         $posts = $this->post->whereNotNull('published_at')->get();
 

@@ -46,7 +46,7 @@ class InitializeTableSeeder extends Seeder
 
         $this->runAdmin();
         $this->runRelatedPost();
-        $this->runConfig();
+        $this->runSetting();
 
         $this->fkManager->setFKCheckOn();
     }
@@ -62,7 +62,7 @@ class InitializeTableSeeder extends Seeder
         $this->dbManager->table('categories')->truncate();
         $this->dbManager->table('tags')->truncate();
         $this->dbManager->table('comments')->truncate();
-        $this->dbManager->table('configs')->truncate();
+        $this->dbManager->table('settings')->truncate();
         $this->dbManager->table('posts')->truncate();
         $this->dbManager->table('tag_post')->truncate();
     }
@@ -130,22 +130,22 @@ class InitializeTableSeeder extends Seeder
     }
 
     /**
-     * Run the config.
+     * Run the setting.
      *
      * @return void
      */
-    private function runConfig(): void
+    private function runSetting(): void
     {
-        $this->dbManager->table('configs')->truncate();
+        $this->dbManager->table('settings')->truncate();
 
-        $configs = [
+        $settings = [
             'title' => 'Rubel',
             'sub_title' => 'A Simple CMS worked by Laravel, React, and Bulma.',
             'description' => 'Rubel is a friendly CMS for developers.',
         ];
 
-        foreach ($configs as $key => $value) {
-            $this->dbManager->table('configs')->insert([
+        foreach ($settings as $key => $value) {
+            $this->dbManager->table('settings')->insert([
                 'name' => $key,
                 'alias_name' => str_replace("_", " ", mb_ucfirst($key, mb_internal_encoding())),
                 'value' => $value,

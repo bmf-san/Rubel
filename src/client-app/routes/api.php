@@ -31,9 +31,9 @@ $router->get('tags', 'TagController@index')->name('tags.index');
 $router->get('tags/{id}', 'TagController@show')->where('id', '[0-9]+')->name('tags.show');
 
 /**
- * Config
+ * Setting
  */
-$router->get('configs', 'ConfigController@index')->name('configs.index');
+$router->get('settings', 'SettingController@index')->name('settings.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ $router->group(['middleware' => 'jwt-auth'], function () use ($router) {
     $router->delete('tags/{id}', 'TagController@destroy')->where('id', '[0-9]+')->name('tags.destroy');
 
     /**
-     * Config
+     * Setting
      */
-    $router->patch('configs', 'ConfigController@update')->name('configs.update');
+    $router->patch('settings', 'SettingController@update')->name('settings.update');
 });

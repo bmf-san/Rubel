@@ -25,7 +25,7 @@ class Router extends Component {
       }
 
       if (match) {
-        return route.action(Object.assign(info, {"params": params}));
+        return route.component(Object.assign(info, {"params": params}));
       }
     }
 

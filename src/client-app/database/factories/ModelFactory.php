@@ -2,7 +2,7 @@
 use Rubel\Models\Admin;
 use Rubel\Models\Category;
 use Rubel\Models\Comment;
-use Rubel\Models\Config;
+use Rubel\Models\Setting;
 use Rubel\Models\Post;
 use Rubel\Models\Tag;
 use Rubel\Models\TagPost;
@@ -69,11 +69,11 @@ $factory->define(Comment::class, function (Faker\Generator $faker) {
 });
 
 /**
- * Config
+ * Setting
  *
  * @var \Illuminate\Database\Eloquent\Factory $factory
  */
-$factory->define(Config::class, function (Faker\Generator $faker) {
+$factory->define(Setting::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->realText(),
         'alias_name' => $faker->realText(),

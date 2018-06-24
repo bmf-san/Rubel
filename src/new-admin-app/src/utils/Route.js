@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import PropTypes from "prop-types";
 
 const history = window.history;
@@ -27,9 +27,9 @@ class Route extends Component {
   }
 
   render() {
-    return (<React.Fragment>
+    return (<Fragment>
       <a href={this.props.path} onClick={this.handleClick}>{this.props.text}</a>
-    </React.Fragment>);
+    </Fragment>);
   }
 }
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Rubel\Models\Config
+ * Rubel\Models\Setting
  *
  * @property int $id
  * @property string $name
@@ -16,20 +16,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Config onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Setting onlyTrashed()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereAliasName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Config whereValue($value)
- * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Config withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Config withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Setting whereAliasName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Setting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Setting whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Setting whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Setting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rubel\Models\Setting whereValue($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Setting withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\Rubel\Models\Setting withoutTrashed()
  * @mixin \Eloquent
  */
-class Config extends Model
+class Setting extends Model
 {
     use SoftDeletes;
 
@@ -38,7 +38,7 @@ class Config extends Model
      *
      * @var string
     */
-    protected $table = 'configs';
+    protected $table = 'settings';
 
     /**
      * The attributes that should be mutated to dates.
