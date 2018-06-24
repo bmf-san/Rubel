@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 class EditCategory extends Component {
   render() {
@@ -7,3 +8,7 @@ class EditCategory extends Component {
 }
 
 export default EditCategory;
+
+EditCategory.propTypes = {
+  params: PropTypes.number
+};

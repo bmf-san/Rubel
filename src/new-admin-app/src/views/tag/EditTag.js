@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 class EditTag extends Component {
   render() {
@@ -7,3 +8,7 @@ class EditTag extends Component {
 }
 
 export default EditTag;
+
+EditTag.propTypes = {
+  params: PropTypes.number
+};

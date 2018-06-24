@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 class EditSetting extends Component {
   render() {
@@ -7,3 +8,7 @@ class EditSetting extends Component {
 }
 
 export default EditSetting;
+
+EditSetting.propTypes = {
+  params: PropTypes.number
+};
