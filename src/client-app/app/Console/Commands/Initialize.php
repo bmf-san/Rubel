@@ -8,7 +8,7 @@ use Database\ForeignKeyManager;
 use Rubel\Models\Admin;
 use Rubel\Models\Category;
 use Rubel\Models\Comment;
-use Rubel\Models\Config;
+use Rubel\Models\Setting;
 use Rubel\Models\Post;
 use Rubel\Models\Tag;
 use Rubel\Models\TagPost;
@@ -71,7 +71,7 @@ class Initialize extends Command
         $this->runAdmin();
         $this->runCategory();
         $this->runTag();
-        $this->runConfig();
+        $this->runSetting();
         $this->runPost();
         $this->runComment();
         $this->runTagPost();
@@ -91,7 +91,7 @@ class Initialize extends Command
         $this->dbManager->table('admins')->truncate();
         $this->dbManager->table('categories')->truncate();
         $this->dbManager->table('tags')->truncate();
-        $this->dbManager->table('configs')->truncate();
+        $this->dbManager->table('settings')->truncate();
         $this->dbManager->table('posts')->truncate();
         $this->dbManager->table('comments')->truncate();
         $this->dbManager->table('tag_post')->truncate();
@@ -154,13 +154,13 @@ class Initialize extends Command
     }
 
     /**
-     * Run the config factory
+     * Run the setting factory
      *
      * @return void
      */
-    private function runConfig()
+    private function runSetting()
     {
-        $configs = [
+        $settings = [
             [
                 'name' => 'sub_title',
                 'alias_name' => 'SubTitle',
@@ -173,8 +173,8 @@ class Initialize extends Command
             ],
         ];
 
-        foreach ($configs as $config) {
-            factory(Config::class)->create($config);
+        foreach ($settings as $setting) {
+            factory(Setting::class)->create($setting);
         }
     }
 

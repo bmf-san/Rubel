@@ -4,7 +4,7 @@ namespace Rubel\Repositories\Contracts\Api;
 
 use Illuminate\Database\Eloquent\Collection;
 
-interface ConfigRepositoryContract
+interface SettingRepositoryContract
 {
     /**
      * Display a listing of the resource

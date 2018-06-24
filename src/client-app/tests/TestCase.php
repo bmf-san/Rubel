@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Rubel\Models\Admin;
 use Rubel\Models\Category;
 use Rubel\Models\Tag;
-use Rubel\Models\Config;
+use Rubel\Models\Setting;
 use Rubel\Models\Post;
 use Rubel\Models\Comment;
 use Rubel\Models\TagPost;

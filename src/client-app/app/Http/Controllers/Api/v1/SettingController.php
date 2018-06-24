@@ -6,25 +6,25 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Rubel\Http\Controllers\Controller;
-use Rubel\Repositories\Eloquent\Api\ConfigRepository;
+use Rubel\Repositories\Eloquent\Api\SettingRepository;
 
-class ConfigController extends Controller
+class SettingController extends Controller
 {
     /**
-     * ConfigRepository
+     * SettingRepository
      *
-     * @var $configRepository
+     * @var $settingRepository
      */
-    private $configRepository;
+    private $settingRepository;
 
     /**
-     * ConfigController constructor
+     * SettingController constructor
      *
-     * @param ConfigRepository $configRepository
+     * @param SettingRepository $settingRepository
      */
-    public function __construct(ConfigRepository $configRepository)
+    public function __construct(SettingRepository $settingRepository)
     {
-        $this->configRepository = $configRepository;
+        $this->settingRepository = $settingRepository;
     }
 
     /**
@@ -34,7 +34,7 @@ class ConfigController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->configRepository->index(), Response::HTTP_OK);
+        return response()->json($this->settingRepository->index(), Response::HTTP_OK);
     }
 
     /**
@@ -45,6 +45,6 @@ class ConfigController extends Controller
      */
     public function update(Request $request): JsonResponse
     {
-        return response()->json($this->configRepository->update($request), Response::HTTP_OK);
+        return response()->json($this->settingRepository->update($request), Response::HTTP_OK);
     }
 }

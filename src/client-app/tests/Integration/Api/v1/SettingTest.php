@@ -3,13 +3,13 @@ namespace Tests\Integration\Api\v1;
 
 use TestCase;
 use Illuminate\Http\Response;
-use Rubel\Models\Config;
+use Rubel\Models\Setting;
 
-class ConfigTest extends TestCase
+class SettingTest extends TestCase
 {
     public function testIndex()
     {
-        $response = $this->json('GET', route('api.configs.index'));
+        $response = $this->json('GET', route('api.settings.index'));
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -18,13 +18,13 @@ class ConfigTest extends TestCase
     {
         $this->runDefaultAdmin();
 
-        $configName = Config::first()->name;
+        $settingName = Setting::first()->name;
 
         $data = [
-            $configName => 'config_value',
+            $settingName => 'setting_value',
         ];
 
-        $response = $this->json('PATCH', route('api.configs.update'), $data, $this->getDefaultHeaders());
+        $response = $this->json('PATCH', route('api.settings.update'), $data, $this->getDefaultHeaders());
 
         $response->assertStatus(Response::HTTP_OK);
     }

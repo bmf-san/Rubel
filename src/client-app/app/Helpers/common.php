@@ -1,6 +1,6 @@
 <?php
 use Carbon\Carbon;
-use Rubel\Models\Config;
+use Rubel\Models\Setting;
 
 /**
  * Get the blog info
@@ -11,9 +11,9 @@ use Rubel\Models\Config;
 if (!function_exists('get_the_blog_info')) {
     function get_the_blog_info(String $info)
     {
-        $config = Config::where('name', $info)->firstOrFail();
+        $setting = Setting::where('name', $info)->firstOrFail();
 
-        return $config->value;
+        return $setting->value;
     }
 }
 

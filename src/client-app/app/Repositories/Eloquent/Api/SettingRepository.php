@@ -3,26 +3,26 @@
 namespace Rubel\Repositories\Eloquent\Api;
 
 use Illuminate\Database\Eloquent\Collection;
-use Rubel\Repositories\Contracts\Api\ConfigRepositoryContract;
-use Rubel\Models\Config;
+use Rubel\Repositories\Contracts\Api\SettingRepositoryContract;
+use Rubel\Models\Setting;
 
-class ConfigRepository implements ConfigRepositoryContract
+class SettingRepository implements SettingRepositoryContract
 {
     /**
-     * Config
+     * Setting
      *
-     * @var Config
+     * @var Setting
      */
-    private $configModel;
+    private $settingModel;
 
     /**
-     * ConfigRepository constructor
+     * SettingRepository constructor
      *
-     * @param Config $configModel
+     * @param Setting $settingModel
      */
-    public function __construct(Config $configModel)
+    public function __construct(Setting $settingModel)
     {
-        $this->configModel = $configModel;
+        $this->settingModel = $settingModel;
     }
 
     /**
@@ -33,9 +33,9 @@ class ConfigRepository implements ConfigRepositoryContract
     public function index(): Collection
     {
         // TODO Remove a orderBy method after implementation of search api.
-        $configs = $this->configModel->orderBy('created_at', 'desc')->get();
+        $settings = $this->settingModel->orderBy('created_at', 'desc')->get();
 
-        return $configs;
+        return $settings;
     }
 
     /**
@@ -46,25 +46,25 @@ class ConfigRepository implements ConfigRepositoryContract
      */
     public function update($request): array
     {
-        $this->updateConfig($request);
+        $this->updateSetting($request);
 
         return [];
     }
 
     /**
-     * Update config
+     * Update setting
      *
      * @param \Illuminate\Http\Request $request
      * @return void
      */
-    public function updateConfig($request)
+    public function updateSetting($request)
     {
-        $configs = $request->all();
+        $settings = $request->all();
 
-        foreach ($configs as $key => $value) {
-            $config = $this->configModel->where('name', $key)->firstOrFail();
+        foreach ($settings as $key => $value) {
+            $setting = $this->settingModel->where('name', $key)->firstOrFail();
 
-            $config->update([
+            $setting->update([
                 'value' => $value
             ]);
         }
