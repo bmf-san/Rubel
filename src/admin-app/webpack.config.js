@@ -55,7 +55,7 @@ module.exports = [
     resolve: {
       extensions: [".js", ".jsx"]
     },
-    plugins: [new Dotenv({ path: "../client-app/.env", safe: false })],
+    plugins: [new Dotenv({ path: "../api/.env", safe: false })],
     devtool: "source-map"
   }
 ]
