@@ -85,9 +85,12 @@ class PostRepositoryTest extends UnitTestCase
         $this->assertThat($post->publication_status, $this->identicalTo($attributes['publication_status']));
         $this->assertThat($post->published_at->toDateTimeString(), $this->identicalTo($attributes['published_at']->toDateTimeString()));
         $this->assertThat($post->created_at->toDateTimeString(), $this->identicalTo($attributes['created_at']->toDateTimeString()));
-        foreach ($post->tags->pluck('name')->toArray() as $key => $postValue) {
-            $this->assertThat($postValue, $this->identicalTo($attributes['tags'][$key]['name']));
-        }
+
+        $hoge = $post->tags->map(function ($item, $key) {
+            return ["name" = $item->toArray()['name']];
+        });
+        dd($attributes['tags']);
+        // $this->assertEquals($post->tags->toArray(), $this->identicalTo($attributes['tags'])); // TODO ここだけ
     }
 
     /**
@@ -157,9 +160,7 @@ class PostRepositoryTest extends UnitTestCase
         $this->assertThat($post->publication_status, $this->identicalTo($attributes['publication_status']));
         $this->assertThat($post->published_at->toDateTimeString(), $this->identicalTo($attributes['published_at']->toDateTimeString()));
         $this->assertThat($post->created_at->toDateTimeString(), $this->identicalTo($attributes['created_at']->toDateTimeString()));
-        foreach ($post->tags->pluck('name')->toArray() as $key => $postValue) {
-            $this->assertThat($postValue, $this->identicalTo($attributes['tags'][$key]['name']));
-        }
+        // $this->assertEquals($post->tags->toArray(), $this->identicalTo($attributes['tags'])); // TODO ここだけ
     }
 
     /**
