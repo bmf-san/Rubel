@@ -1,11 +1,11 @@
 <?php
 
-namespace Rubel\Http\Requests\Api\v1\Authenticate;
+namespace BmfTech\Http\Requests\Web;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
-class AuthenticateRequest extends FormRequest
+class ContactRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,9 @@ class AuthenticateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'message' => 'required',
         ];
     }
 
@@ -38,23 +39,10 @@ class AuthenticateRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'name.required' => 'A :attribute is required',
             'email.required' => 'A :attribute is required',
             'email.email' => 'The :attribute must be a valid email address.',
-            'password.required' => 'A :attribute has been existed',
+            'message.required' => 'A :attribute has been existed',
         ];
-    }
-
-    /**
-     * Get the proper failed validation response for the request.
-     *
-     * @param array $errors
-     *
-     * @return Response
-     */
-    public function response(array $errors): Response
-    {
-        $response['messages'] = $errors;
-
-        return response()->json($response, Response::HTTP_BAD_REQUEST);
     }
 }

@@ -40,6 +40,7 @@ $router->get('profiles', 'ProfileController@index')->name('profiles.index');
  * Contact
  */
 $router->get('contacts', 'ContactController@index')->name('contacts.index');
+$router->post('contacts', 'ContactController@submit')->name('contacts.submit');
 
 /**
  * Sitemap
