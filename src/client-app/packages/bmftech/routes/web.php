@@ -39,8 +39,11 @@ $router->get('profiles', 'ProfileController@index')->name('profiles.index');
 /**
  * Contact
  */
-$router->get('contacts', 'ContactController@index')->name('contacts.index');
-$router->post('contacts', 'ContactController@submit')->name('contacts.submit');
+$router->group(['prefix' => 'contacts'], function () use ($router) {
+    $router->get('/', 'ContactController@index')->name('contacts.index');
+    $router->post('/', 'ContactController@submit')->name('contacts.submit');
+    $router->get('/thanks', 'ContactController@thanks')->name('contacts.thanks');
+});
 
 /**
  * Sitemap
