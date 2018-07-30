@@ -115,6 +115,8 @@ EOF;
              ->subject('Received a message! bmf-tech.com')
              ->setBody($templateForAdmin, 'text/plain');
         });
+
+        // TODO セッション発行
     }
 
     /**
@@ -124,6 +126,7 @@ EOF;
      */
     public function thanks(): View
     {
+        // TODO sessionがなかったらリダイレクト
         return view('bmftech::contact.thanks');
     }
 }

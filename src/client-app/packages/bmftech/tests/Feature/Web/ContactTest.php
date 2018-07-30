@@ -5,7 +5,7 @@ namespace Tests\Feature\Web;
 use Tests\FeatureTestCase;
 use Illuminate\Http\Response;
 use Illuminate\Mailer\Mailer;
-use Mockery;
+use Mail;
 
 class ContactTest extends FeatureTestCase
 {
@@ -22,12 +22,58 @@ class ContactTest extends FeatureTestCase
      */
     public function submitSuccessTest()
     {
-        // TODO mail mock
+        $this->loadMailMock();
 
         $this->post(route('web.contacts.submit'), [
             'name' => 'admin',
             'email' => 'admin@example.com',
             'message' => 'Hello World',
-        ])->assertStatus(Response::HTTP_OK);
+        ])->assertRedirect('contacts/thanks');
+    }
+
+    /**
+     * @test
+     */
+    public function submitFailedTest()
+    {
+        $this->loadMailMock();
+
+        $this->post(route('web.contacts.submit'), [
+            'name' => '',
+            'email' => '',
+            'message' => '',
+        ])->assertRedirect('contacts');
+    }
+
+    /**
+     * @test
+     */
+    public function testThanksIfHasSession()
+    {
+        // TODO
+    }
+
+    /**
+     * @test
+     */
+    public function testThanksIfHasNotSession()
+    {
+        // TODO
+    }
+
+    /**
+     * Load mail mock
+     *
+     * @return void
+     */
+    private function loadMailMock()
+    {
+        Mail::ShouldReceive('send')
+                      ->once()
+                      ->andReturn(true);
+
+        Mail::ShouldReceive('send')
+                      ->once()
+                      ->andReturn(true);
     }
 }
