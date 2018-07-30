@@ -22,7 +22,13 @@ class ContactTest extends FeatureTestCase
      */
     public function submitSuccessTest()
     {
-        $this->loadMailMock();
+        Mail::ShouldReceive('send')
+                      ->once()
+                      ->andReturn(true);
+
+        Mail::ShouldReceive('send')
+                      ->once()
+                      ->andReturn(true);
 
         $this->post(route('web.contacts.submit'), [
             'name' => 'admin',
@@ -36,13 +42,11 @@ class ContactTest extends FeatureTestCase
      */
     public function submitFailedTest()
     {
-        $this->loadMailMock();
-
         $this->post(route('web.contacts.submit'), [
             'name' => '',
             'email' => '',
             'message' => '',
-        ])->assertRedirect('contacts');
+        ])->assertRedirect('/');
     }
 
     /**
@@ -59,21 +63,5 @@ class ContactTest extends FeatureTestCase
     public function testThanksIfHasNotSession()
     {
         // TODO
-    }
-
-    /**
-     * Load mail mock
-     *
-     * @return void
-     */
-    private function loadMailMock()
-    {
-        Mail::ShouldReceive('send')
-                      ->once()
-                      ->andReturn(true);
-
-        Mail::ShouldReceive('send')
-                      ->once()
-                      ->andReturn(true);
     }
 }
