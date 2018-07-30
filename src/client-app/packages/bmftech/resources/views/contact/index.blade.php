@@ -25,7 +25,7 @@
         <form action="{{ route('web.contacts.submit') }}" method="post">
           {{csrf_field()}}
           <div class="field">
-            <label class="label">Name</label>
+            <label class="label">Name<span class="has-text-danger">*</span></label>
             <div class="control">
               <input class="input @if ($errors->has('name')) is-danger @endif" type="text" placeholder="Your name" name="name" value="{{ old('name') }}">
               @if ($errors->has('name'))
@@ -35,7 +35,7 @@
           </div>
 
           <div class="field">
-            <label class="label">Email</label>
+            <label class="label">Email<span class="has-text-danger">*</span></label>
             <div class="control">
               <input class="input @if ($errors->has('email')) is-danger @endif" type="email" placeholder="Your email" name="email" value="{{ old('email') }}">
               @if ($errors->has('email'))
@@ -45,7 +45,7 @@
           </div>
 
           <div class="field">
-            <label class="label">Message</label>
+            <label class="label">Message<span class="has-text-danger">*</span></label>
             <div class="control">
               <textarea class="textarea @if ($errors->has('message')) is-danger @endif" placeholder="Type your message here ..." name="message">{{ old('message') }}</textarea>
               @if ($errors->has('message'))
