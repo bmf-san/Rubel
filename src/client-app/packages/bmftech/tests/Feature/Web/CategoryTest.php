@@ -13,9 +13,7 @@ class CategoryTest extends FeatureTestCase
      */
     public function testIndex()
     {
-        $response = $this->get(route('web.categories.index'));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->get(route('web.categories.index'))->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -25,8 +23,6 @@ class CategoryTest extends FeatureTestCase
     {
         $targetName = Post::where('publication_status', 'public')->first()->category->name;
 
-        $response = $this->get(route('web.posts.categories.getPosts', $targetName));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->get(route('web.posts.categories.getPosts', $targetName))->assertStatus(Response::HTTP_OK);
     }
 }

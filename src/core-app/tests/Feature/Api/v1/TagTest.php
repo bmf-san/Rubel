@@ -13,9 +13,7 @@ class TagTest extends FeatureTestCase
      */
     public function testIndex()
     {
-        $response = $this->json('GET', route('api.tags.index'));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('GET', route('api.tags.index'))->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -29,9 +27,7 @@ class TagTest extends FeatureTestCase
             'name' => 'tag_name',
         ];
 
-        $response = $this->json('POST', route('api.tags.store'), $data, $this->getDefaultHeaders());
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('POST', route('api.tags.store'), $data, $this->getDefaultHeaders())->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -41,9 +37,7 @@ class TagTest extends FeatureTestCase
     {
         $targetId = Tag::first()->id;
 
-        $response = $this->json('GET', route('api.tags.show', $targetId));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('GET', route('api.tags.show', $targetId))->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -53,9 +47,7 @@ class TagTest extends FeatureTestCase
     {
         $this->runDefaultAdmin();
 
-        $response = $this->json('PATCH', route('api.tags.update', Tag::first()->id), ['name' => 'tag_name'], $this->getDefaultHeaders());
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('PATCH', route('api.tags.update', Tag::first()->id), ['name' => 'tag_name'], $this->getDefaultHeaders())->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -65,8 +57,6 @@ class TagTest extends FeatureTestCase
     {
         $this->runDefaultAdmin();
 
-        $response = $this->json('DELETE', route('api.tags.destroy', Tag::first()->id), [], $this->getDefaultHeaders());
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('DELETE', route('api.tags.destroy', Tag::first()->id), [], $this->getDefaultHeaders())->assertStatus(Response::HTTP_OK);
     }
 }

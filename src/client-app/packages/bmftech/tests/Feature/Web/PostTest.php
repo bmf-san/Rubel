@@ -13,8 +13,7 @@ class PostTest extends FeatureTestCase
      */
     public function testIndex()
     {
-        $response = $this->get(route('web.posts.index'));
-        $response->assertStatus(Response::HTTP_OK);
+        $this->get(route('web.posts.index'))->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -24,8 +23,6 @@ class PostTest extends FeatureTestCase
     {
         $targetTitle = Post::where('publication_status', 'public')->first()->title;
 
-        $response = $this->get(route('web.posts.show', $targetTitle));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->get(route('web.posts.show', $targetTitle))->assertStatus(Response::HTTP_OK);
     }
 }

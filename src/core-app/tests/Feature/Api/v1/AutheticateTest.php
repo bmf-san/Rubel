@@ -20,9 +20,7 @@ class AuthenticateTest extends FeatureTestCase
             'password' => 'password',
         ];
 
-        $response = $this->json('POST', route('api.authenticate.authenticate'), $credential);
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('POST', route('api.authenticate.authenticate'), $credential)->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -37,8 +35,6 @@ class AuthenticateTest extends FeatureTestCase
             'password' => 'failed_password',
         ];
 
-        $response = $this->json('POST', route('api.authenticate.authenticate'), $credential);
-
-        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+        $this->json('POST', route('api.authenticate.authenticate'), $credential)->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

@@ -12,8 +12,6 @@ class HomeTest extends FeatureTestCase
      */
     public function testIndex()
     {
-        $response = $this->get(route('web.root.index'));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->get(route('web.root.index'))->assertStatus(Response::HTTP_OK);
     }
 }

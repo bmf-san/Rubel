@@ -12,9 +12,7 @@ class SitemapTest extends FeatureTestCase
      */
     public function testIndex()
     {
-        $response = $this->get(route('web.sitemap.index'));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->get(route('web.sitemap.index'))->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -22,8 +20,6 @@ class SitemapTest extends FeatureTestCase
      */
     public function testResponse()
     {
-        $response = $this->get(route('web.sitemap.index'));
-
-        $response->assertViewHas('sitemap');
+        $this->get(route('web.sitemap.index'))->assertViewHas('sitemap');
     }
 }

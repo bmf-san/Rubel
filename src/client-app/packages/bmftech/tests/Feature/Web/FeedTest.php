@@ -12,9 +12,7 @@ class FeedTest extends FeatureTestCase
      */
     public function testIndex()
     {
-        $response = $this->get(route('web.feed.index'));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->get(route('web.feed.index'))->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -22,9 +20,7 @@ class FeedTest extends FeatureTestCase
      */
     public function testResponseTitle()
     {
-        $response = $this->get(route('web.feed.index'));
-
-        $response->assertViewHas('title');
+        $this->get(route('web.feed.index'))->assertViewHas('title');
     }
 
     /**
@@ -32,9 +28,7 @@ class FeedTest extends FeatureTestCase
      */
     public function testResponseSubTitle()
     {
-        $response = $this->get(route('web.feed.index'));
-
-        $response->assertViewHas('subTitle');
+        $this->get(route('web.feed.index'))->assertViewHas('subTitle');
     }
 
     /**
@@ -42,9 +36,7 @@ class FeedTest extends FeatureTestCase
      */
     public function testResponseUpdatedAt()
     {
-        $response = $this->get(route('web.feed.index'));
-
-        $response->assertViewHas('updatedAt');
+        $this->get(route('web.feed.index'))->assertViewHas('updatedAt');
     }
 
     /**
@@ -52,9 +44,7 @@ class FeedTest extends FeatureTestCase
      */
     public function testResponseCurrentDate()
     {
-        $response = $this->get(route('web.feed.index'));
-
-        $response->assertViewHas('currentDate');
+        $this->get(route('web.feed.index'))->assertViewHas('currentDate');
     }
 
     /**
@@ -62,8 +52,6 @@ class FeedTest extends FeatureTestCase
      */
     public function testResponseCurrentPosts()
     {
-        $response = $this->get(route('web.feed.index'));
-
-        $response->assertViewHas('posts');
+        $this->get(route('web.feed.index'))->assertViewHas('posts');
     }
 }

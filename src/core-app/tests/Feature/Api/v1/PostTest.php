@@ -14,9 +14,7 @@ class PostTest extends FeatureTestCase
      */
     public function testIndex()
     {
-        $response = $this->json('GET', route('api.posts.index'));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('GET', route('api.posts.index'))->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -28,7 +26,7 @@ class PostTest extends FeatureTestCase
 
         $now = Carbon::now();
 
-        $response = $this->json('POST', route('api.posts.store'), [
+        $this->json('POST', route('api.posts.store'), [
             'admin_id' => 1,
             'category_id' => 1,
             'title' => 'post_title',
@@ -45,9 +43,7 @@ class PostTest extends FeatureTestCase
                     'name' => 'second_tag_name',
                 ],
             ]
-        ], $this->getDefaultHeaders());
-
-        $response->assertStatus(Response::HTTP_OK);
+        ], $this->getDefaultHeaders())->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -55,9 +51,7 @@ class PostTest extends FeatureTestCase
      */
     public function testShow()
     {
-        $response = $this->json('GET', route('api.posts.show', Post::first()->id));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('GET', route('api.posts.show', Post::first()->id))->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -69,7 +63,7 @@ class PostTest extends FeatureTestCase
 
         $now = Carbon::now();
 
-        $response = $this->json('PATCH', route('api.posts.update', Post::first()->id), [
+        $this->json('PATCH', route('api.posts.update', Post::first()->id), [
             'admin_id' => 1,
             'category_id' => 1,
             'title' => 'post_title',
@@ -87,9 +81,7 @@ class PostTest extends FeatureTestCase
                 ],
             ]
 
-        ], $this->getDefaultHeaders());
-
-        $response->assertStatus(Response::HTTP_OK);
+        ], $this->getDefaultHeaders())->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -99,9 +91,7 @@ class PostTest extends FeatureTestCase
     {
         $this->runDefaultAdmin();
 
-        $response = $this->json('DELETE', route('api.posts.destroy', Post::first()->id), [], $this->getDefaultHeaders());
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('DELETE', route('api.posts.destroy', Post::first()->id), [], $this->getDefaultHeaders())->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -113,7 +103,7 @@ class PostTest extends FeatureTestCase
 
         $now = Carbon::now();
 
-        $response = $this->json('POST', route('api.posts.store'), [
+        $this->json('POST', route('api.posts.store'), [
             'admin_id' => 1,
             'category_id' => 1,
             'title' => 'post_title',

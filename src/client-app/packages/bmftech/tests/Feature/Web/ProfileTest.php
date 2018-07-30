@@ -12,8 +12,6 @@ class ProfileTest extends FeatureTestCase
      */
     public function testIndex()
     {
-        $response = $this->get(route('web.profiles.index'));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->get(route('web.profiles.index'))->assertStatus(Response::HTTP_OK);
     }
 }

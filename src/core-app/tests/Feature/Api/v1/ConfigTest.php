@@ -13,9 +13,7 @@ class ConfigTest extends FeatureTestCase
      */
     public function testIndex()
     {
-        $response = $this->json('GET', route('api.configs.index'));
-
-        $response->assertStatus(Response::HTTP_OK);
+        $this->json('GET', route('api.configs.index'))->assertStatus(Response::HTTP_OK);
     }
 
     /**
@@ -25,11 +23,9 @@ class ConfigTest extends FeatureTestCase
     {
         $this->runDefaultAdmin();
 
-        $response = $this->json('PATCH', route('api.configs.update'), [
+        $this->json('PATCH', route('api.configs.update'), [
             'title' => 'new_title',
             'sub_title' => 'new_sub_title',
-        ], $this->getDefaultHeaders());
-
-        $response->assertStatus(Response::HTTP_OK);
+        ], $this->getDefaultHeaders())->assertStatus(Response::HTTP_OK);
     }
 }
