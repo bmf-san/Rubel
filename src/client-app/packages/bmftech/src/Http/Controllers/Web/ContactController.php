@@ -52,6 +52,7 @@ class ContactController extends Controller
         try {
             $this->sendEmailToUser($userName, $userEmail, $userMessage);
             $this->sendEmailToAdmin($userName, $userEmail, $userMessage);
+            $request->session()->regenerateToken();
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -79,8 +80,7 @@ Email:{$userEmail}
 Message:
 {$userMessage}
 
-
-{ $route }
+{$route}
 EOF;
 
             $message->to($userEmail)
@@ -115,8 +115,6 @@ EOF;
              ->subject('Received a message! bmf-tech.com')
              ->setBody($templateForAdmin, 'text/plain');
         });
-
-        // TODO セッション発行
     }
 
     /**
@@ -126,7 +124,6 @@ EOF;
      */
     public function thanks(): View
     {
-        // TODO sessionがなかったらリダイレクト
         return view('bmftech::contact.thanks');
     }
 }
