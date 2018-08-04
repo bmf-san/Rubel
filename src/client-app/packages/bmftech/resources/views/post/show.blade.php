@@ -7,7 +7,7 @@
 @section('og_description', mb_str_limit(strip_tags($post->html_content), 300))
 
 @section('additional-stylesheet')
-  <link rel="stylesheet" href="{{ asset('/vendor/bmftech//dist/css/post.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/vendor/bmftech/dist/css/post.min.css') }}">
 @endsection
 
 @section('content')
@@ -116,5 +116,5 @@
 @endsection
 
 @section('additional-script')
-  <script type="text/javascript" src={{ asset('/vendor/bmftech//dist/js/post.bundle.js') }}></script>
+  <script type="text/javascript" src={{ asset('/vendor/bmftech/dist/js/post.bundle.js') }}></script>
 @endsection

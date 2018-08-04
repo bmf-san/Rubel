@@ -4,7 +4,7 @@
 @section('canonical', url()->current())
 
 @section('additional-stylesheet')
-<link rel="stylesheet" href="{{ asset('/vendor/bmftech//dist/css/profile.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/vendor/bmftech/dist/css/profile.min.css') }}">
 @endsection
 
 @section('content')

@@ -4,7 +4,7 @@
 @section('canonical', url()->current())
 
 @section('additional-stylesheet')
-  <link rel="stylesheet" href="{{ asset('/vendor/bmftech//dist/css/home.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/vendor/bmftech/dist/css/home.min.css') }}">
 @endsection
 
 @section('content')
@@ -85,5 +85,5 @@
 @endsection
 
 @section('additional-script')
-  <script type="text/javascript" src={{ asset('/vendor/bmftech//dist/js/post.bundle.js') }}></script>
+  <script type="text/javascript" src={{ asset('/vendor/bmftech/dist/js/post.bundle.js') }}></script>
 @endsection

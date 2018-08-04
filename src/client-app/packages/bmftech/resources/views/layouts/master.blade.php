@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
-    <link rel="stylesheet" href="{{ asset('/vendor/bmftech//dist/css/app.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/bmftech/dist/css/app.min.css') }}">
 
     {{-- Additional stylesheet --}}
     @yield('additional-stylesheet')
@@ -30,7 +30,7 @@
     {{-- Content area --}}
     @yield('content')
 
-    <script type="text/javascript" src={{ asset('/vendor/bmftech//dist/js/app.bundle.js') }}></script>
+    <script type="text/javascript" src={{ asset('/vendor/bmftech/dist/js/app.bundle.js') }}></script>
 
     {{-- Additional script --}}
     @yield('additional-script')
