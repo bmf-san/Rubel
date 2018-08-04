@@ -6,10 +6,14 @@ jobs:
       - checkout
       - run: docker-compose build
       - run: docker-compose up -d
-      - run: cd ./src/client-app && cp .env.example .env
-      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/ && composer install"
-      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/ && npm cache verify && npm install && npm run build"
+      - run: cd ./src/core-app/ && cp .env.example .env
+      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && composer install"
+      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan key:generate"
+      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan migrate && php artisan db:seed"
+      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && composer test"
+      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && composer install"
+      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && npm cache verify && npm install && npm run build"
+      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan vendor:publish --tag="bmftech-public""
+      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan vendor:publish --tag="bmftech-views""
+      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && composer test"
       - run: docker exec -it rubel_php /bin/sh -c "cd admin-app/ && npm cache verify && npm install && npm run build"
-      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/ && php artisan key:generate"
-      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/ && php artisan migrate && php artisan db:seed"
-      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/ && composer test"

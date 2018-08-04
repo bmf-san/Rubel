@@ -1,4 +1,3 @@
-# Root
 Vagrantfile
 .vagrant
 Homestead.json
@@ -10,20 +9,3 @@ yarn-error.log
 /ansible/group_vars/vagrant.yml
 /ansible/site.retry
 /deploy
-
-# client-app
-/src/client-app/node_modules
-/src/client-app/public/dist
-/src/client-app/public/hot
-/src/client-app/public/storage
-/src/client-app/storage/*.key
-/src/client-app/vendor
-/src/client-app/.env
-/src/client-app/.phpstorm.meta.php
-/src/client-app/_ide_helper.php
-/src/client-app/.idea
-/src/client-app/.vscode
-
-# admin-app
-/src/admin-app/node_modules
-/src/admin-app/dist/
