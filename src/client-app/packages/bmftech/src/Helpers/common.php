@@ -72,7 +72,7 @@ EOT;
  * Check the date is within a week.
  *
  * @param  string  $date
- * @return boolean
+ * @return bool
  */
 if (!function_exists('is_date_within_a_week')) {
     function is_date_within_a_week(String $date)
@@ -131,7 +131,7 @@ if (!function_exists('mb_ucfirst')) {
 /**
  * Whether request from mobile
  *
- * @var boolean
+ * @var bool
  */
 if (!function_exists('isMobile')) {
     function isMobile()
