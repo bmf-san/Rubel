@@ -4,6 +4,13 @@
 
 Rubel - An Open Source CMS built with Laravel and React.
 
+# Features
+- Free
+- Customizable
+- Documented
+
+# DEMO
+
 -   [Rubel Demo](https://rubel.bmf-tech.com/)
 -   [Rubel Admin Demo](https://rubel-admin.bmf-tech.com/login)
 
