@@ -48,20 +48,4 @@ class ContactTest extends FeatureTestCase
             'message' => '',
         ])->assertRedirect('/');
     }
-
-    /**
-     * @test
-     */
-    public function testThanksIfHasSession()
-    {
-        // TODO
-    }
-
-    /**
-     * @test
-     */
-    public function testThanksIfHasNotSession()
-    {
-        // TODO
-    }
 }
