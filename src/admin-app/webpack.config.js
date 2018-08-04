@@ -1,5 +1,6 @@
 const entries = ["./src/index.js", "./src/styles/scss/app.scss"]
 const Dotenv = require("dotenv-webpack")
+const pathToEnv = '../core-app/.env'
 
 module.exports = [
   {
@@ -55,7 +56,7 @@ module.exports = [
     resolve: {
       extensions: [".js", ".jsx"]
     },
-    plugins: [new Dotenv({ path: "../api/.env", safe: false })],
+    plugins: [new Dotenv({ path: pathToEnv, safe: false })],
     devtool: "source-map"
   }
 ]
