@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Requests\Api;
+namespace Tests\Unit\Requests\Api\Authenticate;
 
 use Tests\UnitTestCase;
 use Rubel\Http\Requests\Api\v1\Authenticate\AuthenticateRequest;
