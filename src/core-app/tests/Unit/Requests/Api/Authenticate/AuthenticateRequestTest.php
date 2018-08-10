@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Unit\Web\Requests;
+namespace Tests\Unit\Requests\Api\Authenticate;
 
 use Tests\UnitTestCase;
-use BmfTech\Http\Requests\Web\ContactRequest;
+use Rubel\Http\Requests\Api\v1\Authenticate\AuthenticateRequest;
 
-class ContactTest extends UnitTestCase
+class AuthenticateRequestTest extends UnitTestCase
 {
     /**
      * Setup the test environment.
@@ -15,7 +15,7 @@ class ContactTest extends UnitTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->setFormRequest(new ContactRequest());
+        $this->setFormRequest(new AuthenticateRequest());
     }
 
     /**
@@ -23,20 +23,19 @@ class ContactTest extends UnitTestCase
      */
     public function testValidateSuccess()
     {
-        $this->assertTrue($this->validateField('name', 'test'));
         $this->assertTrue($this->validateField('email', 'test@example.com'));
-        $this->assertTrue($this->validateField('message', 'Hello World!'));
+        $this->assertTrue($this->validateField('password', 'password'));
     }
 
-    /**;
+    /**
      * @test
      */
-    public function testValidateRequiredFailed()
+    public function testValidateFailed()
     {
-        $this->assertFalse($this->validateField('name', ''));
         $this->assertFalse($this->validateField('email', ''));
-        $this->assertFalse($this->validateField('message', ''));
+        $this->assertFalse($this->validateField('password', ''));
     }
+
 
     /**
      * @test
