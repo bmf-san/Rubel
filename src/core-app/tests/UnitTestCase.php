@@ -7,6 +7,7 @@ use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Http\FormRequest;
 
 abstract class UnitTestCase extends BaseTestCase
 {
@@ -27,6 +28,7 @@ abstract class UnitTestCase extends BaseTestCase
     public function setUp()
     {
         parent::setUp();
+        $this->validator = $this->app['validator'];
     }
 
     /**
@@ -41,5 +43,44 @@ abstract class UnitTestCase extends BaseTestCase
         $app->make(Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    /**
+     * Set form request
+     *
+     * @param FormRequest $formRequest
+     * @return UnitTestCase
+     */
+    public function setFormRequest(FormRequest $formRequest)
+    {
+        $this->rules = $formRequest->rules();
+        return $this;
+    }
+
+    /**
+     * Validate field
+     *
+     * @param  string $field
+     * @param  string $value;
+     * @return bool
+     */
+    public function validateField(string $field, string $value)
+    {
+        return $this->getFieldValidator($field, $value)->passes();
+    }
+
+    /**
+     * Get field validator
+     *
+     * @param  string $field
+     * @param  string $value
+     * @return bool
+     */
+    public function getFieldValidator(string $field, string $value)
+    {
+        return $this->validator->make(
+            [$field => $value],
+            [$field => $this->rules[$field]]
+        );
     }
 }
