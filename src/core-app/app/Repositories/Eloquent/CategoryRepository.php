@@ -39,7 +39,7 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function findAll(): Collection
     {
-        // TODO Remove a orderBy method after implementation of search api.
+        // TODO This is a not enough pattern because there is no flexibility by orderBy method. so it is necessary to refactor.
         return $this->categoryModel->orderBy('created_at', 'desc')->get();
     }
 

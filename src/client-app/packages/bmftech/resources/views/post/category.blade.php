@@ -17,7 +17,7 @@
             Post
           </h1>
           <h2 class="subtitle is-5">
-            {{ $category->name }}
+            {{ $categoryName }}
           </h2>
         </div>
       </div>

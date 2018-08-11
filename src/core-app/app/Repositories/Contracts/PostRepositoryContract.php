@@ -3,16 +3,26 @@
 namespace Rubel\Repositories\Contracts;
 
 use Illuminate\Pagination\LengthAwarePaginator;
+use Rubel\Repositories\Eloquent\PostRepository;
 use Rubel\Models\Post;
 
 interface PostRepositoryContract
 {
     /**
+     * Wrap an eloquent with method.
+     *
+     * @param  string $relations
+     * @return PostRepository
+     */
+    public function setWith(string $relations): PostRepository;
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Pagination\LengthAwarePaginator
+     * @param int $paginationLimit
+     * @return mixed
      */
-    public function findAll(): LengthAwarePaginator;
+    public function findAll(int $paginationLimit = null);
 
     /**
      * Store a newly created resource in storage.
@@ -29,6 +39,15 @@ interface PostRepositoryContract
      * @return Post
      */
     public function findById(int $id): Post;
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @param int $paginationLimit
+     * @return mixed
+     */
+    public function findByCategoryName(string $name, int $paginationLimit = null);
 
     /**
      * Update the specified resouce in storage.

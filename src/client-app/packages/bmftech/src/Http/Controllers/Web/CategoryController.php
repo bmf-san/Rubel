@@ -4,8 +4,9 @@ namespace BmfTech\Http\Controllers\Web;
 
 use Illuminate\Contracts\View\View;
 use Rubel\Http\Controllers\Controller;
-use Rubel\Models\Category;
-use Rubel\Models\Tag;
+use Rubel\Repositories\Eloquent\PostRepository;
+use Rubel\Repositories\Eloquent\CategoryRepository;
+use Rubel\Repositories\Eloquent\TagRepository;
 
 class CategoryController extends Controller
 {
@@ -14,32 +15,41 @@ class CategoryController extends Controller
      *
      * @var int
      */
-    const PAGINATION_LIMIT = 10;
+    const PAGINATION_LIMIT = 20;
+
+    /**
+     * Post
+     *
+     * @var PostRepository
+     */
+    private $postRepository;
 
     /**
      * Category
      *
-     * @var Category
+     * @var CategoryRepository
      */
-    private $categoryModel;
+    private $categoryRepository;
 
     /**
      * Tag
      *
-     * @var Tag
+     * @var TagRepository
      */
-    private $tagModel;
+    private $tagRepository;
 
     /**
      * CategoryController constructor
      *
-     * @param Category $categoryModel
-     * @param Tag      $tagModel
+     * @param PostRepository     $postRepository
+     * @param CategoryRepository $categoryRepository
+     * @param TagRepository      $tagRepository
      */
-    public function __construct(Category $categoryModel, Tag $tagModel)
+    public function __construct(PostRepository $postRepository, CategoryRepository $categoryRepository, TagRepository $tagRepository)
     {
-        $this->categoryModel = $categoryModel;
-        $this->tagModel = $tagModel;
+        $this->postRepository = $postRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -49,7 +59,7 @@ class CategoryController extends Controller
      */
     public function index(): View
     {
-        $categories = $this->categoryModel->all();
+        $categories = $this->categoryRepository->findAll();
 
         return view('bmftech::category.index', ['categories' => $categories]);
     }
@@ -57,16 +67,16 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  Category $category
+     * @param  stirng $categoryName
      * @return View
      */
-    public function getPosts(Category $category): View
+    public function getPosts(string $categoryName): View
     {
-        $posts = $category->posts()->where('publication_status', 'public')->paginate(self::PAGINATION_LIMIT);
+        $posts = $this->postRepository->findByCategoryName($categoryName, self::PAGINATION_LIMIT);
 
-        $categories = $this->categoryModel->all();
-        $tags = $this->tagModel->all();
+        $categories = $this->categoryRepository->findAll();
+        $tags = $this->tagRepository->findAll();
 
-        return view('bmftech::post.category', ['category' => $category, 'posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
+        return view('bmftech::post.category', ['categoryName' => $categoryName, 'posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
 }

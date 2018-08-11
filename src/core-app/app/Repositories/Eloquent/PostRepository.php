@@ -2,9 +2,9 @@
 
 namespace Rubel\Repositories\Eloquent;
 
-use Illuminate\Pagination\LengthAwarePaginator;
 use Rubel\Repositories\Contracts\PostRepositoryContract;
 use Rubel\Models\Post;
+use Rubel\Models\Category;
 use Rubel\Models\Tag;
 use Carbon\Carbon;
 
@@ -18,18 +18,18 @@ class PostRepository implements PostRepositoryContract
     const PUBLICATION_STATUS_PUBLIC = 'public';
 
     /**
-     * Pagination limit
-     *
-     * @var int
-     */
-    const PAGINATION_LIMIT = 20;
-
-    /**
      * Post
      *
      * @var Post
      */
     private $postModel;
+
+    /**
+     * Category
+     *
+     * @var Category
+     */
+    private $categoryModel;
 
     /**
      * Tag
@@ -42,25 +42,62 @@ class PostRepository implements PostRepositoryContract
      * PostRepository constructor
      *
      * @param Post $postModel
+     * @param Category $categoryModel
      * @param Tag  $tagModel
      */
-    public function __construct(Post $postModel, Tag $tagModel)
+    public function __construct(Post $postModel, Category $categoryModel, Tag $tagModel)
     {
         $this->postModel = $postModel;
+        $this->categoryModel = $categoryModel;
         $this->tagModel = $tagModel;
+    }
+
+    /**
+     * Wrap an eloquent with method.
+     *
+     * @param  array          $relations
+     * @return PostRepository
+     */
+    public function setWith(string $relations): PostRepository
+    {
+        $this->postModel = $this->postModel->with($relations);
+
+        return $this;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Pagination\LengthAwarePaginator
+     * @param int $paginationLimit
+     * @return mixed
      */
-    public function findAll(): LengthAwarePaginator
+    public function findAll(int $paginationLimit = null)
     {
-        // TODO Remove a orderBy method after implementation of search api.
-        $posts = $this->postModel->with('admin', 'category', 'comments', 'tags')->orderBy('created_at', 'desc')->paginate(self::PAGINATION_LIMIT);
+        $posts = $this->postModel->orderBy('created_at', 'desc');
 
-        return $posts;
+        if ($paginationLimit) {
+            return $posts->paginate($paginationLimit);
+        }
+
+        return $posts->get();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  string $name
+     * @param  int $paginationLimit
+     * @return mixed
+     */
+    public function findByCategoryName(string $name, int $paginationLimit = null)
+    {
+        $posts = $this->categoryModel->where('name', $name)->firstOrFail()->posts()->where('publication_status', 'public');
+
+        if ($paginationLimit) {
+            return $posts->paginate($paginationLimit);
+        }
+
+        return $posts->get();
     }
 
     /**
@@ -96,7 +133,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function findById(int $id): Post
     {
-        $post = $this->postModel->with('admin', 'category', 'comments', 'tags')->findOrFail($id);
+        $post = $this->postModel->findOrFail($id);
 
         return $post;
     }
