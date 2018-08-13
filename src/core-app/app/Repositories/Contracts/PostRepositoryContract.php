@@ -47,7 +47,7 @@ interface PostRepositoryContract
      * @param int $paginationLimit
      * @return mixed
      */
-    public function findByCategoryName(string $name, int $paginationLimit = null);
+    public function findAllByCategoryName(string $name, int $paginationLimit = null);
 
     /**
      * Update the specified resouce in storage.

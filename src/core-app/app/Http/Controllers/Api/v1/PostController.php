@@ -38,7 +38,7 @@ class PostController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->postRepository->with('admin', 'category', 'comments', 'tags')->findAll(self::PAGINATION_LIMIT), Response::HTTP_OK);
+        return response()->json($this->postRepository->setWith('admin', 'category', 'comments', 'tags')->findAll(self::PAGINATION_LIMIT), Response::HTTP_OK);
     }
 
     /**

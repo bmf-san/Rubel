@@ -34,12 +34,27 @@ class PostRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function findAllTest()
+    public function testFindAll()
     {
         $total = 5;
         factory(Post::class, $total)->create();
 
         $post = $this->postRepository->findAll();
+
+        $this->assertThat($post, $this->isInstanceOf(Collection::class)); // TODO fix
+        $this->assertThat($post->count(), $this->identicalTo($total));
+    }
+
+    /**
+     * @test
+     */
+    public function testFindAllWithPaginationLimit()
+    {
+        $total = 5;
+        factory(Post::class, $total)->create();
+
+        $paginationLimit = 10;
+        $post = $this->postRepository->findAll($paginationLimit);
 
         $this->assertThat($post, $this->isInstanceOf(LengthAwarePaginator::class));
         $this->assertThat($post->count(), $this->identicalTo($total));
@@ -48,7 +63,60 @@ class PostRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function storeTest()
+    public function testfindAllByCategoryName()
+    {
+        $categoryName = 'category-name';
+
+        factory(Category::class)->create([
+            'id' => 1,
+            'name' => $categoryName,
+        ]);
+        factory(Post::class)->create([
+            'category_id' => 1,
+            'publication_status' => 'public',
+        ]);
+        factory(Post::class)->create([
+            'category_id' => 1,
+            'publication_status' => 'public',
+        ]);
+
+        $post = $this->postRepository->findAllByCategoryName($categoryName);
+
+        $this->assertThat($post, $this->isInstanceOf(Collection::class));
+        $this->assertThat($post->count(), $this->identicalTo(2));
+    }
+
+    /**
+     * @test
+     */
+    public function testfindAllByCategoryNamewithPaginationLimit()
+    {
+        $paginationLimit = 10;
+        $categoryName = 'category-name';
+
+        factory(Category::class)->create([
+            'id' => 1,
+            'name' => $categoryName,
+        ]);
+        factory(Post::class)->create([
+            'category_id' => 1,
+            'publication_status' => 'public',
+        ]);
+        factory(Post::class)->create([
+            'category_id' => 1,
+            'publication_status' => 'public',
+        ]);
+
+        $post = $this->postRepository->findAllByCategoryName($categoryName, $paginationLimit);
+
+        $this->assertThat($post, $this->isInstanceOf(LengthAwarePaginator::class));
+        $this->assertThat($post->count(), $this->identicalTo(2));
+    }
+
+    /**
+     * @test
+     */
+    public function testStore()
     {
         factory(Admin::class)->create(['id' => 1]);
         factory(Category::class)->create(['id' => 1]);
@@ -93,7 +161,7 @@ class PostRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function findByIdTest()
+    public function testFindById()
     {
         $id = 1;
         factory(Post::class)->create(['id' => $id]);
@@ -107,7 +175,7 @@ class PostRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function updateByIdTest()
+    public function testUpdateById()
     {
         $id = 1;
 
@@ -165,7 +233,7 @@ class PostRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function destroyById()
+    public function testDestroyById()
     {
         $id = 1;
 

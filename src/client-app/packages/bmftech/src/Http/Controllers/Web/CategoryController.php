@@ -72,7 +72,7 @@ class CategoryController extends Controller
      */
     public function getPosts(string $categoryName): View
     {
-        $posts = $this->postRepository->findByCategoryName($categoryName, self::PAGINATION_LIMIT);
+        $posts = $this->postRepository->findAllByCategoryName($categoryName, self::PAGINATION_LIMIT);
 
         $categories = $this->categoryRepository->findAll();
         $tags = $this->tagRepository->findAll();
