@@ -28,9 +28,18 @@ interface PostRepositoryContract
     /**
      * Display a listing the resources.
      *
-     * @return Collection
+     * @param int $paginationLimit
+     * @return mixed
      */
-    public function findPublished(): Collection;
+    public function findPublished(int $paginationLimit = null);
+
+    /**
+     * Display the listing of the resouces.
+     *
+     * @param int $paginationLimit
+     * @return mixed
+     */
+    public function findByRandom(int $paginationLimit = null);
 
     /**
      * Display the specified resouces.

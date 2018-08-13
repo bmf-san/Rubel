@@ -86,11 +86,18 @@ class PostRepository implements PostRepositoryContract
     /**
      * Display a listing of the resouces.
      *
-     * @return Collection
+     * @param int $paginationLimit
+     * @return mixed
      */
-    public function findPublished(): Collection
+    public function findPublished(int $paginationLimit = null)
     {
-        return $this->postModel->where('publication_status', self::PUBLICATION_STATUS_PUBLIC)->get();
+        $posts = $this->postModel->where('publication_status', self::PUBLICATION_STATUS_PUBLIC)->orderBy('created_at', 'desc');
+
+        if ($paginationLimit) {
+            return $posts->paginate($paginationLimit);
+        }
+
+        return $this->postModel->get();
     }
 
     /**
@@ -101,6 +108,23 @@ class PostRepository implements PostRepositoryContract
     public function findLatest(): Post
     {
         return $this->postModel->latest('created_at')->firstOrFail();
+    }
+
+    /**
+     * Display the listing of the resouces.
+     *
+     * @param int $paginationLimit
+     * @return mixed
+     */
+    public function findByRandom(int $paginationLimit = null)
+    {
+        $posts = $this->postModel->where('publication_status', self::PUBLICATION_STATUS_PUBLIC)->inRandomOrder()->orderBy('created_at', 'desc');
+
+        if ($paginationLimit) {
+            return $posts->paginate($paginationLimit);
+        }
+
+        return $posts->get();
     }
 
     /**

@@ -65,6 +65,57 @@ class PostRepositoryTest extends UnitTestCase
     /**
      * @test
      */
+    public function testPublishedWithPagination()
+    {
+        $paginationLimit = 10;
+        $publicationStatus = 'public';
+
+        factory(Post::class)->create([
+            'publication_status' => $publicationStatus,
+        ]);
+
+        $post = $this->postRepository->findPublished($paginationLimit);
+
+        $this->assertThat($post, $this->isInstanceOf(LengthAwarePaginator::class));
+        $this->assertThat($post->first()->publication_status, $this->identicalto($publicationStatus));
+    }
+
+    /**
+     * @test
+     */
+    public function testFindByRandom()
+    {
+        $total = 5;
+        factory(Post::class, $total)->create([
+            'publication_status' => 'public',
+        ]);
+
+        $post = $this->postRepository->findByRandom();
+
+        $this->assertThat($post, $this->isInstanceOf(Collection::class));
+        $this->assertThat($post->count(), $this->identicalTo($total));
+    }
+
+    /**
+     * @test
+     */
+    public function testFindByRandomPagination()
+    {
+        $paginationLimit = 10;
+        $total = 5;
+        factory(Post::class, $total)->create([
+            'publication_status' => 'public',
+        ]);
+
+        $post = $this->postRepository->findByRandom($paginationLimit);
+
+        $this->assertThat($post, $this->isInstanceOf(LengthAwarePaginator::class));
+        $this->assertThat($post->count(), $this->identicalTo($total));
+    }
+
+    /**
+     * @test
+     */
     public function testFindLatest()
     {
         $now = Carbon::now();
