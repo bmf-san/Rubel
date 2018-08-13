@@ -5,10 +5,8 @@ namespace BmfTech\Http\Controllers\Web;
 use Illuminate\Contracts\View\View;
 use Rubel\Repositories\Eloquent\PostRepository;
 use Rubel\Repositories\Eloquent\CategoryRepository;
+use Rubel\Repositories\Eloquent\TagRepository;
 use BmfTech\Http\Controllers\Controller;
-use Rubel\Models\Post;
-use Rubel\Models\Category;
-use Rubel\Models\Tag;
 
 class HomeController extends Controller
 {
@@ -34,24 +32,24 @@ class HomeController extends Controller
     private $categoryRepository;
 
     /**
-     * Tag
+     * TagRepository
      *
-     * @var Tag
+     * @var TagRepository
      */
-    private $tagModel;
+    private $tagRepository;
 
     /**
      * HomeController constructor
      *
      * @param PostRepository   $postRepository
      * @param CategoryRepository $categoryRepository
-     * @param Tag      $tagModel
+     * @param TagRepository      $tagRepository
      */
-    public function __construct(PostRepository $postRepository, CategoryRepository $categoryRepository, Tag $tagModel)
+    public function __construct(PostRepository $postRepository, CategoryRepository $categoryRepository, TagRepository $tagRepository)
     {
         $this->postRepository = $postRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->tagModel = $tagModel;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -64,7 +62,7 @@ class HomeController extends Controller
         $recentPosts = $this->postRepository->findPublished(self::PAGINATION_LIMIT);
         $randomPosts = $this->postRepository->findByRandom(self::PAGINATION_LIMIT);
         $categories = $this->categoryRepository->findAll();
-        $tags = $this->tagModel->all();
+        $tags = $this->tagRepository->findAll();
 
         return view('bmftech::home.index', ['recentPosts' => $recentPosts, 'randomPosts' => $randomPosts, 'categories' => $categories, 'tags' => $tags]);
     }
