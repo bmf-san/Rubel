@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/bmf-san/Rubel.svg?style=svg)](https://circleci.com/gh/bmf-san/Rubel)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/80f175b353f54def93ed2da73de7c2d9)](https://www.codacy.com/project/bmf-san/Rubel/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bmf-san/Rubel&amp;utm_campaign=Badge_Grade_Dashboard)
 
 # Rubel
 
