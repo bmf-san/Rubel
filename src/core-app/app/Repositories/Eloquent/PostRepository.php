@@ -2,6 +2,7 @@
 
 namespace Rubel\Repositories\Eloquent;
 
+use Illuminate\Database\Eloquent\Collection;
 use Rubel\Repositories\Contracts\PostRepositoryContract;
 use Rubel\Models\Post;
 use Rubel\Models\Category;
@@ -83,6 +84,39 @@ class PostRepository implements PostRepositoryContract
     }
 
     /**
+     * Display a listing of the resouces.
+     *
+     * @return Collection
+     */
+    public function findPublished(): Collection
+    {
+        return $this->postModel->where('publication_status', self::PUBLICATION_STATUS_PUBLIC)->get();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return Post
+     */
+    public function findLatest(): Post
+    {
+        return $this->postModel->latest('created_at')->firstOrFail();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return Post
+     */
+    public function findById(int $id): Post
+    {
+        $post = $this->postModel->findOrFail($id);
+
+        return $post;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param  string $name
@@ -121,19 +155,6 @@ class PostRepository implements PostRepositoryContract
         ]);
 
         $this->syncTags($post, $attributes['tags']);
-
-        return $post;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return Post
-     */
-    public function findById(int $id): Post
-    {
-        $post = $this->postModel->findOrFail($id);
 
         return $post;
     }

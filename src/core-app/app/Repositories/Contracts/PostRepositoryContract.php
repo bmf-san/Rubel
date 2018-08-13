@@ -3,6 +3,7 @@
 namespace Rubel\Repositories\Contracts;
 
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 use Rubel\Repositories\Eloquent\PostRepository;
 use Rubel\Models\Post;
 
@@ -23,6 +24,20 @@ interface PostRepositoryContract
      * @return mixed
      */
     public function findAll(int $paginationLimit = null);
+
+    /**
+     * Display a listing the resources.
+     *
+     * @return Collection
+     */
+    public function findPublished(): Collection;
+
+    /**
+     * Display the specified resouces.
+     *
+     * @return Post
+     */
+    public function findLatest(): Post;
 
     /**
      * Store a newly created resource in storage.

@@ -4,19 +4,18 @@ namespace BmfTech\Http\Controllers\Web;
 
 use Illuminate\Http\Response;
 use BmfTech\Http\Controllers\Controller;
+use Rubel\Repositories\Eloquent\PostRepository;
 use Rubel\Repositories\Eloquent\ConfigRepository;
-use Rubel\Models\Post;
-use Rubel\Models\Config;
 use Carbon\Carbon;
 
 class FeedController extends Controller
 {
     /**
-     * Post
+     * PostRepository
      *
-     * @var Post
+     * @var PostRepository
      */
-    private $post;
+    private $postRepository;
 
     /**
      * ConfigRepository
@@ -28,12 +27,12 @@ class FeedController extends Controller
     /**
      * FeedController constructor
      *
-     * @param Post $post
+     * @param PostRepository $postRepository
      * @param ConfigRepository $configRepository
      */
-    public function __construct(Post $post, ConfigRepository $configRepository)
+    public function __construct(PostRepository $postRepository, ConfigRepository $configRepository)
     {
-        $this->post = $post;
+        $this->postRepository = $postRepository;
         $this->configRepository = $configRepository;
     }
 
@@ -46,8 +45,8 @@ class FeedController extends Controller
     {
         $title = $this->configRepository->findByName('title')->value;
         $subTitle = $this->configRepository->findByName('sub_title')->value;
-        $updatedAt = $this->post->latest()->first()->updated_at->toAtomString();
-        $posts = $this->post->whereNotNull('published_at')->get();
+        $updatedAt = $this->postRepository->findLatest()->updated_at->toAtomString();
+        $posts = $this->postRepository->findPublished();
 
         return response()->view('bmftech::feed.index', [
             'title' => $title,

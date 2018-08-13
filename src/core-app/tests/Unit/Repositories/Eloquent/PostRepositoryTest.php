@@ -41,8 +41,45 @@ class PostRepositoryTest extends UnitTestCase
 
         $post = $this->postRepository->findAll();
 
-        $this->assertThat($post, $this->isInstanceOf(Collection::class)); // TODO fix
+        $this->assertThat($post, $this->isInstanceOf(Collection::class));
         $this->assertThat($post->count(), $this->identicalTo($total));
+    }
+
+    /**
+     * @test
+     */
+    public function testPublished()
+    {
+        $publicationStatus = 'public';
+
+        factory(Post::class)->create([
+            'publication_status' => $publicationStatus,
+        ]);
+
+        $post = $this->postRepository->findPublished();
+
+        $this->assertThat($post, $this->isInstanceOf(Collection::class));
+        $this->assertThat($post->first()->publication_status, $this->identicalto($publicationStatus));
+    }
+
+    /**
+     * @test
+     */
+    public function testFindLatest()
+    {
+        $now = Carbon::now();
+
+        factory(Post::class, 5)->create([
+            'created_at' => $now->subDay(),
+        ]);
+        factory(Post::class)->create([
+            'created_at' => $now,
+        ]);
+
+        $post = $this->postRepository->findLatest();
+
+        $this->assertThat($post, $this->isInstanceOf(Post::class));
+        $this->assertThat($post->created_at->toDateTimeString(), $this->identicalTo($now->toDateTimeString()));
     }
 
     /**
@@ -164,6 +201,7 @@ class PostRepositoryTest extends UnitTestCase
     public function testFindById()
     {
         $id = 1;
+
         factory(Post::class)->create(['id' => $id]);
 
         $post = $this->postRepository->findById($id);
