@@ -32,10 +32,18 @@ class ConfigRepository implements ConfigRepositoryContract
      */
     public function findAll(): Collection
     {
-        // TODO Remove a orderBy method after implementation of search api.
-        $configs = $this->configModel->orderBy('created_at', 'desc')->get();
+        return $this->configModel->orderBy('created_at', 'desc')->get();
+    }
 
-        return $configs;
+    /**
+     * Display the specified resource.
+     *
+     * @param string $name
+     * @return Config
+     */
+    public function findByName(string $name): Config
+    {
+        return $this->configModel->where('name', $name)->firstOrFail();
     }
 
     /**
@@ -54,6 +62,6 @@ class ConfigRepository implements ConfigRepositoryContract
             ]);
         }
 
-        return Config::whereIn('name', array_keys($attributes))->get();
+        return $this->configModel->whereIn('name', array_keys($attributes))->get();
     }
 }

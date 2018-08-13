@@ -4,6 +4,7 @@ namespace BmfTech\Http\Controllers\Web;
 
 use Illuminate\Http\Response;
 use BmfTech\Http\Controllers\Controller;
+use Rubel\Repositories\Eloquent\ConfigRepository;
 use Rubel\Models\Post;
 use Rubel\Models\Config;
 use Carbon\Carbon;
@@ -18,22 +19,22 @@ class FeedController extends Controller
     private $post;
 
     /**
-     * Config
+     * ConfigRepository
      *
-     * @var Config
+     * @var ConfigRepository
      */
-    private $config;
+    private $configRepository;
 
     /**
      * FeedController constructor
      *
      * @param Post $post
-     * @param Config $config
+     * @param ConfigRepository $configRepository
      */
-    public function __construct(Post $post, Config $config)
+    public function __construct(Post $post, ConfigRepository $configRepository)
     {
         $this->post = $post;
-        $this->config = $config;
+        $this->configRepository = $configRepository;
     }
 
     /**
@@ -43,8 +44,8 @@ class FeedController extends Controller
      */
     public function index(): Response
     {
-        $title = $this->config->where('name', 'title')->first()->value;
-        $subTitle = $this->config->where('name', 'sub_title')->first()->value;
+        $title = $this->configRepository->findByName('title')->value;
+        $subTitle = $this->configRepository->findByName('sub_title')->value;
         $updatedAt = $this->post->latest()->first()->updated_at->toAtomString();
         $posts = $this->post->whereNotNull('published_at')->get();
 
