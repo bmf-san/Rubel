@@ -4,6 +4,7 @@ namespace BmfTech\Http\Controllers\Web;
 
 use Illuminate\Contracts\View\View;
 use Rubel\Repositories\Eloquent\PostRepository;
+use Rubel\Repositories\Eloquent\CategoryRepository;
 use BmfTech\Http\Controllers\Controller;
 use Rubel\Models\Post;
 use Rubel\Models\Category;
@@ -26,11 +27,11 @@ class HomeController extends Controller
     private $postRepository;
 
     /**
-     * Category
+     * CategoryRepository
      *
-     * @var Category
+     * @var CategoryRepository
      */
-    private $categoryModel;
+    private $categoryRepository;
 
     /**
      * Tag
@@ -43,13 +44,13 @@ class HomeController extends Controller
      * HomeController constructor
      *
      * @param PostRepository   $postRepository
-     * @param Category $categoryModel
+     * @param CategoryRepository $categoryRepository
      * @param Tag      $tagModel
      */
-    public function __construct(PostRepository $postRepository, Category $categoryModel, Tag $tagModel)
+    public function __construct(PostRepository $postRepository, CategoryRepository $categoryRepository, Tag $tagModel)
     {
         $this->postRepository = $postRepository;
-        $this->categoryModel = $categoryModel;
+        $this->categoryRepository = $categoryRepository;
         $this->tagModel = $tagModel;
     }
 
@@ -62,7 +63,7 @@ class HomeController extends Controller
     {
         $recentPosts = $this->postRepository->findPublished(self::PAGINATION_LIMIT);
         $randomPosts = $this->postRepository->findByRandom(self::PAGINATION_LIMIT);
-        $categories = $this->categoryModel->all();
+        $categories = $this->categoryRepository->findAll();
         $tags = $this->tagModel->all();
 
         return view('bmftech::home.index', ['recentPosts' => $recentPosts, 'randomPosts' => $randomPosts, 'categories' => $categories, 'tags' => $tags]);
