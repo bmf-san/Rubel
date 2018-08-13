@@ -20,7 +20,7 @@ class ContactTest extends FeatureTestCase
     /**
      * @test
      */
-    public function submitSuccessTest()
+    public function testSubmitSuccess()
     {
         Mail::ShouldReceive('send')
                       ->once()
@@ -40,7 +40,7 @@ class ContactTest extends FeatureTestCase
     /**
      * @test
      */
-    public function submitFailedTest()
+    public function testSubmitFailed()
     {
         $this->post(route('web.contacts.submit'), [
             'name' => '',

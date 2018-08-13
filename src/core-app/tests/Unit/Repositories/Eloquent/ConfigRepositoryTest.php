@@ -30,7 +30,7 @@ class ConfigRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function findAllTest()
+    public function testFindAllTest()
     {
         $total = 5;
         factory(Config::class, $total)->create();
@@ -44,7 +44,7 @@ class ConfigRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function updateTest()
+    public function testUpdate()
     {
         $attributes = [
             'config_name_test_a' => 'new_config_value_test_a',

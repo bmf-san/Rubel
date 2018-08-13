@@ -30,7 +30,7 @@ class TagRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function findAllTest()
+    public function testFindAll()
     {
         $total = 5;
         factory(Tag::class, $total)->create();
@@ -44,7 +44,7 @@ class TagRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function storeTest()
+    public function testStore()
     {
         $attributes = ['name' => 'tag_test'];
 
@@ -57,7 +57,7 @@ class TagRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function findByIdTest()
+    public function testFindById()
     {
         $id = 1;
         factory(Tag::class)->create(['id' => $id]);
@@ -71,7 +71,7 @@ class TagRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function updateByIdTest()
+    public function testUpdateById()
     {
         $id = 1;
         $attributes = ['name' => 'new_tag_test'];
@@ -89,7 +89,7 @@ class TagRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function destroyById()
+    public function testDestoryById()
     {
         $id = 1;
 

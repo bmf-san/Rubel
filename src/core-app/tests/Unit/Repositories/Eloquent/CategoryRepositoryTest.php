@@ -30,7 +30,7 @@ class CategoryRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function findAllTest()
+    public function testFindAll()
     {
         $total = 5;
         factory(Category::class, $total)->create();
@@ -44,7 +44,7 @@ class CategoryRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function storeTest()
+    public function testStore()
     {
         $attributes = ['name' => 'category_test'];
 
@@ -57,7 +57,7 @@ class CategoryRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function findByIdTest()
+    public function testFindById()
     {
         $id = 1;
         factory(Category::class)->create(['id' => $id]);
@@ -71,7 +71,7 @@ class CategoryRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function updateByIdTest()
+    public function testUpdateById()
     {
         $id = 1;
         $attributes = ['name' => 'new_category_test'];
@@ -89,7 +89,7 @@ class CategoryRepositoryTest extends UnitTestCase
     /**
      * @test
      */
-    public function destroyById()
+    public function testDestoryById()
     {
         $id = 2; // 1 is used as category_id of uncategorized
 
