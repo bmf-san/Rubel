@@ -159,6 +159,60 @@ class PostRepository implements PostRepositoryContract
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  string $title
+     * @return Post
+     */
+    public function findByTitle(string $title): Post
+    {
+        return $this->postModel->where('title', $title)->where('publication_status', self::PUBLICATION_STATUS_PUBLIC)->firstOrFail();
+    }
+
+    /**
+     * Display the listing of the resources.
+     *
+     * @param Post $post
+     * @param int $paginationLimit
+     * @return mixed
+     */
+    public function findRelatedPost(Post $post, int $paginationLimit = null)
+    {
+        $posts = $this->postModel->where('posts.id', '!=', $post->id)
+                        ->whereHas('tags', function ($query) use ($post) {
+                            return $query->whereIn('tags.id', $post->tags()->pluck('tags.id')->toArray());
+                        });
+
+        if ($paginationLimit) {
+            return $posts->paginate($paginationLimit);
+        }
+
+        return $posts->get();
+    }
+
+    /**
+     * Display the specified resouce.
+     *
+     * @param  int    $id
+     * @return Post
+     */
+    public function findPreviousPost(int $id): Post
+    {
+        return $this->postModel->where('id', '<', $id)->where('publication_status', 'public')->orderBy('id', 'desc')->first();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int    $id
+     * @return Post
+     */
+    public function findNextPost(int $id): Post
+    {
+        return $this->postModel->where('id', '>', $id)->where('publication_status', 'public')->first();
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param array $attributes

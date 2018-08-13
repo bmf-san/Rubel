@@ -16,7 +16,7 @@ $router->get('/', 'HomeController@index')->name('root.index');
  */
 $router->group(['prefix' => 'posts'], function () use ($router) {
     $router->get('/', 'PostController@index')->name('posts.index');
-    $router->get('/{post}', 'PostController@show')->name('posts.show');
+    $router->get('/{title}', 'PostController@show')->name('posts.show');
     $router->get('/categories/{categoryName}', 'CategoryController@getPosts')->name('posts.categories.getPosts');
     $router->get('/tags/{tag}', 'TagController@getPosts')->name('posts.tags.getPosts');
 });

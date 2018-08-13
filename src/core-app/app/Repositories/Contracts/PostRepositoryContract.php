@@ -34,14 +34,6 @@ interface PostRepositoryContract
     public function findPublished(int $paginationLimit = null);
 
     /**
-     * Display the listing of the resouces.
-     *
-     * @param int $paginationLimit
-     * @return mixed
-     */
-    public function findByRandom(int $paginationLimit = null);
-
-    /**
      * Display the specified resouces.
      *
      * @return Post
@@ -49,12 +41,12 @@ interface PostRepositoryContract
     public function findLatest(): Post;
 
     /**
-     * Store a newly created resource in storage.
+     * Display the listing of the resouces.
      *
-     * @param array $attributes
-     * @return Post
+     * @param int $paginationLimit
+     * @return mixed
      */
-    public function store(array $attributes): Post;
+    public function findByRandom(int $paginationLimit = null);
 
     /**
      * Display the specified resource.
@@ -72,6 +64,47 @@ interface PostRepositoryContract
      * @return mixed
      */
     public function findAllByCategoryName(string $name, int $paginationLimit = null);
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  string $title
+     * @return Post
+     */
+    public function findByTitle(string $title): Post;
+
+    /**
+     * Display the listing of the resources.
+     *
+     * @param Post $post
+     * @param int $paginationLimit
+     * @return mixed
+     */
+    public function findRelatedPost(Post $post, int $paginationLimit = null);
+
+    /**
+     * Display the specified resouce.
+     *
+     * @param  int  $id
+     * @return Post
+     */
+    public function findPreviousPost(int $id): Post;
+
+    /**
+     * Display the specified resouce.
+     *
+     * @param  int  $id
+     * @return Post
+     */
+    public function findNextPost(int $id): Post;
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param array $attributes
+     * @return Post
+     */
+    public function store(array $attributes): Post;
 
     /**
      * Update the specified resouce in storage.
