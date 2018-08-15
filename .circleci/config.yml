@@ -31,8 +31,6 @@ jobs:
         - run:
             name: Copy the coverage report to host directory
             command: docker cp rubel_php:/tmp/artifacts /tmp
-        - store_test_results:
-            path: /tmp/artifacts
         - store_artifacts:
             path: /tmp/artifacts
         - run:
