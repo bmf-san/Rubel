@@ -18,6 +18,7 @@ class FeatureTestCase extends BaseTestCase
         $this->loadMigrationsFrom(realpath(__DIR__.'/../../../../core-app/database/migrations'));
         $this->artisan('migrate:refresh');
         $this->setData();
+        require_once(realpath(__DIR__.'/../../../../core-app/app/Helpers/common.php'));
     }
 
     /**
@@ -69,6 +70,7 @@ class FeatureTestCase extends BaseTestCase
             'strict' => true,
             'engine' => null,
         ]);
+        $app['config']->set('rubel.theme.view', 'bmftech');
     }
 
     /**
