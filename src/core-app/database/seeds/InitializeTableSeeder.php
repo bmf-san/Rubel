@@ -73,9 +73,9 @@ class InitializeTableSeeder extends Seeder
     private function runAdmin(): void
     {
         $this->dbManager->table('admins')->insert([
-           'name' => config('admin.name'),
-           'email' => config('admin.email'),
-           'password' => bcrypt(config('admin.password')),
+           'name' => config('rubel.admin.name'),
+           'email' => config('rubel.admin.email'),
+           'password' => bcrypt(config('rubel.admin.password')),
            'created_at' => Carbon::now(),
            'updated_at' => Carbon::now(),
         ]);

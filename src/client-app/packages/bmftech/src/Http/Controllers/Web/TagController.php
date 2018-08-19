@@ -61,7 +61,7 @@ class TagController extends Controller
     {
         $tags = $this->tagRepository->findAll();
 
-        return view('bmftech::tag.index', ['tags' => $tags]);
+        return view(get_the_view_path('tag.index'), ['tags' => $tags]);
     }
 
     /**
@@ -77,6 +77,6 @@ class TagController extends Controller
         $categories = $this->categoryRepository->findAll();
         $tags = $this->tagRepository->findAll();
 
-        return view('bmftech::post.tag', ['tagName' => $tagName, 'posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
+        return view(get_the_view_path('post.tag'), ['tagName' => $tagName, 'posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
 }

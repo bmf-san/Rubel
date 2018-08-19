@@ -1,10 +1,10 @@
-@extends('bmftech::layouts.master')
+@extends(get_the_view_path('layouts.master'))
 
 @section('title', 'Error' . $errorMessages['status'])
 
 @section('content')
   <div>
-    @include('bmftech::partials.nav')
+    @include(get_the_view_path('partials.nav'))
     <section class="section">
       <div class="container">
         <div class="columns">
@@ -16,5 +16,5 @@
       </div>
     </section>
   </div>
-  @include('bmftech::partials.footer')
+  @include(get_the_view_path('partials.nav'))
 @endsection

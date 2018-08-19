@@ -14,6 +14,6 @@ class ProfileController extends Controller
      */
     public function index(): View
     {
-        return view('bmftech::profile.index');
+        return view(get_the_view_path('profile.index'));
     }
 }

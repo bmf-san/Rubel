@@ -73,7 +73,7 @@ class PostController extends Controller
         $categories = $this->categoryRepository->findAll();
         $tags = $this->tagRepository->findAll();
 
-        return view('bmftech::post.index', ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
+        return view(get_the_view_path('post.index'), ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
 
     /**
@@ -93,6 +93,6 @@ class PostController extends Controller
         $categories = $this->categoryRepository->findAll();
         $tags = $this->tagRepository->findAll();
 
-        return view('bmftech::post.show', ['post' => $post, 'relatedPost' => $relatedPost, 'previousPost' => $previousPost, 'nextPost' => $nextPost, 'categories' => $categories, 'tags' => $tags]);
+        return view(get_the_view_path('post.show'), ['post' => $post, 'relatedPost' => $relatedPost, 'previousPost' => $previousPost, 'nextPost' => $nextPost, 'categories' => $categories, 'tags' => $tags]);
     }
 }

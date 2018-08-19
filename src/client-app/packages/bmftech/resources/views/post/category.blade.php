@@ -1,4 +1,4 @@
-@extends('bmftech::layouts.master')
+@extends(get_the_view_path('layouts.master'))
 
 @section('title', 'Post - Category')
 @section('canonical', url()->current())
@@ -9,7 +9,7 @@
 
 @section('content')
   <div>
-    @include('bmftech::partials.nav')
+    @include(get_the_view_path('partials.nav'))
     <section class="hero is-primary is-medium header-image">
       <div class="hero-body">
         <div class="container has-text-centered">
@@ -68,20 +68,20 @@
             @endforelse
           </div>
           <div class="column is-3">
-            @include('bmftech::partials.sidebar.categories')
-            @include('bmftech::partials.sidebar.tags')
-            @include('bmftech::partials.sidebar.ad')
+            @include(get_the_view_path('partials.sidebar.categories'))
+            @include(get_the_view_path('partials.sidebar.tags'))
+            @include(get_the_view_path('partials.sidebar.ad'))
           </div>
         </div>
       </div>
       <div class="columns">
         <div class="column is-7 is-offset-2">
-          @include('bmftech::partials.links')
+          @include(get_the_view_path('partials.links'))
         </div>
       </div>
     </section>
   </div>
-  @include('bmftech::partials.footer')
+  @include(get_the_view_path('partials.nav'))
 @endsection
 
 @section('additional-script')

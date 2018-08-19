@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerRepositories();
+        $this->registerHelpers();
     }
 
     /**
@@ -35,6 +36,18 @@ class AppServiceProvider extends ServiceProvider
     {
         foreach (config('app.repositories') as $key => $value) {
             return $this->app->bind($key, $value);
+        }
+    }
+
+    /**
+     * Register helpers
+     *
+     * @return void
+     */
+    private function registerHelpers()
+    {
+        foreach (glob(realpath(__DIR__.'/../../src/Helpers').'/*.php') as $filename) {
+            require_once($filename);
         }
     }
 }

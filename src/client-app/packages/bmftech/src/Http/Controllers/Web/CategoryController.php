@@ -61,7 +61,7 @@ class CategoryController extends Controller
     {
         $categories = $this->categoryRepository->findAll();
 
-        return view('bmftech::category.index', ['categories' => $categories]);
+        return view(get_the_view_path('category.index'), ['categories' => $categories]);
     }
 
     /**
@@ -77,6 +77,6 @@ class CategoryController extends Controller
         $categories = $this->categoryRepository->findAll();
         $tags = $this->tagRepository->findAll();
 
-        return view('bmftech::post.category', ['categoryName' => $categoryName, 'posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
+        return view(get_the_view_path('post.category'), ['categoryName' => $categoryName, 'posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
 }
