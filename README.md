@@ -90,7 +90,7 @@ If you want to use vagrant, you can be able to use [bmf-san/vagrant-for-rubel](h
 
 ## Anything Else
 
--   [Wiki - API Documentation](https://github.com/bmf-san/laravel-react-blog-boilerplate/wiki/API-Documentation)
+- [Wiki - API Documentation](https://github.com/bmf-san/laravel-react-blog-boilerplate/wiki/API-Documentation)
 
 ## Contributing
 
