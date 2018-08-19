@@ -7,6 +7,8 @@ use Rubel\Repositories\Eloquent\PostRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Rubel\Models\Post;
+use Rubel\Models\Tag;
+use Rubel\Models\TagPost;
 use Rubel\Models\Admin;
 use Rubel\Models\Category;
 use Carbon\Carbon;
@@ -265,7 +267,17 @@ class PostRepositoryTest extends UnitTestCase
      */
     public function testFindByTitle()
     {
-        //
+        $title = 'public';
+
+        factory(Post::class)->create([
+            'title' => $title,
+            'publication_status' => 'public',
+        ]);
+
+        $post = $this->postRepository->findByTitle($title);
+
+        $this->assertThat($post, $this->isInstanceOf(Post::class));
+        $this->assertThat($post->title, $this->identicalTo($title));
     }
 
     /**
@@ -273,7 +285,39 @@ class PostRepositoryTest extends UnitTestCase
      */
     public function testfindRelatedPost()
     {
-        //
+        factory(Tag::class)->create([
+            'id' => 1,
+            'name' => 'tag-1',
+        ]);
+        $targetPost = factory(Post::class)->create([
+            'id' => 1,
+            'title' => 'post-1',
+        ]);
+        factory(Post::class)->create([
+            'id' => 2,
+            'title' => 'post-2',
+        ]);
+        factory(Post::class)->create([
+            'id' => 3,
+            'title' => 'post-3',
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 1,
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 2,
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 3,
+        ]);
+
+        $post = $this->postRepository->findRelatedPost($targetPost);
+
+        $this->assertThat($post, $this->isInstanceOf(Collection::class));
+        $this->assertThat($post->count(), $this->identicalTo(2));
     }
 
     /**
@@ -281,7 +325,41 @@ class PostRepositoryTest extends UnitTestCase
      */
     public function testfindRelatedPostWithPagination()
     {
-        //
+        $paginationLimit = 10;
+
+        factory(Tag::class)->create([
+            'id' => 1,
+            'name' => 'tag-1',
+        ]);
+        $targetPost = factory(Post::class)->create([
+            'id' => 1,
+            'title' => 'post-1',
+        ]);
+        factory(Post::class)->create([
+            'id' => 2,
+            'title' => 'post-2',
+        ]);
+        factory(Post::class)->create([
+            'id' => 3,
+            'title' => 'post-3',
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 1,
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 2,
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 3,
+        ]);
+
+        $post = $this->postRepository->findRelatedPost($targetPost, $paginationLimit);
+
+        $this->assertThat($post, $this->isInstanceOf(LengthAwarePaginator::class));
+        $this->assertThat($post->count(), $this->identicalTo(2));
     }
 
     /**
@@ -289,7 +367,19 @@ class PostRepositoryTest extends UnitTestCase
      */
     public function testFindPreviousPost()
     {
-        //
+        factory(Post::class)->create([
+            'id' => 1,
+            'publication_status' => 'public',
+        ]);
+        factory(Post::class)->create([
+            'id' => 2,
+            'publication_status' => 'public',
+        ]);
+
+        $post = $this->postRepository->findPreviousPost(2);
+
+        $this->assertThat($post, $this->isInstanceOf(Post::class));
+        $this->assertThat($post->id, $this->identicalTo(1));
     }
 
     /**
@@ -297,7 +387,19 @@ class PostRepositoryTest extends UnitTestCase
      */
     public function testFindNextPost()
     {
-        //
+        factory(Post::class)->create([
+            'id' => 1,
+            'publication_status' => 'public',
+        ]);
+        factory(Post::class)->create([
+            'id' => 2,
+            'publication_status' => 'public',
+        ]);
+
+        $post = $this->postRepository->findNextPost(1);
+
+        $this->assertThat($post, $this->isInstanceOf(Post::class));
+        $this->assertThat($post->id, $this->identicalTo(2));
     }
 
     /**
