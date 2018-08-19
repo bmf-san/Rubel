@@ -16,5 +16,5 @@
       </div>
     </section>
   </div>
-  @include(get_the_view_path('partials.nav'))
+  @include(get_the_view_path('partials.footer'))
 @endsection

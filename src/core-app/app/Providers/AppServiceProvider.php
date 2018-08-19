@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
      */
     private function registerHelpers()
     {
-        foreach (glob(realpath(__DIR__.'/../../src/Helpers').'/*.php') as $filename) {
+        foreach (glob(realpath(__DIR__.'/../Helpers').'/*.php') as $filename) {
             require_once($filename);
         }
     }

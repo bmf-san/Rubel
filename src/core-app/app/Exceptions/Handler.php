@@ -3,8 +3,12 @@
 namespace Rubel\Exceptions;
 
 use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Auth\AuthException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -27,7 +31,7 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $exception
+     * @param  Exception  $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -38,9 +42,9 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Exception  $exception
+     * @return Response
      */
     public function render($request, Exception $exception)
     {
@@ -50,14 +54,14 @@ class Handler extends ExceptionHandler
     /**
      * Convert an authentication exception into an unauthenticated response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $exception
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  AuthenticationException  $exception
+     * @return Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return response()->json(['error' => 'Unauthenticated.'], Response::HTTP_UNAUTHORIZED);
         }
 
         return redirect()->guest('/');
@@ -66,53 +70,45 @@ class Handler extends ExceptionHandler
     /**
      * Override default method - render the given HttpException.
      *
-     * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
-     * @return \Illuminate\Http\Response
+     * @param  HttpException  $e
+     * @return Response
      */
-    protected function renderHttpException(\Symfony\Component\HttpKernel\Exception\HttpException $e)
+    protected function renderHttpException($e)
     {
         $status = $e->getStatusCode();
         $errorMessages = $this->handleErrorMessages($status);
 
-        view()->replaceNamespace('errors', [
-            resource_path('views/errors'),
-            __DIR__.'/views',
-        ]);
-        if (view()->exists("errors.index")) {
-            return response()->view("errors.index", ['errorMessages' => $errorMessages], $status);
-        } else {
-            return $this->convertExceptionToResponse($e);
-        }
+        return response()->view(get_the_view_path('errors.index'), ['errorMessages' => $errorMessages], $status);
     }
 
     /**
      * Handle error messages.
      *
      * @param  int $status
-     * @return [type]         [description]
+     * @return string
      */
     private function handleErrorMessages($status)
     {
         $errorMessages['status'] = $status;
 
         switch ($status) {
-            case '401':
+            case Response::HTTP_UNAUTHORIZED:
                 return $errorMessages['message'] = 'Unauthorized';
                 break;
 
-            case '403':
+            case Response::HTTP_FORBIDDEN:
                 return $errorMessages['message'] = 'forbidden';
                 break;
 
-            case '404':
+            case Response::HTTP_NOT_FOUND:
                 $errorMessages['message'] = 'Not Found';
                 break;
 
-            case '500':
+            case Response::HTTP_INTERNAL_SERVER_ERROR:
                 $errorMessages['message'] = 'Internal Server Error';
                 break;
 
-            case '503':
+            case Response::HTTP_SERVICE_UNAVAILABLE:
                 $errorMessages['message'] = 'Service Unavailable';
                 break;
         }
