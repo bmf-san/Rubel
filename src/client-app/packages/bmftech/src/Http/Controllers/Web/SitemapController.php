@@ -89,7 +89,7 @@ class SitemapController extends Controller
     {
         $sitemap = $this->getSitemap();
 
-        return response()->view('bmftech::sitemap.index', ['sitemap' => $sitemap])->header('Content-Type', 'application/xml');
+        return response()->view(get_the_view_path('sitemap.index'), ['sitemap' => $sitemap])->header('Content-Type', 'application/xml');
     }
 
     /**

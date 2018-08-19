@@ -34,7 +34,7 @@ class ContactController extends Controller
      */
     public function index(): View
     {
-        return view('bmftech::contact.index');
+        return view(get_the_view_path('contact.index'));
     }
 
     /**
@@ -84,7 +84,7 @@ Message:
 EOF;
 
             $message->to($userEmail)
-             ->from(config('admin.email'), config('admin.name'))
+             ->from(config('rubel.admin.email'), config('rubel.admin.name'))
              ->subject('Thank you for your message. bmf-tech.com')
              ->setBody($templateForUser, 'text/plain');
         });
@@ -110,8 +110,8 @@ Message:
 {$userMessage}
 EOF;
 
-            $message->to(config('admin.email'))
-             ->from(config('admin.email'), 'Admin')
+            $message->to(config('rubel.admin.email'))
+             ->from(config('rubel.admin.email'), 'Admin')
              ->subject('Received a message! bmf-tech.com')
              ->setBody($templateForAdmin, 'text/plain');
         });
@@ -124,6 +124,6 @@ EOF;
      */
     public function thanks(): View
     {
-        return view('bmftech::contact.thanks');
+        return view(get_the_view_path('contact.thanks'));
     }
 }

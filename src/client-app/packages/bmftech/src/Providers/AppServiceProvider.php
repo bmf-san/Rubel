@@ -27,9 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        foreach (glob(realpath(__DIR__.'/../../src/Helpers').'/*.php') as $filename) {
-            require_once($filename);
-        }
+        $this->registerHelpers();
     }
 
     /**
@@ -59,5 +57,17 @@ class AppServiceProvider extends ServiceProvider
         ], function ($router) {
             require realpath(__DIR__.'/../../routes/web.php');
         });
+    }
+
+    /**
+     * Register helpers
+     *
+     * @return void
+     */
+    private function registerHelpers()
+    {
+        foreach (glob(realpath(__DIR__.'/../../src/Helpers').'/*.php') as $filename) {
+            require_once($filename);
+        }
     }
 }

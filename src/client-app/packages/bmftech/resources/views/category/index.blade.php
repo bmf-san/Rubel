@@ -1,4 +1,4 @@
-@extends('bmftech::layouts.master')
+@extends(get_the_view_path('layouts.master'))
 
 @section('title', 'Category')
 @section('canonical', url()->current())
@@ -9,7 +9,7 @@
 
 @section('content')
   <div>
-    @include('bmftech::partials.nav')
+    @include(get_the_view_path('partials.nav'))
     <section class="hero is-primary is-medium header-image">
       <div class="hero-body">
         <div class="container has-text-centered">
@@ -35,5 +35,5 @@
       </div>
     </section>
   </div>
-  @include('bmftech::partials.footer')
+  @include(get_the_view_path('partials.footer'))
 @endsection

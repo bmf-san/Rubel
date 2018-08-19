@@ -29,7 +29,7 @@ $factory->define(Admin::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
-        'password' => bcrypt(config('admin.password')),
+        'password' => bcrypt(config('rubel.admin.password')),
         'remember_token' => str_random(10),
     ];
 });

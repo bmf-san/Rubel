@@ -48,7 +48,7 @@ class FeedController extends Controller
         $updatedAt = $this->postRepository->findLatest()->updated_at->toAtomString();
         $posts = $this->postRepository->findPublished();
 
-        return response()->view('bmftech::feed.index', [
+        return response()->view(get_the_view_path('feed.index'), [
             'title' => $title,
             'subTitle' => $subTitle,
             'updatedAt' => $updatedAt,

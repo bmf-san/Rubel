@@ -64,6 +64,6 @@ class HomeController extends Controller
         $categories = $this->categoryRepository->findAll();
         $tags = $this->tagRepository->findAll();
 
-        return view('bmftech::home.index', ['recentPosts' => $recentPosts, 'randomPosts' => $randomPosts, 'categories' => $categories, 'tags' => $tags]);
+        return view(get_the_view_path('home.index'), ['recentPosts' => $recentPosts, 'randomPosts' => $randomPosts, 'categories' => $categories, 'tags' => $tags]);
     }
 }
