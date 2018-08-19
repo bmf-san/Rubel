@@ -73,7 +73,7 @@ class Handler extends ExceptionHandler
      * @param  HttpException  $e
      * @return Response
      */
-    protected function renderHttpException($e)
+    protected function renderHttpException(HttpException $e)
     {
         $status = $e->getStatusCode();
         $errorMessages = $this->handleErrorMessages($status);
