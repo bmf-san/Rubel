@@ -212,9 +212,9 @@ class PostRepository implements PostRepositoryContract
      * Display the specified resouce.
      *
      * @param  int    $id
-     * @return Post
+     * @return mixed
      */
-    public function findPreviousPost(int $id): Post
+    public function findPreviousPost(int $id)
     {
         return $this->postModel->where('id', '<', $id)->where('publication_status', 'public')->orderBy('id', 'desc')->first();
     }
@@ -223,9 +223,9 @@ class PostRepository implements PostRepositoryContract
      * Display the specified resource.
      *
      * @param  int    $id
-     * @return Post
+     * @return mixed
      */
-    public function findNextPost(int $id): Post
+    public function findNextPost(int $id)
     {
         return $this->postModel->where('id', '>', $id)->where('publication_status', 'public')->first();
     }

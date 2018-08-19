@@ -95,17 +95,17 @@ interface PostRepositoryContract
      * Display the specified resouce.
      *
      * @param  int  $id
-     * @return Post
+     * @return mixed
      */
-    public function findPreviousPost(int $id): Post;
+    public function findPreviousPost(int $id);
 
     /**
      * Display the specified resouce.
      *
      * @param  int  $id
-     * @return Post
+     * @return mixed
      */
-    public function findNextPost(int $id): Post;
+    public function findNextPost(int $id);
 
     /**
      * Store a newly created resource in storage.
