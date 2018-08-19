@@ -159,6 +159,24 @@ class PostRepository implements PostRepositoryContract
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param  string $name
+     * @param  int $paginationLimit
+     * @return mixed
+     */
+    public function findAllByTagName(string $name, int $paginationLimit = null)
+    {
+        $posts = $this->tagModel->where('name', $name)->firstOrFail()->posts()->where('publication_status', 'public');
+
+        if ($paginationLimit) {
+            return $posts->paginate($paginationLimit);
+        }
+
+        return $posts->get();
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  string $title

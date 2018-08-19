@@ -59,11 +59,20 @@ interface PostRepositoryContract
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param string $name
      * @param int $paginationLimit
      * @return mixed
      */
     public function findAllByCategoryName(string $name, int $paginationLimit = null);
+
+    /**
+     * Display the specified resource.
+     *
+     * @param string $name
+     * @param int $paginationLimit
+     * @return mixed
+     */
+    public function findAllByTagName(string $name, int $paginationLimit = null);
 
     /**
      * Display the specified resource.

@@ -209,6 +209,7 @@ class PostRepositoryTest extends UnitTestCase
         $this->assertThat($post, $this->isInstanceOf(Post::class));
         $this->assertThat($post->id, $this->identicalTo($id));
     }
+
     /**
      * @test
      */
@@ -257,6 +258,75 @@ class PostRepositoryTest extends UnitTestCase
         ]);
 
         $post = $this->postRepository->findAllByCategoryName($categoryName, $paginationLimit);
+
+        $this->assertThat($post, $this->isInstanceOf(LengthAwarePaginator::class));
+        $this->assertThat($post->count(), $this->identicalTo(2));
+    }
+
+    /**
+     * @test
+     */
+    public function testFindAllByTagName()
+    {
+        $tagName = 'tag-name';
+
+        factory(Tag::class)->create([
+            'id' => 1,
+            'name' => $tagName,
+        ]);
+        factory(Post::class)->create([
+            'id' => 1,
+            'publication_status' => 'public',
+        ]);
+        factory(Post::class)->create([
+            'id' => 2,
+            'publication_status' => 'public',
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 1,
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 2,
+        ]);
+
+        $post = $this->postRepository->findAllByTagName($tagName);
+
+        $this->assertThat($post, $this->isInstanceOf(Collection::class));
+        $this->assertThat($post->count(), $this->identicalTo(2));
+    }
+
+    /**
+     * @test
+     */
+    public function testFindAllByTagNameWithPaginationLimit()
+    {
+        $paginationLimit = 10;
+        $tagName = 'tag-name';
+
+        factory(Tag::class)->create([
+            'id' => 1,
+            'name' => $tagName,
+        ]);
+        factory(Post::class)->create([
+            'id' => 1,
+            'publication_status' => 'public',
+        ]);
+        factory(Post::class)->create([
+            'id' => 2,
+            'publication_status' => 'public',
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 1,
+        ]);
+        factory(TagPost::class)->create([
+            'tag_id' => 1,
+            'post_id' => 2,
+        ]);
+
+        $post = $this->postRepository->findAllByTagName($tagName, $paginationLimit);
 
         $this->assertThat($post, $this->isInstanceOf(LengthAwarePaginator::class));
         $this->assertThat($post->count(), $this->identicalTo(2));
