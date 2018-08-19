@@ -13,6 +13,13 @@ use Rubel\Http\Requests\Api\v1\Post\UpdatePostRequest;
 class PostController extends Controller
 {
     /**
+     * Pagination limit
+     *
+     * @var int
+     */
+    const PAGINATION_LIMIT = 20;
+
+    /**
      * PostRepository
      *
      * @var $postRepository
@@ -31,7 +38,7 @@ class PostController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->postRepository->findAll(), Response::HTTP_OK);
+        return response()->json($this->postRepository->setWith('admin', 'category', 'comments', 'tags')->findAll(self::PAGINATION_LIMIT), Response::HTTP_OK);
     }
 
     /**
@@ -53,7 +60,7 @@ class PostController extends Controller
      */
     public function show(Int $id): JsonResponse
     {
-        return response()->json($this->postRepository->findById($id), Response::HTTP_OK);
+        return response()->json($this->postRepository->setWith('admin', 'category', 'comments', 'tags')->findById($id), Response::HTTP_OK);
     }
 
     /**

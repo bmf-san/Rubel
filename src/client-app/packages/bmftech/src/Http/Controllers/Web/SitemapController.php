@@ -4,32 +4,32 @@ namespace BmfTech\Http\Controllers\Web;
 
 use Illuminate\Http\Response;
 use BmfTech\Http\Controllers\Controller;
-use Rubel\Models\Post;
-use Rubel\Models\Category;
-use Rubel\Models\Tag;
+use Rubel\Repositories\Eloquent\PostRepository;
+use Rubel\Repositories\Eloquent\CategoryRepository;
+use Rubel\Repositories\Eloquent\TagRepository;
 
 class SitemapController extends Controller
 {
     /**
-     * Post
+     * PostRepository
      *
-     * @var Post
+     * @var PostRepository
      */
-    private $post;
+    private $postRepository;
 
     /**
-     * Category
+     * CategoryRepository
      *
-     * @var Category
+     * @var CategoryRepository
      */
-    private $category;
+    private $categoryRepository;
 
     /**
-     * Tag
+     * TagRepository
      *
-     * @var Tag
+     * @var TagRepository
      */
-    private $tag;
+    private $tagRepository;
 
     /**
      * Static name routes
@@ -69,15 +69,15 @@ class SitemapController extends Controller
     /**
      * SitemapController constructor
      *
-     * @param Post $post
-     * @param Category $category
-     * @param Tag $tag
+     * @param PostRepository $postRepository
+     * @param CategoryRepository $categoryRepository
+     * @param TagRepository $tagRepository
      */
-    public function __construct(Post $post, Category $category, Tag $tag)
+    public function __construct(PostRepository $postRepository, CategoryRepository $categoryRepository, TagRepository $tagRepository)
     {
-        $this->post = $post;
-        $this->category = $category;
-        $this->tag = $tag;
+        $this->postRepository = $postRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -117,7 +117,7 @@ class SitemapController extends Controller
         foreach ($this->staticNameRoutes as $routes) {
             $staticSitemap[] = (object) [
                 'url' => route($routes),
-                'updated_at' => $this->post->latest()->first()->updated_at->format('Y-m-d'),
+                'updated_at' => $this->postRepository->findLatest()->updated_at->format('Y-m-d'),
             ];
         }
 
@@ -133,21 +133,21 @@ class SitemapController extends Controller
     {
         $dynamicSitemap = [];
 
-        foreach ($this->post->all() as $post) {
+        foreach ($this->postRepository->findAll() as $post) {
             $dynamicSitemap[] = (object) [
                 'url' => route(self::WEB_POSTS_SHOW, $post->title),
                 'updated_at' => $post->updated_at->format('Y-m-d'),
             ];
         }
 
-        foreach ($this->category->all() as $category) {
+        foreach ($this->categoryRepository->findAll() as $category) {
             $dynamicSitemap[] = (object) [
                 'url' => route(self::WEB_POSTS_CATEGORIES_GETPOSTS, $category->name),
                 'updated_at' => $category->updated_at->format('Y-m-d'),
             ];
         }
 
-        foreach ($this->tag->all() as $tag) {
+        foreach ($this->tagRepository->findAll() as $tag) {
             $dynamicSitemap[] = (object) [
                 'url' => route(self::WEB_POSTS_TAGS_GETPOSTS, $tag->name),
                 'updated_at' => $tag->updated_at->format('Y-m-d'),

@@ -4,8 +4,9 @@ namespace BmfTech\Http\Controllers\Web;
 
 use Illuminate\Contracts\View\View;
 use BmfTech\Http\Controllers\Controller;
-use Rubel\Models\Tag;
-use Rubel\Models\Category;
+use Rubel\Repositories\Eloquent\PostRepository;
+use Rubel\Repositories\Eloquent\TagRepository;
+use Rubel\Repositories\Eloquent\CategoryRepository;
 
 class TagController extends Controller
 {
@@ -17,29 +18,38 @@ class TagController extends Controller
     const PAGINATION_LIMIT = 10;
 
     /**
-     * Tag
+     * PostRepository
      *
-     * @var Tag
+     * @var PostRepository
      */
-    private $tagModel;
+    private $postRepository;
 
     /**
-     * Category
+     * TagRepository
      *
-     * @var Category
+     * @var TagRepository
      */
-    private $categoryModel;
+    private $tagRepository;
+
+    /**
+     * CategoryRepository
+     *
+     * @var CategoryRepository
+     */
+    private $categoryRepository;
 
     /**
      * TagController constructor
      *
-     * @param Tag      $tagModel
-     * @param Category $categoryModel
+     * @param PostRepository $postRepository
+     * @param TagRepository $tagRepository
+     * @param CategoryRepository $categoryRepository
      */
-    public function __construct(Tag $tagModel, Category $categoryModel)
+    public function __construct(PostRepository $postRepository, TagRepository $tagRepository, CategoryRepository $categoryRepository)
     {
-        $this->tagModel = $tagModel;
-        $this->categoryModel = $categoryModel;
+        $this->postRepository = $postRepository;
+        $this->tagRepository = $tagRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -49,23 +59,24 @@ class TagController extends Controller
      */
     public function index(): View
     {
-        $tags = $this->tagModel->all();
+        $tags = $this->tagRepository->findAll();
 
         return view('bmftech::tag.index', ['tags' => $tags]);
     }
+
     /**
      * Display a listing of the resource.
      *
-     * @param  Tag $tag
+     * @param  string $tagName
      * @return View
      */
-    public function getPosts(Tag $tag): View
+    public function getPosts(string $tagName): View
     {
-        $posts = $tag->posts()->where('publication_status', 'public')->paginate(self::PAGINATION_LIMIT);
+        $posts = $this->postRepository->findAllByTagName($tagName, self::PAGINATION_LIMIT);
 
-        $categories = $this->categoryModel->all();
-        $tags = $this->tagModel->all();
+        $categories = $this->categoryRepository->findAll();
+        $tags = $this->tagRepository->findAll();
 
-        return view('bmftech::post.tag', ['tag' => $tag, 'posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
+        return view('bmftech::post.tag', ['tagName' => $tagName, 'posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
 }

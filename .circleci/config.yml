@@ -3,17 +3,51 @@ jobs:
   build:
     machine: true
     steps:
-      - checkout
-      - run: docker-compose build
-      - run: docker-compose up -d
-      - run: cd ./src/core-app/ && cp .env.example .env
-      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && composer install"
-      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan key:generate"
-      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan migrate && php artisan db:seed"
-      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && composer test"
-      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && composer install"
-      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && npm cache verify && npm install && npm run build"
-      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan vendor:publish --tag="bmftech-public""
-      - run: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan vendor:publish --tag="bmftech-views""
-      - run: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && composer test"
-      - run: docker exec -it rubel_php /bin/sh -c "cd admin-app/ && npm cache verify && npm install && npm run build"
+        - checkout
+        - run:
+            name: Build docker applications
+            command: docker-compose build
+        - run:
+            name: Up docker applications
+            command: docker-compose up -d
+        - run:
+            name: core-app - Copy a env file
+            command: cd ./src/core-app/ && cp .env.example .env
+        - run:
+            name: core-app - Install composer packages
+            command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && composer install"
+        - run:
+            name: core-app - Generate a application key
+            command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan key:generate"
+        - run:
+            name: core-app - Setup the database and initialize data
+            command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan migrate && php artisan db:seed"
+        - run:
+            name: Create a artifacts directory
+            command: mkdir -p /tmp/artifacts
+        - run:
+            name: core-app - Run tests and create a code coverage report
+            command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && phpdbg -qrr vendor/bin/phpunit -d memory_limit=512M --coverage-html /tmp/artifacts"
+        - run:
+            name: Copy the coverage report to host directory
+            command: docker cp rubel_php:/tmp/artifacts /tmp
+        - store_artifacts:
+            path: /tmp/artifacts
+        - run:
+            name: client-app - Install composer packages
+            command: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && composer install"
+        - run:
+            name: client-app - Install npm packages and build source files
+            command: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && npm cache verify && npm install && npm run build"
+        - run:
+            name: client-app - Publish files related to public(static files)
+            command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan vendor:publish --tag="bmftech-public""
+        - run:
+            name: client-app - Publish files related to views
+            command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan vendor:publish --tag="bmftech-views""
+        - run:
+            name: client-app - Run tests
+            command: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && composer test";
+        - run:
+            name: admin-app - Install npm packages and build source files
+            command: docker exec -it rubel_php /bin/sh -c "cd admin-app/ && npm cache verify && npm install && npm run build"

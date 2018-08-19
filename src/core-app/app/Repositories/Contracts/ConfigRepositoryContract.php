@@ -15,6 +15,14 @@ interface ConfigRepositoryContract
     public function findAll(): Collection;
 
     /**
+     * Display the specified resource.
+     *
+     * @param string $name
+     * @return Config
+     */
+    public function findByName(string $name): Config;
+
+    /**
      * Update the specified resouce in storage.
      *
      * @param  array $attributes

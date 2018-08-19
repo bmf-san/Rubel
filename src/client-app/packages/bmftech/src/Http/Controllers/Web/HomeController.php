@@ -3,10 +3,10 @@
 namespace BmfTech\Http\Controllers\Web;
 
 use Illuminate\Contracts\View\View;
+use Rubel\Repositories\Eloquent\PostRepository;
+use Rubel\Repositories\Eloquent\CategoryRepository;
+use Rubel\Repositories\Eloquent\TagRepository;
 use BmfTech\Http\Controllers\Controller;
-use Rubel\Models\Post;
-use Rubel\Models\Category;
-use Rubel\Models\Tag;
 
 class HomeController extends Controller
 {
@@ -18,38 +18,38 @@ class HomeController extends Controller
     const PAGINATION_LIMIT = 10;
 
     /**
-     * Post
+     * PostRepository
      *
-     * @var Post
+     * @var PostRepository
      */
-    private $postModel;
+    private $postRepository;
 
     /**
-     * Category
+     * CategoryRepository
      *
-     * @var Category
+     * @var CategoryRepository
      */
-    private $categoryModel;
+    private $categoryRepository;
 
     /**
-     * Tag
+     * TagRepository
      *
-     * @var Tag
+     * @var TagRepository
      */
-    private $tagModel;
+    private $tagRepository;
 
     /**
      * HomeController constructor
      *
-     * @param Post     $postModel
-     * @param Category $categoryModel
-     * @param Tag      $tagModel
+     * @param PostRepository   $postRepository
+     * @param CategoryRepository $categoryRepository
+     * @param TagRepository      $tagRepository
      */
-    public function __construct(Post $postModel, Category $categoryModel, Tag $tagModel)
+    public function __construct(PostRepository $postRepository, CategoryRepository $categoryRepository, TagRepository $tagRepository)
     {
-        $this->postModel = $postModel;
-        $this->categoryModel = $categoryModel;
-        $this->tagModel = $tagModel;
+        $this->postRepository = $postRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -59,12 +59,10 @@ class HomeController extends Controller
      */
     public function index(): View
     {
-        $recentPosts = $this->postModel->where('publication_status', 'public')->take(self::PAGINATION_LIMIT)->orderBy('created_at', 'desc')->get();
-        // FIXME orderBy is not good because there is an impact on db performance
-        $randomPosts = $this->postModel->where('publication_status', 'public')->inRandomOrder()->take(self::PAGINATION_LIMIT)->orderBy('created_at', 'desc')->get();
-
-        $categories = $this->categoryModel->all();
-        $tags = $this->tagModel->all();
+        $recentPosts = $this->postRepository->findPublished(self::PAGINATION_LIMIT);
+        $randomPosts = $this->postRepository->findByRandom(self::PAGINATION_LIMIT);
+        $categories = $this->categoryRepository->findAll();
+        $tags = $this->tagRepository->findAll();
 
         return view('bmftech::home.index', ['recentPosts' => $recentPosts, 'randomPosts' => $randomPosts, 'categories' => $categories, 'tags' => $tags]);
     }

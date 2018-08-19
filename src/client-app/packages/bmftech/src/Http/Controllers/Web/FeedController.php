@@ -4,36 +4,36 @@ namespace BmfTech\Http\Controllers\Web;
 
 use Illuminate\Http\Response;
 use BmfTech\Http\Controllers\Controller;
-use Rubel\Models\Post;
-use Rubel\Models\Config;
+use Rubel\Repositories\Eloquent\PostRepository;
+use Rubel\Repositories\Eloquent\ConfigRepository;
 use Carbon\Carbon;
 
 class FeedController extends Controller
 {
     /**
-     * Post
+     * PostRepository
      *
-     * @var Post
+     * @var PostRepository
      */
-    private $post;
+    private $postRepository;
 
     /**
-     * Config
+     * ConfigRepository
      *
-     * @var Config
+     * @var ConfigRepository
      */
-    private $config;
+    private $configRepository;
 
     /**
      * FeedController constructor
      *
-     * @param Post $post
-     * @param Config $config
+     * @param PostRepository $postRepository
+     * @param ConfigRepository $configRepository
      */
-    public function __construct(Post $post, Config $config)
+    public function __construct(PostRepository $postRepository, ConfigRepository $configRepository)
     {
-        $this->post = $post;
-        $this->config = $config;
+        $this->postRepository = $postRepository;
+        $this->configRepository = $configRepository;
     }
 
     /**
@@ -43,10 +43,10 @@ class FeedController extends Controller
      */
     public function index(): Response
     {
-        $title = $this->config->where('name', 'title')->first()->value;
-        $subTitle = $this->config->where('name', 'sub_title')->first()->value;
-        $updatedAt = $this->post->latest()->first()->updated_at->toAtomString();
-        $posts = $this->post->whereNotNull('published_at')->get();
+        $title = $this->configRepository->findByName('title')->value;
+        $subTitle = $this->configRepository->findByName('sub_title')->value;
+        $updatedAt = $this->postRepository->findLatest()->updated_at->toAtomString();
+        $posts = $this->postRepository->findPublished();
 
         return response()->view('bmftech::feed.index', [
             'title' => $title,

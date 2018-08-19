@@ -4,6 +4,9 @@ namespace BmfTech\Http\Controllers\Web;
 
 use \Illuminate\Contracts\View\View;
 use BmfTech\Http\Controllers\Controller;
+use Rubel\Repositories\Eloquent\PostRepository;
+use Rubel\Repositories\Eloquent\CategoryRepository;
+use Rubel\Repositories\Eloquent\TagRepository;
 use Rubel\Models\Post;
 use Rubel\Models\Category;
 use Rubel\Models\Tag;
@@ -21,39 +24,40 @@ class PostController extends Controller
      * Related post limit
      */
      const RELATED_POST_LIMIT = 5;
-    /**
-     * Post
-     *
-     * @var Post
-     */
-    private $postModel;
 
     /**
-     * Category
+     * PostRepository
      *
-     * @var Category
+     * @var PostRepository
      */
-    private $categoryModel;
+    private $postRepository;
 
     /**
-     * Tag
+     * CategoryRepository
      *
-     * @var Tag
+     * @var
      */
-    private $tagModel;
+    private $categoryRepository;
+
+    /**
+     * TagRepository
+     *
+     * @var TagRepository
+     */
+    private $tagRepository;
 
     /**
      * PostController constructor
      *
-     * @param Post     $postModel
-     * @param Category $categoryModel
-     * @param Tag      $tagModel
+     * @param PostRepository     $postRepository
+     * @param CategoryRepository $categoryRepository
+     * @param TagRepository      $tagRepository
      */
-    public function __construct(Post $postModel, Category $categoryModel, Tag $tagModel)
+    public function __construct(PostRepository $postRepository, CategoryRepository $categoryRepository, TagRepository $tagRepository)
     {
-        $this->postModel = $postModel;
-        $this->categoryModel = $categoryModel;
-        $this->tagModel = $tagModel;
+        $this->postRepository = $postRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -64,10 +68,10 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        $posts = $this->postModel->where('publication_status', 'public')->orderBy('created_at', 'desc')->paginate(self::PAGINATION_LIMIT);
+        $posts = $this->postRepository->findPublished(self::PAGINATION_LIMIT);
 
-        $categories = $this->categoryModel->all();
-        $tags = $this->tagModel->all();
+        $categories = $this->categoryRepository->findAll();
+        $tags = $this->tagRepository->findAll();
 
         return view('bmftech::post.index', ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
@@ -75,22 +79,19 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Post $post
+     * @param  string $title
      * @return View
      */
-    public function show(Post $post): View
+    public function show(string $title): View
     {
-        $post = $post->where('publication_status', 'public')->findOrFail($post->id);
-        $relatedPost = $this->postModel->where('posts.id', '!=', $post->id)
-                                        ->whereHas('tags', function ($query) use ($post) {
-                                            return $query->whereIn('tags.id', $post->tags()->pluck('tags.id')->toArray());
-                                        })->take(self::RELATED_POST_LIMIT)->get();
+        $post = $this->postRepository->findByTitle($title);
+        $postId = $post->id;
+        $relatedPost = $this->postRepository->findRelatedPost($post, self::RELATED_POST_LIMIT);
+        $previousPost = $this->postRepository->findPreviousPost($postId);
+        $nextPost = $this->postRepository->findNextPost($postId);
 
-        $previousPost = $post->where('id', '<', $post->id)->where('publication_status', 'public')->orderBy('id', 'desc')->first();
-        $nextPost = $post->where('id', '>', $post->id)->where('publication_status', 'public')->first();
-
-        $categories = $this->categoryModel->all();
-        $tags = $this->tagModel->all();
+        $categories = $this->categoryRepository->findAll();
+        $tags = $this->tagRepository->findAll();
 
         return view('bmftech::post.show', ['post' => $post, 'relatedPost' => $relatedPost, 'previousPost' => $previousPost, 'nextPost' => $nextPost, 'categories' => $categories, 'tags' => $tags]);
     }

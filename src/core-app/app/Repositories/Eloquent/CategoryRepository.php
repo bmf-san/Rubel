@@ -39,7 +39,6 @@ class CategoryRepository implements CategoryRepositoryContract
      */
     public function findAll(): Collection
     {
-        // TODO Remove a orderBy method after implementation of search api.
         return $this->categoryModel->orderBy('created_at', 'desc')->get();
     }
 

@@ -24,7 +24,7 @@
         <div class="column is-8 is-offset-2">
           @forelse($categories as $category)
             <p class="title is-4">
-              <a href="{{ 'web.post.category', $category->name }}">
+              <a href="{{ route('web.posts.categories.getPosts', $category->name) }}">
                 {{ $category->name }}
               </a>
             </p>
