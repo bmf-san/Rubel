@@ -88,7 +88,7 @@ If you want to use vagrant, you can be able to use [bmf-san/vagrant-for-rubel](h
 | `make:repository {modelName : The name of the model}` | Create repository files.                  |
 | `app:init`                                            | Interactively initialize the application. |
 
-## Anything Else
+## Documentation
 
 - [Wiki - API Documentation](https://github.com/bmf-san/laravel-react-blog-boilerplate/wiki/API-Documentation)
 
