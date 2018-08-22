@@ -15,7 +15,7 @@ services:
       - ./src:/var/www/html:delegated
   mysql:
     container_name: "rubel_mysql"
-    image: mysql:5.7
+    build: ./docker/mysql
     ports:
       - "3306:3306"
     volumes:
@@ -25,7 +25,7 @@ services:
       - MYSQL_DATABASE=rubel
   mysql_test:
     container_name: "rubel_mysql_test"
-    image: mysql:5.7
+    build: ./docker/php
     ports:
       - "3305:3306"
     volumes:
