@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Web;
+namespace Tests\Feature\Web\Controllers;;
 
 use Tests\FeatureTestCase;
 use Illuminate\Http\Response;
