@@ -41,7 +41,7 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => 'Rubel\Http\Controllers\Api\v1',
             'as' => 'api.',
             'prefix' => 'v1',
-            'domain' => config('host.api_domain')
+            'domain' => config('host.domain.api')
         ], function ($router) {
             require base_path('routes/api.php');
         });

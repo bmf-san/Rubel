@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
             'middleware' => 'web',
             'namespace' => 'BmfTech\Http\Controllers\Web',
             'as' => 'web.',
-            'domain' => config('host.domain')
+            'domain' => config('host.domain.web')
         ], function ($router) {
             require realpath(__DIR__.'/../../routes/web.php');
         });
