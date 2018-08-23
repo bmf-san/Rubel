@@ -26,7 +26,7 @@ export const EDIT_CONFIG = "EDIT_CONFIG";
 export const FETCH_CONFIGS = "FETCH_CONFIGS";
 
 const jwtKey = process.env.JWT_KEY;
-const apiDomain = process.env.API_DOMAIN;
+const apiDomain = process.env.DOMAIN_API;
 
 const protocol = (process.env.APP_ENV === "production") ?
   "https" :
