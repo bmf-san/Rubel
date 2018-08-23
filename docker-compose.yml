@@ -25,7 +25,7 @@ services:
       - MYSQL_DATABASE=rubel
   mysql_test:
     container_name: "rubel_mysql_test"
-    build: ./docker/php
+    build: ./docker/mysql
     ports:
       - "3305:3306"
     volumes:
