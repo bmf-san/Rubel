@@ -13,6 +13,6 @@ RUN curl -sS https://getcomposer.org/installer | php
 
 RUN mv composer.phar /usr/local/bin/composer
 
-RUN apk add --no-cache nodejs
+RUN apk add --update nodejs nodejs-npm
 
 WORKDIR /var/www/html
