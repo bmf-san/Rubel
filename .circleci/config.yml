@@ -21,7 +21,7 @@ jobs:
             name: core-app - Install composer packages
             command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && composer install"
         - save_cache:
-            key: composer-cache-{{ .Branch }}--{{ checksum "src/core-app/compose.lock" }}
+            key: composer-cache-{{ .Branch }}--{{ checksum "src/core-app/composer.lock" }}
             paths:
                 - "~/.composer/cache"
         - run:
@@ -60,7 +60,7 @@ jobs:
             name: client-app - Install npm packages and build source files
             command: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && npm cache verify && npm install && npm run build"
         - save_cache:
-            key: npm-cache-{{ .Branch }}-{{ checksum "src/client-app/package/bmftech/package-lock.json" }}
+            key: npm-cache-{{ .Branch }}-{{ checksum "src/client-app/packages/bmftech/package-lock.json" }}
             paths:
                 - "~/.cache/npm"
         - run:
