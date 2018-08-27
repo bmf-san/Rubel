@@ -13,6 +13,8 @@ jobs:
         - run:
             name: core-app - Copy a env file
             command: cd ./src/core-app/ && cp .env.example .env
+        - run:
+            command: ls /home/circleci/project
         - restore_cache:
             keys:
                 - composer-cache-{{ .Branch }}--{{ checksum "src/core-app/composer.lock" }}
