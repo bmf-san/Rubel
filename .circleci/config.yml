@@ -79,3 +79,7 @@ jobs:
         - run:
             name: admin-app - Install npm packages and build source files
             command: docker exec -it rubel_php /bin/sh -c "cd admin-app/ && npm cache verify && npm install && npm run build"
+        - save_cache:
+            key: npm-cache-{{ .Branch }}-{{ checksum "src/admin-app/package-lock.json" }}
+            paths:
+                - "~/.cache/npm"
