@@ -13,9 +13,17 @@ jobs:
         - run:
             name: core-app - Copy a env file
             command: cd ./src/core-app/ && cp .env.example .env
+        - restore_cache:
+            keys:
+                - composer-cache-{{ .Branch }}--{{ checksum "src/core-app/composer.lock" }}
+                - composer-cache-{{ .Branch }}
         - run:
             name: core-app - Install composer packages
             command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && composer install"
+        - save_cache:
+            key: composer-cache-{{ .Branch }}--{{ checksum "src/core-app/composer.lock" }}
+            paths:
+                - "~/.composer/cache"
         - run:
             name: core-app - Generate a application key
             command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan key:generate"
@@ -33,12 +41,28 @@ jobs:
             command: docker cp rubel_php:/tmp/artifacts /tmp
         - store_artifacts:
             path: /tmp/artifacts
+        - restore_cache:
+            keys:
+                - composer-cache-{{ .Branch }}--{{ checksum "src/client-app/packages/bmftech/composer.lock" }}
+                - composer-cache-{{ .Branch }}
         - run:
             name: client-app - Install composer packages
             command: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && composer install"
+        - save_cache:
+            key: composer-cache-{{ .Branch }}--{{ checksum "src/client-app/packages/bmftech/composer.lock" }}
+            paths:
+                - "~/.composer/cache"
+        - restore_cache:
+            keys:
+                - npm-cache-{{ .Branch }}-{{ checksum "src/client-app/packages/bmftech/package-lock.json" }}
+                - npm-cache-{{ .Branch }}
         - run:
             name: client-app - Install npm packages and build source files
             command: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && npm cache verify && npm install && npm run build"
+        - save_cache:
+            key: npm-cache-{{ .Branch }}-{{ checksum "src/client-app/packages/bmftech/package-lock.json" }}
+            paths:
+                - "~/.cache/npm"
         - run:
             name: client-app - Publish files related to public(static files)
             command: docker exec -it rubel_php /bin/sh -c "cd core-app/ && php artisan vendor:publish --tag="bmftech-public""
@@ -48,6 +72,14 @@ jobs:
         - run:
             name: client-app - Run tests
             command: docker exec -it rubel_php /bin/sh -c "cd client-app/packages/bmftech && composer test";
+        - restore_cache:
+            keys:
+                - npm-cache-{{ .Branch }}-{{ checksum "src/admin-app/package-lock.json" }}
+                - npm-cache-{{ .Branch }}
         - run:
             name: admin-app - Install npm packages and build source files
             command: docker exec -it rubel_php /bin/sh -c "cd admin-app/ && npm cache verify && npm install && npm run build"
+        - save_cache:
+            key: npm-cache-{{ .Branch }}-{{ checksum "src/admin-app/package-lock.json" }}
+            paths:
+                - "~/.cache/npm"
