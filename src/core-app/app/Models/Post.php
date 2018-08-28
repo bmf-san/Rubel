@@ -46,6 +46,13 @@ class Post extends Model
     use SoftDeletes;
 
     /**
+     * PUBLICATION_STATUS_PUBLIC
+     *
+     * @var string
+     */
+    const PUBLICATION_STATUS_PUBLIC = 'public';
+
+    /**
      * The table associated with the model.
      *
      * @var string

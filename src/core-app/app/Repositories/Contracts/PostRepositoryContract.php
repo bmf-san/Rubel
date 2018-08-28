@@ -12,10 +12,10 @@ interface PostRepositoryContract
     /**
      * Wrap an eloquent with method.
      *
-     * @param  string $relations
+     * @param  array $relations
      * @return PostRepository
      */
-    public function setWith(string $relations): PostRepository;
+    public function setWith(array $relations): PostRepository;
 
     /**
      * Display a listing of the resource.

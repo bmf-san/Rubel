@@ -12,13 +12,6 @@ use Carbon\Carbon;
 class PostRepository implements PostRepositoryContract
 {
     /**
-     * PUBLICATION_STATUS_PUBLIC
-     *
-     * @var string
-     */
-    const PUBLICATION_STATUS_PUBLIC = 'public';
-
-    /**
      * Post
      *
      * @var Post
@@ -59,7 +52,7 @@ class PostRepository implements PostRepositoryContract
      * @param  array          $relations
      * @return PostRepository
      */
-    public function setWith(string $relations): PostRepository
+    public function setWith(array $relations): PostRepository
     {
         $this->postModel = $this->postModel->with($relations);
 
@@ -91,7 +84,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function findPublished(int $paginationLimit = null)
     {
-        $posts = $this->postModel->where('publication_status', self::PUBLICATION_STATUS_PUBLIC)->orderBy('created_at', 'desc');
+        $posts = $this->postModel->where('publication_status', $this->postModel::PUBLICATION_STATUS_PUBLIC)->orderBy('created_at', 'desc');
 
         if ($paginationLimit) {
             return $posts->paginate($paginationLimit);
@@ -118,7 +111,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function findByRandom(int $paginationLimit = null)
     {
-        $posts = $this->postModel->where('publication_status', self::PUBLICATION_STATUS_PUBLIC)->inRandomOrder()->orderBy('created_at', 'desc');
+        $posts = $this->postModel->where('publication_status', $this->postModel::PUBLICATION_STATUS_PUBLIC)->inRandomOrder()->orderBy('created_at', 'desc');
 
         if ($paginationLimit) {
             return $posts->paginate($paginationLimit);
@@ -184,7 +177,7 @@ class PostRepository implements PostRepositoryContract
      */
     public function findByTitle(string $title): Post
     {
-        return $this->postModel->where('title', $title)->where('publication_status', self::PUBLICATION_STATUS_PUBLIC)->firstOrFail();
+        return $this->postModel->where('title', $title)->where('publication_status', $this->postModel::PUBLICATION_STATUS_PUBLIC)->firstOrFail();
     }
 
     /**
@@ -305,7 +298,7 @@ class PostRepository implements PostRepositoryContract
      */
     private function getPublicationDate($publicationStatus, $publicationDate = null)
     {
-        if ($publicationStatus == self::PUBLICATION_STATUS_PUBLIC) {
+        if ($publicationStatus == $this->postModel::PUBLICATION_STATUS_PUBLIC) {
             if (is_null($publicationDate)) {
                 return Carbon::now();
             }
