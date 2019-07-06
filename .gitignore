@@ -1,0 +1,12 @@
+Vagrantfile
+.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/doc
+/ansible/host
+/ansible/group_vars/vagrant.yml
+/ansible/site.retry
+/deploy
+.DS_STORE

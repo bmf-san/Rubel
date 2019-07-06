@@ -1,0 +1,40 @@
+version: '3'
+services:
+  nginx:
+    container_name: "rubel_nginx"
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./src:/var/www/html:cached
+  php:
+    container_name: "rubel_php"
+    build: ./docker/php
+    volumes:
+      - ./src:/var/www/html:delegated
+  mysql:
+    container_name: "rubel_mysql"
+    build: ./docker/mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - rubel_mysql_db:/var/lib/mysql:delegated
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=rubel
+  mysql_test:
+    container_name: "rubel_mysql_test"
+    build: ./docker/mysql
+    ports:
+      - "3305:3306"
+    volumes:
+      - rubel_mysql_test_db:/var/lib/mysql:delegated
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=rubel_test
+volumes:
+  rubel_mysql_db:
+    driver: local
+  rubel_mysql_test_db:
+    driver: local
