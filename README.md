@@ -8,7 +8,7 @@
 
 # Rubel
 
-Rubel - An Open Source CMS built with Laravel and React.
+Rubel is a cms built with Laravel and React.
 
 # Features
 - Free
