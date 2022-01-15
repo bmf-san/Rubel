@@ -10,7 +10,7 @@
     "font-awesome": "^4.7.0",
     "highlight.js": "^9.10.0",
     "lodash": "^4.17.10",
-    "marked": "^0.3.19",
+    "marked": "^4.0.10",
     "prop-types": "^15.6.1",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
