@@ -1,4 +1,4 @@
-**This app will be replaced by Gobel. [github - bmf-san/Gobel](https://github.com/bmf-san/Gobel)**
+**This app replaced by Gobel. [github - bmf-san/Gobel](https://github.com/bmf-san/Gobel)**
 
 [![CircleCI](https://circleci.com/gh/bmf-san/Rubel.svg?style=svg)](https://circleci.com/gh/bmf-san/Rubel)
 ![](https://img.shields.io/github/issues/bmf-san/Rubel.svg)
